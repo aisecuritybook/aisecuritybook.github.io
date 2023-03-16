@@ -1,1 +1,2 @@
-# This is the online version of book *Artificial Intelligence: Data and Model Security*
+# This is the online version of the following book
+## *Artificial Intelligence: Data and Model Security*
