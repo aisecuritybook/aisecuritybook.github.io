@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <title>5. 数据安全：防御 &#8212; 人工智能数据与模型安全 1.0.0 documentation</title>
+    <title>5. 数据安全：防御 &#8212; 人工智能：数据与模型安全 1.0.0 documentation</title>
 
-    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.pink-deep_orange.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fontawesome/all.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
@@ -25,6 +25,7 @@
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/d2l.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/logo_removebg.png?"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="6. 模型安全：对抗攻击" href="chap6.html" />
@@ -75,12 +76,12 @@ Show Source
                   课程
               </a>
           
-              <a  class="mdl-navigation__link" href="https://github.com/OpenTAI">
+              <a  class="mdl-navigation__link" href="https://github.com/aisecuritybook">
                   <i class="fab fa-github"></i>
                   GitHub
               </a>
           
-              <a  class="mdl-navigation__link" href="https://haole1683.github.io/Book_html/html/chapter_preface/empty.html">
+              <a  class="mdl-navigation__link" href="https://aisecuritybook.github.io/">
                   <i class="fas fa-external-link-alt"></i>
                   English
               </a>
@@ -91,7 +92,7 @@ Show Source
           <!-- Title -->
       <span class="mdl-layout-title">
           <a class="title" href="../index.html">
-              <img class="logo" src="../_static/book_logo.png" alt="人工智能数据与模型安全"/>
+              <img class="logo" src="../_static/logo_with_text.png" alt="人工智能：数据与模型安全"/>
           </a>
       </span>
     
@@ -103,7 +104,6 @@ Show Source
             
             <nav class="mdl-navigation">
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../chapter_about_the_book/index.html">关于此书</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%89%8D%E8%A8%80.html">前言</a></li>
 </ul>
 <ul class="current">
@@ -136,7 +136,7 @@ Show Source
           <!-- Title -->
       <span class="mdl-layout-title">
           <a class="title" href="../index.html">
-              <img class="logo" src="../_static/book_logo.png" alt="人工智能数据与模型安全"/>
+              <img class="logo" src="../_static/logo_with_text.png" alt="人工智能：数据与模型安全"/>
           </a>
       </span>
     
@@ -148,7 +148,6 @@ Show Source
             
             <nav class="mdl-navigation">
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../chapter_about_the_book/index.html">关于此书</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%89%8D%E8%A8%80.html">前言</a></li>
 </ul>
 <ul class="current">
@@ -196,7 +195,7 @@ space），比原参数空间要小，<span class="math notranslate nohighlight"
 <p>此外，由于投毒样本往往只占训练数据很小的一部分，那么这些样本就可以通过<em>数据划分</em>（partition）隔离出来。将训练数据集划分成一定数量的子集，通过恰当的设置子集的大小可以让划分得到的子集大部分都是干净子集（即不包括任何投毒样本）。我们在干净子集上训练得到的模型都是干净（子）模型，基于这些模型我们就可以以投票的方式得到干净无毒的预测结果。</p>
 <p>基于上述思想，Levine等人 <span id="id5">(<a class="reference internal" href="../chapter_references/zreferences.html#id422" title="Levine, A., &amp; Feizi, S. (2021). Deep partition aggregation: provable defense against general poisoning attacks. International Conference on Learning Representations.">Levine and Feizi, 2021</a>)</span>
 提出可以理论证明的投毒防御方法：<em>深度划分聚合</em>（deep partition
-aggregation，DPA）。具体的，令<span class="math notranslate nohighlight">\(\mathcal{S}_L:=\{( x,c)| x \in \mathcal{S},c\in \mathbb{N} \}\)</span>为有类标的样本集，<span class="math notranslate nohighlight">\(\mathcal{S}\)</span>为无类标的样本空间。一个供模型训练的训练集可表示为：<span class="math notranslate nohighlight">\(\mathcal{T}\in \mathcal{P}(\mathcal{S}_L)\)</span>，其中<span class="math notranslate nohighlight">\(\mathcal{P}(\mathcal{S}_L)\)</span>是集合<span class="math notranslate nohighlight">\(\mathcal{S}_L\)</span>的幂集。对于<span class="math notranslate nohighlight">\(t\in \mathcal{S}_L\)</span>，令<span class="math notranslate nohighlight">\(**sample**( t)\in \mathcal{S}_L\)</span>为数据样本，<span class="math notranslate nohighlight">\(**label**( t)\in \mathbb{N}\)</span>为标签。一个分类模型被定义为由有标签的训练集和无（待定）标签的数据集共同确定的函数：<span class="math notranslate nohighlight">\(f:\mathcal{P}(\mathcal{S}_L) \times \mathcal{S}\to \mathbb{N}\)</span>。令<span class="math notranslate nohighlight">\(f(\cdot)\)</span>表示（不鲁棒的）基分类模型，<span class="math notranslate nohighlight">\(g(\cdot)\)</span>表示鲁棒的分类模型。
+aggregation，DPA）。具体的，令<span class="math notranslate nohighlight">\(\mathcal{S}_L:=\{( x,c)| x \in \mathcal{S},c\in \mathbb{N} \}\)</span>为有类标的样本集，<span class="math notranslate nohighlight">\(\mathcal{S}\)</span>为无类标的样本空间。一个供模型训练的训练集可表示为：<span class="math notranslate nohighlight">\(\mathcal{T}\in \mathcal{P}(\mathcal{S}_L)\)</span>，其中<span class="math notranslate nohighlight">\(\mathcal{P}(\mathcal{S}_L)\)</span>是集合<span class="math notranslate nohighlight">\(\mathcal{S}_L\)</span>的幂集。对于<span class="math notranslate nohighlight">\(t\in \mathcal{S}_L\)</span>，令<span class="math notranslate nohighlight">\(sample( t)\in \mathcal{S}_L\)</span>为数据样本，<span class="math notranslate nohighlight">\(label(t)\in \mathbb{N}\)</span>为标签。一个分类模型被定义为由有标签的训练集和无（待定）标签的数据集共同确定的函数：<span class="math notranslate nohighlight">\(f:\mathcal{P}(\mathcal{S}_L) \times \mathcal{S}\to \mathbb{N}\)</span>。令<span class="math notranslate nohighlight">\(f(\cdot)\)</span>表示（不鲁棒的）基分类模型，<span class="math notranslate nohighlight">\(g(\cdot)\)</span>表示鲁棒的分类模型。
 DPA算法需要一个哈希函数<span class="math notranslate nohighlight">\(h:\mathcal{S}_L\to \mathbb{N}\)</span>和超参数<span class="math notranslate nohighlight">\(k\in \mathbb{N}\)</span>表示用于集成的基本分类器个数。在训练阶段，DPA首先用哈希函数将训练集<span class="math notranslate nohighlight">\(\mathcal{T}\)</span>划分为<span class="math notranslate nohighlight">\(k\)</span>个子集，分别为<span class="math notranslate nohighlight">\(P_1,\ldots,P_k\in \mathcal{T}\)</span>：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-0">
 <span class="eqno">(5.1.2)<a class="headerlink" href="#equation-source-chap5-0" title="Permalink to this equation">¶</a></span>\[P_i:=\{ t\in \mathcal{T}|h( t)\equiv i \ (\text{mod} \ k)\}.\]</div>
@@ -214,7 +213,7 @@ DPA算法需要一个哈希函数<span class="math notranslate nohighlight">\(h:
 <span id="id7">(<a class="reference internal" href="../chapter_references/zreferences.html#id421" title="Shen, Y., &amp; Sanghavi, S. (2019). Learning with bad training data via iterative trimmed loss minimization. International Conference on Machine Learning (pp. 5739–5748).">Shen and Sanghavi, 2019</a>)</span>
 不太一样的结论：<em>后门投毒样本往往被学习的更快而不是更慢</em>。这主要是因为后门攻击需要在触发器样式和后门类别之间建立强关联，而这种强关联使得后门样本损失下降的更快。基于此观察，研究者提出训练阶段后门投毒防御方法“<em>反后门学习</em>”（anti-backdoor
 learning，ABL）。ABL方法将会在后门防御章节
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">sec_backdoor_defense</span></code>
+<a class="reference internal" href="chap9.html#chap-backdoor-defense"><span class="std std-numref">9节</span></a>
 中进行详细的介绍，这里简单描述一下它的主要思想。ABL将模型训练分为两个阶段，在第一阶段通过<em>局部梯度上升</em>（local
 gradient
 ascent，LGA）技术检测和隔离投毒样本，在第二个阶段通过<em>全局梯度上升</em>（global
@@ -243,7 +242,7 @@ release）领域的隐私保护方面有着优异的表现，被广泛应用于�
 <p>差分隐私保护的主体并不是数据集整体的隐私，而是其中单个个体的隐私，因此，差分隐私要求数据集中单个个体对相关函数的输出影响都在一定的限度之内。差分隐私最早被用于数据查询业务，对此Dwork等人
 <span id="id17">(<a class="reference internal" href="../chapter_references/zreferences.html#id267" title="Dwork, C. (2006). Differential privacy. International Conference on Automata, Languages and Programming.">Dwork, 2006</a>)</span> 提出了<em>相邻数据集</em>（neighboring
 datasets）的概念，即只差一条记录的两个数据集称为相邻数据集，如有数据集A：{小明，小王，小赵}，B：{小王，小赵}和C：{小李，小王，小赵}，则A与B或A与C都称为相邻数据集。差分隐私有着非常严格的数学原理，相关概念定义如下。</p>
-<p><em>定义</em>
+<p><strong>定义</strong>
 <strong>差分隐私：</strong>对于一个随机算法<span class="math notranslate nohighlight">\(M\)</span>，<span class="math notranslate nohighlight">\(P_m\)</span>为算法<span class="math notranslate nohighlight">\(M\)</span>所有可能输出的集合，若算法<span class="math notranslate nohighlight">\(M\)</span>满足<span class="math notranslate nohighlight">\(( \epsilon,\delta)-DP\)</span>，当且仅当相邻数据集<span class="math notranslate nohighlight">\(D\)</span>，<span class="math notranslate nohighlight">\(D'\)</span>对<span class="math notranslate nohighlight">\(M\)</span>的所有可能输出子集<span class="math notranslate nohighlight">\(S_m\in P_m\)</span>，满足不等式
 <span id="id18">(<a class="reference internal" href="../chapter_references/zreferences.html#id269" title="Dwork, C., Kenthapadi, K., McSherry, F., Mironov, I., &amp; Naor, M. (2006). Our data, ourselves: privacy via distributed noise generation. International Conference on the Theory and Applications of Cryptographic Techniques (pp. 486–503).">Dwork <em>et al.</em>, 2006</a>)</span> ：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-4">
@@ -252,23 +251,32 @@ datasets）的概念，即只差一条记录的两个数据集称为相邻数据
 budget），<span class="math notranslate nohighlight">\(\epsilon\)</span>越小则隐私预算越低，意味着差分隐私算法使得查询函数在一对相邻数据集上返回结果的概率分布越相似，故而隐私保护程度越高。<span class="math notranslate nohighlight">\(\delta\)</span>表示打破<span class="math notranslate nohighlight">\(( \epsilon,\delta)-DP\)</span>限制的可能性，当<span class="math notranslate nohighlight">\(\delta=0\)</span>时，可称为<span class="math notranslate nohighlight">\(\epsilon-DP\)</span>，此时的隐私保护更加严格。</p>
 <p>差分隐私有两条非常重要的合成性质，分别为<em>顺序合成</em>和<em>平行合成</em>
 <span id="id19">(<a class="reference internal" href="../chapter_references/zreferences.html#id270" title="McSherry, F. D. (2009). Privacy integrated queries: an extensible platform for privacy-preserving data analysis. ACM SIGMOD International Conference on Management of Data (pp. 19–30).">McSherry, 2009</a>)</span> 。</p>
+<p><strong>性质</strong>
+<strong>顺序合成</strong>：给定<span class="math notranslate nohighlight">\(K\)</span>个随机算法<span class="math notranslate nohighlight">\(M_i(i=1,\ldots,K)\)</span>，分别满足<span class="math notranslate nohighlight">\(\epsilon_i-DP\)</span>，如果将他们作用在同一个数据集上，则满足<span class="math notranslate nohighlight">\(\sum_{i=1}^K \epsilon_i-DP\)</span>。</p>
+<p><strong>性质</strong>
+<strong>平行合成</strong>：将数据集<span class="math notranslate nohighlight">\(D\)</span>分割成<span class="math notranslate nohighlight">\(K\)</span>个不相交的子集<span class="math notranslate nohighlight">\(\{D_1,D_2,\ldots,D_K\}\)</span>，在每个子集上分别作用满足<span class="math notranslate nohighlight">\(\epsilon_i-DP\)</span>的随机算法<span class="math notranslate nohighlight">\(M_i\)</span>，则数据集<span class="math notranslate nohighlight">\(D\)</span>整体满足<span class="math notranslate nohighlight">\((\max\{ \epsilon_1,\ldots, \epsilon_K\})-DP\)</span>。</p>
 <p>顺序合成表明，将多个算法组成的序列同时作用在一个数据集上，最终的隐私预算等于算法序列中单个算法隐私预算的总和。平行合成表明，当多个算法分别作用在一个数据集的不同子集上时，整体的隐私预算为所有算法隐私预算的最大值。</p>
 <p>2010年，Kifer等人 <span id="id20">(<a class="reference internal" href="../chapter_references/zreferences.html#id271" title="Kifer, D., &amp; Lin, B.-R. (2010). Towards an axiomatization of statistical privacy and utility. ACM SIGMOD-SIGACT-SIGART Symposium on Principles of Database Systems (pp. 147–158).">Kifer and Lin, 2010</a>)</span>
 又为差分隐私提出了两条重要性质，分别为<em>交换不变性</em>和<em>中凸性</em>。</p>
+<p><strong>性质</strong>
+<strong>交换不变性</strong>：给定任意算法<span class="math notranslate nohighlight">\(M_1\)</span>满足<span class="math notranslate nohighlight">\(\epsilon-DP\)</span>、数据集<span class="math notranslate nohighlight">\(D\)</span>，对于任意算法<span class="math notranslate nohighlight">\(M_2\)</span>（<span class="math notranslate nohighlight">\(M_2\)</span>不一定满足差分隐私），则<span class="math notranslate nohighlight">\(M_2(M_1(D))\)</span>满足<span class="math notranslate nohighlight">\(\epsilon-DP\)</span>。</p>
+<p><strong>性质</strong>
+<strong>中凸性</strong>：给定满足<span class="math notranslate nohighlight">\(\epsilon-DP\)</span>的随机算法<span class="math notranslate nohighlight">\(M_1\)</span>和<span class="math notranslate nohighlight">\(M_2\)</span>，对于任意的概率<span class="math notranslate nohighlight">\(P\in[0,1]\)</span>，用<span class="math notranslate nohighlight">\(A_P\)</span>表示一种选择机制，以<span class="math notranslate nohighlight">\(P\)</span>的概率选择算法<span class="math notranslate nohighlight">\(M_1\)</span>，以<span class="math notranslate nohighlight">\(1-P\)</span>的概率选择算法<span class="math notranslate nohighlight">\(M_2\)</span>，则<span class="math notranslate nohighlight">\(A_P\)</span>机制满足<span class="math notranslate nohighlight">\(\epsilon-DP\)</span>。</p>
 <p>在了解完差分隐私的基本概念之后，我们要思考的问题是<em>如何构建差分隐私模型</em>。在查询任务中，差分隐私是通过给查询结果添加噪声来完成隐私保护的，添加的噪声越多对隐私信息的保护会更好，但同时也会使得查询结果的可用性降低。因此，噪声的添加量是一个非常重要的参数。函数敏感度则为噪声的添加量提供了依据，所以Dwork等人
 <span id="id21">(<a class="reference internal" href="../chapter_references/zreferences.html#id224" title="Dwork, C., McSherry, F., Nissim, K., &amp; Smith, A. (2006). Calibrating noise to sensitivity in private data analysis. Theory of Cryptography Conference (pp. 265–284).">Dwork <em>et al.</em>, 2006</a>)</span>
 在其2006年的工作中提出使用<em>全局敏感度</em>来控制噪声添加量。</p>
-<p><em>定义</em> <strong>全局敏感度（global
+<p><strong>定义</strong> <strong>全局敏感度（global
 sensitivity）：</strong>给定查询函数<span class="math notranslate nohighlight">\(f:D\to R\)</span>，其中<span class="math notranslate nohighlight">\(D\)</span>为数据集，<span class="math notranslate nohighlight">\(R\)</span>为查询结果。在任意一对相邻数据集<span class="math notranslate nohighlight">\(D\)</span>，<span class="math notranslate nohighlight">\(D'\)</span>上，全局敏感度定义为：</p>
-<div class="math notranslate nohighlight" id="equation-eq-global-sensitivity-math-f-d-f-d-1-math-f-d-math-f-d">
-<span class="eqno">(5.2.2)<a class="headerlink" href="#equation-eq-global-sensitivity-math-f-d-f-d-1-math-f-d-math-f-d" title="Permalink to this equation">¶</a></span>\[S(f)=\max\limits_{D,D'}\| f(D)-f(D') \|_1,\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-global-sensitivity">
+<span class="eqno">(5.2.2)<a class="headerlink" href="#equation-eq-global-sensitivity" title="Permalink to this equation">¶</a></span>\[S(f)=\max\limits_{D,D'}\| f(D)-f(D') \|_1,\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(\|f(D)-f(D') \|_1\)</span>表示<span class="math notranslate nohighlight">\(f(D)\)</span>与<span class="math notranslate nohighlight">\(f(D')\)</span>之间的曼哈顿距离。</p>
 <p>然而，根据全局敏感度所添加的噪声量会对数据产生过度的保护，从而影响数据的可用性。对此，Nissim等人
 <span id="id22">(<a class="reference internal" href="../chapter_references/zreferences.html#id272" title="Nissim, K., Raskhodnikova, S., &amp; Smith, A. (2007). Smooth sensitivity and sampling in private data analysis. ACM Symposium on Theory of Computing (pp. 75–84).">Nissim <em>et al.</em>, 2007</a>)</span> 提出了<em>局部感度</em>的概念。</p>
-<p><em>定义</em> <strong>局部敏感度（local
+<p><strong>定义</strong> <strong>局部敏感度（local
 sensitivity）：</strong>给定查询函数<span class="math notranslate nohighlight">\(f:D\to R\)</span>，<span class="math notranslate nohighlight">\(D\)</span>为数据集，<span class="math notranslate nohighlight">\(R\)</span>为查询结果。在任意一对相邻数据集<span class="math notranslate nohighlight">\(D\)</span>，<span class="math notranslate nohighlight">\(D'\)</span>上，局部敏感度定义为：</p>
 <div class="math notranslate nohighlight" id="equation-eq-local-sensitivity">
 <span class="eqno">(5.2.3)<a class="headerlink" href="#equation-eq-local-sensitivity" title="Permalink to this equation">¶</a></span>\[LS(f)=\max\limits_{D'}\| f(D)-f(D') \|_1.\]</div>
-<p>比较公式 <code class="xref eq docutils literal notranslate"><span class="pre">eq_global_sensitivity</span></code> 和
+<p>比较公式 <a class="reference internal" href="#equation-eq-global-sensitivity">(5.2.2)</a> 和
 <a class="reference internal" href="#equation-eq-local-sensitivity">(5.2.3)</a>
 可以看出，局部敏感度只是针对一个特定数据集<span class="math notranslate nohighlight">\(D\)</span>而言的，而全局敏感度则涵盖任意数据集。</p>
 <p>了解完噪声添加量的控制，添加何种噪声又成为我们不得不思考的问题。添加的噪声类型会对结果产生直接的影响。因此，接下来我们将介绍几种被广泛使用的噪声添加机制，分别为<em>拉普拉斯机制</em>
@@ -302,9 +310,9 @@ accountant）将在隐藏层部分进行详细介绍。</p>
 autoencoder，VAE），并将<span class="math notranslate nohighlight">\(K\)</span>个生成模型集成得到最终的生成模型。聚类的目的是将具有相同特征的数据集中在一起，有助于生成模型的训练。之后也有学者利用生成对抗网络（GAN）提出dp-GAN
 <span id="id29">(<a class="reference internal" href="../chapter_references/zreferences.html#id315" title="Zhang, X., Ji, S., &amp; Wang, T. (2018). Differentially private releasing via deep generative model (technical report). arXiv preprint arXiv:1801.01594.">Zhang <em>et al.</em>, 2018</a>)</span> （框架如图 <a class="reference internal" href="#dp-gan"><span class="std std-ref">dp-GAN框架图 zhang2018differentially</span></a>
 所示）来生成数据。管理者基于收集到的数据利用差分隐私训练生成模型，最后利用生成模型的合成数据完成分析任务。其中，差分隐私只应用在GAN的判别器的训练过程中，差分隐私机制的实施借助于<em>噪声添加</em>和<em>梯度裁剪</em>两种方法（将在下面进行介绍）。</p>
-<div class="figure align-default" id="id161">
+<div class="figure align-default" id="id159">
 <span id="dp-gan"></span><a class="reference internal image-reference" href="../_images/5.1_dp_gan.png"><img alt="../_images/5.1_dp_gan.png" src="../_images/5.1_dp_gan.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图5.2.1 </span><span class="caption-text">dp-GAN框架图 <span id="id30">(<a class="reference internal" href="../chapter_references/zreferences.html#id315" title="Zhang, X., Ji, S., &amp; Wang, T. (2018). Differentially private releasing via deep generative model (technical report). arXiv preprint arXiv:1801.01594.">Zhang <em>et al.</em>, 2018</a>)</span></span><a class="headerlink" href="#id161" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图5.2.1 </span><span class="caption-text">dp-GAN框架图 <span id="id30">(<a class="reference internal" href="../chapter_references/zreferences.html#id315" title="Zhang, X., Ji, S., &amp; Wang, T. (2018). Differentially private releasing via deep generative model (technical report). arXiv preprint arXiv:1801.01594.">Zhang <em>et al.</em>, 2018</a>)</span></span><a class="headerlink" href="#id159" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="id31">
@@ -313,9 +321,13 @@ autoencoder，VAE），并将<span class="math notranslate nohighlight">\(K\)</s
 <span id="id32">(<a class="reference internal" href="../chapter_references/zreferences.html#id94" title="Abadi, M., Chu, A., Goodfellow, I., McMahan, H. B., Mironov, I., Talwar, K., &amp; Zhang, L. (2016). Deep learning with differential privacy. ACM SIGSAC Conference on Computer and Communications Security (pp. 308–318).">Abadi <em>et al.</em>, 2016</a>)</span> 提出了<em>差分隐私随机梯度下降</em>（differentially
 private
 SGD，DP-SGD）算法，将差分隐私嵌入到机器学习模型的训练过程去，通过对梯度信息的保护达到对最终模型的保护，其思路如算法
-:ref:<code class="docutils literal notranslate"><span class="pre">algorithm:dp-SGD</span></code> 所示。</p>
+<a class="reference internal" href="#algorithm-5-1"><span class="std std-numref">图5.2.2</span></a> 所示。</p>
+<div class="figure align-default" id="id160">
+<span id="algorithm-5-1"></span><a class="reference internal image-reference" href="../_images/algorithm_5_1.png"><img alt="../_images/algorithm_5_1.png" src="../_images/algorithm_5_1.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图5.2.2 </span><span class="caption-text">算法 Differentially Private SGD（DP-SGD） <span id="id33">(<a class="reference internal" href="../chapter_references/zreferences.html#id94" title="Abadi, M., Chu, A., Goodfellow, I., McMahan, H. B., Mironov, I., Talwar, K., &amp; Zhang, L. (2016). Deep learning with differential privacy. ACM SIGSAC Conference on Computer and Communications Security (pp. 308–318).">Abadi <em>et al.</em>, 2016</a>)</span></span><a class="headerlink" href="#id160" title="Permalink to this image">¶</a></p>
+</div>
 <p>DP-SGD算法以批量梯度下降为基础，通过计算一组数据的平均梯度得到真实梯度的无偏估计。为了区别于传统的批训练，DP-SGD提出了<em>分组</em>（lot）的概念，每个组含有<span class="math notranslate nohighlight">\(L\)</span>个数据样本，以概率<span class="math notranslate nohighlight">\(L/n\)</span>进行独立采样，但是组的大小大于批，一个分组可看作由多批样本组成，组是添加噪声的基本单位。算法
-:ref:<code class="docutils literal notranslate"><span class="pre">algorithm:dp-SGD</span></code>
+<a class="reference internal" href="#algorithm-5-1"><span class="std std-numref">图5.2.2</span></a>
 的核心部分为<em>梯度裁剪</em>和<em>噪声添加</em>。除此之外，为保证算法总体满足<span class="math notranslate nohighlight">\(( \epsilon,\delta)-DP\)</span>，Abadi等人提出了<em>距会计</em>（moments
 accountant，MA）算法。接下来将分别介绍这三个核心技术。</p>
 <p><strong>（1）梯度裁剪：</strong>
@@ -328,7 +340,7 @@ DP-SGD利用高斯噪声机制完成<span class="math notranslate nohighlight">\
 <p>其中，<span class="math notranslate nohighlight">\(\mathcal{N}(0,\sigma^2C^2{I})\)</span>表示均值为0，标准差为<span class="math notranslate nohighlight">\(C \cdot \sigma\)</span>的高斯分布，<span class="math notranslate nohighlight">\({I}\)</span>为与梯度维度相同的单位矩阵。对于高斯机制的差分隐私，若设定此处的<span class="math notranslate nohighlight">\(\sigma\)</span>：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-10">
 <span class="eqno">(5.2.9)<a class="headerlink" href="#equation-source-chap5-10" title="Permalink to this equation">¶</a></span>\[\sigma=\frac{\sqrt{2 \log \frac{1.25}{\delta}}}{ \epsilon},\]</div>
-<p>则可以让每一个分组都满足<span class="math notranslate nohighlight">\(( \epsilon,\delta)-DP\)</span><span id="id33">(<a class="reference internal" href="../chapter_references/zreferences.html#id227" title="Dwork, C., Roth, A., &amp; others. (2014). The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4), 211–407.">Dwork <em>et al.</em>, 2014</a>)</span>
+<p>则可以让每一个分组都满足<span class="math notranslate nohighlight">\(( \epsilon,\delta)-DP\)</span><span id="id34">(<a class="reference internal" href="../chapter_references/zreferences.html#id227" title="Dwork, C., Roth, A., &amp; others. (2014). The algorithmic foundations of differential privacy. Foundations and Trends® in Theoretical Computer Science, 9(3–4), 211–407.">Dwork <em>et al.</em>, 2014</a>)</span>
 。</p>
 <p><strong>（3）隐私损失计算：</strong>
 DP-SGD算法的关键是计算训练过程的隐私损失。有差分隐私的合成性质可知：只要能够得到训练过程中每一步的隐私损失，通过累加就可以得到总体隐私损失。深度学习模型在计算隐私损失时需要考虑多层的梯度以及所有与梯度相关联的隐私预算，因此是否可以有效准确的统计隐私成为决定差分隐私机制效果的关键。距会计（MA）是差分隐私机器学习领域最常用也是最优越的隐私损失计算方法之一。距会计的关键定理为：</p>
@@ -336,15 +348,15 @@ DP-SGD算法的关键是计算训练过程的隐私损失。有差分隐私的�
 给定采样概率<span class="math notranslate nohighlight">\(q=L/n\)</span>，存在常数<span class="math notranslate nohighlight">\(c_1\)</span>、<span class="math notranslate nohighlight">\(c_2\)</span>以及算法迭代次数<span class="math notranslate nohighlight">\(T\)</span>，对于任意的<span class="math notranslate nohighlight">\(\epsilon&lt;c_1q^2T\)</span>，只要：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-11">
 <span class="eqno">(5.2.10)<a class="headerlink" href="#equation-source-chap5-11" title="Permalink to this equation">¶</a></span>\[\sigma \ge c_2 \frac{q\sqrt{T \log(1/\delta)}}{ \epsilon},\]</div>
-<p>算法 :ref:<code class="docutils literal notranslate"><span class="pre">algorithm:dp-SGD</span></code>
+<p>算法 <a class="reference internal" href="#algorithm-5-1"><span class="std std-numref">图5.2.2</span></a>
 对于任意的<span class="math notranslate nohighlight">\(\delta&gt;0\)</span>是满足<span class="math notranslate nohighlight">\(( \epsilon,\delta)-dp\)</span>的。</p>
 <p>该定理将隐私损失的上界降低到<span class="math notranslate nohighlight">\((q \epsilon \sqrt{T},\delta)\)</span>，相比于利用基础的高斯噪声，强组合性质有了很大的提升
-<span id="id34">(<a class="reference internal" href="../chapter_references/zreferences.html#id366" title="Dwork, C., Rothblum, G. N., &amp; Vadhan, S. (2010). Boosting and differential privacy. IEEE Annual Symposium on Foundations of Computer Science (pp. 51–60).">Dwork <em>et al.</em>, 2010</a>)</span> 。</p>
+<span id="id35">(<a class="reference internal" href="../chapter_references/zreferences.html#id366" title="Dwork, C., Rothblum, G. N., &amp; Vadhan, S. (2010). Boosting and differential privacy. IEEE Annual Symposium on Foundations of Computer Science (pp. 51–60).">Dwork <em>et al.</em>, 2010</a>)</span> 。</p>
 </div>
-<div class="section" id="id35">
-<h4><span class="section-number">5.2.2.3. </span>输出空间：差分隐私扰动目标函数<a class="headerlink" href="#id35" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="id36">
+<h4><span class="section-number">5.2.2.3. </span>输出空间：差分隐私扰动目标函数<a class="headerlink" href="#id36" title="Permalink to this heading">¶</a></h4>
 <p>在输出结果上使用差分隐私机制往往会对结果产生较大的负面影响，且适用的算法很有限。因此，在输出层部署差分隐私机制的主要策略是扰动模型的目标函数而非输出结果。</p>
-<p>Zhang等人 <span id="id36">(<a class="reference internal" href="../chapter_references/zreferences.html#id367" title="Zhang, J., Zhang, Z., Xiao, X., Yang, Y., &amp; Winslett, M. (2012). Functional mechanism: regression analysis under differential privacy. arXiv preprint arXiv:1208.0219.">Zhang <em>et al.</em>, 2012</a>)</span>
+<p>Zhang等人 <span id="id37">(<a class="reference internal" href="../chapter_references/zreferences.html#id367" title="Zhang, J., Zhang, Z., Xiao, X., Yang, Y., &amp; Winslett, M. (2012). Functional mechanism: regression analysis under differential privacy. arXiv preprint arXiv:1208.0219.">Zhang <em>et al.</em>, 2012</a>)</span>
 在回归问题的<em>多项式化目标函数</em>中提出<em>函数机制</em>（functional
 mechanism），通过对每一个多项式系数添加拉普拉斯噪声，以达到扰动目标函数的目的。给定数据集<span class="math notranslate nohighlight">\(D=\{t_1,\ldots,t_n \}\)</span>，数据样本<span class="math notranslate nohighlight">\(t_i=( x_{i1},\ldots, x_{id}, y_i)\)</span>，回归模型的参数为<span class="math notranslate nohighlight">\(w \in \mathbb{R}^d\)</span>，第<span class="math notranslate nohighlight">\(j\)</span>维的参数可表示为<span class="math notranslate nohighlight">\(w_j\)</span>，则回归模型的最优化参数可表示为：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-12">
@@ -353,52 +365,59 @@ mechanism），通过对每一个多项式系数添加拉普拉斯噪声，以�
 <div class="math notranslate nohighlight" id="equation-source-chap5-13">
 <span class="eqno">(5.2.12)<a class="headerlink" href="#equation-source-chap5-13" title="Permalink to this equation">¶</a></span>\[\Phi_j=\left\{ w_1^{c_1} \cdot  w_2^{c_2}\ldots w_d^{c_d} \ \mid \ \sum_{l=1}^d c_l=j\right\}\]</div>
 <p>例如<span class="math notranslate nohighlight">\(\Phi_0=\{1\}\)</span>，<span class="math notranslate nohighlight">\(\Phi_1 =\{ w_1,\ldots, w_d\}\)</span>，<span class="math notranslate nohighlight">\(\Phi_2=\{ w_i \cdot w_j \ | \  i,j\in [1,d] \}\)</span>。对于任意连续可微函数<span class="math notranslate nohighlight">\(\mathcal{L}(t_i, w)\)</span>，根据Stone-Weierstrass理论
-<span id="id37">(<a class="reference internal" href="../chapter_references/zreferences.html#id368" title="Rudin, W., &amp; others. (1976). Principles of mathematical analysis. Vol. 3. McGraw-hill New York.">Rudin and others, 1976</a>)</span> 其可被写成下列多项式形式：</p>
+<span id="id38">(<a class="reference internal" href="../chapter_references/zreferences.html#id368" title="Rudin, W., &amp; others. (1976). Principles of mathematical analysis. Vol. 3. McGraw-hill New York.">Rudin and others, 1976</a>)</span> 其可被写成下列多项式形式：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-14">
 <span class="eqno">(5.2.13)<a class="headerlink" href="#equation-source-chap5-14" title="Permalink to this equation">¶</a></span>\[\mathcal{L}(t_i, w)=\sum_{j=0}^J \sum_{\phi \in \Phi_j}\lambda_{\phi t_i}\phi( w)\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(J\in [0,\infty]\)</span>，<span class="math notranslate nohighlight">\(\lambda_{\phi t_i}\in \mathbb{R}\)</span>是多项式系数。类似的，回归模型的损失函数<span class="math notranslate nohighlight">\(\mathcal{L}_D( w)\)</span>也可以被表示为含有<span class="math notranslate nohighlight">\(w_1,\ldots, w_d\)</span>的多项式形式：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-15">
 <span class="eqno">(5.2.14)<a class="headerlink" href="#equation-source-chap5-15" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_D( w)=\sum_{j=0}^J \sum_{\phi \in \Phi_j}\lambda_{\phi t_i} \sum_{t_i\in D} \phi( w)\]</div>
-<p>回归问题的函数机制可通过算法 :ref:<code class="docutils literal notranslate"><span class="pre">algorithm:FM</span></code> 实现。</p>
-<p>Phan等人 <span id="id38">(<a class="reference internal" href="../chapter_references/zreferences.html#id369" title="Phan, N., Wang, Y., Wu, X., &amp; Dou, D. (2016). Differential privacy preservation for deep auto-encoders: an application of human behavior prediction. AAAI Conference on Artificial Intelligence.">Phan <em>et al.</em>, 2016</a>)</span> 通过<em>泰勒展开</em>（Taylor
-expansion）对基于Softmax归一化层定义的交叉熵损失函数进行多项式化，并利用函数机制提出:raw-latex:<cite>textit{差分隐私自编码器}`模型。然后，研究者
-:cite:`phan2017preserving</cite> 又利用<em>切比雪夫展开</em>（Chebyshev
-expansion）将:raw-latex:<a href="#id39"><span class="problematic" id="id40">`</span></a>textit{卷积深度信念网络}`（convolutional deep
-belief
+<p>回归问题的函数机制可通过算法 <a class="reference internal" href="#algorithm-5-2"><span class="std std-numref">图5.2.3</span></a> 实现。</p>
+<div class="figure align-default" id="id161">
+<span id="algorithm-5-2"></span><a class="reference internal image-reference" href="../_images/algorithm_5_2.png"><img alt="../_images/algorithm_5_2.png" src="../_images/algorithm_5_2.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图5.2.3 </span><span class="caption-text">算法 函数机制（functional mechanism） <span id="id39">(<a class="reference internal" href="../chapter_references/zreferences.html#id367" title="Zhang, J., Zhang, Z., Xiao, X., Yang, Y., &amp; Winslett, M. (2012). Functional mechanism: regression analysis under differential privacy. arXiv preprint arXiv:1208.0219.">Zhang <em>et al.</em>, 2012</a>)</span></span><a class="headerlink" href="#id161" title="Permalink to this image">¶</a></p>
+</div>
+<p>Phan等人 <span id="id40">(<a class="reference internal" href="../chapter_references/zreferences.html#id369" title="Phan, N., Wang, Y., Wu, X., &amp; Dou, D. (2016). Differential privacy preservation for deep auto-encoders: an application of human behavior prediction. AAAI Conference on Artificial Intelligence.">Phan <em>et al.</em>, 2016</a>)</span> 通过<em>泰勒展开</em>（Taylor
+expansion）对基于Softmax归一化层定义的交叉熵损失函数进行多项式化，并利用函数机制提出
+<em>差分隐私自编码器</em> 模型。然后，研究者 <span id="id41">(<a class="reference internal" href="../chapter_references/zreferences.html#id370" title="Phan, N., Wu, X., &amp; Dou, D. (2017). Preserving differential privacy in convolutional deep belief networks. Machine learning, 106(9), 1681–1704.">Phan <em>et al.</em>, 2017</a>)</span>
+又利用<em>切比雪夫展开</em>（Chebyshev expansion）将 <em>卷积深度信念网络</em>
+（convolutional deep belief
 network，CDBN）的非线性目标函数进行多项式化，并在得到的多项式上添加噪声以实现差分隐私保护。</p>
 </div>
 </div>
 </div>
 <div class="section" id="sec-federated-learning">
-<span id="id41"></span><h2><span class="section-number">5.3. </span>联邦学习<a class="headerlink" href="#sec-federated-learning" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="id42">
-<h3><span class="section-number">5.3.1. </span>联邦学习概述<a class="headerlink" href="#id42" title="Permalink to this heading">¶</a></h3>
+<span id="id42"></span><h2><span class="section-number">5.3. </span>联邦学习<a class="headerlink" href="#sec-federated-learning" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="id43">
+<h3><span class="section-number">5.3.1. </span>联邦学习概述<a class="headerlink" href="#id43" title="Permalink to this heading">¶</a></h3>
 <p>近年来，随着人工智能技术在各行业的落地应用，人们越来越关注其自身数据的安全和隐私，国家相关机构也出台新的法律来规范个人数据的合规使用。例如，中国于2017年开始实施的《中华人民共和国网络安全法》、2021年发布的《数据安全法》和《个人信息保护法》、欧盟于2018年开始执行的《通用数据保护条例》(General
 Data Protection
 Regulation，GDPR)等，都对用户数据的采集和使用做出了严格要求。</p>
-<p>传统机器学习将多方数据汇集到一个中心节点，并中心节点负责使用汇集的数据进行模型训练。现实是，不同的机构之间可能出于行业竞争等因素的考虑，不愿意向其他机构共享数据，形成大量的“<a href="#id43"><span class="problematic" id="id44">:raw-latex:`\textit{数据孤岛}`</span></a>”（data
+<p>传统机器学习将多方数据汇集到一个中心节点，并中心节点负责使用汇集的数据进行模型训练。现实是，不同的机构之间可能出于行业竞争等因素的考虑，不愿意向其他机构共享数据，形成大量的“
+<em>数据孤岛</em> ”（data
 silos）。此外，如果中心点遭受恶意攻击，则可能会泄露所有参与方的隐私数据。在这样的大背景下，将多方数据汇聚到中心节点统一处理的方式就会变得越来越难以实现。</p>
 <p>学术界和工业界都在探索如何在保护各方数据安全的前提下完成<em>多方协作训练</em>（multi-party
 collaborative training）。<strong>联邦学习</strong>（federated
-Learning，FL）在这样的大背景下应运而生，其核心思想就是:raw-latex:<cite>textit{用模型梯度（或参数）传递代替数据传递}</cite>，可以保证在数据不出本地的前提下，多方协作完成一个全局模型的训练。谷歌在2016年将联邦学习部署于智能手机，用在手机输入法中的下一单词预测
-<span id="id45">(<a class="reference internal" href="../chapter_references/zreferences.html#id41" title="McMahan, B., Moore, E., Ramage, D., Hampson, S., &amp; y Arcas, B. A. (2017). Communication-efficient learning of deep networks from decentralized data. Artificial intelligence and statistics (pp. 1273–1282).">McMahan <em>et al.</em>, 2017</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id42" title="McMahan, H. B., Moore, E., Ramage, D., &amp; y Arcas, B. A. (2016). Federated learning of deep networks using model averaging. arXiv preprint arXiv:1602.05629, 2.">McMahan <em>et al.</em>, 2016</a>)</span>
+Learning，FL）在这样的大背景下应运而生，其核心思想就是
+<em>用模型梯度（或参数）传递代替数据传递</em>
+，可以保证在数据不出本地的前提下，多方协作完成一个全局模型的训练。谷歌在2016年将联邦学习部署于智能手机，用在手机输入法中的下一单词预测
+<span id="id44">(<a class="reference internal" href="../chapter_references/zreferences.html#id41" title="McMahan, B., Moore, E., Ramage, D., Hampson, S., &amp; y Arcas, B. A. (2017). Communication-efficient learning of deep networks from decentralized data. Artificial intelligence and statistics (pp. 1273–1282).">McMahan <em>et al.</em>, 2017</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id42" title="McMahan, H. B., Moore, E., Ramage, D., &amp; y Arcas, B. A. (2016). Federated learning of deep networks using model averaging. arXiv preprint arXiv:1602.05629, 2.">McMahan <em>et al.</em>, 2016</a>)</span>
 ，成为联邦学习首个成功应用的典范，为机器学习开启了一种新的范式。</p>
 <p>联邦学习的优化目标是使各参与方的平均损失最小，可表示如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-16">
 <span class="eqno">(5.3.1)<a class="headerlink" href="#equation-source-chap5-16" title="Permalink to this equation">¶</a></span>\[\min_{W} \frac{1}{N} \sum_{i=1}^{N} \mathbb{E}_{(X,Y)} \mathcal{L}(f_{W}(X_i),Y_i),\]</div>
-<p>其中，<span class="math notranslate nohighlight">\(N\)</span>为参与方的个数，<span class="math notranslate nohighlight">\(X_i\)</span>和<span class="math notranslate nohighlight">\(Y_i\)</span>表示第<span class="math notranslate nohighlight">\(i\)</span>个参与方的本地训练样本集和标签集，<span class="math notranslate nohighlight">\(\mathcal{L}\)</span>为损失函数，这里假设各参与方使用相同的模型<span class="math notranslate nohighlight">\(f_{W}\)</span> <a class="footnote-reference brackets" href="#id159" id="id46">1</a>。</p>
-<div class="section" id="id47">
-<h4><span class="section-number">5.3.1.1. </span>联邦类型<a class="headerlink" href="#id47" title="Permalink to this heading">¶</a></h4>
+<p>其中，<span class="math notranslate nohighlight">\(N\)</span>为参与方的个数，<span class="math notranslate nohighlight">\(X_i\)</span>和<span class="math notranslate nohighlight">\(Y_i\)</span>表示第<span class="math notranslate nohighlight">\(i\)</span>个参与方的本地训练样本集和标签集，<span class="math notranslate nohighlight">\(\mathcal{L}\)</span>为损失函数，这里假设各参与方使用相同的模型<span class="math notranslate nohighlight">\(f_{W}\)</span> <a class="footnote-reference brackets" href="#id157" id="id45">1</a>。</p>
+<div class="section" id="id46">
+<h4><span class="section-number">5.3.1.1. </span>联邦类型<a class="headerlink" href="#id46" title="Permalink to this heading">¶</a></h4>
 <p>典型联邦学习框架是一种“<strong>参与方-服务器</strong>”结构。参与方利用本地数据更新本地模型，服务器则负责聚合不同参与方的梯度信息并完成对全局模型的更新。服务器端通常由可信第三方机构或者数据体量最大的参与方来担任。参与方上传的梯度信息中仍然包含大量参与方本地数据的隐私信息，可以使用差分隐私
-<span id="id48">(<a class="reference internal" href="../chapter_references/zreferences.html#id94" title="Abadi, M., Chu, A., Goodfellow, I., McMahan, H. B., Mironov, I., Talwar, K., &amp; Zhang, L. (2016). Deep learning with differential privacy. ACM SIGSAC Conference on Computer and Communications Security (pp. 308–318).">Abadi <em>et al.</em>, 2016</a>)</span> 和同态加密 <span id="id49">(<a class="reference internal" href="../chapter_references/zreferences.html#id95" title="Aono, Y., Hayashi, T., Wang, L., Moriai, S., &amp; others. (2017). Privacy-preserving deep learning via additively homomorphic encryption. IEEE Transactions on Information Forensics and Security, 13(5), 1333–1345.">Aono <em>et al.</em>, 2017</a>)</span>
+<span id="id47">(<a class="reference internal" href="../chapter_references/zreferences.html#id94" title="Abadi, M., Chu, A., Goodfellow, I., McMahan, H. B., Mironov, I., Talwar, K., &amp; Zhang, L. (2016). Deep learning with differential privacy. ACM SIGSAC Conference on Computer and Communications Security (pp. 308–318).">Abadi <em>et al.</em>, 2016</a>)</span> 和同态加密 <span id="id48">(<a class="reference internal" href="../chapter_references/zreferences.html#id95" title="Aono, Y., Hayashi, T., Wang, L., Moriai, S., &amp; others. (2017). Privacy-preserving deep learning via additively homomorphic encryption. IEEE Transactions on Information Forensics and Security, 13(5), 1333–1345.">Aono <em>et al.</em>, 2017</a>)</span>
 进行保护。经典联邦学习的架构如图 <a class="reference internal" href="#fl-cs"><span class="std std-ref">典型联邦学习框架 yang2019federated</span></a>
 所示。首先，参与方利用本地数据计算模型梯度，并将梯度信息进行加密后发送至服务器；然后，服务器聚合参与方的加密梯度，并将聚合后的梯度广播至各参与方；最后，参与方对收到的信息进行解密，并利用解密的梯度信息更新模型参数。</p>
 <div class="figure align-default" id="id162">
 <span id="fl-cs"></span><a class="reference internal image-reference" href="../_images/5.2_classic_fl.png"><img alt="../_images/5.2_classic_fl.png" src="../_images/5.2_classic_fl.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图5.3.1 </span><span class="caption-text">典型联邦学习框架 <span id="id50">(<a class="reference internal" href="../chapter_references/zreferences.html#id70" title="Yang, Q., Liu, Y., Chen, T., &amp; Tong, Y. (2019). Federated machine learning: concept and applications. ACM Transactions on Intelligent Systems and Technology, 10(2), 1–19.">Yang <em>et al.</em>, 2019</a>)</span></span><a class="headerlink" href="#id162" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图5.3.1 </span><span class="caption-text">典型联邦学习框架 <span id="id49">(<a class="reference internal" href="../chapter_references/zreferences.html#id70" title="Yang, Q., Liu, Y., Chen, T., &amp; Tong, Y. (2019). Federated machine learning: concept and applications. ACM Transactions on Intelligent Systems and Technology, 10(2), 1–19.">Yang <em>et al.</em>, 2019</a>)</span></span><a class="headerlink" href="#id162" title="Permalink to this image">¶</a></p>
 </div>
 <p>在经典联邦框架下，中心服务器的可信性是人们一直讨论的一个话题。有些研究提议使用去中心化的联邦学习来代替经典联邦学习
-<span id="id51">(<a class="reference internal" href="../chapter_references/zreferences.html#id46" title="Yang, S., Ren, B., Zhou, X., &amp; Liu, L. (2019). Parallel distributed logistic regression for vertical federated learning without third-party coordinator. arXiv preprint arXiv:1911.09824.">Yang <em>et al.</em>, 2019</a>)</span>
+<span id="id50">(<a class="reference internal" href="../chapter_references/zreferences.html#id46" title="Yang, S., Ren, B., Zhou, X., &amp; Liu, L. (2019). Parallel distributed logistic regression for vertical federated learning without third-party coordinator. arXiv preprint arXiv:1911.09824.">Yang <em>et al.</em>, 2019</a>)</span>
 ，以摆脱对第三方机构的依赖，提高多方协作训练的可信性与安全性。
 本章节将在有可信第三方中心节点的前提下，介绍经典（中心化的）的联邦学习方法，对去中心化训练框架感兴趣的同学可自行查阅相关文献学习。</p>
 <p>联邦学习可分为<strong>横向联邦学习</strong>、<strong>纵向联邦学习</strong>和<strong>迁移联邦学习</strong>。令<span class="math notranslate nohighlight">\(I\)</span>为数据样本ID空间、<span class="math notranslate nohighlight">\(X\)</span>为样本特征空间、<span class="math notranslate nohighlight">\(Y\)</span>为样本标签空间，则一组训练数据集可表示为<span class="math notranslate nohighlight">\((I,X,Y)\)</span>，参与方<span class="math notranslate nohighlight">\(i\)</span>的本地数据集为<span class="math notranslate nohighlight">\(D_i = (I_i, x_i,Y_i)\)</span>。以表格数据为例，如图
@@ -423,20 +442,26 @@ learning，TFL）下，各参与方之间即缺少共有客户（数据样本ID�
 <p class="caption"><span class="caption-number">图5.3.3 </span><span class="caption-text">纵向联邦学习</span><a class="headerlink" href="#id164" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-default" id="id165">
-<span id="sec-homomorphic-encryption"></span><span id="transfomal-fl"></span><a class="reference internal image-reference" href="../_images/5.5_tfl.png"><img alt="../_images/5.5_tfl.png" src="../_images/5.5_tfl.png" style="width: 600px;" /></a>
+<span id="transfomal-fl"></span><a class="reference internal image-reference" href="../_images/5.5_tfl.png"><img alt="../_images/5.5_tfl.png" src="../_images/5.5_tfl.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-number">图5.3.4 </span><span class="caption-text">迁移联邦学习</span><a class="headerlink" href="#id165" title="Permalink to this image">¶</a></p>
 </div>
-<p>从2016年提出至今，联邦学习得到了学术界和工业界的广泛关注，先后提出了很多联邦学习的开源框架。表
-:ref:<code class="docutils literal notranslate"><span class="pre">tab:Fed_fram</span></code>
+<p>从2016年提出至今，联邦学习得到了学术界和工业界的广泛关注，先后提出了很多联邦学习的开源框架。
+<a class="reference internal" href="#table-5-1"><span class="std std-numref">图5.3.5</span></a>
 统计了几个具有代表性的开源框架，包括开发者信息、是否支持横/纵向联邦以及支持的加密算法等。</p>
+<div class="figure align-default" id="id166">
+<span id="sec-homomorphic-encryption"></span><span id="table-5-1"></span><a class="reference internal image-reference" href="../_images/table_5_1.png"><img alt="../_images/table_5_1.png" src="../_images/table_5_1.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图5.3.5 </span><span class="caption-text">联邦学习框架</span><a class="headerlink" href="#id166" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="id52">
-<h4><span class="section-number">5.3.1.2. </span>同态加密<a class="headerlink" href="#id52" title="Permalink to this heading">¶</a></h4>
+</div>
+<div class="section" id="id51">
+<h4><span class="section-number">5.3.1.2. </span>同态加密<a class="headerlink" href="#id51" title="Permalink to this heading">¶</a></h4>
 <p>联邦学习机制的提出让各参与方在本地数据不外泄的前提下完成全局模型的训练，然而参与方向外传输的梯度信息仍然可能包含有关训练数据的敏感信息，导致恶意参与方可以通过梯度反推出其他参与者的隐私信息。这可以通过<strong>同态加密</strong>（homomorphic
 encryption，HE）来有效解决，同态加密通过实现数据的“<em>可算不可见</em>”有效保护参与方的梯度信息安全。同态加密是密码学的经典问题，Rivest等人
-<span id="id53">(<a class="reference internal" href="../chapter_references/zreferences.html#id148" title="Rivest, R. L., Adleman, L., Dertouzos, M. L., &amp; others. (1978). On data banks and privacy homomorphisms. Foundations of Secure Computation, 4(11), 169–180.">Rivest <em>et al.</em>, 1978</a>)</span>
+<span id="id52">(<a class="reference internal" href="../chapter_references/zreferences.html#id148" title="Rivest, R. L., Adleman, L., Dertouzos, M. L., &amp; others. (1978). On data banks and privacy homomorphisms. Foundations of Secure Computation, 4(11), 169–180.">Rivest <em>et al.</em>, 1978</a>)</span>
 于1978年首次提出同态加密的概念：数据经过加密之后，对密文进行一定计算，后将密文的计算结果进行解密的过程，等同于直接对明文数据进行对应计算。</p>
-<p>同态加密可表示为一个四元组<span class="math notranslate nohighlight">\(H=\{ KeyGen, Enc,Dec,Eval \}\)</span>。其中<span class="math notranslate nohighlight">\(KeyGen\)</span>为密匙生成函数，<span class="math notranslate nohighlight">\(Enc\)</span>为加密函数，<span class="math notranslate nohighlight">\(Dec\)</span>为解密函数，<span class="math notranslate nohighlight">\(Eval\)</span>为评估函数。加密的方式有:raw-latex:<cite>textit{对称加密}`和:raw-latex:</cite>textit{非对称加密}`两种。令<span class="math notranslate nohighlight">\(M\)</span>为明文空间，<span class="math notranslate nohighlight">\(C\)</span>为密文空间，对于<strong>对称加密</strong>来说，首先由密匙生成元<span class="math notranslate nohighlight">\(g\)</span>和密匙生成函数<span class="math notranslate nohighlight">\(KeyGen\)</span>生成密钥<span class="math notranslate nohighlight">\(sk=KeyGen(g)\)</span>，然后使用加密函数<span class="math notranslate nohighlight">\(Enc\)</span>对明文<span class="math notranslate nohighlight">\(M\)</span>进行加密<span class="math notranslate nohighlight">\(C=Enc_{sk}(M)\)</span>，解密则使用<span class="math notranslate nohighlight">\(Dec\)</span>对密文<span class="math notranslate nohighlight">\(C\)</span>进行解密<span class="math notranslate nohighlight">\(M=Dec_{sk}(C)\)</span>。对于<strong>非对称加密</strong>，使用密匙生成元<span class="math notranslate nohighlight">\(g\)</span>和密匙生成函数<span class="math notranslate nohighlight">\(KeyGen\)</span>生成<span class="math notranslate nohighlight">\((pk,sk)=KeyGen(g)\)</span>，其中<span class="math notranslate nohighlight">\(pk\)</span>为公匙，用于对明文加密<span class="math notranslate nohighlight">\(C=Enc_{pk}(M)\)</span>，<span class="math notranslate nohighlight">\(sk\)</span>为私匙，用于对密文解密<span class="math notranslate nohighlight">\(M=Dec_{sk}(C)\)</span>。</p>
+<p>同态加密可表示为一个四元组<span class="math notranslate nohighlight">\(H=\{ KeyGen, Enc,Dec,Eval \}\)</span>。其中<span class="math notranslate nohighlight">\(KeyGen\)</span>为密匙生成函数，<span class="math notranslate nohighlight">\(Enc\)</span>为加密函数，<span class="math notranslate nohighlight">\(Dec\)</span>为解密函数，<span class="math notranslate nohighlight">\(Eval\)</span>为评估函数。加密的方式有
+<em>对称加密</em> 和 <em>非对称加密</em>
+两种。令<span class="math notranslate nohighlight">\(M\)</span>为明文空间，<span class="math notranslate nohighlight">\(C\)</span>为密文空间，对于<strong>对称加密</strong>来说，首先由密匙生成元<span class="math notranslate nohighlight">\(g\)</span>和密匙生成函数<span class="math notranslate nohighlight">\(KeyGen\)</span>生成密钥<span class="math notranslate nohighlight">\(sk=KeyGen(g)\)</span>，然后使用加密函数<span class="math notranslate nohighlight">\(Enc\)</span>对明文<span class="math notranslate nohighlight">\(M\)</span>进行加密<span class="math notranslate nohighlight">\(C=Enc_{sk}(M)\)</span>，解密则使用<span class="math notranslate nohighlight">\(Dec\)</span>对密文<span class="math notranslate nohighlight">\(C\)</span>进行解密<span class="math notranslate nohighlight">\(M=Dec_{sk}(C)\)</span>。对于<strong>非对称加密</strong>，使用密匙生成元<span class="math notranslate nohighlight">\(g\)</span>和密匙生成函数<span class="math notranslate nohighlight">\(KeyGen\)</span>生成<span class="math notranslate nohighlight">\((pk,sk)=KeyGen(g)\)</span>，其中<span class="math notranslate nohighlight">\(pk\)</span>为公匙，用于对明文加密<span class="math notranslate nohighlight">\(C=Enc_{pk}(M)\)</span>，<span class="math notranslate nohighlight">\(sk\)</span>为私匙，用于对密文解密<span class="math notranslate nohighlight">\(M=Dec_{sk}(C)\)</span>。</p>
 <p>以对称加密为例，满足以下条件的加密系统称为<em>同态</em>：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-17">
 <span class="eqno">(5.3.2)<a class="headerlink" href="#equation-source-chap5-17" title="Permalink to this equation">¶</a></span>\[\forall{m_1,m_2} \in M,Enc_{sk}(f_M(m_1,m_2))\gets f_C(Enc_{sk}(m_1),Enc_{sk}(m_2)),\]</div>
@@ -446,63 +471,67 @@ encryption，PHE）、<em>部分同态加密</em>（somewhat homomorphic
 encryption，SWHE）和<em>全同态加密</em>（fully homomorphic
 encryption，FHE）。半同态加密是指只支持加法或乘法中的一种运算，支持加法运算的又称为<em>加法同态加密</em>（additive
 homomorphic encryption，AHE），如RSA、GM
-<span id="id54">(<a class="reference internal" href="../chapter_references/zreferences.html#id158" title="Shafi, G., &amp; Silvio, M. (1982). Probabilistic encryption &amp; how to play mental poker keeping secret all partial information. ACM Symposium on Theory of Computing (pp. 365–377).">Shafi and Silvio, 1982</a>)</span>
+<span id="id53">(<a class="reference internal" href="../chapter_references/zreferences.html#id158" title="Shafi, G., &amp; Silvio, M. (1982). Probabilistic encryption &amp; how to play mental poker keeping secret all partial information. ACM Symposium on Theory of Computing (pp. 365–377).">Shafi and Silvio, 1982</a>)</span>
 等；部分同态加密可同时支持加法和乘法运算，但支持的计算次数有限，如BGN
-<span id="id55">(<a class="reference internal" href="../chapter_references/zreferences.html#id159" title="Boneh, D., Goh, E.-J., &amp; Nissim, K. (2005). Evaluating 2-dnf formulas on ciphertexts. Theory of Cryptography Conference (pp. 325–341).">Boneh <em>et al.</em>, 2005</a>)</span>
+<span id="id54">(<a class="reference internal" href="../chapter_references/zreferences.html#id159" title="Boneh, D., Goh, E.-J., &amp; Nissim, K. (2005). Evaluating 2-dnf formulas on ciphertexts. Theory of Cryptography Conference (pp. 325–341).">Boneh <em>et al.</em>, 2005</a>)</span>
 等；全同态加密则可支持任意次数的加法和乘法运算。Gentry
-<span id="id56">(<a class="reference internal" href="../chapter_references/zreferences.html#id160" title="Gentry, C. (2009). A fully homomorphic encryption scheme. Stanford university.">Gentry, 2009</a>)</span>
+<span id="id55">(<a class="reference internal" href="../chapter_references/zreferences.html#id160" title="Gentry, C. (2009). A fully homomorphic encryption scheme. Stanford university.">Gentry, 2009</a>)</span>
 于2009年首次实现全同态加密，轰动了学术界，激发了学者对全同态的研究热情，也因此诞生了诸多优秀的全同态加密算法，如BFV
-<span id="id57">(<a class="reference internal" href="../chapter_references/zreferences.html#id161" title="Fan, J., &amp; Vercauteren, F. (2012). Somewhat practical fully homomorphic encryption. Cryptology ePrint Archive.">Fan and Vercauteren, 2012</a>)</span> 、BGV <span id="id58">(<a class="reference internal" href="../chapter_references/zreferences.html#id162" title="Brakerski, Z., Gentry, C., &amp; Vaikuntanathan, V. (2014). (leveled) fully homomorphic encryption without bootstrapping. ACM Transactions on Computation Theory, 6(3), 1–36.">Brakerski <em>et al.</em>, 2014</a>)</span> 等。</p>
+<span id="id56">(<a class="reference internal" href="../chapter_references/zreferences.html#id161" title="Fan, J., &amp; Vercauteren, F. (2012). Somewhat practical fully homomorphic encryption. Cryptology ePrint Archive.">Fan and Vercauteren, 2012</a>)</span> 、BGV <span id="id57">(<a class="reference internal" href="../chapter_references/zreferences.html#id162" title="Brakerski, Z., Gentry, C., &amp; Vaikuntanathan, V. (2014). (leveled) fully homomorphic encryption without bootstrapping. ACM Transactions on Computation Theory, 6(3), 1–36.">Brakerski <em>et al.</em>, 2014</a>)</span> 等。</p>
 </div>
 </div>
-<div class="section" id="id59">
-<h3><span class="section-number">5.3.2. </span>横向联邦<a class="headerlink" href="#id59" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="id58">
+<h3><span class="section-number">5.3.2. </span>横向联邦<a class="headerlink" href="#id58" title="Permalink to this heading">¶</a></h3>
 <p>如前文所述，横向联邦学习中各参与方的特征重叠而样本不重叠，从全局数据集的角度来看构成了一种横向切分的效果。
 横向联邦的适用场景非常广泛，除了可以解决同类业务不同地域之间的数据孤岛问题，也可以联合数量庞大的移动设备，如智能手机、智能电器、无人机等，训练一个强大的全局模型。当参与设备为智能手机等算力较弱的设备时，参与方与服务器之间的梯度信息传输代价将高于其计算代价。因此，联邦学习通常不使用随机梯度下降来更新全局模型，而是使用<strong>联邦平均</strong>（FedAvg）
-<span id="id60">(<a class="reference internal" href="../chapter_references/zreferences.html#id41" title="McMahan, B., Moore, E., Ramage, D., Hampson, S., &amp; y Arcas, B. A. (2017). Communication-efficient learning of deep networks from decentralized data. Artificial intelligence and statistics (pp. 1273–1282).">McMahan <em>et al.</em>, 2017</a>)</span>
+<span id="id59">(<a class="reference internal" href="../chapter_references/zreferences.html#id41" title="McMahan, B., Moore, E., Ramage, D., Hampson, S., &amp; y Arcas, B. A. (2017). Communication-efficient learning of deep networks from decentralized data. Artificial intelligence and statistics (pp. 1273–1282).">McMahan <em>et al.</em>, 2017</a>)</span>
 ，让参与方在本地数据上多进行几次迭代后，再将梯度信息（或模型参数）传输到服务器端进行平均和更新，具体步骤如算法
-:ref:<code class="docutils literal notranslate"><span class="pre">algorithm:FedAvg</span></code> 所示。</p>
+<a class="reference internal" href="#algorithm-5-3"><span class="std std-numref">图5.3.6</span></a> 所示。</p>
+<div class="figure align-default" id="id167">
+<span id="algorithm-5-3"></span><a class="reference internal image-reference" href="../_images/algorithm_5_3.png"><img alt="../_images/algorithm_5_3.png" src="../_images/algorithm_5_3.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图5.3.6 </span><span class="caption-text">联邦平均（FedAvg）</span><a class="headerlink" href="#id167" title="Permalink to this image">¶</a></p>
+</div>
 <p>FedAvg算法虽然通过参与方在本地的多次迭代，减少了通信的代价，但是迭代次数过多也会增加参与方节点的算力负担，甚至会使一些算力受限的参与方无法完成训练，同时多次迭代也会使参与方的本地模型偏离全局模型，进而影响全局模型的收敛。导致这一问题的根本原因在于联邦学习中的<em>异质性</em>（heterogeneity），包括各参与方之间的<em>设备异质</em>、<em>数据异质</em>和<em>模型异质</em>等等。设备异质会使得设备间的通信和计算存在较大差异，导致不同设备之间更新不同步等问题；数据异质主要是由于不用参与方的个性化使得数据非独立同分布（non-independently
 and identically
 distributed，Non-IID）；而模型异质是由于计算资源的限制导致不同设备可能会选择不同（量级）的模型来参与运算。</p>
-<p>FedProx算法 <span id="id61">(<a class="reference internal" href="../chapter_references/zreferences.html#id99" title="Li, T., Sahu, A. K., Zaheer, M., Sanjabi, M., Talwalkar, A., &amp; Smith, V. (2020). Federated optimization in heterogeneous networks. Proceedings of Machine Learning and Systems, 2, 429–450.">Li <em>et al.</em>, 2020</a>)</span>
+<p>FedProx算法 <span id="id60">(<a class="reference internal" href="../chapter_references/zreferences.html#id99" title="Li, T., Sahu, A. K., Zaheer, M., Sanjabi, M., Talwalkar, A., &amp; Smith, V. (2020). Federated optimization in heterogeneous networks. Proceedings of Machine Learning and Systems, 2, 429–450.">Li <em>et al.</em>, 2020</a>)</span>
 则从异质性入手对FedAvg做了两点改良。首先，与FedAvg在每轮迭代中让各参与方进行相同周期（epoch）的本地训练不同，FedProx允许参与方根据自身算力进行不同周期的本地训练。其次，FedProx在参与方的目标函数里增加了<em>近端项</em>（proximal
 term），以加速全局模型的收敛：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-18">
 <span class="eqno">(5.3.3)<a class="headerlink" href="#equation-source-chap5-18" title="Permalink to this equation">¶</a></span>\[\min_{W} \mathcal{L}(f_{W}(X_i),Y_i)+\frac{\mu}{2}\|W_t-W_t^i \|, \; i =1,\ldots, N,\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(\mathcal{L}(f(X_i),Y_i)\)</span>为参与方<span class="math notranslate nohighlight">\(i\)</span>原始的损失函数，<span class="math notranslate nohighlight">\(\frac{\mu}{2}\|W_t-W_t^i \|\)</span>为其增加的近端项，<span class="math notranslate nohighlight">\(W_t\)</span>为<span class="math notranslate nohighlight">\(t\)</span>时刻的全局模型，<span class="math notranslate nohighlight">\(W_t^i\)</span>为参与方当前求解的本地模型。其他类似的算法，如SCAFFOLD算法
-<span id="id62">(<a class="reference internal" href="../chapter_references/zreferences.html#id108" title="Karimireddy, S. P., Kale, S., Mohri, M., Reddi, S., Stich, S., &amp; Suresh, A. T. (2020). Scaffold: stochastic controlled averaging for federated learning. International Conference on Machine Learning (pp. 5132–5143).">Karimireddy <em>et al.</em>, 2020</a>)</span> 和PFedMe算法
-<span id="id63">(<a class="reference internal" href="../chapter_references/zreferences.html#id112" title="T Dinh, C., Tran, N., &amp; Nguyen, J. (2020). Personalized federated learning with moreau envelopes. Advances in Neural Information Processing Systems, 33, 21394–21405.">T Dinh <em>et al.</em>, 2020</a>)</span>
+<span id="id61">(<a class="reference internal" href="../chapter_references/zreferences.html#id108" title="Karimireddy, S. P., Kale, S., Mohri, M., Reddi, S., Stich, S., &amp; Suresh, A. T. (2020). Scaffold: stochastic controlled averaging for federated learning. International Conference on Machine Learning (pp. 5132–5143).">Karimireddy <em>et al.</em>, 2020</a>)</span> 和PFedMe算法
+<span id="id62">(<a class="reference internal" href="../chapter_references/zreferences.html#id112" title="T Dinh, C., Tran, N., &amp; Nguyen, J. (2020). Personalized federated learning with moreau envelopes. Advances in Neural Information Processing Systems, 33, 21394–21405.">T Dinh <em>et al.</em>, 2020</a>)</span>
 与FedProx的思想一致，但是正则化方式不同，比如SCAFFOLD采用全局模型来约束修正参与方本地模型的训练，而PFedMe则结合Moreau
 Envelope光滑化进行近端项的正则化。</p>
 <p>经典的联邦学习是联合多个参与方，协同训练出一个全局模型，但是由于数据的异质性，一个全局模型很难对每个参与方都适用。对此，Jiang等人
-<span id="id64">(<a class="reference internal" href="../chapter_references/zreferences.html#id109" title="Jiang, Y., Konečn\`y, J., Rush, K., &amp; Kannan, S. (2019). Improving federated learning personalization via model agnostic meta learning. arXiv preprint arXiv:1909.12488.">Jiang <em>et al.</em>, 2019</a>)</span> 提出了<em>个性化联邦学习</em>（personalized
+<span id="id63">(<a class="reference internal" href="../chapter_references/zreferences.html#id109" title="Jiang, Y., Konečn\`y, J., Rush, K., &amp; Kannan, S. (2019). Improving federated learning personalization via model agnostic meta learning. arXiv preprint arXiv:1909.12488.">Jiang <em>et al.</em>, 2019</a>)</span> 提出了<em>个性化联邦学习</em>（personalized
 FL，PFL）的概念，采用<em>模型不可知的元学习</em>（model agnostic meta
 learning，MAML)思路，将FedAvg解释为一种元学习算法，除了参与方协同训练的全局模型外，还有各自的个性化模型。具体来说，研究者提出Personalized
 FedAvg算法，先使用FedAvg得到初始模型，其中参与方采用较大的迭代周期；然后，对FedAvg得到的初始模型进行微调；最后在参与方本地进行个性化操作。其他相关的方法，如Per-FedAvg
-<span id="id65">(<a class="reference internal" href="../chapter_references/zreferences.html#id110" title="Fallah, A., Mokhtari, A., &amp; Ozdaglar, A. (2020). Personalized federated learning: a meta-learning approach. arXiv preprint arXiv:2002.07948.">Fallah <em>et al.</em>, 2020</a>)</span> 和FedMeta <span id="id66">(<a class="reference internal" href="../chapter_references/zreferences.html#id111" title="Chen, F., Luo, M., Dong, Z., Li, Z., &amp; He, X. (2018). Federated meta-learning with fast convergence and efficient communication. arXiv preprint arXiv:1802.07876.">Chen <em>et al.</em>, 2018</a>)</span>
+<span id="id64">(<a class="reference internal" href="../chapter_references/zreferences.html#id110" title="Fallah, A., Mokhtari, A., &amp; Ozdaglar, A. (2020). Personalized federated learning: a meta-learning approach. arXiv preprint arXiv:2002.07948.">Fallah <em>et al.</em>, 2020</a>)</span> 和FedMeta <span id="id65">(<a class="reference internal" href="../chapter_references/zreferences.html#id111" title="Chen, F., Luo, M., Dong, Z., Li, Z., &amp; He, X. (2018). Federated meta-learning with fast convergence and efficient communication. arXiv preprint arXiv:1802.07876.">Chen <em>et al.</em>, 2018</a>)</span>
 ，也都是在FedAvg的框架下利用元学习思想对本地训练和全局更新部分进行调整。</p>
 <p>除了元学习，<em>多任务学习</em>也成为解决联邦学习个性化的新方法。在
-<span id="id67">(<a class="reference internal" href="../chapter_references/zreferences.html#id129" title="Smith, V., Chiang, C.-K., Sanjabi, M., &amp; Talwalkar, A. S. (2017). Federated multi-task learning. Advances in Neural Information Processing Systems, 30.">Smith <em>et al.</em>, 2017</a>)</span> 和
-<span id="id68">(<a class="reference internal" href="../chapter_references/zreferences.html#id130" title="Vanhaesebrouck, P., Bellet, A., &amp; Tommasi, M. (2017). Decentralized collaborative learning of personalized models over networks. Artificial Intelligence and Statistics (pp. 509–517).">Vanhaesebrouck <em>et al.</em>, 2017</a>)</span>
+<span id="id66">(<a class="reference internal" href="../chapter_references/zreferences.html#id129" title="Smith, V., Chiang, C.-K., Sanjabi, M., &amp; Talwalkar, A. S. (2017). Federated multi-task learning. Advances in Neural Information Processing Systems, 30.">Smith <em>et al.</em>, 2017</a>)</span> 和
+<span id="id67">(<a class="reference internal" href="../chapter_references/zreferences.html#id130" title="Vanhaesebrouck, P., Bellet, A., &amp; Tommasi, M. (2017). Decentralized collaborative learning of personalized models over networks. Artificial Intelligence and Statistics (pp. 509–517).">Vanhaesebrouck <em>et al.</em>, 2017</a>)</span>
 这两个相对早期的工作中，研究者将联邦学习的个性化定义为一个多任务问题，将参与方之间的关系定义为惩罚项，进而通过优化惩罚项进行个性化学习。<em>聚类联邦学习</em>（clustered
-FL，CFL） <span id="id69">(<a class="reference internal" href="../chapter_references/zreferences.html#id114" title="Sattler, F., Müller, K.-R., &amp; Samek, W. (2020). Clustered federated learning: model-agnostic distributed multitask optimization under privacy constraints. IEEE Transactions on Neural Networks and Learning Systems, 32(8), 3710–3722.">Sattler <em>et al.</em>, 2020</a>)</span>
+FL，CFL） <span id="id68">(<a class="reference internal" href="../chapter_references/zreferences.html#id114" title="Sattler, F., Müller, K.-R., &amp; Samek, W. (2020). Clustered federated learning: model-agnostic distributed multitask optimization under privacy constraints. IEEE Transactions on Neural Networks and Learning Systems, 32(8), 3710–3722.">Sattler <em>et al.</em>, 2020</a>)</span>
 则进一步结合多任务和聚类思想解决数据异质所导致的局部最优问题，在训练的过程中将模型参数相近的参与方分为一组，同一组的参与方进行知识共享，以此完成联邦学习的个性化。</p>
-<p>更进一步，FedEM算法 <span id="id70">(<a class="reference internal" href="../chapter_references/zreferences.html#id113" title="Marfoq, O., Neglia, G., Bellet, A., Kameni, L., &amp; Vidal, R. (2021). Federated multi-task learning under a mixture of distributions. Advances in Neural Information Processing Systems, 34, 15434–15447.">Marfoq <em>et al.</em>, 2021</a>)</span>
+<p>更进一步，FedEM算法 <span id="id69">(<a class="reference internal" href="../chapter_references/zreferences.html#id113" title="Marfoq, O., Neglia, G., Bellet, A., Kameni, L., &amp; Vidal, R. (2021). Federated multi-task learning under a mixture of distributions. Advances in Neural Information Processing Systems, 34, 15434–15447.">Marfoq <em>et al.</em>, 2021</a>)</span>
 从参与方的数据分布着手，做了两点假设：一是参与方数据为<span class="math notranslate nohighlight">\(M\)</span>个未知的潜在分布的混合，让每个参与方的模型由<span class="math notranslate nohighlight">\(M\)</span>个子模型集成得到；二是针对混合分布利用期望最大（expectation
 maximization,
 EM）算法优化。每个参与方的个性化则通过赋予<span class="math notranslate nohighlight">\(M\)</span>个子模型不同的权重完成，前期的个性化联邦学习方法，包括聚类
-<span id="id71">(<a class="reference internal" href="../chapter_references/zreferences.html#id114" title="Sattler, F., Müller, K.-R., &amp; Samek, W. (2020). Clustered federated learning: model-agnostic distributed multitask optimization under privacy constraints. IEEE Transactions on Neural Networks and Learning Systems, 32(8), 3710–3722.">Sattler <em>et al.</em>, 2020</a>)</span> 、多任务 <span id="id72">(<a class="reference internal" href="../chapter_references/zreferences.html#id129" title="Smith, V., Chiang, C.-K., Sanjabi, M., &amp; Talwalkar, A. S. (2017). Federated multi-task learning. Advances in Neural Information Processing Systems, 30.">Smith <em>et al.</em>, 2017</a>)</span>
-以及模型插值 <span id="id73">(<a class="reference internal" href="../chapter_references/zreferences.html#id138" title="Deng, Y., Kamani, M. M., &amp; Mahdavi, M. (2020). Adaptive personalized federated learning. arXiv preprint arXiv:2003.13461.">Deng <em>et al.</em>, 2020</a>)</span>
+<span id="id70">(<a class="reference internal" href="../chapter_references/zreferences.html#id114" title="Sattler, F., Müller, K.-R., &amp; Samek, W. (2020). Clustered federated learning: model-agnostic distributed multitask optimization under privacy constraints. IEEE Transactions on Neural Networks and Learning Systems, 32(8), 3710–3722.">Sattler <em>et al.</em>, 2020</a>)</span> 、多任务 <span id="id71">(<a class="reference internal" href="../chapter_references/zreferences.html#id129" title="Smith, V., Chiang, C.-K., Sanjabi, M., &amp; Talwalkar, A. S. (2017). Federated multi-task learning. Advances in Neural Information Processing Systems, 30.">Smith <em>et al.</em>, 2017</a>)</span>
+以及模型插值 <span id="id72">(<a class="reference internal" href="../chapter_references/zreferences.html#id138" title="Deng, Y., Kamani, M. M., &amp; Mahdavi, M. (2020). Adaptive personalized federated learning. arXiv preprint arXiv:2003.13461.">Deng <em>et al.</em>, 2020</a>)</span>
 等，都可以被理解为是该算法的特例。</p>
 </div>
-<div class="section" id="id74">
-<h3><span class="section-number">5.3.3. </span>纵向联邦<a class="headerlink" href="#id74" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="id73">
+<h3><span class="section-number">5.3.3. </span>纵向联邦<a class="headerlink" href="#id73" title="Permalink to this heading">¶</a></h3>
 <p>在纵向联邦学习中，参与方拥有的特征不同但是样本ID重叠较多，适用于同地域内不同行业之间的协作训练。比如在银行与电商场景下，银行拥有当地用户的经济收支、借贷以及信用等级等信息，而电商平台则拥有用户的购买记录，在一定程度上可以反映用户的消费习惯和产品偏好，这两家机构的联合可以训练出特征更全、性能更优的模型，比如理财产品推荐模型。类似的联邦还可以发生在更多的行业之间，如医疗、保险、房地产、娱乐、教育等。
 纵向联邦学习主要包含两个步骤，首先是不同机构之间相同实体的对齐，其次便是利用共同用户实体的数据协同训练模型
-<span id="id75">(<a class="reference internal" href="../chapter_references/zreferences.html#id70" title="Yang, Q., Liu, Y., Chen, T., &amp; Tong, Y. (2019). Federated machine learning: concept and applications. ACM Transactions on Intelligent Systems and Technology, 10(2), 1–19.">Yang <em>et al.</em>, 2019</a>)</span> 。本节将展开介绍两个经典的纵向联邦学习算法。</p>
+<span id="id74">(<a class="reference internal" href="../chapter_references/zreferences.html#id70" title="Yang, Q., Liu, Y., Chen, T., &amp; Tong, Y. (2019). Federated machine learning: concept and applications. ACM Transactions on Intelligent Systems and Technology, 10(2), 1–19.">Yang <em>et al.</em>, 2019</a>)</span> 。本节将展开介绍两个经典的纵向联邦学习算法。</p>
 <p><strong>安全线性回归</strong>（secure linear regression，SLR）
-<span id="id76">(<a class="reference internal" href="../chapter_references/zreferences.html#id70" title="Yang, Q., Liu, Y., Chen, T., &amp; Tong, Y. (2019). Federated machine learning: concept and applications. ACM Transactions on Intelligent Systems and Technology, 10(2), 1–19.">Yang <em>et al.</em>, 2019</a>)</span>
+<span id="id75">(<a class="reference internal" href="../chapter_references/zreferences.html#id70" title="Yang, Q., Liu, Y., Chen, T., &amp; Tong, Y. (2019). Federated machine learning: concept and applications. ACM Transactions on Intelligent Systems and Technology, 10(2), 1–19.">Yang <em>et al.</em>, 2019</a>)</span>
 可以说是最常用、最经典的纵向联邦学习算法，是线性回归算法的联邦化版本，所以也称<em>联邦线性回归</em>。安全线性回归之所以称为“安全”是因为它使用同态加密技术保护参与方之间传输信息的安全。</p>
 <p>假定有A、B两个参与方，其中只有B方拥有数据的标签，即A方数据为<span class="math notranslate nohighlight">\(\{ x_i^A\}_{i=1}^{n_A}\)</span>，B方数据为<span class="math notranslate nohighlight">\(\{ x_i^B,y_i\}_{i=1}^{n_B}\)</span>，其中<span class="math notranslate nohighlight">\(x_i^A, x_i^B\)</span>为数据特征，<span class="math notranslate nohighlight">\(y_i\)</span>为数据标签。令<span class="math notranslate nohighlight">\(w_A, w_B\)</span>为A、B双方的模型参数，则安全线性回归的优化目标为：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-19">
@@ -510,20 +539,28 @@ EM）算法优化。每个参与方的个性化则通过赋予<span class="math 
 <p>简化起见，令<span class="math notranslate nohighlight">\(u_i^A= w_A x_i^A\)</span>，<span class="math notranslate nohighlight">\(u_i^B= w_B x_i^B\)</span>，<span class="math notranslate nohighlight">\([[\cdot]]\)</span>表示加法同态加密，则加密后的目标函数可表示为：</p>
 <div class="math notranslate nohighlight" id="equation-eq-he">
 <span class="eqno">(5.3.5)<a class="headerlink" href="#equation-eq-he" title="Permalink to this equation">¶</a></span>\[[[\mathcal{L}]]=[[ \sum_i\| w_A x_i^A+ w_B x_i^B-y_i\|^2+\frac{\lambda}{2}(\| w_A\|^2+\| w_B\|^2 ]].\]</div>
-<p>利用加法同态的性质，令<span class="math notranslate nohighlight">\([[\mathcal{L}_A]]=[[\sum_i( u_i^A)^2+\frac{\lambda}{2}\| w_A\|^2 ]]\)</span>，<span class="math notranslate nohighlight">\([[\mathcal{L}_B]]=[[\sum_i( u_i^B-y_i)^2+\frac{\lambda}{2}\| w_B\|^2 ]]\)</span>，<span class="math notranslate nohighlight">\([[\L s_{AB}]]=2\sum_i [[ u_i^A( u_i^B-y_i) ]]\)</span>。则式
+<p>利用加法同态的性质，令<span class="math notranslate nohighlight">\([[\mathcal{L}_A]]=[[\sum_i( u_i^A)^2+\frac{\lambda}{2}\| w_A\|^2 ]]\)</span>，<span class="math notranslate nohighlight">\([[\mathcal{L}_B]]=[[\sum_i( u_i^B-y_i)^2+\frac{\lambda}{2}\| w_B\|^2 ]]\)</span>，<span class="math notranslate nohighlight">\([[s_{AB}]]=2\sum_i [[ u_i^A( u_i^B-y_i) ]]\)</span>。则式
 <a class="reference internal" href="#equation-eq-he">(5.3.5)</a> 可表示为：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-20">
-<span class="eqno">(5.3.6)<a class="headerlink" href="#equation-source-chap5-20" title="Permalink to this equation">¶</a></span>\[[[\mathcal{L}]]=[[\mathcal{L}_A]]+[[\mathcal{L}_B]]+[[\L s_{AB}]].\]</div>
+<span class="eqno">(5.3.6)<a class="headerlink" href="#equation-source-chap5-20" title="Permalink to this equation">¶</a></span>\[[[\mathcal{L}]]=[[\mathcal{L}_A]]+[[\mathcal{L}_B]]+[[s_{AB}]].\]</div>
 <p>在使用梯度下降算法进行模型优化时，A、B双方的梯度分别为：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-21">
 <span class="eqno">(5.3.7)<a class="headerlink" href="#equation-source-chap5-21" title="Permalink to this equation">¶</a></span>\[[[\frac{\partial \mathcal{L}}{\partial  w_A}]]=2\sum_i[[d_i]] x_i^A+[[\lambda  w_A]]\]</div>
 <div class="math notranslate nohighlight" id="equation-source-chap5-22">
 <span class="eqno">(5.3.8)<a class="headerlink" href="#equation-source-chap5-22" title="Permalink to this equation">¶</a></span>\[[[\frac{\partial \mathcal{L}}{\partial  w_B}]]=2\sum_i[[d_i]] x_i^B+[[\lambda  w_B]],\]</div>
 <p>其中，<span class="math notranslate nohighlight">\([[d_i]]=[[ u_i^A]]+[[ u_i^B-y_i]]\)</span>。由此可见，A、B双方为了求得准确的梯度，均需要对方的信息。此外，为了防止A、B双方通过传输的信息窥探对方的隐私信息，需要借助一个安全可信的第三方来协助完成加密解密工作。这里的第三方可以选择公信力和权威性较高的机构，如政府机构、学术组织等。综上，安全线性回归的完整步骤如表
-:ref:<code class="docutils literal notranslate"><span class="pre">tab:selr_train</span></code>
+<a class="reference internal" href="#table-5-2"><span class="std std-numref">图5.3.7</span></a>
 所列。在完成模型训练之后的推理阶段，仍需A、B双方在第三方的协助下完成，步骤见表
-:ref:<code class="docutils literal notranslate"><span class="pre">tab:selr_test</span></code> 。</p>
-<p><strong>安全提升树</strong>（SecureBoost） <span id="id77">(<a class="reference internal" href="../chapter_references/zreferences.html#id163" title="Cheng, K., Fan, T., Jin, Y., Liu, Y., Chen, T., Papadopoulos, D., &amp; Yang, Q. (2021). Secureboost: a lossless federated learning framework. IEEE Intelligent Systems, 36(6), 87–98.">Cheng <em>et al.</em>, 2021</a>)</span>
+<a class="reference internal" href="#table-5-3"><span class="std std-numref">图5.3.8</span></a> 。</p>
+<div class="figure align-default" id="id168">
+<span id="table-5-2"></span><a class="reference internal image-reference" href="../_images/table_5_2.png"><img alt="../_images/table_5_2.png" src="../_images/table_5_2.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图5.3.7 </span><span class="caption-text">安全线性回归算法的训练步骤</span><a class="headerlink" href="#id168" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id169">
+<span id="table-5-3"></span><a class="reference internal image-reference" href="../_images/table_5_3.png"><img alt="../_images/table_5_3.png" src="../_images/table_5_3.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图5.3.8 </span><span class="caption-text">安全线性回归算法的预测步骤</span><a class="headerlink" href="#id169" title="Permalink to this image">¶</a></p>
+</div>
+<p><strong>安全提升树</strong>（SecureBoost） <span id="id76">(<a class="reference internal" href="../chapter_references/zreferences.html#id163" title="Cheng, K., Fan, T., Jin, Y., Liu, Y., Chen, T., Papadopoulos, D., &amp; Yang, Q. (2021). Secureboost: a lossless federated learning framework. IEEE Intelligent Systems, 36(6), 87–98.">Cheng <em>et al.</em>, 2021</a>)</span>
 是第二个常用且经典的纵向联邦学习算法。安全提升树是XGBoost的联邦化版本，本节先介绍XGBoost算法，然后再介绍如何将其联邦化得到安全提升树。</p>
 <p>给定一个拥有<span class="math notranslate nohighlight">\(n\)</span>个样本和<span class="math notranslate nohighlight">\(d\)</span>个特征的数据集<span class="math notranslate nohighlight">\(X \subset \mathbb{R}^{n\times d}\)</span>，XGBoost算法通过集成<span class="math notranslate nohighlight">\(K\)</span>个回归树<span class="math notranslate nohighlight">\(f_k\)</span>完成预测任务：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-23">
@@ -546,66 +583,74 @@ party），只拥有数据的特征。由式 <a class="reference internal" href=
 可知，回归树的最佳分割点和最佳权重值均依赖于<span class="math notranslate nohighlight">\(g_i\)</span>和<span class="math notranslate nohighlight">\(h_i\)</span>。但是如果参与方直接交换<span class="math notranslate nohighlight">\(g_i\)</span>和<span class="math notranslate nohighlight">\(h_i\)</span>则会泄露隐私信息，因为<span class="math notranslate nohighlight">\(g_i\)</span>和<span class="math notranslate nohighlight">\(h_i\)</span>的计算都依赖于样本的标签信息，被动方可基于导数以及第<span class="math notranslate nohighlight">\(t-1\)</span>轮的预测标签<span class="math notranslate nohighlight">\(\hat{y}_i^{(t-1)}\)</span>反推出原始标签信息<span class="math notranslate nohighlight">\(y_i\)</span>。因此双方在传递之前，对其进行同态加密保护。</p>
 <p>然而，被动方无法在信息加密的情况下计算式 <a class="reference internal" href="#equation-eq-split">(5.3.11)</a>
 ，因此分割点的评估将由主动方执行。在计算最佳分割点之前，首先被动方使用算法
-:ref:<code class="docutils literal notranslate"><span class="pre">algorithm:secureagree</span></code>
+<a class="reference internal" href="#algorithm-5-4"><span class="std std-numref">图5.3.9</span></a>
 聚合加密梯度信息，并将其发送给主动方，然后主动方根据收到的信息计算全局最优分割点，如算法
-:ref:<code class="docutils literal notranslate"><span class="pre">algorithm:split</span></code>
+<a class="reference internal" href="#algorithm-5-5"><span class="std std-numref">图5.3.10</span></a>
 所示，使用[参与方ID（<span class="math notranslate nohighlight">\(i_{\text{opt}}\)</span>），特性ID（<span class="math notranslate nohighlight">\(k_{\text{opt}}\)</span>），阈值ID（<span class="math notranslate nohighlight">\(v_{\text{opt}}\)</span>）]表示最佳分割。</p>
 <p>模型训练完成后便是对新样本的预测，因为样本的真实标签只存在于主动方，因此对新样本的预测也将在主动方的主导下完成。</p>
+<div class="figure align-default" id="id170">
+<span id="algorithm-5-4"></span><a class="reference internal image-reference" href="../_images/algorithm_5_4.png"><img alt="../_images/algorithm_5_4.png" src="../_images/algorithm_5_4.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图5.3.9 </span><span class="caption-text">聚合梯度统计值 <span id="id77">(<a class="reference internal" href="../chapter_references/zreferences.html#id163" title="Cheng, K., Fan, T., Jin, Y., Liu, Y., Chen, T., Papadopoulos, D., &amp; Yang, Q. (2021). Secureboost: a lossless federated learning framework. IEEE Intelligent Systems, 36(6), 87–98.">Cheng <em>et al.</em>, 2021</a>)</span></span><a class="headerlink" href="#id170" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="id78">
-<h3><span class="section-number">5.3.4. </span>隐私与安全<a class="headerlink" href="#id78" title="Permalink to this heading">¶</a></h3>
-<p>联邦学习在参与方不分享本地数据的前提下完成对全局模型的联合训练，这有效保护了参与方的数据隐私。然而，联邦学习也面临新的隐私和安全问题，例如在参与方-服务器架构中，<em>恶意服务器</em>可能会利用参与方上传的梯度信息反推其隐私信息，或者在训练过程中篡改相关信息；<em>恶意参与方</em>可能会窥探其他参与方的隐私信息，或者通过向服务器发送恶意梯度信息破坏全局模型。本节将介绍联邦学习所面临的两大主要安全隐患（隐私攻击和投毒攻击）以及防御措施。</p>
+<div class="figure align-default" id="id171">
+<span id="algorithm-5-5"></span><a class="reference internal image-reference" href="../_images/algorithm_5_5.png"><img alt="../_images/algorithm_5_5.png" src="../_images/algorithm_5_5.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图5.3.10 </span><span class="caption-text">寻找最优分割 <span id="id78">(<a class="reference internal" href="../chapter_references/zreferences.html#id163" title="Cheng, K., Fan, T., Jin, Y., Liu, Y., Chen, T., Papadopoulos, D., &amp; Yang, Q. (2021). Secureboost: a lossless federated learning framework. IEEE Intelligent Systems, 36(6), 87–98.">Cheng <em>et al.</em>, 2021</a>)</span></span><a class="headerlink" href="#id171" title="Permalink to this image">¶</a></p>
+</div>
+</div>
 <div class="section" id="id79">
-<h4><span class="section-number">5.3.4.1. </span>隐私攻击与防御<a class="headerlink" href="#id79" title="Permalink to this heading">¶</a></h4>
+<h3><span class="section-number">5.3.4. </span>隐私与安全<a class="headerlink" href="#id79" title="Permalink to this heading">¶</a></h3>
+<p>联邦学习在参与方不分享本地数据的前提下完成对全局模型的联合训练，这有效保护了参与方的数据隐私。然而，联邦学习也面临新的隐私和安全问题，例如在参与方-服务器架构中，<em>恶意服务器</em>可能会利用参与方上传的梯度信息反推其隐私信息，或者在训练过程中篡改相关信息；<em>恶意参与方</em>可能会窥探其他参与方的隐私信息，或者通过向服务器发送恶意梯度信息破坏全局模型。本节将介绍联邦学习所面临的两大主要安全隐患（隐私攻击和投毒攻击）以及防御措施。</p>
+<div class="section" id="id80">
+<h4><span class="section-number">5.3.4.1. </span>隐私攻击与防御<a class="headerlink" href="#id80" title="Permalink to this heading">¶</a></h4>
 <p>梯度信息是联邦学习过程中所交换的一类主要信息，梯度虽然不等同于原始数据，但是依然会泄露参与方的部分信息。而至于梯度到底会泄漏多少隐私信息，目前并未有确切的结论。在联邦学习中，虽然梯度是在参与方的本地数据上计算得到的，但是全局模型的训练可以看作是对所有参与方数据的高度统计
-<span id="id80">(<a class="reference internal" href="../chapter_references/zreferences.html#id164" title="Lyu, L., Yu, H., Ma, X., Chen, C., Sun, L., Zhao, J., … Philip, S. Y. (2022). Privacy and robustness in federated learning: attacks and defenses. IEEE Transactions on Neural Networks and Learning Systems.">Lyu <em>et al.</em>, 2022</a>)</span>
+<span id="id81">(<a class="reference internal" href="../chapter_references/zreferences.html#id164" title="Lyu, L., Yu, H., Ma, X., Chen, C., Sun, L., Zhao, J., … Philip, S. Y. (2022). Privacy and robustness in federated learning: attacks and defenses. IEEE Transactions on Neural Networks and Learning Systems.">Lyu <em>et al.</em>, 2022</a>)</span>
 。对深度学习模型来说，特定层的梯度是由前层传递的特征和后层传递的误差计算得到的，因此梯度信息可以被用来反推众多的隐私信息，比如某类别的典型样本以及训练数据的成员和属性等，更甚至是逆向出原始训练数据
-<span id="id81">(<a class="reference internal" href="../chapter_references/zreferences.html#id412" title="Zhu, L., Liu, Z., &amp; Han, S. (2019). Deep leakage from gradients. Advances in Neural Information Processing Systems, 32.">Zhu <em>et al.</em>, 2019</a>)</span>
+<span id="id82">(<a class="reference internal" href="../chapter_references/zreferences.html#id412" title="Zhu, L., Liu, Z., &amp; Han, S. (2019). Deep leakage from gradients. Advances in Neural Information Processing Systems, 32.">Zhu <em>et al.</em>, 2019</a>)</span>
 。此外，大部分针对传统机器学习的攻击方法也适用于联邦学习，例如对抗攻击可以直接攻击全局模型，进而攻击所有参与方；后门攻击可以通过攻击单个本地模型来间接攻击全局模型；成员推理攻击既可以攻击单个模型（基于其上传的梯度）也可以攻击全局模型。</p>
 <p><strong>隐私攻击</strong>主要是推理类型的攻击，可分为四种，分别推理典型样本、成员、属性和训练数据。针对单个机器学习模型的隐私攻击请参阅章节
 <a class="reference internal" href="chap4.html#sec-privacyinferenceattack"><span class="std std-numref">4.2节</span></a> ，这里主要介绍对联邦学习的攻击。</p>
-<p><strong>典型样本推理。</strong>Hitaj等人 <span id="id82">(<a class="reference internal" href="../chapter_references/zreferences.html#id176" title="Hitaj, B., Ateniese, G., &amp; Perez-Cruz, F. (2017). Deep models under the gan: information leakage from collaborative deep learning. ACM SIGSAC Conference on Computer and Communications Security (pp. 603–618).">Hitaj <em>et al.</em>, 2017</a>)</span>
+<p><strong>典型样本推理。</strong>Hitaj等人 <span id="id83">(<a class="reference internal" href="../chapter_references/zreferences.html#id176" title="Hitaj, B., Ateniese, G., &amp; Perez-Cruz, F. (2017). Deep models under the gan: information leakage from collaborative deep learning. ACM SIGSAC Conference on Computer and Communications Security (pp. 603–618).">Hitaj <em>et al.</em>, 2017</a>)</span>
 设计了首个针对联邦学习的隐私攻击方法，该方法使用生成对抗网络推理其他参与方的典型样本（prototypical
 samples）信息。假设受害者拥有的数据标签为<span class="math notranslate nohighlight">\([a,b]\)</span>，攻击者拥有的数据标签为<span class="math notranslate nohighlight">\([b,c]\)</span>，攻击者的目标是在联邦学习过程中本地训练一个生成对抗网络来生成类别<span class="math notranslate nohighlight">\([a]\)</span>的样本。由于全局模型是共享的，所以攻击者可以知道所有的类别，并且可以使用全局模型作为生成对抗网络的判别器。在每轮训练中，攻击者利用具有类别<span class="math notranslate nohighlight">\([a]\)</span>的判别器，训练生成器生成<span class="math notranslate nohighlight">\([a]\)</span>类别的样本，并将生成的样本标记成<span class="math notranslate nohighlight">\([c]\)</span>类别进行本地训练。此时，由于类别<span class="math notranslate nohighlight">\([a]\)</span>的生成数据被标记成了类别<span class="math notranslate nohighlight">\([c]\)</span>，所以受害者会在下一轮的本地训练中，不知不觉的增强对<span class="math notranslate nohighlight">\([a]\)</span>类别样本的学习和修正，导致泄露更多关于<span class="math notranslate nohighlight">\([a]\)</span>类别的样本信息。攻击者以此迭代，可以训练一个生成器生成类别<span class="math notranslate nohighlight">\([a]\)</span>的典型样本（跟原始样本不完全相同但是来自于同一分布）。</p>
 <p><strong>成员推理。</strong>针对联邦学习的成员推理攻击旨在推理某个样本是否出现在其他参与方的训练数据集中，可分为<em>主动推理</em>和<em>被动推理</em>两类。被动推理攻击只观察全局模型的参数信息但不改变联邦学习的训练协议，而主动推理攻击则可篡改训练过程中上传的梯度信息以构造更强大的攻击
-<span id="id83">(<a class="reference internal" href="../chapter_references/zreferences.html#id149" title="Melis, L., Song, C., De Cristofaro, E., &amp; Shmatikov, V. (2019). Exploiting unintended feature leakage in collaborative learning. IEEE Symposium on Security and Privacy (pp. 691–706).">Melis <em>et al.</em>, 2019</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id508" title="Nasr, M., Shokri, R., &amp; Houmansadr, A. (2019). Comprehensive privacy analysis of deep learning: passive and active white-box inference attacks against centralized and federated learning. IEEE Symposium on Security and Privacy (SP).">Nasr <em>et al.</em>, 2019</a>)</span>
+<span id="id84">(<a class="reference internal" href="../chapter_references/zreferences.html#id149" title="Melis, L., Song, C., De Cristofaro, E., &amp; Shmatikov, V. (2019). Exploiting unintended feature leakage in collaborative learning. IEEE Symposium on Security and Privacy (pp. 691–706).">Melis <em>et al.</em>, 2019</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id508" title="Nasr, M., Shokri, R., &amp; Houmansadr, A. (2019). Comprehensive privacy analysis of deep learning: passive and active white-box inference attacks against centralized and federated learning. IEEE Symposium on Security and Privacy (SP).">Nasr <em>et al.</em>, 2019</a>)</span>
 。深度学习模型在非数字数据（比如文本）上进行训练时，其输入空间往往是离散且稀疏的，这时候需要先用嵌入层（embedding
 layer）将输入变成一个低维向量表示。在自然语言处理模型中，嵌入层的梯度往往是稀疏的（出现某个单词的地方不为零，其他地方都是零），所以被动推理攻击者可以根据嵌入层的梯度信息反推出哪些单词在当前的训练数据集中
-<span id="id84">(<a class="reference internal" href="../chapter_references/zreferences.html#id149" title="Melis, L., Song, C., De Cristofaro, E., &amp; Shmatikov, V. (2019). Exploiting unintended feature leakage in collaborative learning. IEEE Symposium on Security and Privacy (pp. 691–706).">Melis <em>et al.</em>, 2019</a>)</span>
+<span id="id85">(<a class="reference internal" href="../chapter_references/zreferences.html#id149" title="Melis, L., Song, C., De Cristofaro, E., &amp; Shmatikov, V. (2019). Exploiting unintended feature leakage in collaborative learning. IEEE Symposium on Security and Privacy (pp. 691–706).">Melis <em>et al.</em>, 2019</a>)</span>
 。主动推理攻击的代表方法是<em>梯度上升</em>（gradient ascent）
-<span id="id85">(<a class="reference internal" href="../chapter_references/zreferences.html#id508" title="Nasr, M., Shokri, R., &amp; Houmansadr, A. (2019). Comprehensive privacy analysis of deep learning: passive and active white-box inference attacks against centralized and federated learning. IEEE Symposium on Security and Privacy (SP).">Nasr <em>et al.</em>, 2019</a>)</span>
+<span id="id86">(<a class="reference internal" href="../chapter_references/zreferences.html#id508" title="Nasr, M., Shokri, R., &amp; Houmansadr, A. (2019). Comprehensive privacy analysis of deep learning: passive and active white-box inference attacks against centralized and federated learning. IEEE Symposium on Security and Privacy (SP).">Nasr <em>et al.</em>, 2019</a>)</span>
 ，攻击者将目标数据所产生的梯度增大，如果目标数据在其他参与方的训练集中，则在后续的训练过程中该部分的梯度会得到大幅的减小，否则下降幅度则比较温和，以此完成成员推理攻击。</p>
 <p><strong>属性推理。</strong>属性推理也可分为<em>主动</em>和<em>被动</em>两种方式
-<span id="id86">(<a class="reference internal" href="../chapter_references/zreferences.html#id149" title="Melis, L., Song, C., De Cristofaro, E., &amp; Shmatikov, V. (2019). Exploiting unintended feature leakage in collaborative learning. IEEE Symposium on Security and Privacy (pp. 691–706).">Melis <em>et al.</em>, 2019</a>)</span>
+<span id="id87">(<a class="reference internal" href="../chapter_references/zreferences.html#id149" title="Melis, L., Song, C., De Cristofaro, E., &amp; Shmatikov, V. (2019). Exploiting unintended feature leakage in collaborative learning. IEEE Symposium on Security and Privacy (pp. 691–706).">Melis <em>et al.</em>, 2019</a>)</span>
 。被动属性推理往往先借助辅助数据（auxiliary
 data），基于当前的模型快照（snapshots）在辅助数据上生成含有目标属性的模型更新和不含目标属性的模型更新。如此得到的两类模型更新便组成了一个二分类数据集，可以用来训练一个二分类器。在联邦学习过程中，攻击者可以使用训练的二分类器，根据全局模型的更新判断是否存在对应的属性。而主动属性推理则是借助多任务学习（multi-task
 learning），将目标属性的识别任务和主任务进行结合训练出一个<em>增强分类器</em>。训练所使用的损失函数可定义为：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-25">
 <span class="eqno">(5.3.13)<a class="headerlink" href="#equation-source-chap5-25" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text{mt}}=\alpha \cdot \mathcal{L}( x,y,W)+(1-\alpha) \cdot \mathcal{L}( x,p,W),\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(y\)</span>为主任务标签，<span class="math notranslate nohighlight">\(p\)</span>为属性任务标签，<span class="math notranslate nohighlight">\(W\)</span>为模型参数。主动推理和被动推理的主要区别在于主动推理进行了额外的计算，而且额外计算的结果参与到了全局模型的训练过程之中。</p>
-<p><strong>训练数据窃取。</strong> Zhu等人 <span id="id87">(<a class="reference internal" href="../chapter_references/zreferences.html#id412" title="Zhu, L., Liu, Z., &amp; Han, S. (2019). Deep leakage from gradients. Advances in Neural Information Processing Systems, 32.">Zhu <em>et al.</em>, 2019</a>)</span>
+<p><strong>训练数据窃取。</strong> Zhu等人 <span id="id88">(<a class="reference internal" href="../chapter_references/zreferences.html#id412" title="Zhu, L., Liu, Z., &amp; Han, S. (2019). Deep leakage from gradients. Advances in Neural Information Processing Systems, 32.">Zhu <em>et al.</em>, 2019</a>)</span>
 提出<em>深度梯度泄露</em>（deep leakage from
 gradients，DLG）攻击，揭示协作学习过程中梯度的交换会泄露训练数据的问题，严重时甚至可以在像素级别（pixel-wise）和词元级别（token-wise）还原原始训练图像或文本。深度梯度泄露攻击首先随机生成一份与真实样本大小一致的<em>虚拟样本</em>和<em>虚拟标签</em>，并初始化一个机器学习模型，然后利用虚拟样本和虚拟标签计算<em>虚拟梯度</em>，通过优化虚拟梯度与真实梯度之间的距离，让虚拟输入逼近真实输入。其优化目标函数为：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-26">
-<span class="eqno">(5.3.14)<a class="headerlink" href="#equation-source-chap5-26" title="Permalink to this equation">¶</a></span>\[x^{*},y^{*} = \mathop{\mathrm{arg\,min}}\limits_{ x',y'}\|\nabla_{W'\|\mathcal{L}( x',y',W')-\nabla_{W}\mathcal{L}( x,y,W)}_2^2,\]</div>
+<span class="eqno">(5.3.14)<a class="headerlink" href="#equation-source-chap5-26" title="Permalink to this equation">¶</a></span>\[x^{*},y^{*} = \mathop{\mathrm{arg\,min}}\limits_{ x',y'}\|\nabla_{W'}\mathcal{L}(x',y',W')-\nabla_{W}\mathcal{L}( x,y,W)\|_2^2,\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(x'\)</span>和<span class="math notranslate nohighlight">\(y'\)</span>分别为虚拟样本和虚拟标签，<span class="math notranslate nohighlight">\(W\)</span>为攻击者训练的模型参数，<span class="math notranslate nohighlight">\(\nabla_{W'}\mathcal{L}\)</span>和<span class="math notranslate nohighlight">\(\nabla_{W}\mathcal{L}\)</span>分别表示虚拟梯度和真实梯度。</p>
 <p><strong>隐私防御</strong>方法主要有三种。首先是<strong>同态加密</strong>，各参与方在上传梯度前先对其进行加密，上传密文而不是明文。同态加密的基本概念在章节中
-<a class="reference internal" href="#sec-homomorphic-encryption"><span class="std std-numref">图5.3.4</span></a>
+<a class="reference internal" href="#sec-homomorphic-encryption"><span class="std std-numref">图5.3.5</span></a>
 已介绍，这里不再赘述。虽然同态加密可以很好的保护梯度安全，但是会增加计算和存储负担，对算力较小的参与方并不适用。其次是<strong>多方安全计算</strong>（secure
-multiparty computation，SMC） <span id="id88">(<a class="reference internal" href="../chapter_references/zreferences.html#id186" title="Yao, A. C. (1982). Protocols for secure computations. IEEE Annual Symposium on Foundations of Computer Science (pp. 160–164).">Yao, 1982</a>)</span>
+multiparty computation，SMC） <span id="id89">(<a class="reference internal" href="../chapter_references/zreferences.html#id186" title="Yao, A. C. (1982). Protocols for secure computations. IEEE Annual Symposium on Foundations of Computer Science (pp. 160–164).">Yao, 1982</a>)</span>
 ，它可以在不依赖可信第三方的情况下，让多个参与方不透露隐私信息且合作计算任意函数。多方安全计算的协议都涉及到一些基本的构造块，如<em>不经意传输</em>（oblivious
 transfer，OT）、<em>零知识证明</em>（zero-knowledge
-proof，ZKP）、<em>混淆电路</em>（garbled
-circuit，GC） [2]_等，这些构造块为多方安全计算的理论和实践奠定了基础。<em>安全机器学习</em>（secure
+proof，ZKP）、<em>混淆电路</em>（garbled circuit，GC） <a class="footnote-reference brackets" href="#id158" id="id90">2</a>
+等，这些构造块为多方安全计算的理论和实践奠定了基础。<em>安全机器学习</em>（secure
 machine
 learning）将多方安全计算引入机器学习，保护其训练过程的隐私，为多种模型，如线性回归、逻辑回归和神经网络等，设计了安全协议。但是多方安全计算往往以高算力和高通信开销为代价来换取隐私保护，成为其实际应用的主要障碍。最后是<strong>差分隐私</strong>，其通过向原始数据或者模型参数中添加随机噪声来保护数据隐私，相关概念也已在章节
 <a class="reference internal" href="#sec-differential-privacy"><span class="std std-numref">5.2节</span></a> 中介绍，这里也不再赘述。</p>
 </div>
-<div class="section" id="id89">
-<h4><span class="section-number">5.3.4.2. </span>投毒攻击与防御<a class="headerlink" href="#id89" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="id91">
+<h4><span class="section-number">5.3.4.2. </span>投毒攻击与防御<a class="headerlink" href="#id91" title="Permalink to this heading">¶</a></h4>
 <p>在隐私攻击中，攻击者意在窥探其他参与者的隐私数据，而投毒攻击的目的则是降低全局模型的性能、鲁棒性或者操纵全局模型。针对联邦学习的投毒攻击大致可以分为两类，一是<em>无目标攻击</em>
-<span id="id90">(<a class="reference internal" href="../chapter_references/zreferences.html#id470" title="Jagielski, M., Oprea, A., Biggio, B., Liu, C., Nita-Rotaru, C., &amp; Li, B. (2018). Manipulating machine learning: poisoning attacks and countermeasures for regression learning. IEEE Symposium on Security and Privacy (pp. 19–35).">Jagielski <em>et al.</em>, 2018</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id199" title="Rubinstein, B., Nelson, B., Ling, H., Joseph, A. D., &amp; Tygar, J. D. (2009). Antidote: understanding and defending against poisoning of anomaly detectors. Acm Sigcomm Conference on Internet Measurement.">Rubinstein <em>et al.</em>, 2009</a>)</span> ；二是<em>有目标攻击</em>
-<span id="id91">(<a class="reference internal" href="../chapter_references/zreferences.html#id254" title="Bagdasaryan, E., Veit, A., Hua, Y., Estrin, D., &amp; Shmatikov, V. (2020). How to backdoor federated learning. International Conference on Artificial Intelligence and Statistics (pp. 2938–2948).">Bagdasaryan <em>et al.</em>, 2020</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id60" title="Shafahi, A., Huang, W. R., Najibi, M., Suciu, O., Studer, C., Dumitras, T., &amp; Goldstein, T. (2018). Poison frogs! targeted clean-label poisoning attacks on neural networks. Advances in Neural Information Processing Systems, 31.">Shafahi <em>et al.</em>, 2018</a>)</span>
+<span id="id92">(<a class="reference internal" href="../chapter_references/zreferences.html#id470" title="Jagielski, M., Oprea, A., Biggio, B., Liu, C., Nita-Rotaru, C., &amp; Li, B. (2018). Manipulating machine learning: poisoning attacks and countermeasures for regression learning. IEEE Symposium on Security and Privacy (pp. 19–35).">Jagielski <em>et al.</em>, 2018</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id199" title="Rubinstein, B., Nelson, B., Ling, H., Joseph, A. D., &amp; Tygar, J. D. (2009). Antidote: understanding and defending against poisoning of anomaly detectors. Acm Sigcomm Conference on Internet Measurement.">Rubinstein <em>et al.</em>, 2009</a>)</span> ；二是<em>有目标攻击</em>
+<span id="id93">(<a class="reference internal" href="../chapter_references/zreferences.html#id254" title="Bagdasaryan, E., Veit, A., Hua, Y., Estrin, D., &amp; Shmatikov, V. (2020). How to backdoor federated learning. International Conference on Artificial Intelligence and Statistics (pp. 2938–2948).">Bagdasaryan <em>et al.</em>, 2020</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id60" title="Shafahi, A., Huang, W. R., Najibi, M., Suciu, O., Studer, C., Dumitras, T., &amp; Goldstein, T. (2018). Poison frogs! targeted clean-label poisoning attacks on neural networks. Advances in Neural Information Processing Systems, 31.">Shafahi <em>et al.</em>, 2018</a>)</span>
 。需要注意的是，针对联邦学习的投毒攻击是一个很热门的研究课题，新型威胁模型和攻击算法层出不穷。</p>
 <p><strong>无目标攻击。</strong>无目标攻击的目的是破坏全局模型的完整性，使全局模型无法收敛。<strong>拜占庭攻击</strong>（Byzantine
 attack）就是无目标攻击的一种。在联邦学习中，一个诚实的参与方<span class="math notranslate nohighlight">\(i\)</span>向服务器传输的更新信息为<span class="math notranslate nohighlight">\(\bigtriangleup w_i=\nabla_{ w_i} \mathcal{L}(f_i( x),y)\)</span>，而拜占庭参与方可以根据自己的意图向服务器发送任何恶意信息，比如下式定义的“任意”梯度：</p>
@@ -613,19 +658,19 @@ attack）就是无目标攻击的一种。在联邦学习中，一个诚实的�
 <span class="eqno">(5.3.15)<a class="headerlink" href="#equation-source-chap5-27" title="Permalink to this equation">¶</a></span>\[\begin{split}\bigtriangleup  w_i= \begin{cases}\nabla_{ w_i} \mathcal{L}(f_i( x),y),\;\; i\mbox{为诚实参与方} \\*,\;\; i \mbox{为拜占庭参与方}\end{cases}\end{split}\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(*\)</span>为任意值，<span class="math notranslate nohighlight">\(f_i\)</span>为参与方<span class="math notranslate nohighlight">\(i\)</span>的本地模型，<span class="math notranslate nohighlight">\(w_i \in \mathbb{R}^m\)</span>为<span class="math notranslate nohighlight">\(f_i\)</span>的参数。</p>
 <p>研究表明，即使只有一个参与方发动拜占庭攻击，全局模型也会被轻易的控制
-<span id="id92">(<a class="reference internal" href="../chapter_references/zreferences.html#id200" title="Blanchard, P., Mhamdi, E., Guerraoui, R., &amp; Stainer, J. (2017). Machine learning with adversaries: byzantine tolerant gradient descent. Neural Information Processing Systems.">Blanchard <em>et al.</em>, 2017</a>)</span>
+<span id="id94">(<a class="reference internal" href="../chapter_references/zreferences.html#id200" title="Blanchard, P., Mhamdi, E., Guerraoui, R., &amp; Stainer, J. (2017). Machine learning with adversaries: byzantine tolerant gradient descent. Neural Information Processing Systems.">Blanchard <em>et al.</em>, 2017</a>)</span>
 。假如联邦学习系统中有<span class="math notranslate nohighlight">\(n\)</span>个参与方，其中前<span class="math notranslate nohighlight">\(n-1\)</span>个为诚实参与方，第<span class="math notranslate nohighlight">\(n\)</span>个为拜占庭参与方，服务器聚合参与方的更新梯度为<span class="math notranslate nohighlight">\(\bigtriangleup w'=\sum_{i=1}^n \bigtriangleup w_i\)</span>。若拜占庭参与方的攻击目标是使服务器聚合后的梯度为<span class="math notranslate nohighlight">\(u\)</span>，则其向服务器传输的梯度可设置为<span class="math notranslate nohighlight">\(\bigtriangleup w_n=n u-\sum_{i=1}^{n-1} \bigtriangleup w_i\)</span>。
 其他拜占庭攻击的方式还有：（1）<em>高斯噪声攻击</em>，<span class="math notranslate nohighlight">\(\bigtriangleup w_i=\bigtriangleup w_i+\mathcal{N}(0,\sigma^2)\)</span>，<span class="math notranslate nohighlight">\(\mathcal{N}(0,\sigma^2)\)</span>为高斯分布；（2）<em>相同值攻击</em>，<span class="math notranslate nohighlight">\(\bigtriangleup w_i=c\mathbf{1}\)</span>，<span class="math notranslate nohighlight">\(\mathbf{1}\)</span>为全1矩阵;（3）<em>符号反转攻击</em>，<span class="math notranslate nohighlight">\(\bigtriangleup w_i=c w_i\)</span>（<span class="math notranslate nohighlight">\(c&lt;0\)</span>）。</p>
 <p><strong>防御无目标攻击。</strong>
 针对拜占庭攻击的防御目前主要是从<strong>容错性</strong>（fault
 tolerance）的角度考虑，提升服务器端梯度聚合算法的鲁棒性。以经典的鲁棒聚合算法<em>Krum</em>
-<span id="id93">(<a class="reference internal" href="../chapter_references/zreferences.html#id200" title="Blanchard, P., Mhamdi, E., Guerraoui, R., &amp; Stainer, J. (2017). Machine learning with adversaries: byzantine tolerant gradient descent. Neural Information Processing Systems.">Blanchard <em>et al.</em>, 2017</a>)</span>
+<span id="id95">(<a class="reference internal" href="../chapter_references/zreferences.html#id200" title="Blanchard, P., Mhamdi, E., Guerraoui, R., &amp; Stainer, J. (2017). Machine learning with adversaries: byzantine tolerant gradient descent. Neural Information Processing Systems.">Blanchard <em>et al.</em>, 2017</a>)</span>
 为例，其出发点是计算单个参与方梯度与其他参与方梯度的距离和，将距离和较远的参与方判定为潜在的拜占庭攻击者，在服务器梯度聚合时将其剔除，不纳入计算。假设联邦学习系统中有<span class="math notranslate nohighlight">\(n\)</span>个参与方，在第<span class="math notranslate nohighlight">\(t\)</span>轮迭代的梯度更新为<span class="math notranslate nohighlight">\(\{\bigtriangleup w_1^t,\bigtriangleup w_2^t,\ldots,\bigtriangleup w_n^t \}\)</span>，其中假设<span class="math notranslate nohighlight">\(b\)</span>个为拜占庭参与方。服务器在收到参与方的梯度信息后，计算<span class="math notranslate nohighlight">\(w_i^t\)</span>的<span class="math notranslate nohighlight">\(n-b-2\)</span>近邻集合<span class="math notranslate nohighlight">\(C_i\)</span>，并利用它们之间的距离计算一个分数：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-28">
 <span class="eqno">(5.3.16)<a class="headerlink" href="#equation-source-chap5-28" title="Permalink to this equation">¶</a></span>\[\text{score}( w_i^t)=\sum_{ w\in C_i}\|\bigtriangleup  w_i^t- w\|.\]</div>
 <p>最后服务器利用得分最低的梯度信息<span class="math notranslate nohighlight">\(w_{\text{Krum}}= w_i^t\)</span>更新全局模型<span class="math notranslate nohighlight">\(W^{t+1}=W^t+ w_{\text{Krum}}\)</span>。理论上，Krum最多可以防御的拜占庭攻击者的个数<span class="math notranslate nohighlight">\(b\)</span>是有限制的，即<span class="math notranslate nohighlight">\(n&gt;2b+3\)</span>。</p>
 <p>巧妙的利用均值、中位数等统计知识来代替个别参与方的异常梯度也是防御拜占庭攻击的重要方法。Yin等人
-<span id="id94">(<a class="reference internal" href="../chapter_references/zreferences.html#id217" title="Yin, D., Chen, Y., Kannan, R., &amp; Bartlett, P. (2018). Byzantine-robust distributed learning: towards optimal statistical rates. International Conference on Machine Learning (pp. 5650–5659).">Yin <em>et al.</em>, 2018</a>)</span> 提出<em>坐标中值</em>（coordinate-wise
+<span id="id96">(<a class="reference internal" href="../chapter_references/zreferences.html#id217" title="Yin, D., Chen, Y., Kannan, R., &amp; Bartlett, P. (2018). Byzantine-robust distributed learning: towards optimal statistical rates. International Conference on Machine Learning (pp. 5650–5659).">Yin <em>et al.</em>, 2018</a>)</span> 提出<em>坐标中值</em>（coordinate-wise
 median）和<em>坐标截尾均值</em>（coordinate-wise trimmed
 mean）聚合方法，使用参与方上传梯度的中位数或截尾均值来完成鲁棒聚合。已知<span class="math notranslate nohighlight">\(\bigtriangleup w_i \in \mathbb{R}^m\)</span>，则坐标中值聚合的梯度为：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-29">
@@ -633,34 +678,36 @@ mean）聚合方法，使用参与方上传梯度的中位数或截尾均值来�
 <p>它的第<span class="math notranslate nohighlight">\(k\)</span>维计算公式为：<span class="math notranslate nohighlight">\(g_k=\text{median}(\{\bigtriangleup w_i^k,i\in[n] \})\)</span>，其中<span class="math notranslate nohighlight">\(\bigtriangleup w_i^k\)</span>为<span class="math notranslate nohighlight">\(\bigtriangleup w_i\)</span>的第<span class="math notranslate nohighlight">\(k\)</span>维信息。使用坐标截尾均值聚合的梯度为:</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-30">
 <span class="eqno">(5.3.18)<a class="headerlink" href="#equation-source-chap5-30" title="Permalink to this equation">¶</a></span>\[g:=\text{trmean}_{\beta}(\{\bigtriangleup  w_i:i\in [n] \}), \; \beta \in [0,\frac{1}{2}].\]</div>
-<p>第<span class="math notranslate nohighlight">\(k\)</span>维计算公式为：$ g_k=:raw-latex:<cite>frac{1}{1-2beta}`n
-:raw-latex:</cite>sum`_{ w:raw-latex:<cite>in `U_k}
-w:math:</cite>，其中`U_k<span class="math notranslate nohighlight">\(是由集合\)</span>{<a href="#id95"><span class="problematic" id="id96">:raw-latex:`\bigtriangleup  `w_1\ :sup:`k,:raw-latex:`</span></a>ldots`,:raw-latex:<cite>bigtriangleup  `w_n</cite>k}<span class="math notranslate nohighlight">\(去掉最大最小的\)</span><a href="#id97"><span class="problematic" id="id98">:raw-latex:`\beta`$部分而得到的。类似的方法还有Bulyan
-:cite:`2018The`</span></a> 、RFA <span id="id99">(<a class="reference internal" href="../chapter_references/zreferences.html#id220" title="Pillutla, K., Kakade, S. M., &amp; Harchaoui, Z. (2019). Robust aggregation for federated learning. arXiv preprint arXiv:1912.13445.">Pillutla <em>et al.</em>, 2019</a>)</span> 和AUROR <span id="id100">(<a class="reference internal" href="../chapter_references/zreferences.html#id218" title="Shen, S., Tople, S., &amp; Saxena, P. (2016). Auror: defending against poisoning attacks in collaborative deep learning systems. Conference on Computer Security Applications.">Shen <em>et al.</em>, 2016</a>)</span>
+<p>第<span class="math notranslate nohighlight">\(k\)</span>维计算公式为：<span class="math notranslate nohighlight">\(g_k=\frac{1}{1-2\beta}n\sum_{w\in{U_k}}w\)</span>，其中<span class="math notranslate nohighlight">\(U_k\)</span>是由集合<span class="math notranslate nohighlight">\(\{\bigtriangleup{w_1^k},\ldots,\bigtriangleup{w_n^k}\}\)</span>去掉最大最小的<span class="math notranslate nohighlight">\(\beta\)</span>部分而得到的。类似的方法还有Bulyan
+<span id="id97">(<a class="reference internal" href="../chapter_references/zreferences.html#id219" title="Guerraoui, R., Rouault, S., &amp; others. (2018). The hidden vulnerability of distributed learning in byzantium. International Conference on Machine Learning (pp. 3521–3530).">Guerraoui <em>et al.</em>, 2018</a>)</span> 、RFA <span id="id98">(<a class="reference internal" href="../chapter_references/zreferences.html#id220" title="Pillutla, K., Kakade, S. M., &amp; Harchaoui, Z. (2019). Robust aggregation for federated learning. arXiv preprint arXiv:1912.13445.">Pillutla <em>et al.</em>, 2019</a>)</span> 和AUROR <span id="id99">(<a class="reference internal" href="../chapter_references/zreferences.html#id218" title="Shen, S., Tople, S., &amp; Saxena, P. (2016). Auror: defending against poisoning attacks in collaborative deep learning systems. Conference on Computer Security Applications.">Shen <em>et al.</em>, 2016</a>)</span>
 等。</p>
 <p><strong>有目标攻击。</strong>
 在有目标攻击中，攻击者的目的不再是破坏模型的完整性，而是想要在测试阶段控制全局模型，使其将特定样本预测为指定的标签，例如将垃圾邮件预测为非垃圾邮件。有目标攻击的难度通常要高于无目标攻击，其攻击策略主要有两大类：一类是<strong>标签翻转</strong>（label
-flipping） <span id="id101">(<a class="reference internal" href="../chapter_references/zreferences.html#id37" title="Biggio, B., Nelson, B., &amp; Laskov, P. (2012). Poisoning attacks against support vector machines. International Conference on International Conference on Machine Learning (pp. 1467–1474). Madison, WI, USA: Omnipress.">Biggio <em>et al.</em>, 2012</a>)</span>
+flipping） <span id="id100">(<a class="reference internal" href="../chapter_references/zreferences.html#id37" title="Biggio, B., Nelson, B., &amp; Laskov, P. (2012). Poisoning attacks against support vector machines. International Conference on International Conference on Machine Learning (pp. 1467–1474). Madison, WI, USA: Omnipress.">Biggio <em>et al.</em>, 2012</a>)</span>
 ，攻击者将一类样本的标签改为其他类别；另一类则是<strong>后门攻击</strong>
-<span id="id102">(<a class="reference internal" href="../chapter_references/zreferences.html#id254" title="Bagdasaryan, E., Veit, A., Hua, Y., Estrin, D., &amp; Shmatikov, V. (2020). How to backdoor federated learning. International Conference on Artificial Intelligence and Statistics (pp. 2938–2948).">Bagdasaryan <em>et al.</em>, 2020</a>)</span>
+<span id="id101">(<a class="reference internal" href="../chapter_references/zreferences.html#id254" title="Bagdasaryan, E., Veit, A., Hua, Y., Estrin, D., &amp; Shmatikov, V. (2020). How to backdoor federated learning. International Conference on Artificial Intelligence and Statistics (pp. 2938–2948).">Bagdasaryan <em>et al.</em>, 2020</a>)</span>
 ，攻击者修改原始样本的个别特征或者较小的区域以达到攻击的目的。标签翻转的实施较为简单，但是隐蔽性差，因为其很容易在验证集上检测出来，相比之下后门攻击更加隐蔽，因为它只是向模型中注入额外的触发器但不影响模型的常规性能。目前，针对联邦学习的有目标攻击大都通过后门攻击来完成，而且针对传统单机器学习模型设计的大量后门攻击可以快速的迁移到联邦学习中来。
 后门攻击的实施又分为两种情况：一是攻击者可以改变样本的标签（也就是结合了标签翻转攻击）
-<span id="id103">(<a class="reference internal" href="../chapter_references/zreferences.html#id223" title="Gu, T., Dolan-Gavitt, B., &amp; Garg, S. (2017). Badnets: identifying vulnerabilities in the machine learning model supply chain. arXiv preprint arXiv:1708.06733.">Gu <em>et al.</em>, 2017</a>)</span> ，二是攻击者不改变标签信息（即干净标签攻击）
-<span id="id104">(<a class="reference internal" href="../chapter_references/zreferences.html#id443" title="Muñoz-González, L., Biggio, B., Demontis, A., Paudice, A., Wongrassamee, V., Lupu, E. C., &amp; Roli, F. (2017). Towards poisoning of deep learning algorithms with back-gradient optimization. ACM Workshop on Artificial Intelligence and Security (pp. 27–38).">Muñoz-González <em>et al.</em>, 2017</a>)</span>
+<span id="id102">(<a class="reference internal" href="../chapter_references/zreferences.html#id223" title="Gu, T., Dolan-Gavitt, B., &amp; Garg, S. (2017). Badnets: identifying vulnerabilities in the machine learning model supply chain. arXiv preprint arXiv:1708.06733.">Gu <em>et al.</em>, 2017</a>)</span> ，二是攻击者不改变标签信息（即干净标签攻击）
+<span id="id103">(<a class="reference internal" href="../chapter_references/zreferences.html#id443" title="Muñoz-González, L., Biggio, B., Demontis, A., Paudice, A., Wongrassamee, V., Lupu, E. C., &amp; Roli, F. (2017). Towards poisoning of deep learning algorithms with back-gradient optimization. ACM Workshop on Artificial Intelligence and Security (pp. 27–38).">Muñoz-González <em>et al.</em>, 2017</a>)</span>
 ，这样的攻击也更隐蔽。实际上，联邦学习更易受后门攻击，因为其联合训练的范式很容易将某个参与方的后门传染到全局模型，继而影响到所有的参与方。这些攻击将会在章节
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">sec_backdoor_attack</span></code> 进行详细的介绍。</p>
+<a class="reference internal" href="chap8.html#chap-backdoor-attack"><span class="std std-numref">8节</span></a> 进行详细的介绍。</p>
 <p><strong>防御有目标攻击。</strong>
 传统机器学习范式下的后门防御策略，如后门检测和后门移除等，将在章节
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">sec_backdoor_defense</span></code> 中进行介绍，这里不再赘述。
-在联邦学习方面，Sun等人 <span id="id105">(<a class="reference internal" href="../chapter_references/zreferences.html#id229" title="Sun, Z., Kairouz, P., Suresh, A. T., &amp; McMahan, H. B. (2019). Can you really backdoor federated learning? arXiv preprint arXiv:1911.07963.">Sun <em>et al.</em>, 2019</a>)</span> 提出使用<em>范数约束</em>（norm
+<a class="reference internal" href="chap9.html#chap-backdoor-defense"><span class="std std-numref">9节</span></a> 中进行介绍，这里不再赘述。
+在联邦学习方面，Sun等人 <span id="id104">(<a class="reference internal" href="../chapter_references/zreferences.html#id229" title="Sun, Z., Kairouz, P., Suresh, A. T., &amp; McMahan, H. B. (2019). Can you really backdoor federated learning? arXiv preprint arXiv:1911.07963.">Sun <em>et al.</em>, 2019</a>)</span> 提出使用<em>范数约束</em>（norm
 thresholding）来防御后门攻击。因为攻击者上传的梯度可能具有较大的范数，所以服务器可以将范数超过一定阈值<span class="math notranslate nohighlight">\(M\)</span>的梯度视为潜在的后门攻击。对此，范数约束通过下列方式完成鲁棒梯度聚合：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap5-31">
-<span class="eqno">(5.3.19)<a class="headerlink" href="#equation-source-chap5-31" title="Permalink to this equation">¶</a></span>\[W_{t+1}=\sum_{k \in S_t}\frac{\bigtriangleup  w_{t+1}^k}{\max (1,\|\bigtriangleup  w_{t+1\|^k}_2/M)},\]</div>
+<span class="eqno">(5.3.19)<a class="headerlink" href="#equation-source-chap5-31" title="Permalink to this equation">¶</a></span>\[W_{t+1}=\sum_{k\in{S_t}}\frac{\bigtriangleup{w_{t+1}^k}}{\max{(1,\|\bigtriangleup{w_{t+1}^k\|_2/M})}},\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(W_{t+1}\)</span>为第<span class="math notranslate nohighlight">\(t+1\)</span>轮迭代中服务器端聚合的参与方梯度，<span class="math notranslate nohighlight">\(S_t\)</span>为参与此次更新的参与方集合。该方法可以确保每个参与方的梯度更新都比较小，从而可以最大限度的减少其对全局模型的影响。当然，一旦攻击者知道服务器端所设定的阈值<span class="math notranslate nohighlight">\(M\)</span>，那么其可以将攻击梯度的范数限制在阈值之内，让基于范数的防御失效。
-此外，还可以通过<em>权重剪枝</em> <span id="id106">(<a class="reference internal" href="../chapter_references/zreferences.html#id230" title="Wu, C., Yang, X., Zhu, S., &amp; Mitra, P. (2020). Mitigating backdoor attacks in federated learning. arXiv preprint arXiv:2011.01767.">Wu <em>et al.</em>, 2020</a>)</span> 和<em>参数平滑</em>
-<span id="id107">(<a class="reference internal" href="../chapter_references/zreferences.html#id231" title="Xie, C., Chen, M., Chen, P.-Y., &amp; Li, B. (2021). Crfl: certifiably robust federated learning against backdoor attacks. International Conference on Machine Learning (pp. 11372–11382).">Xie <em>et al.</em>, 2021</a>)</span> 的方法来防御联邦学习中的后门攻击。</p>
-<p>我们将现有防御方法在表 :ref:<code class="docutils literal notranslate"><span class="pre">tab:defence_methods</span></code>
+此外，还可以通过<em>权重剪枝</em> <span id="id105">(<a class="reference internal" href="../chapter_references/zreferences.html#id230" title="Wu, C., Yang, X., Zhu, S., &amp; Mitra, P. (2020). Mitigating backdoor attacks in federated learning. arXiv preprint arXiv:2011.01767.">Wu <em>et al.</em>, 2020</a>)</span> 和<em>参数平滑</em>
+<span id="id106">(<a class="reference internal" href="../chapter_references/zreferences.html#id231" title="Xie, C., Chen, M., Chen, P.-Y., &amp; Li, B. (2021). Crfl: certifiably robust federated learning against backdoor attacks. International Conference on Machine Learning (pp. 11372–11382).">Xie <em>et al.</em>, 2021</a>)</span> 的方法来防御联邦学习中的后门攻击。</p>
+<p>我们将现有防御方法在表 <a class="reference internal" href="#table-5-4"><span class="std std-numref">图5.3.11</span></a>
 中进行了一定的总结。我们将这些方法进行了属性概括，分为核心技术、是否适用于独立同分布（IID）和非独立同分布（Non-IID）的环境、可防御的最大攻击者数量（即断点）、以及是否可以防御有目标攻击和无目标攻击等。</p>
+<div class="figure align-default" id="id172">
+<span id="table-5-4"></span><a class="reference internal image-reference" href="../_images/table_5_4.png"><img alt="../_images/table_5_4.png" src="../_images/table_5_4.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图5.3.11 </span><span class="caption-text">投毒攻击防御方法 <span id="id107">(<a class="reference internal" href="../chapter_references/zreferences.html#id164" title="Lyu, L., Yu, H., Ma, X., Chen, C., Sun, L., Zhao, J., … Philip, S. Y. (2022). Privacy and robustness in federated learning: attacks and defenses. IEEE Transactions on Neural Networks and Learning Systems.">Lyu <em>et al.</em>, 2022</a>)</span></span><a class="headerlink" href="#id172" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 </div>
 </div>
@@ -677,71 +724,71 @@ chromatic
 aberration，LCA）是由于不同波长的光在镜头玻璃中的折射角度不同而在相机传感器上产生的颜色条纹，通过分析这些特征可以判断图像是否被篡改，但横向色差可以被后期算法消除，可能使相应的检测方法失效。相机成像过程中的<em>去马赛克算法</em>将相机传感器输出的不完整颜色图像补全为完整的彩色图像，同样使同一区域内的像素具有了相关性。当相机使用JPEG有损压缩格式来保存图像时，会在图像上留下压缩痕迹，当图像被篡改时也会破坏这些痕迹的完整性，从而可以用来检测篡改。</p>
 <p>此外，还可以利用图像（及其所含噪声）的<strong>频域特征</strong>或<strong>统计特征</strong>进行检测，比较有代表性的是<em>图像非均匀响应噪声</em>（photo-response
 nonuniformity
-noise，PRNU）。图像非均匀响应噪声可以视为相机传感器的指纹，Luk{‘a}{<a href="#id110"><span class="problematic" id="id111">:raw-latex:`\v{s}`</span></a>}等人
-<span id="id112">(<a class="reference internal" href="../chapter_references/zreferences.html#id559" title="Lukáš, J., Fridrich, J., &amp; Goljan, M. (2006). Detecting digital image forgeries using sensor pattern noise. SPIE.">Lukáš <em>et al.</em>, 2006</a>)</span>
+noise，PRNU）。图像非均匀响应噪声可以视为相机传感器的指纹，Lukáš等人
+<span id="id110">(<a class="reference internal" href="../chapter_references/zreferences.html#id559" title="Lukáš, J., Fridrich, J., &amp; Goljan, M. (2006). Detecting digital image forgeries using sensor pattern noise. SPIE.">Lukáš <em>et al.</em>, 2006</a>)</span>
 提出可以通过比较相机传感器PRNU和待检测图像的PRNU之间的差异来检测图像篡改。Wang等人
-<span id="id113">(<a class="reference internal" href="../chapter_references/zreferences.html#id21" title="Wang, W., Dong, J., &amp; Tan, T. (2014). Exploring dct coefficient quantization effects for local tampering detection. IEEE Transactions on Information Forensics and Security, 9(10), 1653–1666.">Wang <em>et al.</em>, 2014</a>)</span> 利用DCT（discrete cosine
+<span id="id111">(<a class="reference internal" href="../chapter_references/zreferences.html#id21" title="Wang, W., Dong, J., &amp; Tan, T. (2014). Exploring dct coefficient quantization effects for local tampering detection. IEEE Transactions on Information Forensics and Security, 9(10), 1653–1666.">Wang <em>et al.</em>, 2014</a>)</span> 利用DCT（discrete cosine
 transform）系数的概率分布来分析图像中的篡改痕迹。Fridrich等人
-<span id="id114">(<a class="reference internal" href="../chapter_references/zreferences.html#id22" title="Fridrich, J., &amp; Kodovsky, J. (2012). Rich models for steganalysis of digital images. IEEE Transactions on Information Forensics and Security, 7(3), 868–882.">Fridrich and Kodovsky, 2012</a>)</span>
+<span id="id112">(<a class="reference internal" href="../chapter_references/zreferences.html#id22" title="Fridrich, J., &amp; Kodovsky, J. (2012). Rich models for steganalysis of digital images. IEEE Transactions on Information Forensics and Security, 7(3), 868–882.">Fridrich and Kodovsky, 2012</a>)</span>
 提出利用图像中自然存在的噪声特征来检测篡改痕迹。Pan等人
-<span id="id115">(<a class="reference internal" href="../chapter_references/zreferences.html#id24" title="Pan, X., Zhang, X., &amp; Lyu, S. (2012). Exposing image splicing with inconsistent local noise variances. IEEE International Conference on Computational Photography (pp. 1–10).">Pan <em>et al.</em>, 2012</a>)</span>
+<span id="id113">(<a class="reference internal" href="../chapter_references/zreferences.html#id24" title="Pan, X., Zhang, X., &amp; Lyu, S. (2012). Exposing image splicing with inconsistent local noise variances. IEEE International Conference on Computational Photography (pp. 1–10).">Pan <em>et al.</em>, 2012</a>)</span>
 利用局部区域的噪声方差来分析图像的篡改痕迹。这种利用噪声分布来检测异常区域的思想后续也被应用到图像修复检测
-<span id="id116">(<a class="reference internal" href="../chapter_references/zreferences.html#id590" title="Li, A., Ke, Q., Ma, X., Weng, H., Zong, Z., Xue, F., &amp; Zhang, R. (2021). Noise doesn't lie: towards universal detection of deep inpainting. International Joint Conference on Artificial Intelligence.">Li <em>et al.</em>, 2021</a>)</span> 和深度伪造检测。</p>
+<span id="id114">(<a class="reference internal" href="../chapter_references/zreferences.html#id590" title="Li, A., Ke, Q., Ma, X., Weng, H., Zong, Z., Xue, F., &amp; Zhang, R. (2021). Noise doesn't lie: towards universal detection of deep inpainting. International Joint Conference on Artificial Intelligence.">Li <em>et al.</em>, 2021</a>)</span> 和深度伪造检测。</p>
 <p>后来的检测方法大都基于深度学习模型（比如卷积神经网络）进行，得到的检测精度和鲁棒性往往要比上述传统检测方法更优。比如，Chen等人
-<span id="id117">(<a class="reference internal" href="../chapter_references/zreferences.html#id25" title="Chen, J., Kang, X., Liu, Y., &amp; Wang, Z. J. (2015). Median filtering forensics based on convolutional neural networks. IEEE Signal Processing Letters, 22(11), 1849–1853.">Chen <em>et al.</em>, 2015</a>)</span>
+<span id="id115">(<a class="reference internal" href="../chapter_references/zreferences.html#id25" title="Chen, J., Kang, X., Liu, Y., &amp; Wang, Z. J. (2015). Median filtering forensics based on convolutional neural networks. IEEE Signal Processing Letters, 22(11), 1849–1853.">Chen <em>et al.</em>, 2015</a>)</span>
 将<strong>中值滤波器</strong>与卷积神经网络结合，先对图像进行中值滤波处理，再送入卷积神经网络，以此来提升图像篡改检测的精度。<strong>RGB-N</strong>（RGB
-features for region proposal network） <span id="id118">(<a class="reference internal" href="../chapter_references/zreferences.html#id26" title="Zhou, P., Han, X., Morariu, V. I., &amp; Davis, L. S. (2018). Learning rich features for image manipulation detection. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1053–1061).">Zhou <em>et al.</em>, 2018</a>)</span>
+features for region proposal network） <span id="id116">(<a class="reference internal" href="../chapter_references/zreferences.html#id26" title="Zhou, P., Han, X., Morariu, V. I., &amp; Davis, L. S. (2018). Learning rich features for image manipulation detection. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1053–1061).">Zhou <em>et al.</em>, 2018</a>)</span>
 检测方法则是从网络结构入手，提出了一种基于Faster
 R-CNN的双流网络（two-steam
 network）来精准定位篡改区域：<strong>RGB数据流</strong>和<strong>噪声流</strong>。具体的，RGB-N通过<em>RGB数据流</em>从RGB图像中提取图像特征，帮助发现强烈对比差异与不自然的篡改边界；通过<em>噪声流</em>从模型过滤器层中提取噪声特征，帮助识别真实区域和被篡改区域之间的噪声不一致性；最后，通过<strong>双线性汇集层</strong>将两个数据流的特征融合在一起，并进一步结合空间特征进行篡改区域的定位。实验表明，这种双流结构相比基于单流的检测在精度方面有较大提升。</p>
-<p>Hu等人 <span id="id119">(<a class="reference internal" href="../chapter_references/zreferences.html#id27" title="Hu, X., Zhang, Z., Jiang, Z., Chaudhuri, S., Yang, Z., &amp; Nevatia, R. (2020). Span: spatial pyramid attention network for image manipulation localization. European Conference on Computer Vision (pp. 312–328).">Hu <em>et al.</em>, 2020</a>)</span>
+<p>Hu等人 <span id="id117">(<a class="reference internal" href="../chapter_references/zreferences.html#id27" title="Hu, X., Zhang, Z., Jiang, Z., Chaudhuri, S., Yang, Z., &amp; Nevatia, R. (2020). Span: spatial pyramid attention network for image manipulation localization. European Conference on Computer Vision (pp. 312–328).">Hu <em>et al.</em>, 2020</a>)</span>
 在2020年提出了<strong>空间金字塔注意力网络</strong>（spatial pyramid attention
 network，SPAN），其利用堆叠的卷积层来提取图像特征，然后利用金字塔结构的<em>局部自注意力块</em>来模拟多个尺度上的图像块（patch）之间的关系，从而发现不同尺度图像块之间的不一致性，定位到被篡改的图像块。2021年，Liu等人
-<span id="id120">(<a class="reference internal" href="../chapter_references/zreferences.html#id28" title="Liu, X., Liu, Y., Chen, J., &amp; Liu, X. (2022). Pscc-net: progressive spatio-channel correlation network for image manipulation detection and localization. IEEE Transactions on Circuits and Systems for Video Technology.">Liu <em>et al.</em>, 2022</a>)</span> 提出了<strong>PSCC-Net</strong>（progressive spatio-channel
+<span id="id118">(<a class="reference internal" href="../chapter_references/zreferences.html#id28" title="Liu, X., Liu, Y., Chen, J., &amp; Liu, X. (2022). Pscc-net: progressive spatio-channel correlation network for image manipulation detection and localization. IEEE Transactions on Circuits and Systems for Video Technology.">Liu <em>et al.</em>, 2022</a>)</span> 提出了<strong>PSCC-Net</strong>（progressive spatio-channel
 correlation
 network），其使用一个自上而下的路径来提取局部和全局特征，同时使用一个自下而上的路径来检测输入图像是否被篡改，并定位篡改区域。它在四种不同尺度上估计<em>篡改掩码</em>（manipulation
 mask），其中每个掩码以前一个掩码做为条件。与传统的编码器-解码器和无池结构不同，PSCC-Net充分利用不同尺度的特征和密集的交叉联系，以从粗粒度到细粒度的方式产生篡改掩码。此外，PSCC-Net使用一个<em>空间-通道相关模块</em>（spatio-channel
 correlation
 module，SCCM）在自下而上的路径中捕捉空间和通道的相关性，从而获取更多全局线索，应对更广泛的篡改手段。此外，在篡改定位方面，如何摒弃耗时的预处理和后处理操作，实现端到端的训练也是一个挑战。对此，<strong>Mantra-Net</strong>
-<span id="id121">(<a class="reference internal" href="../chapter_references/zreferences.html#id29" title="Wu, Y., AbdAlmageed, W., &amp; Natarajan, P. (2019). Mantra-net: manipulation tracing network for detection and localization of image forgeries with anomalous features. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 9543–9552).">Wu <em>et al.</em>, 2019</a>)</span>
+<span id="id119">(<a class="reference internal" href="../chapter_references/zreferences.html#id29" title="Wu, Y., AbdAlmageed, W., &amp; Natarajan, P. (2019). Mantra-net: manipulation tracing network for detection and localization of image forgeries with anomalous features. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 9543–9552).">Wu <em>et al.</em>, 2019</a>)</span>
 将定位篡改区域的问题表述为一个局部异常检测问题，设计Z-score特征来捕捉局部异常，提出一个新的<em>长短期记忆模块</em>（long
 short-term
 memory），并结合自监督训练来检测和定位篡改区域。ManTra-Net是一个端到端的纯卷积网络，可以检测任何大小的图像，灵活应对多达385种不同的图像篡改类型。</p>
 </div>
 <div class="section" id="sec-deepfakedetection">
-<span id="id122"></span><h3><span class="section-number">5.4.2. </span>深度伪造检测<a class="headerlink" href="#sec-deepfakedetection" title="Permalink to this heading">¶</a></h3>
+<span id="id120"></span><h3><span class="section-number">5.4.2. </span>深度伪造检测<a class="headerlink" href="#sec-deepfakedetection" title="Permalink to this heading">¶</a></h3>
 <p>与通用篡改相比，篡改了人脸的媒体内容更容易传播，更容易对现实社会产生影响，所以亟需能够高效应对人脸深度伪造的检测方法。现有深度伪造检测技术（主要是视觉方面）可以简单分为<em>图片检测</em>与<em>视频检测</em>。更详细的分类如图
 <a class="reference internal" href="#fig-deepfakedet"><span class="std std-numref">图5.4.1</span></a> 所示。</p>
-<div class="figure align-default" id="id166">
+<div class="figure align-default" id="id173">
 <span id="fig-deepfakedet"></span><a class="reference internal image-reference" href="../_images/5.6_deepfakedet3.png"><img alt="../_images/5.6_deepfakedet3.png" src="../_images/5.6_deepfakedet3.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图5.4.1 </span><span class="caption-text">深伪检测方法分类</span><a class="headerlink" href="#id166" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图5.4.1 </span><span class="caption-text">深伪检测方法分类</span><a class="headerlink" href="#id173" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="id123">
-<h4><span class="section-number">5.4.2.1. </span>图片检测<a class="headerlink" href="#id123" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="id121">
+<h4><span class="section-number">5.4.2.1. </span>图片检测<a class="headerlink" href="#id121" title="Permalink to this heading">¶</a></h4>
 <p><strong>基于统计特征的检测</strong>。
 对深度伪造图片的检测方法通常会先将要检测的人脸提取出来，然后把提取出来的人脸图片作为检测输入，输出一个二分类结果表示人脸是真实的还是伪造的。一种被广泛应用的检测方法是基于色彩空间特征的检测，因为色彩空间特征具有很好的鲁棒性，尤其是HSV和YCbCR色彩空间，它们在伪造图像和真实图片之间往往存在很大差别。比如，Li
-等人 <span id="id124">(<a class="reference internal" href="../chapter_references/zreferences.html#id577" title="Li, H., Li, B., Tan, S., &amp; Huang, J. (2020). Identification of deep network generated images using disparities in color components. Signal Processing.">Li <em>et al.</em>, 2020</a>)</span>
-就介绍了一种基于色彩统计特征的方法；He 等人 <span id="id125">(<a class="reference internal" href="../chapter_references/zreferences.html#id576" title="He, P., Li, H., &amp; Wang, H. (2019). Detection of fake images via the ensemble of deep representations from multi color spaces. ICIP.">He <em>et al.</em>, 2019</a>)</span>
+等人 <span id="id122">(<a class="reference internal" href="../chapter_references/zreferences.html#id577" title="Li, H., Li, B., Tan, S., &amp; Huang, J. (2020). Identification of deep network generated images using disparities in color components. Signal Processing.">Li <em>et al.</em>, 2020</a>)</span>
+就介绍了一种基于色彩统计特征的方法；He 等人 <span id="id123">(<a class="reference internal" href="../chapter_references/zreferences.html#id576" title="He, P., Li, H., &amp; Wang, H. (2019). Detection of fake images via the ensemble of deep representations from multi color spaces. ICIP.">He <em>et al.</em>, 2019</a>)</span>
 进一步将其扩展到了多个色彩空间（YCbCr、HSV和Lab），然后将这些空间特征拼接起来并使用随机森林模型进行一种集成检测，获得最终的检测结果。此外，由于深度神经网络很难复制原始图像中的高频细节，因此Bai等人
-<span id="id126">(<a class="reference internal" href="../chapter_references/zreferences.html#id575" title="Bai, Y., Guo, Y., Wei, J., Lu, L., Wang, R., &amp; Wang, Y. (2020). Fake generated painting detection via frequency analysis. ICIP.">Bai <em>et al.</em>, 2020</a>)</span>
+<span id="id124">(<a class="reference internal" href="../chapter_references/zreferences.html#id575" title="Bai, Y., Guo, Y., Wei, J., Lu, L., Wang, R., &amp; Wang, Y. (2020). Fake generated painting detection via frequency analysis. ICIP.">Bai <em>et al.</em>, 2020</a>)</span>
 提出使用频域中的统计、梯度等特征来进行深度伪造检测。</p>
 <p><strong>基于GAN指纹的检测</strong>。
 随着生成对抗网络（GAN）的快速发展，基于GAN的深度伪造方法层出不穷，给深伪检测带来新的挑战。研究发现，GAN会在伪造图像上面留下一些“指纹”痕迹，所以可以通过寻找这些痕迹来检测由GAN伪造的图像。比如，Guarnera等人
-<span id="id127">(<a class="reference internal" href="../chapter_references/zreferences.html#id574" title="Guarnera, L., Giudice, O., &amp; Battiato, S. (2020). Deepfake detection by analyzing convolutional traces. IEEE/CVF Computer Vision and Pattern Recognition Conference Workshop.">Guarnera <em>et al.</em>, 2020</a>)</span> 使用<strong>期望最大化</strong>（expectation
+<span id="id125">(<a class="reference internal" href="../chapter_references/zreferences.html#id574" title="Guarnera, L., Giudice, O., &amp; Battiato, S. (2020). Deepfake detection by analyzing convolutional traces. IEEE/CVF Computer Vision and Pattern Recognition Conference Workshop.">Guarnera <em>et al.</em>, 2020</a>)</span> 使用<strong>期望最大化</strong>（expectation
 maximization）算法提取局部特征来对卷积痕迹进行建模，提取的特征输入到一个分类器中来完成伪造检测。但这种方法只在一个单一的尺度上捕获GAN指纹，所以检测的鲁棒性并不是很好。为了更好的解决这个问题，Ding
-等人 <span id="id128">(<a class="reference internal" href="../chapter_references/zreferences.html#id573" title="Ding, Y., Thakur, N., &amp; Li, B. (2021). Does a gan leave distinct model-specific fingerprints? BMVC.">Ding <em>et al.</em>, 2021</a>)</span> 选择采用<strong>分层贝叶斯方法</strong>（hierarchical
+等人 <span id="id126">(<a class="reference internal" href="../chapter_references/zreferences.html#id573" title="Ding, Y., Thakur, N., &amp; Li, B. (2021). Does a gan leave distinct model-specific fingerprints? BMVC.">Ding <em>et al.</em>, 2021</a>)</span> 选择采用<strong>分层贝叶斯方法</strong>（hierarchical
 Bayesian
 approach），在多个尺度上对GAN指纹进行建模，从而提高检测方法的鲁棒性。</p>
 <p><strong>高效检测网络设计</strong>。
 也有一些工作通过设计更先进的深度特征提取网络来提高检测效果。比如，Zhou等人
-<span id="id129">(<a class="reference internal" href="../chapter_references/zreferences.html#id32" title="Zhou, P., Han, X., Morariu, V. I., &amp; Davis, L. S. (2017). Two-stream neural networks for tampered face detection. IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (pp. 1831–1839).">Zhou <em>et al.</em>, 2017</a>)</span> 提出一种<strong>双流神经网络</strong>（two-stream neural
+<span id="id127">(<a class="reference internal" href="../chapter_references/zreferences.html#id32" title="Zhou, P., Han, X., Morariu, V. I., &amp; Davis, L. S. (2017). Two-stream neural networks for tampered face detection. IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (pp. 1831–1839).">Zhou <em>et al.</em>, 2017</a>)</span> 提出一种<strong>双流神经网络</strong>（two-stream neural
 networks）：（1）使用GoogLeNet作为脸部分类流来检测人脸分类流中的篡改伪影，同时（2）使用一个基于图像块的三联体网络（triplet
 network）来捕捉局部噪声残余和相机特性。由于同一张图像的不同图像块之间的隐藏特征是相似的，而不同图像的图像块之间的特征是不相似的，所以用三联体网络训练出图像块的距离编码之后，利用一个SVM分类器就可以得到图像被篡改的概率。Nguyen等人
-<span id="id130">(<a class="reference internal" href="../chapter_references/zreferences.html#id498" title="Nguyen, H. H., Yamagishi, J., &amp; Echizen, I. (2019). Capsule-forensics: using capsule networks to detect forged images and videos. IEEE International Conference on Acoustics, Speech and Signal Processing (pp. 2307–2311).">Nguyen <em>et al.</em>, 2019</a>)</span> 探索了如何使用胶囊网络（capsule
-networks）来检测伪造图像。Guo等人 <span id="id131">(<a class="reference internal" href="../chapter_references/zreferences.html#id586" title="Guo, Z., Yang, G., Chen, J., &amp; Sun, X. (2021). Fake face detection via adaptive manipulation traces extraction network. CVIU.">Guo <em>et al.</em>, 2021</a>)</span>
+<span id="id128">(<a class="reference internal" href="../chapter_references/zreferences.html#id498" title="Nguyen, H. H., Yamagishi, J., &amp; Echizen, I. (2019). Capsule-forensics: using capsule networks to detect forged images and videos. IEEE International Conference on Acoustics, Speech and Signal Processing (pp. 2307–2311).">Nguyen <em>et al.</em>, 2019</a>)</span> 探索了如何使用胶囊网络（capsule
+networks）来检测伪造图像。Guo等人 <span id="id129">(<a class="reference internal" href="../chapter_references/zreferences.html#id586" title="Guo, Z., Yang, G., Chen, J., &amp; Sun, X. (2021). Fake face detection via adaptive manipulation traces extraction network. CVIU.">Guo <em>et al.</em>, 2021</a>)</span>
 则提出一种AMTEN（adaptive manipulation traces extraction
 network）预处理网络结构，其通过一个自适应卷积层来压缩图像内容，同时凸显篡改痕迹，并通过一个整合的卷积神经网络来检测虚假人脸。</p>
-<p><strong>篡改边界检测。</strong> 2020年，Li等人 <span id="id132">(<a class="reference internal" href="../chapter_references/zreferences.html#id30" title="Li, L., Bao, J., Zhang, T., Yang, H., Chen, D., Wen, F., &amp; Guo, B. (2020). Face x-ray for more general face forgery detection. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 5001–5010).">Li <em>et al.</em>, 2020</a>)</span>
+<p><strong>篡改边界检测。</strong> 2020年，Li等人 <span id="id130">(<a class="reference internal" href="../chapter_references/zreferences.html#id30" title="Li, L., Bao, J., Zhang, T., Yang, H., Chen, D., Wen, F., &amp; Guo, B. (2020). Face x-ray for more general face forgery detection. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 5001–5010).">Li <em>et al.</em>, 2020</a>)</span>
 提出经典的专注于检测篡改边界的深度伪造人脸检测方法：<strong>Face
 X-ray</strong>。此方法首先将定位篡改区域的篡改掩码模糊处理，然后将输入图像<span class="math notranslate nohighlight">\(x\)</span>的Face
 x-ray定义为一张特殊的图像<span class="math notranslate nohighlight">\(B\)</span>：</p>
@@ -756,19 +803,19 @@ X-ray<span class="math notranslate nohighlight">\(\hat{B}\)</span>，训练损�
 X-ray的预测。上述训练可以使模型去重点学习检测篡改边界。实验表明，这种简单的训练可以获得不错的深度伪造人脸检测结果。</p>
 <p><strong>基于频率的检测。</strong>
 深度伪造技术的快速发展使得伪造图片中的篡改痕迹越来越难以察觉，尤其是在图片经过压缩等进一步后期处理之后。不过有研究
-<span id="id133">(<a class="reference internal" href="../chapter_references/zreferences.html#id578" title="Durall, R., Keuper, M., Pfreundt, F.-J., &amp; Keuper, J. (2019). Unmasking deepfakes with simple features. arXiv preprint arXiv:1911.00686.">Durall <em>et al.</em>, 2019</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id579" title="Li, J., Wang, Y., Tan, T., &amp; Jain, A. K. (2004). Live face detection based on the analysis of fourier spectra. BTHI.">Li <em>et al.</em>, 2004</a>)</span>
+<span id="id131">(<a class="reference internal" href="../chapter_references/zreferences.html#id578" title="Durall, R., Keuper, M., Pfreundt, F.-J., &amp; Keuper, J. (2019). Unmasking deepfakes with simple features. arXiv preprint arXiv:1911.00686.">Durall <em>et al.</em>, 2019</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id579" title="Li, J., Wang, Y., Tan, T., &amp; Jain, A. K. (2004). Live face detection based on the analysis of fourier spectra. BTHI.">Li <em>et al.</em>, 2004</a>)</span>
 表明这些痕迹还可以从频域中发现，于是研究者使用频域信息作为补充，构建了更好的深度伪造检测方法。Yonghyun等人
-<span id="id134">(<a class="reference internal" href="../chapter_references/zreferences.html#id503" title="Jeong, Y., Kim, D., Min, S., Joe, S., Gwon, Y., &amp; Choi, J. (2022). Bihpf: bilateral high-pass filters for robust deepfake detection. IEEE/CVF Winter Conference on Applications of Computer Vision (pp. 48–57).">Jeong <em>et al.</em>, 2022</a>)</span> 提出了<strong>BiHPF</strong>（bilateral high-pass
+<span id="id132">(<a class="reference internal" href="../chapter_references/zreferences.html#id503" title="Jeong, Y., Kim, D., Min, S., Joe, S., Gwon, Y., &amp; Choi, J. (2022). Bihpf: bilateral high-pass filters for robust deepfake detection. IEEE/CVF Winter Conference on Applications of Computer Vision (pp. 48–57).">Jeong <em>et al.</em>, 2022</a>)</span> 提出了<strong>BiHPF</strong>（bilateral high-pass
 filters）检测方法，通过放大合成图像中通常存在的频率伪影来完成更精确的检测。BiHPF由两个高通滤波器（HPF）组成：<strong>频率HPF</strong>用来放大高频分量中伪影的大小，同时<strong>像素HPF</strong>用来在像素域中增强人脸周围背景像素的大小。然后，利用BiHPF处理的<strong>幅度谱图</strong>作为模型的输入，训练一个基于分类的检测模型。与此前方法相比，基于频率的检测对不同篡改类型更加鲁棒。</p>
-<p>Qian等人 <span id="id135">(<a class="reference internal" href="../chapter_references/zreferences.html#id589" title="Qian, Y., Yin, G., Sheng, L., Chen, Z., &amp; Shao, J. (2020). Thinking in frequency: face forgery detection by mining frequency-aware clues. ECCV.">Qian <em>et al.</em>, 2020</a>)</span>
+<p>Qian等人 <span id="id133">(<a class="reference internal" href="../chapter_references/zreferences.html#id589" title="Qian, Y., Yin, G., Sheng, L., Chen, Z., &amp; Shao, J. (2020). Thinking in frequency: face forgery detection by mining frequency-aware clues. ECCV.">Qian <em>et al.</em>, 2020</a>)</span>
 提出了两种利用<strong>频率感知</strong>的伪造线索提取方法：<strong>频率感知分解</strong>（frequency-aware
 decomposition，FAD）和<strong>局部频率统计</strong>（local frequency
 statistics，LFS）。作者将这两种方法和一个交叉注意力模块相结合，组成了一个双流协作的网络**F<span class="math notranslate nohighlight">\({^3**\)</span>Net}来进行深度伪造检测。
 在F<span class="math notranslate nohighlight">\({^3}\)</span>Net结构中，频率感知分解流用来发现突出的频段，而局部频率统计流用来提取本地频率统计信息。整体结构如图
 <a class="reference internal" href="#fig-f3net"><span class="std std-numref">图5.4.2</span></a> 所示。</p>
-<div class="figure align-default" id="id167">
+<div class="figure align-default" id="id174">
 <span id="fig-f3net"></span><a class="reference internal image-reference" href="../_images/5.7_f3net.png"><img alt="../_images/5.7_f3net.png" src="../_images/5.7_f3net.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图5.4.2 </span><span class="caption-text">F<span class="math notranslate nohighlight">\({^3}\)</span>Net网络结构 <span id="id136">(<a class="reference internal" href="../chapter_references/zreferences.html#id589" title="Qian, Y., Yin, G., Sheng, L., Chen, Z., &amp; Shao, J. (2020). Thinking in frequency: face forgery detection by mining frequency-aware clues. ECCV.">Qian <em>et al.</em>, 2020</a>)</span></span><a class="headerlink" href="#id167" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图5.4.2 </span><span class="caption-text">F<span class="math notranslate nohighlight">\({^3}\)</span>Net网络结构 <span id="id134">(<a class="reference internal" href="../chapter_references/zreferences.html#id589" title="Qian, Y., Yin, G., Sheng, L., Chen, Z., &amp; Shao, J. (2020). Thinking in frequency: face forgery detection by mining frequency-aware clues. ECCV.">Qian <em>et al.</em>, 2020</a>)</span></span><a class="headerlink" href="#id174" title="Permalink to this image">¶</a></p>
 </div>
 <p>具体的，在F<span class="math notranslate nohighlight">\({^3}\)</span>Net中，<strong>频率感知分解流</strong>（图
 <a class="reference internal" href="#fig-f3net"><span class="std std-numref">图5.4.2</span></a>
@@ -776,58 +823,58 @@ statistics，LFS）。作者将这两种方法和一个交叉注意力模块相�
 <strong>局部频率统计分解流</strong>（图 <a class="reference internal" href="#fig-f3net"><span class="std std-numref">图5.4.2</span></a>
 中的LFS模块）首先在输入图像上使用一个滑动窗口来进行离散余弦变换（DCT），从而提取局部频率信息，然后用一组参数自适应地统计每个窗口的频率信息，再将频率统计信息重新组合成一个与输入图像大小相同的多通道空间图，之后送入卷积神经网络。最后，作者提出MixBlock结构，其使用来自两个分支的特征图来计算交叉注意力权重，以此来相互增强两个流的信息。F<span class="math notranslate nohighlight">\({^3}\)</span>Net使用经典的交叉熵损失函数进行训练。</p>
 <p><strong>基于局部一致性的检测。</strong>人脸伪造往往涉及面部区域的修改与替换，可能会造成其与周围区域在某个方面上的不一致性。为了充分利用这种局部不一致性，Zhao
-等人 <span id="id137">(<a class="reference internal" href="../chapter_references/zreferences.html#id580" title="Zhao, T., Xu, X., Xu, M., Ding, H., Xiong, Y., &amp; Xia, W. (2021). Learning self-consistency for deepfake detection. International Conference on Computer Vision.">Zhao <em>et al.</em>, 2021</a>)</span>
+等人 <span id="id135">(<a class="reference internal" href="../chapter_references/zreferences.html#id580" title="Zhao, T., Xu, X., Xu, M., Ding, H., Xiong, Y., &amp; Xia, W. (2021). Learning self-consistency for deepfake detection. International Conference on Computer Vision.">Zhao <em>et al.</em>, 2021</a>)</span>
 提出一种“缝合”式数据合成方法<strong>不一致数据合成器</strong>（inconsistency
 image
 generator，I2G），通过变换组合不同的人脸生成大量人脸与周围区域不一致的数据，并使用此数据训练卷积神经网络分类器来完成深伪检测。实验表明，这种基于<strong>自洽性</strong>（self-consistency）的数据合成和模型训练方式可以得到较为通用的检测器。Chen等人
-<span id="id138">(<a class="reference internal" href="../chapter_references/zreferences.html#id581" title="Chen, S., Yao, T., Chen, Y., Ding, S., Li, J., &amp; Ji, R. (2021). Local relation learning for face forgery detection. AAAI.">Chen <em>et al.</em>, 2021</a>)</span>
+<span id="id136">(<a class="reference internal" href="../chapter_references/zreferences.html#id581" title="Chen, S., Yao, T., Chen, Y., Ding, S., Li, J., &amp; Ji, R. (2021). Local relation learning for face forgery detection. AAAI.">Chen <em>et al.</em>, 2021</a>)</span>
 则是通过计算不同区域之间的相似性进行检测，也得到了不错的效果。</p>
 <p><strong>基于注意力机制的方法。</strong>考虑到大多数深度伪造方法只修改一小块面部区域，所以只要对这一小块面部区域给予更多关注，就可以提升检测的性能。受此启发，研究者提出了一系列基于注意力机制的检测方法。比如，Chen等人
-<span id="id139">(<a class="reference internal" href="../chapter_references/zreferences.html#id582" title="Chen, Z., &amp; Yang, H. (2021). Attentive semantic exploring for manipulated face detection. ICASSP.">Chen and Yang, 2021</a>)</span>
+<span id="id137">(<a class="reference internal" href="../chapter_references/zreferences.html#id582" title="Chen, Z., &amp; Yang, H. (2021). Attentive semantic exploring for manipulated face detection. ICASSP.">Chen and Yang, 2021</a>)</span>
 先从面部分离出眼睛、嘴巴等区域，然后用注意力模型分别去检测这些区域，但这种方法需要先手动分割区域，这部分限制了它的代表能力。Zhao等人
-<span id="id140">(<a class="reference internal" href="../chapter_references/zreferences.html#id585" title="Zhao, H., Zhou, W., Chen, D., Wei, T., Zhang, W., &amp; Yu, N. (2021). Multi-attentional deepfake detection. IEEE/CVF Computer Vision and Pattern Recognition Conference.">Zhao <em>et al.</em>, 2021</a>)</span>
+<span id="id138">(<a class="reference internal" href="../chapter_references/zreferences.html#id585" title="Zhao, H., Zhou, W., Chen, D., Wei, T., Zhang, W., &amp; Yu, N. (2021). Multi-attentional deepfake detection. IEEE/CVF Computer Vision and Pattern Recognition Conference.">Zhao <em>et al.</em>, 2021</a>)</span>
 则组合了多个空间注意力头，可以自动使用卷积层来关注不同的局部信息。Wang等人
-<span id="id141">(<a class="reference internal" href="../chapter_references/zreferences.html#id584" title="Wang, C., &amp; Deng, W. (2021). Representative forgery mining for fake face detection. IEEE/CVF Computer Vision and Pattern Recognition Conference.">Wang and Deng, 2021</a>)</span>
+<span id="id139">(<a class="reference internal" href="../chapter_references/zreferences.html#id584" title="Wang, C., &amp; Deng, W. (2021). Representative forgery mining for fake face detection. IEEE/CVF Computer Vision and Pattern Recognition Conference.">Wang and Deng, 2021</a>)</span>
 推出了一个基于注意力的数据增强框架来鼓励检测模型去关注一些细微的伪造痕迹，其通过在模型生成注意力图之后，遮挡住面部的一些敏感区域来促使检测模型去重新关注之前忽略的区域。为了学习真实的人脸与伪造的人脸之间的普遍差异（而不仅局限于某种伪造），Cao等人
-<span id="id142">(<a class="reference internal" href="../chapter_references/zreferences.html#id583" title="Cao, J., Ma, C., Yao, T., Chen, S., Ding, S., &amp; Yang, X. (2022). End-to-end reconstruction-classification learning for face forgery detection. IEEE/CVF Computer Vision and Pattern Recognition Conference.">Cao <em>et al.</em>, 2022</a>)</span>
+<span id="id140">(<a class="reference internal" href="../chapter_references/zreferences.html#id583" title="Cao, J., Ma, C., Yao, T., Chen, S., Ding, S., &amp; Yang, X. (2022). End-to-end reconstruction-classification learning for face forgery detection. IEEE/CVF Computer Vision and Pattern Recognition Conference.">Cao <em>et al.</em>, 2022</a>)</span>
 提出了使用重建引导的注意力模块来增强差异特征学习，同时使用“重建-分类”学习方式来训练检测模型，其中<strong>重建学习</strong>用来提升特征学习对通用伪造模式的感知，同时<strong>分类学习</strong>用来挖掘真假人脸图像之间的本质差异。</p>
 <p><strong>基于对比学习的检测。</strong>图像在传播过程中经常被压缩，而现有深伪检测方法在检测被压缩的伪造图像时，存在一定的性能下降。为了对图像压缩的鲁棒性，Cao等人
-<span id="id143">(<a class="reference internal" href="../chapter_references/zreferences.html#id587" title="Cao, S., Zou, Q., Mao, X., Ye, D., &amp; Wang, Z. (2021). Metric learning for anti-compression facial forgery detection. ACM MM.">Cao <em>et al.</em>, 2021</a>)</span>
+<span id="id141">(<a class="reference internal" href="../chapter_references/zreferences.html#id587" title="Cao, S., Zou, Q., Mao, X., Ye, D., &amp; Wang, Z. (2021). Metric learning for anti-compression facial forgery detection. ACM MM.">Cao <em>et al.</em>, 2021</a>)</span>
 将一对（原始伪造图片，压缩伪造图片）编码到压缩不敏感的嵌入特征空间，让原始和压缩伪造图片之间的距离最小，同时让真实图片和伪造图片之间的距离最大，从而形成一种对比学习方式。此方法是一种实例级（instance-level）的对比学习，仅限于学习粗粒度表征。Sun等人
-<span id="id144">(<a class="reference internal" href="../chapter_references/zreferences.html#id588" title="Sun, K., Yao, T., Chen, S., Ding, S., Li, J., &amp; Ji, R. (2022). Dual contrastive learning for general face forgery detection. AAAI.">Sun <em>et al.</em>, 2022</a>)</span> 则进一步提出一种<strong>双对比学习</strong>（dual
+<span id="id142">(<a class="reference internal" href="../chapter_references/zreferences.html#id588" title="Sun, K., Yao, T., Chen, S., Ding, S., Li, J., &amp; Ji, R. (2022). Dual contrastive learning for general face forgery detection. AAAI.">Sun <em>et al.</em>, 2022</a>)</span> 则进一步提出一种<strong>双对比学习</strong>（dual
 contrastive learning）方式，通过<strong>实例间对比学习</strong>（inter-instance
 contrastive
 learning，Inter-ICL）来学习跟检测任务相关的判别特征；通过<strong>实例内对比学习</strong>（intra-instance
 contrastive
 learning，Intra-ICL）来充分建模和学习伪造人脸的局部特征不一致性。实验表明，这种双对比学习方式可以提升检测AUC。</p>
 </div>
-<div class="section" id="id145">
-<h4><span class="section-number">5.4.2.2. </span>视频检测<a class="headerlink" href="#id145" title="Permalink to this heading">¶</a></h4>
+<div class="section" id="id143">
+<h4><span class="section-number">5.4.2.2. </span>视频检测<a class="headerlink" href="#id143" title="Permalink to this heading">¶</a></h4>
 <p>对于深度伪造视频的检测，可以从视频中提取出单张人脸图片来进行检测，也可以利用视频中的时序信息（脸的动作、表情变化等）、音频信息来辅助检测。下面介绍几种针对深伪视频的检测方法。</p>
 <p><strong>基于行为特征的检测。</strong>虽然很多深伪方法可以合成逼真的人脸图像，却很难生成自然的表情动作，这启发了一些研究者基于生物行为特征来检测深度伪造视频
-<span id="id146">(<a class="reference internal" href="../chapter_references/zreferences.html#id568" title="Ciftci, U. A., Demir, I., &amp; Yin, L. (2020). Fakecatcher: detection of synthetic portrait videos using biological signals. IEEE Transactions on Pattern Analysis and Machine Intelligence.">Ciftci <em>et al.</em>, 2020</a>)</span>
+<span id="id144">(<a class="reference internal" href="../chapter_references/zreferences.html#id568" title="Ciftci, U. A., Demir, I., &amp; Yin, L. (2020). Fakecatcher: detection of synthetic portrait videos using biological signals. IEEE Transactions on Pattern Analysis and Machine Intelligence.">Ciftci <em>et al.</em>, 2020</a>)</span>
 。“眨眼”就是一种常用的行为特征检测线索，因为眨眼是人类的一种无意识行为。Li等人
-<span id="id147">(<a class="reference internal" href="../chapter_references/zreferences.html#id481" title="Li, Y., Chang, M.-C., &amp; Lyu, S. (2018). In ictu oculi: exposing ai created fake videos by detecting eye blinking. IEEE International Workshop on Information Forensics and Security (pp. 1–7).">Li <em>et al.</em>, 2018</a>)</span>
+<span id="id145">(<a class="reference internal" href="../chapter_references/zreferences.html#id481" title="Li, Y., Chang, M.-C., &amp; Lyu, S. (2018). In ictu oculi: exposing ai created fake videos by detecting eye blinking. IEEE International Workshop on Information Forensics and Security (pp. 1–7).">Li <em>et al.</em>, 2018</a>)</span>
 研究发现，一些伪造方法训练时所使用的数据集中没有闭眼的人脸，导致伪造视频中的人不会眨眼睛。于是，他们将卷积神经网络和循环神经网络相结合，通过捕获视频中人脸的“眨眼”行为来进行检测。Jung等人
-<span id="id148">(<a class="reference internal" href="../chapter_references/zreferences.html#id572" title="Jung, T., Kim, S., &amp; Kim, K. (2020). Deepvision: deepfakes detection using human eye blinking pattern. IEEE Access.">Jung <em>et al.</em>, 2020</a>)</span>
+<span id="id146">(<a class="reference internal" href="../chapter_references/zreferences.html#id572" title="Jung, T., Kim, S., &amp; Kim, K. (2020). Deepvision: deepfakes detection using human eye blinking pattern. IEEE Access.">Jung <em>et al.</em>, 2020</a>)</span>
 也对伪造视频中眨眼的模式进行了详细分析，提出了<strong>DeepVision</strong>检测方法，它通过检测视频中眨眼的周期、次数和持续时间来得出检测结果，并且在多种伪造视频上取得了不错的检测准确率。</p>
 <p>除了“眨眼”之外，嘴唇的行为
-<span id="id149">(<a class="reference internal" href="../chapter_references/zreferences.html#id569" title="Agarwal, S., Farid, H., Fried, O., &amp; Agrawala, M. (2020). Detecting deep-fake videos from phoneme-viseme mismatches. IEEE/CVF Computer Vision and Pattern Recognition Conference Workshop.">Agarwal <em>et al.</em>, 2020</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id570" title="Yang, C.-Z., Ma, J., Wang, S., &amp; Liew, A. W.-C. (2020). Preventing deepfake attacks on speaker authentication by dynamic lip movement analysis. TIFS.">Yang <em>et al.</em>, 2020</a>)</span> 和头部的运动
-<span id="id150">(<a class="reference internal" href="../chapter_references/zreferences.html#id571" title="Yang, X., Li, Y., &amp; Lyu, S. (2019). Exposing deep fakes using inconsistent head poses. ICASSP.">Yang <em>et al.</em>, 2019</a>)</span> 同样也可以帮助检测。Agarwal等人
-<span id="id151">(<a class="reference internal" href="../chapter_references/zreferences.html#id569" title="Agarwal, S., Farid, H., Fried, O., &amp; Agrawala, M. (2020). Detecting deep-fake videos from phoneme-viseme mismatches. IEEE/CVF Computer Vision and Pattern Recognition Conference Workshop.">Agarwal <em>et al.</em>, 2020</a>)</span>
+<span id="id147">(<a class="reference internal" href="../chapter_references/zreferences.html#id569" title="Agarwal, S., Farid, H., Fried, O., &amp; Agrawala, M. (2020). Detecting deep-fake videos from phoneme-viseme mismatches. IEEE/CVF Computer Vision and Pattern Recognition Conference Workshop.">Agarwal <em>et al.</em>, 2020</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id570" title="Yang, C.-Z., Ma, J., Wang, S., &amp; Liew, A. W.-C. (2020). Preventing deepfake attacks on speaker authentication by dynamic lip movement analysis. TIFS.">Yang <em>et al.</em>, 2020</a>)</span> 和头部的运动
+<span id="id148">(<a class="reference internal" href="../chapter_references/zreferences.html#id571" title="Yang, X., Li, Y., &amp; Lyu, S. (2019). Exposing deep fakes using inconsistent head poses. ICASSP.">Yang <em>et al.</em>, 2019</a>)</span> 同样也可以帮助检测。Agarwal等人
+<span id="id149">(<a class="reference internal" href="../chapter_references/zreferences.html#id569" title="Agarwal, S., Farid, H., Fried, O., &amp; Agrawala, M. (2020). Detecting deep-fake videos from phoneme-viseme mismatches. IEEE/CVF Computer Vision and Pattern Recognition Conference Workshop.">Agarwal <em>et al.</em>, 2020</a>)</span>
 提出人类在发出P、B、M等字母开头的单词时，嘴唇需要闭合，而伪造视频通常不具备这一特点。最近还有研究通过视频画面来估算人的心率，从而发现伪造视频中的心率异常
-<span id="id152">(<a class="reference internal" href="../chapter_references/zreferences.html#id568" title="Ciftci, U. A., Demir, I., &amp; Yin, L. (2020). Fakecatcher: detection of synthetic portrait videos using biological signals. IEEE Transactions on Pattern Analysis and Machine Intelligence.">Ciftci <em>et al.</em>, 2020</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id567" title="Fernandes, S., Raj, S., Ortiz, E., Vintila, I., Salter, M., Urosevic, G., &amp; Jha, S. (2019). Predicting heart rate variations of deepfake videos using neural ode. International Conference on Computer Vision Workshop.">Fernandes <em>et al.</em>, 2019</a>)</span> 。Fernandes等人
-<span id="id153">(<a class="reference internal" href="../chapter_references/zreferences.html#id567" title="Fernandes, S., Raj, S., Ortiz, E., Vintila, I., Salter, M., Urosevic, G., &amp; Jha, S. (2019). Predicting heart rate variations of deepfake videos using neural ode. International Conference on Computer Vision Workshop.">Fernandes <em>et al.</em>, 2019</a>)</span> 利用<strong>神经常微分方程</strong>（neural
+<span id="id150">(<a class="reference internal" href="../chapter_references/zreferences.html#id568" title="Ciftci, U. A., Demir, I., &amp; Yin, L. (2020). Fakecatcher: detection of synthetic portrait videos using biological signals. IEEE Transactions on Pattern Analysis and Machine Intelligence.">Ciftci <em>et al.</em>, 2020</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id567" title="Fernandes, S., Raj, S., Ortiz, E., Vintila, I., Salter, M., Urosevic, G., &amp; Jha, S. (2019). Predicting heart rate variations of deepfake videos using neural ode. International Conference on Computer Vision Workshop.">Fernandes <em>et al.</em>, 2019</a>)</span> 。Fernandes等人
+<span id="id151">(<a class="reference internal" href="../chapter_references/zreferences.html#id567" title="Fernandes, S., Raj, S., Ortiz, E., Vintila, I., Salter, M., Urosevic, G., &amp; Jha, S. (2019). Predicting heart rate variations of deepfake videos using neural ode. International Conference on Computer Vision Workshop.">Fernandes <em>et al.</em>, 2019</a>)</span> 利用<strong>神经常微分方程</strong>（neural
 ordinary differential
 equations，Neural-ODE）模型来预测心率，然后进行深度伪造检测。此外，他们还发现心跳会随时间推移而改变皮肤的反射率，而深度伪造则会打破这种连续的变化。</p>
-<p><strong>基于深度特征的检测。</strong>Trinh等人 <span id="id154">(<a class="reference internal" href="../chapter_references/zreferences.html#id566" title="Trinh, L., Tsang, M., Rambhatla, S., &amp; Liu, Y. (2021). Interpretable and trustworthy deepfake detection via dynamic prototypes. IEEE/CVF Winter Conference on Applications of Computer Vision.">Trinh <em>et al.</em>, 2021</a>)</span>
+<p><strong>基于深度特征的检测。</strong>Trinh等人 <span id="id152">(<a class="reference internal" href="../chapter_references/zreferences.html#id566" title="Trinh, L., Tsang, M., Rambhatla, S., &amp; Liu, Y. (2021). Interpretable and trustworthy deepfake detection via dynamic prototypes. IEEE/CVF Winter Conference on Applications of Computer Vision.">Trinh <em>et al.</em>, 2021</a>)</span>
 尝试使用一组原型（prototype）来表示一块特征图中特定的激活模式，然后与测试视频进一步比较，根据他们的相似性做出预测。Zheng等人
-<span id="id155">(<a class="reference internal" href="../chapter_references/zreferences.html#id565" title="Zheng, Y., Bao, J., Chen, D., Zeng, M., &amp; Wen, F. (2021). Exploring temporal coherence for more general video face forgery detection. International Conference on Computer Vision.">Zheng <em>et al.</em>, 2021</a>)</span>
+<span id="id153">(<a class="reference internal" href="../chapter_references/zreferences.html#id565" title="Zheng, Y., Bao, J., Chen, D., Zeng, M., &amp; Wen, F. (2021). Exploring temporal coherence for more general video face forgery detection. International Conference on Computer Vision.">Zheng <em>et al.</em>, 2021</a>)</span>
 则发现伪造视频中的相邻帧之间存在不连续性，所以他们采用一个轻量级的时序Transformer来捕获时序上的不一致性信息，进而完成检测。</p>
 <p><strong>基于多模态信息的检测。</strong>视频中可以用到的多模态信息主要有光流（optical
-flow）、自带的音频等。Amerini等人 <span id="id156">(<a class="reference internal" href="../chapter_references/zreferences.html#id564" title="Amerini, I., Galteri, L., Caldelli, R., &amp; Del Bimbo, A. (2019). Deepfake video detection through optical flow based cnn. International Conference on Computer Vision Workshop.">Amerini <em>et al.</em>, 2019</a>)</span>
+flow）、自带的音频等。Amerini等人 <span id="id154">(<a class="reference internal" href="../chapter_references/zreferences.html#id564" title="Amerini, I., Galteri, L., Caldelli, R., &amp; Del Bimbo, A. (2019). Deepfake video detection through optical flow based cnn. International Conference on Computer Vision Workshop.">Amerini <em>et al.</em>, 2019</a>)</span>
 使用视频中帧与帧之间光流的差异来检测真伪。此外，声音与画面是否同步也是判断视频是否经过伪造的一种依据，对视频的篡改往往会破坏这些同步信息，导致视频出现假唱、不自然的面部表情和嘴唇动作等不同步信息。Trisha等人
-<span id="id157">(<a class="reference internal" href="../chapter_references/zreferences.html#id484" title="Mittal, T., Bhattacharya, U., Chandra, R., Bera, A., &amp; Manocha, D. (2020). Emotions don't lie: an audio-visual deepfake detection method using affective cues. ACM International Conference on Multimedia (pp. 2823–2832).">Mittal <em>et al.</em>, 2020</a>)</span>
+<span id="id155">(<a class="reference internal" href="../chapter_references/zreferences.html#id484" title="Mittal, T., Bhattacharya, U., Chandra, R., Bera, A., &amp; Manocha, D. (2020). Emotions don't lie: an audio-visual deepfake detection method using affective cues. ACM International Conference on Multimedia (pp. 2823–2832).">Mittal <em>et al.</em>, 2020</a>)</span>
 就是利用这些多模态信息，提出了基于视听信息的检测方法，通过建模不同模态之间的依赖关系来区分真实和篡改视频。作者使用基于孪生网络（Siamese
 network）的结构，分别提取视频模式和音频模式特征，并通过三元损失（triplet
 loss）函数来约束它们之间的一致性。</p>
@@ -837,8 +884,8 @@ loss）函数来约束它们之间的一致性。</p>
 </div>
 </div>
 </div>
-<div class="section" id="id158">
-<h2><span class="section-number">5.5. </span>本章小结<a class="headerlink" href="#id158" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="id156">
+<h2><span class="section-number">5.5. </span>本章小结<a class="headerlink" href="#id156" title="Permalink to this heading">¶</a></h2>
 <p>本章介绍了不同类型的数据防御方法，其中包括鲁棒训练（章节
 <a class="reference internal" href="#sec-robustlearning"><span class="std std-numref">5.1节</span></a> ）、差分隐私（章节
 <a class="reference internal" href="#sec-differential-privacy"><span class="std std-numref">5.2节</span></a> ）、联邦学习（章节
@@ -851,10 +898,10 @@ loss）函数来约束它们之间的一致性。</p>
 <a class="reference internal" href="chap4.html#sec-datafakeattack"><span class="std std-numref">4.4节</span></a>
 ）。鲁棒训练针对数据投毒攻击，通过提高训练算法对异常训练数据的鲁棒性来训练安全干净的模型。差分隐私通过向模型输入、模型参数、模型输出、或者目标函数中添加特定分布的噪声来获得对应预算的隐私保护性，可以防御逆向工程、隐私攻击或者数据窃取类的攻击。联邦学习则提供了一种数据隐私保护的联合训练新范式，各参与方可以在不需要公开本地数据的前提下联合训练一个强大的全局模型。当然联邦学习也面临新的数据安全问题，如隐私攻击、投毒攻击、后门攻击等，而防御这些攻击则需要一个全面鲁棒的梯度聚合算法。本章的最后还介绍了篡改与伪造数据的检测方法，包括检测通用篡改和深度伪造，这些方法通过定位并追踪伪造痕迹来检测合成数据。通过这些介绍，读者可以初步的了解当前研究在数据防御方面所作出的探索，启发未来设计更高效、更通用的数据防御技术。</p>
 <dl class="footnote brackets">
-<dt class="label" id="id159"><span class="brackets"><a class="fn-backref" href="#id46">1</a></span></dt>
+<dt class="label" id="id157"><span class="brackets"><a class="fn-backref" href="#id45">1</a></span></dt>
 <dd><p>为了与现有工作中的符号使用保持一致，这里使用<span class="math notranslate nohighlight">\(W\)</span>来表示模型参数。</p>
 </dd>
-<dt class="label" id="id160"><span class="brackets">2</span></dt>
+<dt class="label" id="id158"><span class="brackets"><a class="fn-backref" href="#id90">2</a></span></dt>
 <dd><p>又称姚氏电路（Yao’s
 GC），由姚期智教授于1986年针对百万富翁问题提出的解决方案。</p>
 </dd>
@@ -878,22 +925,22 @@ GC），由姚期智教授于1986年针对百万富翁问题提出的解决方�
 <li><a class="reference internal" href="#id26">5.2.2. 差分隐私在深度学习中的应用</a><ul>
 <li><a class="reference internal" href="#id27">5.2.2.1. 输入空间：差分隐私预处理训练数据</a></li>
 <li><a class="reference internal" href="#id31">5.2.2.2. 隐藏空间：差分隐私平滑模型参数</a></li>
-<li><a class="reference internal" href="#id35">5.2.2.3. 输出空间：差分隐私扰动目标函数</a></li>
+<li><a class="reference internal" href="#id36">5.2.2.3. 输出空间：差分隐私扰动目标函数</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><a class="reference internal" href="#sec-federated-learning">5.3. 联邦学习</a><ul>
-<li><a class="reference internal" href="#id42">5.3.1. 联邦学习概述</a><ul>
-<li><a class="reference internal" href="#id47">5.3.1.1. 联邦类型</a></li>
-<li><a class="reference internal" href="#id52">5.3.1.2. 同态加密</a></li>
+<li><a class="reference internal" href="#id43">5.3.1. 联邦学习概述</a><ul>
+<li><a class="reference internal" href="#id46">5.3.1.1. 联邦类型</a></li>
+<li><a class="reference internal" href="#id51">5.3.1.2. 同态加密</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id59">5.3.2. 横向联邦</a></li>
-<li><a class="reference internal" href="#id74">5.3.3. 纵向联邦</a></li>
-<li><a class="reference internal" href="#id78">5.3.4. 隐私与安全</a><ul>
-<li><a class="reference internal" href="#id79">5.3.4.1. 隐私攻击与防御</a></li>
-<li><a class="reference internal" href="#id89">5.3.4.2. 投毒攻击与防御</a></li>
+<li><a class="reference internal" href="#id58">5.3.2. 横向联邦</a></li>
+<li><a class="reference internal" href="#id73">5.3.3. 纵向联邦</a></li>
+<li><a class="reference internal" href="#id79">5.3.4. 隐私与安全</a><ul>
+<li><a class="reference internal" href="#id80">5.3.4.1. 隐私攻击与防御</a></li>
+<li><a class="reference internal" href="#id91">5.3.4.2. 投毒攻击与防御</a></li>
 </ul>
 </li>
 </ul>
@@ -901,13 +948,13 @@ GC），由姚期智教授于1986年针对百万富翁问题提出的解决方�
 <li><a class="reference internal" href="#sec-tamper-fake-detection">5.4. 篡改与深伪检测</a><ul>
 <li><a class="reference internal" href="#sec-tamperdetection">5.4.1. 通用篡改检测</a></li>
 <li><a class="reference internal" href="#sec-deepfakedetection">5.4.2. 深度伪造检测</a><ul>
-<li><a class="reference internal" href="#id123">5.4.2.1. 图片检测</a></li>
-<li><a class="reference internal" href="#id145">5.4.2.2. 视频检测</a></li>
+<li><a class="reference internal" href="#id121">5.4.2.1. 图片检测</a></li>
+<li><a class="reference internal" href="#id143">5.4.2.2. 视频检测</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id158">5.5. 本章小结</a></li>
+<li><a class="reference internal" href="#id156">5.5. 本章小结</a></li>
 </ul>
 </li>
 </ul>

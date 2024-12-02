@@ -68,7 +68,7 @@ attack）的主要思路是，攻击者\ :math:`A`\ 根据受害者模型\ :math
 
 .. math:: \begin{aligned}\frac{\partial \mathcal{L}(\theta)}{\partial \theta} =  b + \lambda  a = 0\end{aligned}
 
-.. math:: b=\begin{bmatrix}\frac{\partial \mathcal{L}( x,y,\theta)}{\partial \theta_1}\\\frac{\partial \mathcal{L}( x,y,\theta)}{\partial \theta_2}\\dots\\\frac{\partial \mathcal{L}( x,y,\theta)}{\partial \theta_n}\\\end{bmatrix}, \;  a=\begin{bmatrix}\frac{\partial R(\theta)}{\partial \theta_1}\\\frac{\partial R(\theta)}{\partial \theta_2}\\dots\\\frac{\partial R(\theta)}{\partial \theta_n},\\\end{bmatrix}
+.. math:: b=\begin{bmatrix}\frac{\partial \mathcal{L}( x,y,\theta)}{\partial \theta_1}\\\frac{\partial \mathcal{L}( x,y,\theta)}{\partial \theta_2}\\\dots\\\frac{\partial \mathcal{L}( x,y,\theta)}{\partial \theta_n}\\\end{bmatrix}, \;  a=\begin{bmatrix}\frac{\partial R(\theta)}{\partial \theta_1}\\\frac{\partial R(\theta)}{\partial \theta_2}\\\dots\\\frac{\partial R(\theta)}{\partial \theta_n},\\\end{bmatrix}
 
 其中，训练数据集\ :math:`D=\{ x,y\}_{i=1}^{n}`\ ，模型参数\ :math:`\theta`\ ，正则项\ :math:`R`\ ，均为已知。故可通过最小二乘法求解超参数\ :math:`\lambda`\ 的方程式：
 
@@ -84,8 +84,6 @@ Attack）的主要思路是，攻击者\ :math:`A`\ 在不知道受害者模型\
 :numref:`fig_surrogate_model` 展示了此攻击的流程。
 
 .. _fig_surrogate_model:
-
-.. _fig_accuracy_vs_fidelity:
 
 .. figure:: images/10.3_surrogate_model.png
    :width: 600px
@@ -112,8 +110,9 @@ Attack）的主要思路是，攻击者\ :math:`A`\ 在不知道受害者模型\
 .. math:: \begin{aligned}D'_{t+1} = \{  x + \lambda \cdot  sign(J_{f'}[f( x)]):  x \in D'_{t} \} \cup D'_{t},\end{aligned}
    :label: equ_chapter6_papernot2017
 
-其中，\ :math:`\lambda`\ 为步长，\ :math:`f'`\ 为替代模型，\ :math:`J_{f'}`\ 为基于黑盒目标模型\ :math:`f`\ 的输出计算得到的雅可比矩阵，$
-sign(:raw-latex:`\cdot`)\ :math:`为符号函数，`\ D’\ *{t}\ :math:`为第`\ t\ :math:`次迭代时得到的数据集。公式 :eqref:`equ_chapter6_papernot2017` 的目的是利用数据合成技术扩充当前的数据集`\ D’*\ {t}\ :math:`并获得新数据集`\ D’_{t+1}\ :math:`，使得新数据集能够更好的贴近受害者模型的决策边界。在替代数据集`\ D’$上训练得到替代模型后，就可以利用已有白盒攻击算法（作者使用的是FGSM
+其中，\ :math:`\lambda`\ 为步长，\ :math:`f'`\ 为替代模型，\ :math:`J_{f'}`\ 为基于黑盒目标模型\ :math:`f`\ 的输出计算得到的雅可比矩阵，\ :math:`sign(\cdot)`\ 为符号函数，\ :math:`D'_{t}`\ 为第\ :math:`t`\ 次迭代时得到的数据集。公式
+:eq:`equ_chapter6_papernot2017`
+的目的是利用数据合成技术扩充当前的数据集\ :math:`D'_{t}`\ 并获得新数据集\ :math:`D'_{t+1}`\ ，使得新数据集能够更好的贴近受害者模型的决策边界。在替代数据集\ :math:`D'`\ 上训练得到替代模型后，就可以利用已有白盒攻击算法（作者使用的是FGSM
 :cite:`goodfellow2014explaining` 和JSMA :cite:`papernot2016jsma`
 ）完成黑盒迁移攻击。
 
@@ -130,10 +129,15 @@ Nets）攻击。该窃取攻击无需受害者模型的先验信息，攻击者\
 accuracy）和\ **高保真度**\ （high
 fidelity）两个不同角度分析了模型窃取攻击。攻击者窃取模型的目的不同，高准确率窃取希望窃取得到的模型能对任何输入进行正确的分类，而高保真度窃取希望窃取模型与受害者模型的决策边界高度一致，二者的区别如
 :numref:`fig_accuracy_vs_fidelity` 所示。
-|高准确和高保真模型窃取：蓝色、橙色和绿色线分别表示受害者、高准确窃取和高保真窃取模型的决策边界
-:cite:`jagielski2020high`|
 
+.. _fig_accuracy_vs_fidelity:
+
+.. figure:: images/10.4_accuracy_vs_fidelity.png
    :width: 600px
+
+   高准确和高保真模型窃取：蓝色、橙色和绿色线分别表示受害者、高准确窃取和高保真窃取模型的决策边界
+   :cite:`jagielski2020high`
+
 
 
 具体来说，\ **高准确率窃取**\ 得到的模型\ :math:`f'(\cdot)`\ 可以实现准确的预测，对任何输入查询\ :math:`x`\ 都返回正确的预测输出\ :math:`\mathop{\mathrm{arg\,max}}(f'( x)) =y`\ ，其目标是高度匹配甚至超过受害者模型的准确度。\ **高保真度窃取**\ 得到的模型\ :math:`f'(\cdot)`\ 可以完全匹配受害者模型\ :math:`f(\cdot)`\ 本身，对任何输入查询\ :math:`x`\ 返回预测输出\ :math:`\mathop{\mathrm{arg\,max}}(f'( x)) =\mathop{\mathrm{arg\,max}}(f( x)))`\ ，其目的是保持与受害者模型输出的高度一致性。同时，Jagielski等人提出的高保真模型窃取方法可以在不需要梯度的情况下，通过寻找ReLU分段函数临界点窃取神经网络的权重。该方法以实验的方式完成了对两层神经网络的窃取，并从理论的角度扩展到深度神经网络。此外，高保真窃取到的模型可以作为替代模型用以其他类型的攻击，如对抗攻击和成员推理攻击。
@@ -251,7 +255,7 @@ operation），当然如果只返回概率最大的类别也可以大幅减少�
 
 Shokri等人 :cite:`shokri2017membership`
 于2017年讨论了四种模型防御的有效对策:
-**（1）将输出向量限制为前\ :math:`k`\ 个类**\ 。该方法只输出可能性最大的\ :math:`k`\ 个类别，随着\ :math:`k`\ 值减小，模型泄漏的信息也越来越少。在极端情况下，模型只返回最大可能的类别标签;
+**（1）将输出向量限制为前**\ :math:`\boldsymbol{k}`\ **个类**\ 。该方法只输出可能性最大的\ :math:`k`\ 个类别，随着\ :math:`k`\ 值减小，模型泄漏的信息也越来越少。在极端情况下，模型只返回最大可能的类别标签;
 **（2）将输出向量四舍五入**\ 。该方法将输出向量中的标签概率保留\ :math:`d`\ 位小数，随着\ :math:`d`\ 值减小，模型泄漏的信息越少;
 **（3）增加输出向量的信息熵**\ 。该方法向softmax层增加温度调节参数\ :math:`\tau`\ ，使得\ :math:`\mathrm{softmax}`\ 层的输出变为\ :math:`\frac{e^{ z_{i}/\tau}}{\sum\limits_{j}e^{ z_{j}/\tau}}`\ 。随着\ :math:`t`\ 值的增大，输出向量的熵也会增大，即输出向量变得越均匀，模型泄漏的信息就越少;
 **（4）正则化**\ 。模型越是过拟合到训练数据，就越会学到敏感的决策边界，这样会泄露更多信息，导致决策边界容易被逆向。因而，可通过向损失函数中添加\ :math:`\lambda \sum \theta^2`\ 正则项的方式来惩罚模型参数，避免过拟合问题的同时减少模型泄露的信息。随着\ :math:`\lambda`\ 的增加，模型的性能和安全性都会有所提高，但如果\ :math:`\lambda`\ 增加过度，则会对模型的正常训练产生负面影响，导致准确率的下降。
@@ -283,7 +287,7 @@ function）的情况下，通过选择合适的学习率，可以有效提高添
 function）情况下更为有效，但可能无法推广到非平滑条件下。
 
 **目标函数扰动。** Chaudhuri等人 :cite:`chaudhuri2008privacy`
-还提出一种目标函数扰动方法，用\ *正则化常量\ :math:`\lambda`*\ 替代原本添加噪声进行输出扰动的方法。正则化是一种防止模型过拟合到训练数据的常用技术，但是在该方法中，正则化用来降低模型对输入变化的敏感度，从而达到保护模型隐私的目的。目标函数扰动方法的形式化定义如下：
+还提出一种目标函数扰动方法，用\ *正则化常量*\ :math:`\mathit{\lambda}`\ 替代原本添加噪声进行输出扰动的方法。正则化是一种防止模型过拟合到训练数据的常用技术，但是在该方法中，正则化用来降低模型对输入变化的敏感度，从而达到保护模型隐私的目的。目标函数扰动方法的形式化定义如下：
 
 .. math:: \begin{aligned}y' = \mathop{\mathrm{arg\,min}}\limits_{\theta} \frac{1}{2} \lambda \theta^{\top} \theta + \frac{ b^{\top} \theta}{n} + \frac{1}{n} \sum^{n}_{i=1} \log(1+e^{-y_{i} \theta^{\top}  x_{i}}),\end{aligned}
 
@@ -306,7 +310,7 @@ SGD）方法来保护数据隐私（同样适用于保护模型隐私）。该�
 Abadi等人 :cite:`abadi2016deep`
 将深度学习与差分隐私相结合，提出了一个改进版的\ **DP-SGD**\ 算法来处理非凸目标函数。该方法在梯度中添加噪声，在合适的隐私预算内训练神经网络。差分隐私随机梯度下降计算过程如下：
 
-.. math:: \begin{aligned}g_t( x_i) \gets \nabla_{\theta_{t}} \mathcal{L}(\theta_y, x_i)\\\bar{g}_t( x_i) = g_t( x_i) / \max(1,\frac{{\Vert g_t( x_i) \Vert}^2}{C})\\\tilde{g}_t( x_i) = \frac{1}{L} (\sum\limits_i \bar{g}_t( x_i) + \mathcal{N}(0,\sigma^2 C^2))\\\theta_{t+1} = \theta_{t} + \eta_t \title{g}_t( x_i),\end{aligned}
+.. math:: \begin{aligned}g_t( x_i) \gets \nabla_{\theta_{t}} \mathcal{L}(\theta_y, x_i)\\\bar{g}_t( x_i) = g_t( x_i) / \max(1,\frac{{\Vert g_t( x_i) \Vert}^2}{C})\\\tilde{g}_t( x_i) = \frac{1}{L} (\sum\limits_i \bar{g}_t( x_i) + \mathcal{N}(0,\sigma^2 C^2))\\\theta_{t+1} = \theta_{t} + \eta_t{g}_t( x_i),\end{aligned}
    :label: equ_chapter7_dpsgd
 
 其中，\ :math:`x`\ 为输入样本，\ :math:`\theta`\ 为模型参数，\ :math:`\mathcal{L}(\theta)=\sum_{i}\mathcal{L}(\theta, x_{i})`\ 为损失函数，\ :math:`\bar{g}_t( x_i)`\ 为范数裁剪（norm
@@ -330,7 +334,7 @@ clipping）后的梯度，\ :math:`C`\ 为梯度范数边界，\ :math:`\tilde{g
 model stealing
 attacks）。该方法假设正常用户的查询样本之间的距离接近正态分布（即\ *自然样本符合自然分布*\ ），而攻击者合成的查询样本之间的距离会严重偏离正态分布（即\ **人造样本偏离自然分布**\ ）。
 
-具体来说，PRADA方法计算一个查询样本\ :math:`x_i`\ 与其同类别\ :math:`f( x_i)=y`\ 的先前查询样本\ :math:`\{\v x_0,\ldots , x_{i-1} \}`\ 之间的最小距离\ :math:`d_{\text{min}}( x_i)`\ ，并存储在集合\ :math:`D`\ 中。如果最小距离\ :math:`d_{\text{min}}( x_i)`\ 超过既定阈值\ :math:`T_c`\ ，则将其加入增长集合\ :math:`D_{G_{c}}`\ 并更新阈值\ :math:`T_c \gets \max (T_c, \bar{D_{G_{c}}} - \text{std}(D_{G_{c}}))`\ ，其中\ :math:`\bar{D_{G_{c}}}`\ 和\ :math:`\text{std}(D_{G_{c}}))`\ 分别为均值和方差。因此，PRADA方法不依赖于单个查询样本，而是分析多个连续查询样本的分布，并在分布偏离正常用户查询样本行为时发出警报。这种基于分布的检测可以防止因单点异常而误报警。
+具体来说，PRADA方法计算一个查询样本\ :math:`x_i`\ 与其同类别\ :math:`f( x_i)=y`\ 的先前查询样本\ :math:`\{x_0,\ldots , x_{i-1} \}`\ 之间的最小距离\ :math:`d_{\text{min}}( x_i)`\ ，并存储在集合\ :math:`D`\ 中。如果最小距离\ :math:`d_{\text{min}}( x_i)`\ 超过既定阈值\ :math:`T_c`\ ，则将其加入增长集合\ :math:`D_{G_{c}}`\ 并更新阈值\ :math:`T_c \gets \max (T_c, \bar{D_{G_{c}}} - \text{std}(D_{G_{c}}))`\ ，其中\ :math:`\bar{D_{G_{c}}}`\ 和\ :math:`\text{std}(D_{G_{c}}))`\ 分别为均值和方差。因此，PRADA方法不依赖于单个查询样本，而是分析多个连续查询样本的分布，并在分布偏离正常用户查询样本行为时发出警报。这种基于分布的检测可以防止因单点异常而误报警。
 
 上述方法是基于输入分布的检测，而对深度学习模型而言，样本的特征分布比输入分布可能更有区分度。因此，Kesarwani等人
 :cite:`kesarwani2018model`
@@ -398,7 +402,7 @@ error rate, BER）来验证模型版权。其流程如图 :numref:`fig_watermark
 
 在水印验证的过程中，需要对可疑模型进行白盒访问，从可疑模型的参数矩阵中提取\ :math:`T`\ 比特的水印信息\ :math:`b'`\ ，提取位置依然是嵌入矩阵\ :math:`X`\ 定义的位置。提取过程可形式化表示为：
 
-.. math:: \begin{aligned} b'_{j} = s(\sum_{i} X_{ji} \cdot \theta_{i})\\s(x) = \left\{\begin{array}{rcl}1       x \geq 0\\0       \text{else},\\\end{array} \right.\end{aligned}
+.. math:: \begin{aligned} b'_{j} = s(\sum_{i} X_{ji} \cdot \theta_{i})\\s(x) = \left\{\begin{array}{rcl}1\qquad x\geq0\\0\qquad \text{else},\\\end{array} \right.\end{aligned}
    :label: equ_chapter7_uchida2017_2
 
 其中，\ :math:`s(\cdot)`\ 是单位阶跃函数（unit step function）。
@@ -417,10 +421,6 @@ Set Accuracy, TSA），进而验证模型版权。大体流程如图
 :numref:`fig_watermark_b` 所示。
 
 .. _fig_watermark_b:
-
-.. _fig_fingerprint_IPGuard:
-
-.. _fig_fingerprint_CEM:
 
 .. figure:: images/10.8_blackbox_watermark.png
    :width: 600px
@@ -490,9 +490,14 @@ verification）两个阶段。在指纹生成阶段，模型所有者基于模�
 首次提出模型指纹方法\ **IPGuard**\ ，通过受害者模型的\ **决策边界指纹**\ 验证模型版权。以分类器为例，不同的分类器有不同的决策边界，故模型所有者可以选择决策边界附近的数据点作为指纹数据点（如图
 :numref:`fig_fingerprint_IPGuard`
 所示），从而对可疑模型模型进行指纹验证。
-|IPGuard：使用边界上的数据点生成模型指纹 :cite:`cao2021ipguard`|
 
+.. _fig_fingerprint_IPGuard:
+
+.. figure:: images/10.9_decision_boundary.png
    :width: 600px
+
+   IPGuard：使用边界上的数据点生成模型指纹 :cite:`cao2021ipguard`
+
 
 
 因此，对该方法来说，最重要的是寻找决策边界附近的\ **指纹数据点**\ ，即分类器无法确定标签的数据点。
@@ -513,11 +518,16 @@ verification）两个阶段。在指纹生成阶段，模型所有者基于模�
 另一种基于决策边界的模型指纹方式是由Lukas等人 :cite:`lukas2019deep`
 在2019年提出的\ **可授予对抗样本**\ （conferrable adversarial
 examples，CAE）方法。可授予对抗样本是指\ *只在源模型和窃取模型之间迁移*\ 的对抗样本，相比之下，普通对抗样本往往可以迁移到任意模型。该方法将可授予对抗样本\ :math:`x`\ 作为模型指纹，使得替代模型\ :math:`f'`\ 与受害者模型\ :math:`f`\ 返回相同输出，即\ :math:`\mathop{\mathrm{arg\,max}}(f'( x)) =\mathop{\mathrm{arg\,max}}(f( x)))`\ ，同时使得参考模型\ :math:`f_R`\ 与受害者模型\ :math:`f`\ 返回\ *不同输出*\ :math:`\mathop{\mathrm{arg\,max}}(f_R(x)) =y\neq\mathop{\mathrm{arg\,max}}(f( x))`\ ，从而验证模型版权。其中，可授予对抗样本的定义如图
-:numref:`fig_fingerprint_CEM` 所示。 |可授予对抗样本
-:cite:`lukas2019deep`
-：只向窃取模型迁移的对抗样本；可迁移对抗样本：可以向任何模型迁移的对抗样本|
+:numref:`fig_fingerprint_CEM` 所示。
 
+.. _fig_fingerprint_CEM:
+
+.. figure:: images/10.10_conferable_adv.png
    :width: 600px
+
+   可授予对抗样本 :cite:`lukas2019deep`
+   ：只向窃取模型迁移的对抗样本；可迁移对抗样本：可以向任何模型迁移的对抗样本
+
 
 
 对CAE方法来说，最重要的是找到能最大化替代模型和参考模型之间差异的可授予对抗样本，此过程可形式化表示如下：
@@ -550,26 +560,17 @@ testing）的版权保护和取证框架“**深度法官**”（DeepJudge）。
 所示，DeepJudge由三部分组成：（1）采用现有的对抗攻击方法生成对抗样本，并构建一组测试用例；（2）测量可疑模型和受害者模型在测试用例上的行为相似度；（3）根据多个测试指标的结果投票判断模型所有权。
 
 DeepJudge包含三类测试指标，即\ **属性指标**\ 、\ **神经元指标**\ 和\ **神经层指标**\ 。如表
-:ref:``tab:DeepJudge``
+:numref:`table_10_1`
 所示，根据不同的测试指标设置，DeepJudge同时支持白盒测试和黑盒测试。其中，白盒测试可以访问可疑模型的中间层结果和输出概率向量，而黑盒测试只能查询可疑模型以获得概率向量或预测标签。如果可疑模型是受害者模型的衍生，则可疑模型与受害者模型在某些测试指标上的会特别的接近，当大部分指标都认为两个模型接近时，可疑模型即为窃取模型。
 
-.. raw:: latex
+.. _table_10_1:
 
-   \begin{table}[!htb]
-   \centering
-   \begin{tabular}{|c|c|c|}
-   \toprule
-   **指标级别**           **指标**                   **适用场景** \\ \midrule
-   属性  robustness distance (RobD)        黑盒                \\ \hline
-   \multirow{2}{*}{神经元}    neuron output distance (NOD)      白盒                \\
-   \textit{}                neuron activation distance (NAD)  白盒                \\ \hline
-   \multirow{3}{*}{神经层}     layer output distance (LOD)       白盒                \\
-   \textit{}                layer activation distance (LAD)   白盒                \\
-   \textit{}                Jensen-Shanon distance (JSD)      黑盒                \\ \bottomrule
-   \end{tabular}
-   \caption{DeepJudge测试指标}
-   \label{tab:DeepJudge}
-   \end{table}
+.. figure:: extra_img/table_10_1.png
+   :width: 600px
+
+   DeepJudge测试指标
+
+
 
 DeepJudge可以被理解为是一种\ **集成模型指纹**\ （ensemble model
 fingerprint）方法，即综合多种指纹特征（即测试指标）和指纹数据（即测试用例）来构造一个更加系统全面的证据链。已有模型指纹方法可与DeepJudge提出的六种指标进行结合得到更全面的模型指纹保护方法。这一思想对模型水印也适用，可以通过构造多种不同类型的水印来达到更准确的模型溯源。
@@ -589,7 +590,3 @@ fingerprint）方法，即综合多种指纹特征（即测试指标）和指纹
 介绍了三类模型窃取攻击，包括基于方程式求解的窃取、基于替代模型的窃取和基于元模型的窃取。章节
 :numref:`sec_stealing_defense`
 介绍了三类有针对性的窃取防御方法，包括信息模糊、查询控制和模型溯源。比较前几个章节介绍的对抗攻防和后门攻防，不难发现模型窃取方面的研究还处于初级阶段，相关的研究工作并不多，还存在一定的方向性空白。实际上，现有模型窃取攻击还无法有效窃取大模型，所以难以给商用大模型带来威胁。所以要加快推进领域的发展就需要提出真正有威胁性的窃取攻击。当然，先进的模型知识产权保护系统永远是我们发展人工智能所要具备的关键技术，需要持续深入的探索。
-
-.. |高准确和高保真模型窃取：蓝色、橙色和绿色线分别表示受害者、高准确窃取和高保真窃取模型的决策边界 :cite:`jagielski2020high`| image:: images/10.4_accuracy_vs_fidelity.png
-.. |IPGuard：使用边界上的数据点生成模型指纹 :cite:`cao2021ipguard`| image:: images/10.9_decision_boundary.png
-.. |可授予对抗样本 :cite:`lukas2019deep` ：只向窃取模型迁移的对抗样本；可迁移对抗样本：可以向任何模型迁移的对抗样本| image:: images/10.10_conferable_adv.png

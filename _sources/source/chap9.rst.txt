@@ -5,7 +5,8 @@
 ==================
 
 
-高效的防御多种后门攻击是一个极具挑战性的任务。一方面，不同后门攻击方法的工作机理可能并不相同，想要深入了解它们的共性具有一定的难度；另一方面设计后门防御策略需要同时考虑多种攻击，通用性比较难实现。目前针对后门攻击的防御策略主要有三种：（1）\ *后门模型检测*\ 、（2）\ *后门样本检测*\ 和（3）\ *后门移除*\ 。目前，这三类防御方法间相对独立，各自完成后门防御的子任务。本节将对这三类方法展开介绍。
+高效地防御多种后门攻击是一个极具挑战性的任务。一方面，不同后门攻击方法的工作机理可能并不相同，想要深入了解它们的共性具有一定的难度；另一方面设计后门防御策略需要同时考虑多种攻击，通用性比较难实现。目前针对后门攻击的防御策略主要有三种：（1）\ *后门模型检测*\ 、（2）\ *后门样本检测*
+和（3）\ *后门移除*\ 。目前，这三类防御方法紧密相关又相对独立，各自完成一个后门防御的子任务。本节将对这三类方法展开介绍。
 
 .. _sec_backdoor_model_detection:
 
@@ -57,7 +58,7 @@ absolute deviation，MAD）指标 :cite:`hampel1974influence`
 estimator），其中\ :math:`\Phi`\ 表示标准正态分布的累积分布函数(CDF)。因此，当\ :math:`I_i > 1.96\sigma`\ 时有大于95%的概率此类别为离群点，由于为标准正态分布，所以\ :math:`I_i > 1.96`\ 。实际上，NC方法直接使用\ :math:`I_i > 2`\ 作为阈值条件来检测后门类别。
 
 在以上检测过程中，由于需要对每一个类别进行后门触发器的重建，在类别数量很大时会需要较大的计算量。为了进一步降低计算负担，可降低公式
-:ref:`detect_object`
+:eq:`detect_object`
 的优化迭代次数，先得到一个较为粗糙的重建后门触发器，然后对所有类别进行初筛来降低怀疑为投毒类别的数目。
 
 **深度检查。** Chen等人 :cite:`chen2019deepinspect`
@@ -80,7 +81,7 @@ generator），以便快速生成不同类别的后门触发器。最后，该�
 因此，我们使用\ *负对数似然损失*\ （negative loss likelihood,
 NLL）来衡量生成后门触发器的质量：
 
-.. math:: \mathcal{L}_{\Delta} = \mathbb{E}_{ x}[\mathcal{L}_{\text{NLL}}(\mathcal{D}(x+\g\mathcal{G}( z,y_t)), t)]
+.. math:: \mathcal{L}_{\Delta} = \mathbb{E}_{ x}[\mathcal{L}_{\text{NLL}}(\mathcal{D}(x+\mathbb{g}\mathcal{G}( z,y_t)), t)]
 
 此外，还应使得后门样本\ :math:`x+\mathcal{G}( z,y_t)`\ 与原始输入\ :math:`x`\ 无法区分，即增加对抗损失：
 
@@ -89,11 +90,11 @@ NLL）来衡量生成后门触发器的质量：
 其中，\ :math:`\mathcal{L}_\text{MSE}`\ 表示\ *均方误差*\ （mean square
 error，MSE），\ :math:`1`\ 代表原始输入\ :math:`x`\ 在理想情况下的概率输出。
 
-除以上损失外，还应该对后门触发器的大小进行限制，因为这里同样假设大部分触发器的尺寸很小。深度检查使用\ :math:`\norm{}_1`\ 对生成的后门触发器大小进行限制，即：
+除以上损失外，还应该对后门触发器的大小进行限制，因为这里同样假设大部分触发器的尺寸很小。深度检查使用\ :math:`\|\|_1`\ 对生成的后门触发器大小进行限制，即：
 
 .. math:: \mathcal{L}_{\text{pert}} = \mathbb{E}_{ x}\left[\max(0, ||\mathcal{G}( z,y_t)||_1 - \gamma)\right],
 
-其中，\ :math:`\gamma`\ 控制重建后门触发器\ :math:`L_1`\ 范数约束强度，当\ :math:`\|\mathcal{G\|( z,y_t)}_1`\ 大于\ :math:`\gamma`\ 时，\ :math:`\mathcal{L}_{\text{pert}}=\mathcal{G}( z,y_t)||_1 - \gamma`\ ，否则\ :math:`\mathcal{L}_{\text{pert}}=0`\ 。
+其中，\ :math:`\gamma`\ 控制重建后门触发器\ :math:`L_1`\ 范数约束强度，当\ :math:`\|\mathcal{G\|( z,y_t)}_1`\ 大于\ :math:`\gamma`\ 时，\ :math:`\mathcal{L}_{\text{pert}}=||\mathcal{G}( z,y_t)||_1 - \gamma`\ ，否则\ :math:`\mathcal{L}_{\text{pert}}=0`\ 。
 
 综合以上三个损失，我们得到最终用于训练生成器\ :math:`\mathcal{G}`\ 的损失函数：
 
@@ -108,7 +109,7 @@ deviation，DMAD）来作为检测标准。MAD方法适用于围绕中位数的�
 .. math:: \begin{split}S^{l} = \{S_i | S_i \in S \And S_i\leq \tilde{S}\} \\S^{r} = \{S_i | S_i \in S \And S_i\geq \tilde{S}\}.\end{split}
 
 由于假设所测试的后门触发器普遍较小，因此深度检查方法只使用\ :math:`S^{l}`\ 来进行检测，根据式
-:ref:`MAD_one` 、 :ref:`MAD_two` 、 :ref:`MAD_three`
+:eq:`MAD_one` 、 :eq:`MAD_two` 、 :eq:`MAD_three`
 对\ :math:`S^{l}`\ 进行计算，并与\ :math:`1.96\sigma`\ 进行比较来得到离群点，确定为后门类别。
 
 通过以上三个步骤，深度检查方法实现了比神经净化更有效的后门触发器重建，且不需要借助额外数据。相较于神经净化方法，深度检查方法在更加苛刻的环境下实现了后门攻击的有效检测，更易于在实际应用场景中的使用。此外，通过重建后门触发器，深度检查方法同样可以在替代数据集以及叠加了重建后门触发器后的“修补”数据集上，对模型进行微调，使得模型具有抵御后门攻击的能力。值得注意的是，尽管深度检查方法声称是一种黑盒防御方法。但事实上，在模型逆向以及生成器的训练过程中，都需要通过模型反传梯度来进行优化，这在严格的黑盒条件下是不允许的。因此，这里并没有把深度检查方法归类为黑盒防御方法。
@@ -118,7 +119,7 @@ deviation，DMAD）来作为检测标准。MAD方法适用于围绕中位数的�
 backdoor inspection based on non-convex optimization and
 regularization，TABOR）方法，通过多个训练正则项来改善原始神经净化的优化目标。下面将对增加的正则化项进行详细介绍。
 
-在利用优化器（式 :ref:`nc_optimize`
+在利用优化器（式 :eq:`nc_optimize`
 ）重建后门触发器的过程中，会出现\ **稀疏触发器**\ （scattered
 trigger）和\ **过大触发器**\ （overly large
 trigger）的问题。稀疏触发器在整个图像区域中比较分散，无法聚拢到某一个特定的位置；而过大触发器在图像区域中所占的面积过大，远大于正常后门触发器的尺寸。因此，需要对重建后门触发器的面积大小以及聚拢程度进行限制。
@@ -129,7 +130,7 @@ trigger）的问题。稀疏触发器在整个图像区域中比较分散，无�
    :label: TABOR_reg_1
 
 其中，\ :math:`vec(\cdot)`\ 表示将矩阵转换为向量；\ :math:`R_{\text{elastic}}(\cdot)`\ 表示向量的\ :math:`L_1`\ 和\ :math:`L_2`\ 范数之和；\ :math:`\lambda_1`\ 和\ :math:`\lambda_2`\ 为超参数。这里的\ :math:`m`\ 表示后门触发器的掩码，\ :math:`\Delta`\ 表示重建的后门触发器。公式
-:ref:`TABOR_reg_1`
+:eq:`TABOR_reg_1`
 在对掩码\ :math:`m`\ 中非零项进行惩罚的同时，也对掩码0值区域的重建后门触发器的非零项进行惩罚，从而解决过大的问题，缩小后门子空间中后门样本的数量。
 
 针对稀疏触发器，TABOR定义如下正则化项来惩罚稀疏性：
@@ -152,14 +153,14 @@ trigger）的情况，重建触发器与真实触发器具有一定程度的叠�
 
 其中，\ :math:`y_t`\ 为攻击目标类别；\ :math:`\lambda_6`\ 为超参数。基于此，TABOR可在较为重要的区域里重建后门触发器。
 
-将以上四个正则化项加入到NC方法的目标函数（公式 :ref:`nc_optimize`
+将以上四个正则化项加入到NC方法的目标函数（公式 :eq:`nc_optimize`
 ）后即可生成更加准确的后门触发器。当然，最后还需要通过异常检测来找到后门类别和后门触发器。相较于神经净化的\ :math:`L_1`\ 距离筛选法，TABOR给出了更加精确、具体的度量定义：
 
-.. math:: \begin{aligned}A( m_t, \Delta_t) = \log(\frac{\|vec(f^{(t)\|)}_1}{d^2}) + \log (\frac{s(f^{(t)})}{d\cdot(d-1)}) \\- \log(acc_{\text{att}}) - \log(acc_{\text{crop}}) - \log(acc_{\text{exp}})，\end{aligned}
+.. math:: \begin{aligned}A( m_t, \Delta_t) = \log(\frac{\|vec(f^{(t)})\|_1}{d^2}) + \log (\frac{s(f^{(t)})}{d\cdot(d-1)}) \\- \log(acc_{\text{att}}) - \log(acc_{\text{crop}}) - \log(acc_{\text{exp}})，\end{aligned}
 
-其中，\ :math:`m_t`\ 和\ :math:`\Delta_t`\ 可构成类别\ :math:`y_t`\ 的后门触发器，即\ :math:`m_t \odot \Delta_t`\ ；\ :math:`acc_{\text{att}}`\ 表示将重建后门触发器注入到干净样本中后导致的错误分类率；\ :math:`acc_{\text{crop}}`\ 为在从污染图像中裁剪出相应的后门触发器后得到的预测准确率；\ :math:`acc_{\text{exp}}`\ 表示仅将污染图像中的基于可解释性得到的重要特征输入模型后得到的预测准确率。对于前两项，定义\ :math:`f_{i,j}^{(t)}=\mathbb{1}( m_t \odot \Delta_t)_{i,j}>0`\ ，通过\ :math:`\|vec(f^{(t)\|)}_1`\ 以及\ :math:`s(f^{(t)})`\ 来实现稀疏度量和平滑性度量；\ :math:`d`\ 表示图像的维度，用来归一化。
-在得到每个类别重建触发器的度量指标后，可利用MAD（公式 :ref:`MAD_one`
-、 :ref:`MAD_two` 和 :ref:`MAD_three` ）进行异常检测。
+其中，\ :math:`m_t`\ 和\ :math:`\Delta_t`\ 可构成类别\ :math:`y_t`\ 的后门触发器，即\ :math:`m_t \odot \Delta_t`\ ；\ :math:`acc_{\text{att}}`\ 表示将重建后门触发器注入到干净样本中后导致的错误分类率；\ :math:`acc_{\text{crop}}`\ 为在从污染图像中裁剪出相应的后门触发器后得到的预测准确率；\ :math:`acc_{\text{exp}}`\ 表示仅将污染图像中的基于可解释性得到的重要特征输入模型后得到的预测准确率。对于前两项，定义\ :math:`f_{i,j}^{(t)}=\mathbb{1}( m_t \odot \Delta_t)_{i,j}>0`\ ，通过\ :math:`\|vec(f^{(t)}\|_1`\ 以及\ :math:`s(f^{(t)})`\ 来实现稀疏度量和平滑性度量；\ :math:`d`\ 表示图像的维度，用来归一化。
+在得到每个类别重建触发器的度量指标后，可利用MAD（公式 :eq:`MAD_one`
+、 :eq:`MAD_two` 和 :eq:`MAD_three` ）进行异常检测。
 
 针对过多的超参数（\ :math:`\{\lambda_1, \lambda_2, \lambda_3, \lambda_4, \lambda_5, \lambda_6\}`\ ），TABOR设计了一种\ **超参增强**\ 机制，缓解超参对触发器重建性能的影响。在优化的初始阶段，将超参数初始化为较小的值，也就是说在此阶段中正则化项对于目标函数的贡献接近0；之后会将当前重建的后门触发器注入到干净样本中以获得污染样本，并将污染样本输入到模型中获取错误分类率，\ *只有当错误分类率达到一个确定的阈值时*\ ，才会将超参数乘上固定的扩大因子\ :math:`\gamma`\ ；否则，将会除以\ :math:`\gamma`\ 。以上操作会重复进行，直到正则化项的值趋于稳定，即\ :math:`|R_t^{k-1} - R_t^{k}| < \epsilon`\ ，其中\ :math:`R_t^k`\ 表示在第\ :math:`k`\ 次迭代中第\ :math:`t`\ 个正则项的值；\ :math:`\epsilon`\ 为一个较小的常数。
 
@@ -172,7 +173,7 @@ universal adversarial noise）和单一图像的有目标对抗噪声（targeted
 adversarial
 noise），并比较两种噪声之间的差异，从而识别后门类别。DF-TND不使用原始图像，而利用随机图像作为检测数据，它通过最大化中间层神经元激活来获取扰动图像，然后根据随机图像与扰动图像在输出概率上的差异来检测后门类别。下面将分别对DL-TND和DF-TND进行详细介绍。
 
-类似于公式 :ref:`nc_optimize` ，DL-TND定义添加了后门触发器的图片为：
+类似于公式 :eq:`nc_optimize` ，DL-TND定义添加了后门触发器的图片为：
 
 .. math:: \hat{ x}( m, \Delta) = (1- m) \cdot  x +  m \cdot \delta,
 
@@ -190,7 +191,7 @@ noise），并比较两种噪声之间的差异，从而识别后门类别。DF-
 
 其中，\ :math:`y_i`\ 为\ :math:`x_i`\ 的真实类别，\ :math:`f_t(\cdot)`\ 表示类别\ :math:`t`\ 的预测值，\ :math:`\tau \geq 0`\ 为超参，用来界定攻击的最低置信程度。
 
-公式 :ref:`cw_format` 参考了CW攻击 :cite:`carlini2017cw`
+公式 :eq:`cw_format` 参考了CW攻击 :cite:`carlini2017cw`
 的非目标攻击形式，使得\ :math:`D_{K-}`\ 发生非目标错误分类而不影响\ :math:`D_k`\ 的正确分类。
 此时，DL-TND会对每个图像\ :math:`x_i \in D_{k-}`\ 分别计算\ **目标对抗噪声**\ ，使得\ :math:`\hat{ x}_i( m, \Delta)`\ 会被模型错分类为\ :math:`k`\ 。DL-TND认为目标攻击与非目标通用攻击一样，偏向使用\ *后门捷径*\ （backdoor
 shortcut）来生成对抗噪声。目标攻击定义如下：
@@ -230,62 +231,72 @@ shortcut）来生成对抗噪声。目标攻击定义如下：
 signature,
 SS）方法。该方法观察到后门样本和干净样本在深度特征的协方差矩阵上存在差异，故可以通过检测这种差异来过滤后门样本。
 
-算法 :ref:``algorithm:SS``
+算法 :numref:`algorithm_9_1`
 中给出了SS方法的检测流程。具体来说，给定训练样本\ :math:`D`\ ，首先训练得到神经网络\ :math:`f`\ 。然后，按照类别遍历，并提取每个样本的特征向量并计算每类样本的特征均值。接下来，对深度特征的\ *协方差矩阵*\ 进行奇异值分解，并使用该分解计算每个样本的异常值分数。根据异常检测规则移除数据集中异常值高于\ :math:`1.5 \epsilon`\ 的样本（后门样本），最终返回一个干净的训练数据集\ :math:`D_{\text{clean}}`\ 。
 
-.. raw:: latex
+.. _algorithm_9_1:
 
-   \begin{algorithm}[!tp]
-   \caption{频谱指纹（SS）检测算法}
-   \label{algorithm:SS}
-   \begin{algorithmic}[1]
-   \mathbb{R}EQUIRE 不可信训练数据集$D$，随机初始化模型$f$以及模型特征表征$\mathcal{R}$，投毒样本数量上界$\epsilon$，$D_{y}$表示标签为$y$的训练样本子集
-   \STATE 在数据集$D$上训练模型$f$
-   \STATE 初始化集合：$S \leftarrow \{\}$
-   \FOR {每类标签$y$} 
-   \STATE 构建类别样本子集：$D_{y}=\{ x_{1}, \ldots,  x_{n}\}$
-   \STATE 计算样本特征均值：$\widehat{\mathcal{R}}=\frac{1}{n} \sum_{i=1}^{n} \mathcal{R}( x_{i})$
-   \STATE 计算特征差异：$M=\left[\mathcal{R}( x_{i})-\widehat{\mathcal{R}}\right]_{i=1}^{n}$，其中$M$是$n \times d$矩阵
-   \STATE$M$做奇异值分解得到向量$v$
-   \STATE 异常分数计算：$\tau_{i}=\left(\left(\mathcal{R}\left( x_{i}\right)-\widehat{\mathcal{R}}\right) \cdot  v\right)^{2}$
-   \STATE 异常样本移除：移除$D_{y}$中大于$1.5 \epsilon$的样本 
-   \STATE 更新数据集：$S \leftarrow S \cup D_{y}$
-   \mathbb{E}NDFOR
-   \mathbb{E}NSURE 新数据集$D_\text{clean} \leftarrow S$
-   \end{algorithmic}
-   \end{algorithm}
+.. figure:: extra_img/algorithm_9_1.png
+   :width: 600px
 
-.. raw:: latex
+   频谱指纹（SS）检测算法
 
-   \begin{algorithm}[!tp]
-   \caption{激活聚类（AC）检测算法}
-   \label{algorithm:AC}
-   \begin{algorithmic}[1]
-   \mathbb{R}EQUIRE 不可信训练数据集$D$以及对应类别标签$\{1, \cdots\, n\}$
-   \STATE 在数据集$D$上训练模型$f$
-   \STATE 初始化激活集合$A \leftarrow \{\}$
-   \FOR {所有样本$x_{i} \in D$} 
-   \STATE 抽取最后一个隐藏层的激活输出：$A_{ x_{i}} = f ( x_{i})$
-   \STATE 更新激活集合：$A \leftarrow A \cup A_{ x_{i}}$
-   \mathbb{E}NDFOR  
-   \FOR {遍历激活值$A[i], i: 0, \cdots, n$}
-   \STATE 特征激活降维：$\text{reduced} = \text{reduceDimensions} (A[i])$
-   \STATE 生成聚类簇：$\text{clusters} = \text{clusteringMethod (reduced)}$
-   \STATE 后门簇分析：$\text{analyzeForPoison(clusters)}$
-   \mathbb{E}NDFOR
-   \mathbb{E}NSURE 干净数据集$D_{\text{clean}}$
 
-   \end{algorithmic} 
-   \end{algorithm}
+
+.. _algorithm_9_2:
+
+.. figure:: extra_img/algorithm_9_2.png
+   :width: 600px
+
+   激活聚类（AC）检测算法
+
+
 
 **激活聚类。** Chen等人 :cite:`chen2018detecting`
 提出了一种基于\ **激活聚类**\ （activation
 clustering，AC）的方法来过滤训练数据中的潜在后门样本。该方法的主要思想是：\ *后门特征和干净特征之间存在差异，且这种差异在深度特征空间中会更加显著*\ 。因此，可以基于聚类方法来自动分离后门特征，进而帮助检测后门样本。
 
-算法 :ref:``algorithm:SS``
+算法 :numref:`algorithm_9_1`
 中给出了AC方法的检测流程。该方法首先在后门训练数据集\ :math:`D`\ 上训练模型\ :math:`f`\ ，然后对所有训练样本\ :math:`x_{i} \in D`\ 提取其特征激活（默认选取模型最后一个隐藏层的输出），得到一个包含所有特征激活的集合\ :math:`A`\ 。然后，对得到的特征激活进行降维，并利用聚类方法对训练数据集进行聚类分析。实验表明，通过分析最后一层隐藏层的激活分布就能够有效检测后门数据。
 
 值得注意的是，AC方法假定训练数据中一定存在后门样本，所以在激活聚类时默认将整个数据集划分为两个数据簇。作者提出了三个后门数据簇的判别依据：（1）\ **重新训练分类**\ ；（2）\ **聚类簇的相对大小**\ ；（3）\ **轮廓的分数**\ 。实验表明，比较聚类簇数据规模的相对大小可以作为一个简单有效的评判依据。
+
+**认知蒸馏。**
+后门样本会误导模型去识别任务无关的后门触发器样式，这使得模型的认识逻辑发生错误，模型在后门样本上的注意力区域发生偏移。但事实并非如此，我们发现模型在后门样本上依然会关注一部分有意义的区域。这就需要一种技术可以精准地剖离模型的核心认知逻辑，去除不重要的甚至是噪声的注意力，从而可以暴露模型真正关注的地方。基于此种想法，Huang等人
+:cite:`huang2023distilling` 提出 **认知蒸馏** （cognitive
+distillation，CD）的概念，给定一个输入样本（训练样本或测试样本皆可），此方法提取模型得到同样输出所需要的最少输入信息。决定模型输出的最小输入模式又称为
+**认知模式** （cognitive
+pattern），它揭示了模型推理结果背后所隐藏的决定性因素。
+
+具体来说，认知蒸馏方法通过解决一个最小化问题来从一个输入样本\ :math:`x`\ 中蒸馏出其认知模式。优化问题具体定义如下：
+
+.. math:: \mathrm{arg\,min}_{m}||f_{\theta}(x) - f_{\theta}(x_{cp})||_1 + \alpha ||m||_1 + \beta \cdot TV(m)
+   :label: eq_cd
+
+.. math:: x_{cp}=x\odot{m} + (1-m)\odot\delta,
+   :label: eq_cp
+
+其中，\ :math:`m`\ 是输入掩码，\ :math:`f_{\theta}`\ 是模型的逻辑或者概率输出，\ :math:`x_{cp}`\ 是认知模式，\ :math:`\delta \in [0,1]^c`\ 是一个\ :math:`c`-维的随机向量，\ :math:`\odot`\ 是元素对应乘积操作，\ :math:`TV(\cdot)`\ 是总变差（TV）损失，控制优化所得掩码的平滑程度（我们希望得到局部平滑的关键区域），\ :math:`\beta`\ 为平衡TV损失的超参数。
+
+.. _fig_cd:
+
+.. figure:: images/9.1_cd.png
+   :width: 600px
+
+   在干净或者后门图片上通过认知蒸馏方法提取出来的认知模式
+
+
+
+图 :numref:`fig_cd`
+展示了认知蒸馏算法在干净图片以及被11种后门攻击算法攻击过的图片上抽取到的掩码和模式。可以看到，模型在被添加了后门触发器的图片上的认知机理大都由后门触发器决定，触发器对应的位置对模型的输入起到了决定性的作用。此外还发现，有些全图的触发器，比如Blend、CL、FC、DFST等攻击所使用的触发器，只是部分在起作用，而并不需要全图大小的触发器。基于此发现，Huang等人对已有攻击的触发器进行了进一步简化，发现简化后的触发器跟原触发器攻击效果相似，有的甚至还变更强了。
+
+基于式 :eq:`eq_cd`
+优化得到的掩码\ :math:`m`\ ，Huang等人构建了一个后门样本检测器，将检测掩码过小的样本检测为后门样本。检测原理是基于图
+:numref:`fig_cd`
+中的发现：后门样本的认知模式往往更简单，即模型通过过于简单的模式对样本进行了结果预测。在3个数据集、6个模型以及12种后门攻击上的检测结果表明，认知蒸馏方法可以将训练集中后门样本的平均检测AUC从此前最优的84.62%提升到96.45%，将测试集中后门样本的平均检测AUC从此前最优的82.51%提升到了94.90%。
+
+后门数据只是问题数据的一种，其他的问题数据包括投毒样本、损坏样本、对抗样本等等，都会误导模型产生错误的推理逻辑。如果能够准确且唯一地确定模型的主要推理依据，那么就可以判断模型的决策是否存在问题。如果能进一步对有问题的推理逻辑进行共性建模，那么就可以构建服务于模型推理阶段的问题数据过滤和纠正器。
+未来大模型会被广泛使用，它们的训练代价很高，难以通过重训练或者微调的方式来保证全面的鲁棒性，所以迫切地需要检测防御方法来保障其安全稳定的运行。比如OpenAI、谷歌等一些公司在发布生成式大模型（如ChatGPT）时都会启动一系列检测模型，以此来防止模型因受到攻击或者引诱而生成有害的内容。
 
 .. _sec_backdoor_removal:
 
@@ -311,16 +322,15 @@ task）。对于图像分类任务来说，在毒化数据集上的模型训练�
    :label: fun_anti
 
 其中，\ :math:`\mathcal{L}_{\text{CE}}(\cdot)`\ 表示交叉熵损失函数。然而，由于在训练过程中我们无法得到毒化部分数据\ :math:`D_b`\ ，所以无法直接求解公式
-:ref:``fun:anti``
+:eq:`fun_anti`
 ，也就无法阻挡模型对后门数据的学习。为此，ABL将整个训练过程划分为\ **后门隔离**\ （backdoor
 isolation）和\ **后门反学习**\ （backdoor unlearning）两个阶段，如式
-:ref:``fun: ABL`` 所示：
+:eq:`fun_ABL` 所示：
 
 .. math:: \mathcal{L}_{\text{ABL}}^t=\begin{cases}\mathcal{L}_{\text{LGA}}=\mathbb{E}_{( x,y)\sim D}[ sign(\mathcal{L}_{\text{CE}}(f( x),y)-\gamma) \cdot \mathcal{L}_{\text{CE}}(f( x),y)]  0 \leq t \leq T_{te} \\\mathcal{L}_{\text{GGA}}=\mathbb{E}_{( x,y)\sim \widehat{D_c}}[\mathcal{L}_{\text{CE}}(f( x),y)]-\mathbb{E}_{( x,y)\sim \widehat{D_b}}[\mathcal{L}_{\text{CE}}(f( x),y)]  T_{te} \leq t \leq T\end{cases}
-   :label: fun_ ABL
+   :label: fun_ABL
 
-其中，\ :math:`t\in [0,T-1]`\ 为当前的迭代次数，$
-sign(:raw-latex:`\cdot`)\ :math:`表示符号函数，`\ :raw-latex:`\mathcal{L}`\ *{:raw-latex:`\text{LGA}`}\ :math:`表示第一阶段损失函数，`\ :raw-latex:`\mathcal{L}`*\ {:raw-latex:`\text{GGA}`}$为第二阶段损失函数。上式包含两个关键的技术：\ **局部梯度上升**\ （local
+其中，\ :math:`t\in [0,T-1]`\ 为当前的迭代次数，\ :math:`sign(\cdot)`\ 表示符号函数，\ :math:`\mathcal{L}_{\text{LGA}}`\ 表示第一阶段损失函数，\ :math:`\mathcal{L}_{\text{GGA}}`\ 为第二阶段损失函数。上式包含两个关键的技术：\ **局部梯度上升**\ （local
 gradient ascent，LGA）和\ **全局梯度上升**\ （global gradient
 ascent，GGA)。
 

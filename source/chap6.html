@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <title>6. 模型安全：对抗攻击 &#8212; 人工智能数据与模型安全 1.0.0 documentation</title>
+    <title>6. 模型安全：对抗攻击 &#8212; 人工智能：数据与模型安全 1.0.0 documentation</title>
 
-    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.pink-deep_orange.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fontawesome/all.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
@@ -25,6 +25,7 @@
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/d2l.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/logo_removebg.png?"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="7. 模型安全：对抗防御" href="chap7.html" />
@@ -75,12 +76,12 @@ Show Source
                   课程
               </a>
           
-              <a  class="mdl-navigation__link" href="https://github.com/OpenTAI">
+              <a  class="mdl-navigation__link" href="https://github.com/aisecuritybook">
                   <i class="fab fa-github"></i>
                   GitHub
               </a>
           
-              <a  class="mdl-navigation__link" href="https://haole1683.github.io/Book_html/html/chapter_preface/empty.html">
+              <a  class="mdl-navigation__link" href="https://aisecuritybook.github.io/">
                   <i class="fas fa-external-link-alt"></i>
                   English
               </a>
@@ -91,7 +92,7 @@ Show Source
           <!-- Title -->
       <span class="mdl-layout-title">
           <a class="title" href="../index.html">
-              <img class="logo" src="../_static/book_logo.png" alt="人工智能数据与模型安全"/>
+              <img class="logo" src="../_static/logo_with_text.png" alt="人工智能：数据与模型安全"/>
           </a>
       </span>
     
@@ -103,7 +104,6 @@ Show Source
             
             <nav class="mdl-navigation">
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../chapter_about_the_book/index.html">关于此书</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%89%8D%E8%A8%80.html">前言</a></li>
 </ul>
 <ul class="current">
@@ -136,7 +136,7 @@ Show Source
           <!-- Title -->
       <span class="mdl-layout-title">
           <a class="title" href="../index.html">
-              <img class="logo" src="../_static/book_logo.png" alt="人工智能数据与模型安全"/>
+              <img class="logo" src="../_static/logo_with_text.png" alt="人工智能：数据与模型安全"/>
           </a>
       </span>
     
@@ -148,7 +148,6 @@ Show Source
             
             <nav class="mdl-navigation">
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../chapter_about_the_book/index.html">关于此书</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%89%8D%E8%A8%80.html">前言</a></li>
 </ul>
 <ul class="current">
@@ -182,9 +181,9 @@ Show Source
 <p><strong>对抗攻击</strong>（adversarial
 attack）是一种针对机器学习模型的<em>测试阶段攻击</em>。对抗攻击一般通过向干净测试样本<span class="math notranslate nohighlight">\(x\in X\subset\mathbb{R}^{d}\)</span>中添加细微的、人眼无法察觉（对图像数据来说）的噪声来构造<strong>对抗样本</strong>（adversarial
 example）<span class="math notranslate nohighlight">\(x_{\text{adv}}\)</span>，进而误导模型<span class="math notranslate nohighlight">\(f\)</span>在对抗样本上做出错误的预测。为了提高对抗攻击的<em>隐蔽性</em>，即让添加的噪声不易被人眼察觉，其通常会通过<em>扰动约束</em><span class="math notranslate nohighlight">\(\| x_{\text{adv}}- x\|_p\leq \epsilon\)</span>将对抗样本<span class="math notranslate nohighlight">\(x_{\text{adv}}\)</span>限制在干净样本<span class="math notranslate nohighlight">\(x\)</span>的周围，其中<span class="math notranslate nohighlight">\(\|\cdot\|_p\)</span>表示向量的<span class="math notranslate nohighlight">\(L_p\)</span>范数，<span class="math notranslate nohighlight">\(\epsilon\)</span>表示<em>扰动上限</em>（也称扰动半径）。</p>
-<div class="figure align-default" id="id64">
+<div class="figure align-default" id="id62">
 <span id="fig-attack-pipeline"></span><a class="reference internal image-reference" href="../_images/6.1_adv_attack_pipeline.png"><img alt="../_images/6.1_adv_attack_pipeline.png" src="../_images/6.1_adv_attack_pipeline.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图6.1 </span><span class="caption-text">模型训练（上半部分）与对抗攻击（下半部分）的一般流程</span><a class="headerlink" href="#id64" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图6.1 </span><span class="caption-text">模型训练（上半部分）与对抗攻击（下半部分）的一般流程</span><a class="headerlink" href="#id62" title="Permalink to this image">¶</a></p>
 </div>
 <p>图 <a class="reference internal" href="#fig-attack-pipeline"><span class="std std-numref">图6.1</span></a>
 展示了对抗攻击的一般流程以及其与模型训练的三个重要区别。首先，对抗攻击的目标是一个已经训练完成的模型，所以是一种<em>测试阶段攻击</em>。这也就意味着对抗攻击扰动的样本是测试样本（示例图中的测试图片）。其次，对抗攻击<em>改变的是输入样本</em>而模型训练改变的是模型参数，所以对抗攻击需要计算（白盒攻击）或者估计（黑盒攻击）模型损失相对输入的梯度信息。第三，对抗攻击通过<em>梯度上升最大化模型的错误</em>而模型训练通过梯度下降最小化模型的错误。上述三个区别通常用来解释对抗样本与对抗攻击的初始设计思想。当然，对抗攻击的主要特色还是<strong>“微小不可察觉的噪声即可让模型发生预测错误”</strong>。</p>
@@ -206,11 +205,11 @@ Broyden–Fletcher–Goldfarb–Shanno）算法来近似求解：</p>
 <div class="math notranslate nohighlight" id="equation-equation-l-bfgs">
 <span class="eqno">(6.1.2)<a class="headerlink" href="#equation-equation-l-bfgs" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{aligned}\text{minimize}\ c{\| x_{\text{adv}}- x\|}_{2}+\mathcal{L}(f( x_{\text{adv}}), y_{t}) \\\text{s.t.} \;  x_{\text{adv}} \in {[0, 1]}^{d}.\end{aligned}\end{split}\]</div>
 <p>具体来说，Szegedy等人通过线性搜索得到<span class="math notranslate nohighlight">\(c &gt; 0\)</span>的最小值，在此情况下，优化问题
-:ref:<code class="docutils literal notranslate"><span class="pre">equation:L-BFGS</span></code>
+<a class="reference internal" href="#equation-equation-l-bfgs">(6.1.2)</a>
 的极小值也会满足<span class="math notranslate nohighlight">\(f( x_{\text{adv}}) = y_{t}\)</span>。
 通过L-BFGS攻击方法生成的对抗样本不但能攻击目标模型，还可以在不同模型和数据集之前迁移，即基于目标模型生成的对抗样本也可以攻击（虽然成功率会下降）使用不同超参数或者在不同子集上训练的模型。</p>
 <p>L-BFGS攻击方法生成对抗样本的效率比较低，需要对每个干净样本求解式
-:ref:<code class="docutils literal notranslate"><span class="pre">equation:L-BFGS</span></code>
+<a class="reference internal" href="#equation-equation-l-bfgs">(6.1.2)</a>
 ，所以难以用于模型的对抗鲁棒性评估。为了构建更高效的攻击方法，Goodfellow等人
 <span id="id5">(<a class="reference internal" href="../chapter_references/zreferences.html#id98" title="Goodfellow, I. J., Shlens, J., &amp; Szegedy, C. (2015). Explaining and harnessing adversarial examples. International Conference on Learning Representations.">Goodfellow <em>et al.</em>, 2015</a>)</span> 提出<strong>快速梯度符号方法</strong>（fast
 gradient sign method,
@@ -274,21 +273,21 @@ JSMA）。JSMA是一种贪心算法，每次迭代时挑选一个像素进行修
 <div class="math notranslate nohighlight" id="equation-equation-cw">
 <span class="eqno">(6.1.13)<a class="headerlink" href="#equation-equation-cw" title="Permalink to this equation">¶</a></span>\[g( x^\prime)=\max(\max\left\{Z{( x^\prime)}_i:i\neq y_{t}\right\}-Z{( x^\prime)}_{y_{t}},-\kappa)\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(Z(\cdot)\)</span>是目标模型的逻辑输出（logits），<span class="math notranslate nohighlight">\(Z_{\text{max}}=\max\left\{Z{( x^\prime)}_i:i\neq y_{t}\right\}\)</span>表示错误类别中逻辑值最大的那个，参数<span class="math notranslate nohighlight">\(\kappa\)</span>为置信度超参，定义了目标类别<span class="math notranslate nohighlight">\(y_t\)</span>与其他类别间的最小逻辑值差异。与L-BFGS攻击方法不同，CW攻击引入了一个新的变量<span class="math notranslate nohighlight">\(\omega\in\mathbb{R}^{d}\)</span>来避免边界约束，其中<span class="math notranslate nohighlight">\(\omega\)</span>满足<span class="math notranslate nohighlight">\(x_{\text{adv}}=\frac12(\tanh( \omega)+1)\)</span>。通过变量替换，将优化<span class="math notranslate nohighlight">\(x_{\text{adv}}\)</span>的边界约束最小化问题变成了优化<span class="math notranslate nohighlight">\(\omega\)</span>的无约束最小化问题。</p>
-<p>CW攻击有三个版本<span class="math notranslate nohighlight">\(L_{0}\)</span>范数CW攻击（<em>CW:math:`_0`</em>）、<span class="math notranslate nohighlight">\(L_{2}\)</span>范数CW攻击（<em>CW:math:`_2`</em>）和<span class="math notranslate nohighlight">\(L_{\infty}\)</span>范数CW攻击（<a href="#id14"><span class="problematic" id="id15">*</span></a>CW<span class="math notranslate nohighlight">\(_{\infty*\)</span>}）。CW<span class="math notranslate nohighlight">\(_2\)</span>攻击求解以下优化问题：</p>
+<p>CW攻击有三个版本<span class="math notranslate nohighlight">\(L_{0}\)</span>范数CW攻击（<em>CW</em><span class="math notranslate nohighlight">\(_\mathit{0}\)</span>）、<span class="math notranslate nohighlight">\(L_{2}\)</span>范数CW攻击（<em>CW</em><span class="math notranslate nohighlight">\(_\mathit{2}\)</span>）和<span class="math notranslate nohighlight">\(L_{\infty}\)</span>范数CW攻击（<em>CW</em><span class="math notranslate nohighlight">\(_\mathit{\infty}\)</span>）。CW<span class="math notranslate nohighlight">\(_2\)</span>攻击求解以下优化问题：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-8">
 <span class="eqno">(6.1.14)<a class="headerlink" href="#equation-source-chap6-8" title="Permalink to this equation">¶</a></span>\[\begin{aligned}\text{minimize}\ \|\frac12(\tanh( \omega)+1)- x\|_2+c\cdot g(\frac12(\tanh( \omega)+1)).\end{aligned}\]</div>
 <p>由于<span class="math notranslate nohighlight">\(L_{0}\)</span>范数是不可微的，因此CW<span class="math notranslate nohighlight">\(_0\)</span>攻击采取迭代的方式,在每次迭代中确定一些对模型输出影响不大的像素，然后固定这些像素值不变，直到修改剩下的像素也无法再生成对抗样本。而像素的重要性是由CW<span class="math notranslate nohighlight">\(_2\)</span>攻击决定的。由于<span class="math notranslate nohighlight">\(L_{\infty}\)</span>范数不是完全可微的，因此CW<span class="math notranslate nohighlight">\(_{\infty}\)</span>攻击也采用了迭代的攻击方式，将目标函数中的<span class="math notranslate nohighlight">\(L_{\infty}\)</span>项替换为新的惩罚项：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-9">
 <span class="eqno">(6.1.15)<a class="headerlink" href="#equation-source-chap6-9" title="Permalink to this equation">¶</a></span>\[\text{minimize}\ \sum\limits_i[( \eta_i-\tau)^+]+c\cdot g( x+ \eta).\]</div>
 <p>每次迭代后，如果对于所有的<span class="math notranslate nohighlight">\(i\)</span>都有<span class="math notranslate nohighlight">\(\eta_i&lt;\tau\)</span>，则将<span class="math notranslate nohighlight">\(\tau\)</span>减少到原来的0.9倍，否则迭代过程终止。CW攻击可以被认为是最强的<strong>单体白盒攻击</strong>方法（PGD只是一阶最强）。CW攻击算法攻破了许多曾被认为是有效的防御策略，然而其生成对抗样本的计算开销很大。值得注意的是，随着新攻击方法的出现，目前普遍认为AutoAttack
-<span id="id16">(<a class="reference internal" href="../chapter_references/zreferences.html#id79" title="Croce, F., &amp; Hein, M. (2020). Reliable evaluation of adversarial robustness with an ensemble of diverse parameter-free attacks. International Conference on Machine Learning (pp. 2206–2216).">Croce and Hein, 2020</a>)</span>
+<span id="id14">(<a class="reference internal" href="../chapter_references/zreferences.html#id79" title="Croce, F., &amp; Hein, M. (2020). Reliable evaluation of adversarial robustness with an ensemble of diverse parameter-free attacks. International Conference on Machine Learning (pp. 2206–2216).">Croce and Hein, 2020</a>)</span>
 是最强的<strong>集成白盒攻击</strong>方法，在模型鲁棒性评估方面能给出更可靠的结果。</p>
-<div class="figure align-default" id="id65">
+<div class="figure align-default" id="id63">
 <span id="advgan"></span><a class="reference internal image-reference" href="../_images/6.2_AdvGAN.png"><img alt="../_images/6.2_AdvGAN.png" src="../_images/6.2_AdvGAN.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图6.1.1 </span><span class="caption-text">AdvGAN方法示意图 <span id="id17">(<a class="reference internal" href="../chapter_references/zreferences.html#id78" title="Xiao, C., Li, B., Zhu, J. Y., He, W., Liu, M., &amp; Song, D. (2018). Generating adversarial examples with adversarial networks. International Joint Conference on Artificial Intelligence (pp. 3905–3911).">Xiao <em>et al.</em>, 2018</a>)</span></span><a class="headerlink" href="#id65" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图6.1.1 </span><span class="caption-text">AdvGAN方法示意图 <span id="id15">(<a class="reference internal" href="../chapter_references/zreferences.html#id78" title="Xiao, C., Li, B., Zhu, J. Y., He, W., Liu, M., &amp; Song, D. (2018). Generating adversarial examples with adversarial networks. International Joint Conference on Artificial Intelligence (pp. 3905–3911).">Xiao <em>et al.</em>, 2018</a>)</span></span><a class="headerlink" href="#id63" title="Permalink to this image">¶</a></p>
 </div>
 <p>上面介绍的白盒攻击方法在生成每个对抗样本时都需要对目标模型进行访问，重复一遍扰动优化过程。为了避免每次都要优化，我们可以利用生成对抗网络提前学习对抗噪声的分布，之后给定任意一个干净样本都可以直接输出其所需要的对抗噪声。基于此思想，Xiao等人
-<span id="id18">(<a class="reference internal" href="../chapter_references/zreferences.html#id78" title="Xiao, C., Li, B., Zhu, J. Y., He, W., Liu, M., &amp; Song, D. (2018). Generating adversarial examples with adversarial networks. International Joint Conference on Artificial Intelligence (pp. 3905–3911).">Xiao <em>et al.</em>, 2018</a>)</span>
+<span id="id16">(<a class="reference internal" href="../chapter_references/zreferences.html#id78" title="Xiao, C., Li, B., Zhu, J. Y., He, W., Liu, M., &amp; Song, D. (2018). Generating adversarial examples with adversarial networks. International Joint Conference on Artificial Intelligence (pp. 3905–3911).">Xiao <em>et al.</em>, 2018</a>)</span>
 提出了<em>AdvGAN攻击</em>方法，训练一个生成器来学习干净样本的分布，并生成高度逼近干净分布的对抗噪声。如图
 <a class="reference internal" href="#advgan"><span class="std std-ref">AdvGAN方法示意图 xiao2018advgan</span></a>
 所示，AdvGAN方法中的生成器<span class="math notranslate nohighlight">\(\mathcal{G}\)</span>将干净样本<span class="math notranslate nohighlight">\(x\)</span>作为输入，并生成一个噪声<span class="math notranslate nohighlight">\(\mathcal{G}( x)\)</span>。添加了噪声的样本<span class="math notranslate nohighlight">\(x+\mathcal{G}( x)\)</span>随后被输入到判别器<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>，判别器<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>会对其与原始干净样本<span class="math notranslate nohighlight">\(x\)</span>进行区分。其使用的GAN损失<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{GAN}}\)</span>定义如下：</p>
@@ -307,25 +306,25 @@ loss）：</p>
 <p>其中，<span class="math notranslate nohighlight">\(\alpha\)</span>和<span class="math notranslate nohighlight">\(\beta\)</span>控制了每个损失项的重要程度。Xiao等人通过求解最小最大（min-max）问题<span class="math notranslate nohighlight">\(\mathop{\mathrm{arg\,min}}_\mathcal{G}\max_\mathcal{D}\mathcal{L}\)</span>来训练<span class="math notranslate nohighlight">\(\mathcal{G}\)</span>和<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>。一旦<span class="math notranslate nohighlight">\(\mathcal{G}\)</span>在训练数据和目标模型上被训练，它可以对任何给定的输入样本产生扰动却不需要访问目标模型。除此之外，AdvGAN方法还可以被用于黑盒攻击，通过查询目标模型的输出来动态地训练蒸馏模型。在攻击对抗训练、集成对抗训练或PGD对抗训练的模型时，AdvGAN取得了比FGSM和CW方法更高的成功率。</p>
 <p>虽然目前已经提出了大量的攻击方法来评估模型的对抗鲁棒性，但由于超参数调整不当、梯度遮掩（gradient
 masking）等陷阱，导致模型的鲁棒性会被高估。针对这个问题，Croce等人
-<span id="id19">(<a class="reference internal" href="../chapter_references/zreferences.html#id79" title="Croce, F., &amp; Hein, M. (2020). Reliable evaluation of adversarial robustness with an ensemble of diverse parameter-free attacks. International Conference on Machine Learning (pp. 2206–2216).">Croce and Hein, 2020</a>)</span>
+<span id="id17">(<a class="reference internal" href="../chapter_references/zreferences.html#id79" title="Croce, F., &amp; Hein, M. (2020). Reliable evaluation of adversarial robustness with an ensemble of diverse parameter-free attacks. International Conference on Machine Learning (pp. 2206–2216).">Croce and Hein, 2020</a>)</span>
 提出了一种集成攻击方法—<strong>自动攻击</strong>（AutoAttack），“自动”是指算法可以自动调参，有效避免了手动调参过程。AutoAttack集成了四种攻击算法，其中包括两个PGD的改进方法，即APGD-CE和APGD-DLR，这两个攻击方法是新提出的<strong>自动PGD</strong>（Auto-PGD）攻击方法的两个变体（损失函数不同）。具体来说，Auto-PGD在PGD的基础上添加了动量项：</p>
 <div class="math notranslate nohighlight" id="equation-eq-auto-pgd">
 <span class="eqno">(6.1.20)<a class="headerlink" href="#equation-eq-auto-pgd" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{aligned}z^{t+1} = \text{Proj}_{ x, \epsilon}\{ x_{\text{adv}}^{t} + \eta^{\top}\cdot sign(\nabla_{ x}\mathcal{L}(f( x_{\text{adv}}^{\top}), y))\}\\x_{\text{adv}}^{t+1} = \text{Proj}_{ x, \epsilon}\{ x_{\text{adv}}^{t}+\alpha\cdot( z^{t+1}- x_{\text{adv}}^{t})+(1-\alpha)\cdot( x_{\text{adv}}^{t}- x_{\text{adv}}^{t-1})\},\end{aligned}\end{split}\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(\eta^{t}\)</span>是第<span class="math notranslate nohighlight">\(t\)</span>次迭代时的步长，<span class="math notranslate nohighlight">\(\alpha\in[0,1]\)</span>调节了上一次更新对当前更新的影响。Auto-PGD不需要选择步长并可以使用不同的损失函数，除迭代次数之外的其他参数都可以自动调整，可以克服PGD攻击由于固定步长和损失函数（交叉熵）而导致的评估不准确问题。此外，Croce等人将两个PGD攻击的变体与两个现有的互补攻击—<strong>白盒快速自适应边界攻击</strong>（fast
-adaptive boundary，FAB） <span id="id20">(<a class="reference internal" href="../chapter_references/zreferences.html#id80" title="Croce, F., &amp; Hein, M. (2020). Minimally distorted adversarial examples with a fast adaptive boundary attack. International Conference on Machine Learning (pp. 2196–2205).">Croce and Hein, 2020</a>)</span>
+adaptive boundary，FAB） <span id="id18">(<a class="reference internal" href="../chapter_references/zreferences.html#id80" title="Croce, F., &amp; Hein, M. (2020). Minimally distorted adversarial examples with a fast adaptive boundary attack. International Conference on Machine Learning (pp. 2196–2205).">Croce and Hein, 2020</a>)</span>
 和<strong>黑盒方形攻击</strong>（square attack）
-<span id="id21">(<a class="reference internal" href="../chapter_references/zreferences.html#id81" title="Andriushchenko, M., Croce, F., Flammarion, N., &amp; Hein, M. (2020). Square attack: a query-efficient black-box adversarial attack via random search. European Conference on Computer Vision (pp. 484–501).">Andriushchenko <em>et al.</em>, 2020</a>)</span>
+<span id="id19">(<a class="reference internal" href="../chapter_references/zreferences.html#id81" title="Andriushchenko, M., Croce, F., Flammarion, N., &amp; Hein, M. (2020). Square attack: a query-efficient black-box adversarial attack via random search. European Conference on Computer Vision (pp. 484–501).">Andriushchenko <em>et al.</em>, 2020</a>)</span>
 结合起来得到AutoAttack集成攻击。FAB攻击旨在寻找改变给定输入类别所需的最小噪声，且对梯度遮掩鲁棒。方形攻击是一种基于分数的黑盒攻击，它使用随机搜索（而不是梯度近似）进行攻击，因此不受梯度遮掩的影响。方形攻击在查询效率和成功率方面优于其他黑盒攻击，有时甚至与白盒攻击效果相当。这几种攻击方法的参数都不多，在不同的模型和数据集中具有很好的通用性，因此AutoAttack不需要特意调整任何参数。AutoAttack取得了比之前报告的更低的对抗鲁棒性评估结果，自2020年提出以来，已经被很多研究证明是迄今为止最强的攻击之一
-<span id="id22">(<a class="reference internal" href="../chapter_references/zreferences.html#id79" title="Croce, F., &amp; Hein, M. (2020). Reliable evaluation of adversarial robustness with an ensemble of diverse parameter-free attacks. International Conference on Machine Learning (pp. 2206–2216).">Croce and Hein, 2020</a>)</span> 。</p>
+<span id="id20">(<a class="reference internal" href="../chapter_references/zreferences.html#id79" title="Croce, F., &amp; Hein, M. (2020). Reliable evaluation of adversarial robustness with an ensemble of diverse parameter-free attacks. International Conference on Machine Learning (pp. 2206–2216).">Croce and Hein, 2020</a>)</span> 。</p>
 </div>
 <div class="section" id="sec-black-box-adv">
-<span id="id23"></span><h2><span class="section-number">6.2. </span>黑盒攻击<a class="headerlink" href="#sec-black-box-adv" title="Permalink to this heading">¶</a></h2>
+<span id="id21"></span><h2><span class="section-number">6.2. </span>黑盒攻击<a class="headerlink" href="#sec-black-box-adv" title="Permalink to this heading">¶</a></h2>
 <p>黑盒攻击假设攻击者无法获得目标模型的参数（以及超参）信息，因此无法计算对抗梯度，只能通过<em>近似梯度</em>来生成对抗样本。近似梯度可以通过零阶优化方法估计，也通过替代模型来近似。根据近似梯度的不同，黑盒攻击可以分为<strong>查询攻击</strong>（query-based
 attacks）和<strong>迁移攻击</strong>（transfer attacks）。</p>
-<div class="section" id="id24">
-<h3><span class="section-number">6.2.1. </span>查询攻击<a class="headerlink" href="#id24" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="id22">
+<h3><span class="section-number">6.2.1. </span>查询攻击<a class="headerlink" href="#id22" title="Permalink to this heading">¶</a></h3>
 <p>查询攻击通过查询目标模型获得模型输出，然后使用零阶优化方法进行梯度估计来生成对抗噪声。虽然估计的梯度会存在一定误差，但是准确地计算梯度通常不是成功的攻击所必需的。例如，FGSM攻击算法只需要梯度的符号就可以生成对抗样本。因此，即使估计的梯度不是非常的准确，但也足够使查询攻击取得很高的成功率。根据模型输出返回类型的不同，查询攻击又可以分为<strong>基于分数的攻击</strong>和<strong>基于决策的攻击</strong>。基于分数的攻击需要模型输出完整的预测概率向量，而基于决策的攻击只需要模型输出类别标签。</p>
-<p><strong>基于分数的攻击</strong>。Chen等人 <span id="id25">(<a class="reference internal" href="../chapter_references/zreferences.html#id82" title="Chen, P.-Y., Zhang, H., Sharma, Y., Yi, J., &amp; Hsieh, C.-J. (2017). Zoo: zeroth order optimization based black-box attacks to deep neural networks without training substitute models. ACM Workshop on Artificial Intelligence and Security (pp. 15–26).">Chen <em>et al.</em>, 2017</a>)</span>
+<p><strong>基于分数的攻击</strong>。Chen等人 <span id="id23">(<a class="reference internal" href="../chapter_references/zreferences.html#id82" title="Chen, P.-Y., Zhang, H., Sharma, Y., Yi, J., &amp; Hsieh, C.-J. (2017). Zoo: zeroth order optimization based black-box attacks to deep neural networks without training substitute models. ACM Workshop on Artificial Intelligence and Security (pp. 15–26).">Chen <em>et al.</em>, 2017</a>)</span>
 在2017年首先提出了基于<em>零阶优化</em>（zeroth order
 optimization，ZOO）的攻击，使用<em>有限差分</em>（finite
 difference）方法来近似目标模型的梯度。在CW攻击的基础上，Chen等人提出了一个新的基于模型预测类别概率的目标函数：</p>
@@ -338,7 +337,7 @@ difference）方法来近似目标模型的梯度。在CW攻击的基础上，Ch
 <div class="math notranslate nohighlight" id="equation-source-chap6-16">
 <span class="eqno">(6.2.3)<a class="headerlink" href="#equation-source-chap6-16" title="Permalink to this equation">¶</a></span>\[\hat{ h}_{i} := \frac{\partial^{2} g( x)}{\partial  x_{ii}^{2}} \approx \frac{g( x+h e_{i})-2g( x)+g( x-h e_{i})}{h^{2}}.\]</div>
 <p>上述方法的主要瓶颈是效率问题。如果估计所有坐标（<span class="math notranslate nohighlight">\(d\)</span>维）的梯度，总共需要计算<span class="math notranslate nohighlight">\(2d\)</span>次目标函数的值，而且有时可能需要经过数百次的迭代梯度下降才能让目标函数收敛。所以当干净样本维度很高时，这种方法可能会非常缓慢。为了解决这一问题，ZOO攻击算法使用了随机坐标下降方法，每次迭代时随机选择一个或一小批坐标进行梯度估计和更新，而且优先更新重要的像素可以进一步提高效率。为了加快计算时间和减少对目标模型的查询次数，ZOO还使用了攻击空间降维和分层攻击技术，将干净样本变换到更低的维度来生成对抗样本。虽然ZOO获得了与白盒CW攻击相当的性能，但由于坐标梯度估计方法不可避免地会对目标模型进行过多的查询，导致较低的查询效率。</p>
-<p>为了进一步降低ZOO的查询复杂度，Tu等人 <span id="id26">(<a class="reference internal" href="../chapter_references/zreferences.html#id83" title="Tu, C.-C., Ting, P., Chen, P.-Y., Liu, S., Zhang, H., Yi, J., … Cheng, S.-M. (2019). Autozoom: autoencoder-based zeroth order optimization method for attacking black-box neural networks. AAAI Conference on Artificial Intelligence (pp. 742–749).">Tu <em>et al.</em>, 2019</a>)</span>
+<p>为了进一步降低ZOO的查询复杂度，Tu等人 <span id="id24">(<a class="reference internal" href="../chapter_references/zreferences.html#id83" title="Tu, C.-C., Ting, P., Chen, P.-Y., Liu, S., Zhang, H., Yi, J., … Cheng, S.-M. (2019). Autozoom: autoencoder-based zeroth order optimization method for attacking black-box neural networks. AAAI Conference on Artificial Intelligence (pp. 742–749).">Tu <em>et al.</em>, 2019</a>)</span>
 提出了<em>基于自动编码器的零阶优化方法</em>（autoencoder-based zeroth order
 optimization
 method，AutoZOOM）。AutoZOOM构建了两个全新的模块：一个自适应的随机梯度估计策略，可以平衡查询次数和噪声大小，以及一个在其他未标记数据上离线训练好的自动编码器，或者是一个简单的双线性调整大小操作来加速攻击。为了提高查询效率，AutoZOOM放弃了坐标梯度估计，而是提出了<em>缩放随机全梯度估计</em>：</p>
@@ -348,9 +347,9 @@ method，AutoZOOM）。AutoZOOM构建了两个全新的模块：一个自适应�
 <div class="math notranslate nohighlight" id="equation-source-chap6-17">
 <span class="eqno">(6.2.5)<a class="headerlink" href="#equation-source-chap6-17" title="Permalink to this equation">¶</a></span>\[\overline{ g} = \frac{1}{q}\sum_{j=1}^{q} g_{j}.\]</div>
 <p>Tu等人还证明了平均随机估计梯度和真实梯度之间的<span class="math notranslate nohighlight">\(L_{2}\)</span>距离存在一个上界，当<span class="math notranslate nohighlight">\(b\approx q\)</span>时，上界最小。AutoZOOM通过自适应地调整<span class="math notranslate nohighlight">\(q\)</span>值来平衡查询次数和噪声大小。具体来说，首先将<span class="math notranslate nohighlight">\(q\)</span>设为1（尽可能少的模型查询），粗略地估计梯度以快速地完成初始攻击，然后设置<span class="math notranslate nohighlight">\(q&gt;1\)</span>，更精确地估计梯度来微调图像质量，减小噪声。为了进一步提高查询效率和加速收敛，AutoZOOM从更小的维度<span class="math notranslate nohighlight">\(d^\prime&lt;d\)</span>进行随机梯度估计。添加到干净样本上的对抗噪声实际上是在降维空间生成的，然后利用解码器<span class="math notranslate nohighlight">\(D:\mathbb{R}^{d\prime}\mapsto\mathbb{R}^{d}\)</span>从低维空间表示中重构出高维对抗噪声。AutoZOOM为解码器提供了两种选择：在不同于训练数据的未标记数据上离线训练的自动编码器或者双线性图像大小调整操作。与ZOO相比，AutoZOOM减少了平均查询的次数，同时保持了相当的攻击成功率。AutoZOOM还可以有效地微调图像质量，以保持与干净样本之间较高的视觉相似性。</p>
-<p>除了有限差分和随机梯度估计之外，Ilyas等人 <span id="id27">(<a class="reference internal" href="../chapter_references/zreferences.html#id84" title="Ilyas, A., Engstrom, L., Athalye, A., &amp; Lin, J. (2018). Black-box adversarial attacks with limited queries and information. International Conference on Machine Learning (pp. 2137–2146).">Ilyas <em>et al.</em>, 2018</a>)</span>
+<p>除了有限差分和随机梯度估计之外，Ilyas等人 <span id="id25">(<a class="reference internal" href="../chapter_references/zreferences.html#id84" title="Ilyas, A., Engstrom, L., Athalye, A., &amp; Lin, J. (2018). Black-box adversarial attacks with limited queries and information. International Conference on Machine Learning (pp. 2137–2146).">Ilyas <em>et al.</em>, 2018</a>)</span>
 还探索了使用<em>自然进化策略</em>（natural evolutionary strategies，NES）
-<span id="id28">(<a class="reference internal" href="../chapter_references/zreferences.html#id85" title="Wierstra, D., Schaul, T., Glasmachers, T., Sun, Y., Peters, J., &amp; Schmidhuber, J. (2014). Natural evolution strategies. Journal of Machine Learning Research, 15(1), 949–980.">Wierstra <em>et al.</em>, 2014</a>)</span>
+<span id="id26">(<a class="reference internal" href="../chapter_references/zreferences.html#id85" title="Wierstra, D., Schaul, T., Glasmachers, T., Sun, Y., Peters, J., &amp; Schmidhuber, J. (2014). Natural evolution strategies. Journal of Machine Learning Research, 15(1), 949–980.">Wierstra <em>et al.</em>, 2014</a>)</span>
 来估计梯度。Ilyas等人考虑了三种威胁模型，其分别反映了现实世界系统中访问受限和资源受限的情况。第一种威胁模型限制了攻击者<em>查询目标模型的次数</em>。为了能在查询限制内实现攻击，Ilyas等人基于NES算法来估计梯度，然后使用PGD算法和估计的梯度生成对抗样本。NES是一种基于搜索分布思想的无导数优化方法，最大化损失函数在搜索分布下的期望值而不是最大化损失函数。与有限差分方法相比，NES可以用更少的查询次数来估计梯度，具体过程如下:</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-18">
 <span class="eqno">(6.2.6)<a class="headerlink" href="#equation-source-chap6-18" title="Permalink to this equation">¶</a></span>\[\mathbb{E}_{\pi( \theta| x)}[\mathcal{L}(f( \theta), y)] = \int \mathcal{L}(f( \theta), y)\pi( \theta| x)d \theta\]</div>
@@ -360,13 +359,14 @@ method，AutoZOOM）。AutoZOOM构建了两个全新的模块：一个自适应�
 <div class="math notranslate nohighlight" id="equation-source-chap6-20">
 <span class="eqno">(6.2.8)<a class="headerlink" href="#equation-source-chap6-20" title="Permalink to this equation">¶</a></span>\[\nabla_{ x}\mathbb{E}_{\pi( \theta| x)}[\mathcal{L}(f( \theta), y)]\approx\frac{1}{\sigma n}\sum_{i=1}^{n} \delta_{i}\mathcal{L}(f( x+\sigma \delta_{i}), y).\]</div>
 <p>最后基于NES梯度估计值，使用有动量项的PGD来生成对抗样本。NES估计梯度的查询效率比有限差分方法快2-3个数量级。</p>
-<p>第二种威胁模型限制攻击者只能获得<em>前:math:`k`个类别的概率</em>或置信度分数。为了能在信息受限的情况下实现攻击，Ilyas等人还是基于NES梯度估计值，使用有动量项的PGD来生成对抗样本，只不过没有从干净样本开始，而是从属于目标类别的样本开始迭代优化。在每次迭代时，需要交替进行：（1）随着将目标类别的样本投影到干净样本周围的距离逐渐减小，需要将目标类别始终保持在前<span class="math notranslate nohighlight">\(k\)</span>个类别之中：</p>
+<p>第二种威胁模型限制攻击者只能获得<em>前</em><span class="math notranslate nohighlight">\(\mathit{k}\)</span><em>个类别的概率</em>或置信度分数。为了能在信息受限的情况下实现攻击，Ilyas等人还是基于NES梯度估计值，使用有动量项的PGD来生成对抗样本，只不过没有从干净样本开始，而是从属于目标类别的样本开始迭代优化。在每次迭代时，需要交替进行：（1）随着将目标类别的样本投影到干净样本周围的距离逐渐减小，需要将目标类别始终保持在前<span class="math notranslate nohighlight">\(k\)</span>个类别之中：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-21">
 <span class="eqno">(6.2.9)<a class="headerlink" href="#equation-source-chap6-21" title="Permalink to this equation">¶</a></span>\[\epsilon_n=\text{minimize}\  \epsilon^\prime \; \text{s.t.} \; \text{rank}(y_{t}|\text{Proj}_{ \epsilon^\prime}( x_{\text{adv}}^{t-1}))&lt;k;\]</div>
 <p>（2）随着PGD的每次迭代更新，提高预测为目标类别的概率：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-22">
 <span class="eqno">(6.2.10)<a class="headerlink" href="#equation-source-chap6-22" title="Permalink to this equation">¶</a></span>\[x_{\text{adv}}^t=\mathop{\mathrm{arg\,min}}_{ x^\prime}p(y_{t}|\text{Proj}_{ \epsilon_{t-1}}(x^\prime)).\]</div>
-<p>第三种威胁模型限制攻击者无法获得类别的概率或置信度分数，只能获得一个按预测概率排序的<em>:math:`k`个类别标签</em>的列表。为了能在仅获得类别标签的情况下实现攻击，Ilyas等人定义了对抗样本的<em>离散分数</em><span class="math notranslate nohighlight">\(R( x_{\text{adv}}^t)\)</span>，仅基于目标类别标签<span class="math notranslate nohighlight">\(y_{t}\)</span>的排名变化，就可以量化每次迭代时输入样本的对抗程度：</p>
+<p>第三种威胁模型限制攻击者无法获得类别的概率或置信度分数，只能获得一个按预测概率排序的
+<span class="math notranslate nohighlight">\(\mathit{k}\)</span><em>个类别标签</em>的列表。为了能在仅获得类别标签的情况下实现攻击，Ilyas等人定义了对抗样本的<em>离散分数</em><span class="math notranslate nohighlight">\(R( x_{\text{adv}}^t)\)</span>，仅基于目标类别标签<span class="math notranslate nohighlight">\(y_{t}\)</span>的排名变化，就可以量化每次迭代时输入样本的对抗程度：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-23">
 <span class="eqno">(6.2.11)<a class="headerlink" href="#equation-source-chap6-23" title="Permalink to this equation">¶</a></span>\[R( x_{\text{adv}}^t) = k-\text{rank}(y_{t}| x_{\text{adv}}^t).\]</div>
 <p>由于对抗样本对于随机噪声是鲁棒的，Ilyas等人使用离散分数替代类别概率来量化对抗程度：</p>
@@ -376,17 +376,17 @@ method，AutoZOOM）。AutoZOOM构建了两个全新的模块：一个自适应�
 <div class="math notranslate nohighlight" id="equation-source-chap6-25">
 <span class="eqno">(6.2.13)<a class="headerlink" href="#equation-source-chap6-25" title="Permalink to this equation">¶</a></span>\[\hat{S}( x_{\text{adv}}^t)=\frac{1}{N}\sum_{i=1}^{N}R( x_{\text{adv}}^t+\mu \delta_{i}).\]</div>
 <p>Ilyas等人用估计的<span class="math notranslate nohighlight">\(\hat{S}( x)\)</span>来代替<span class="math notranslate nohighlight">\(p(y_{t}| x)\)</span>，从而满足了第二种威胁模型，所以可以用梯度<span class="math notranslate nohighlight">\(\nabla_{ x}\hat{S}( x)\)</span>的估计值来生成对抗样本。</p>
-<div class="figure align-default" id="id66">
+<div class="figure align-default" id="id64">
 <span id="boundary-attack"></span><a class="reference internal image-reference" href="../_images/6.3_boudary_attack.png"><img alt="../_images/6.3_boudary_attack.png" src="../_images/6.3_boudary_attack.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图6.2.1 </span><span class="caption-text">边界攻击方法示意图 <span id="id29">(<a class="reference internal" href="../chapter_references/zreferences.html#id86" title="Brendel, W., Rauber, J., &amp; Bethge, M. (2018). Decision-based adversarial attacks: reliable attacks against black-box machine learning models. International Conference on Learning Representations.">Brendel <em>et al.</em>, 2018</a>)</span></span><a class="headerlink" href="#id66" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图6.2.1 </span><span class="caption-text">边界攻击方法示意图 <span id="id27">(<a class="reference internal" href="../chapter_references/zreferences.html#id86" title="Brendel, W., Rauber, J., &amp; Bethge, M. (2018). Decision-based adversarial attacks: reliable attacks against black-box machine learning models. International Conference on Learning Representations.">Brendel <em>et al.</em>, 2018</a>)</span></span><a class="headerlink" href="#id64" title="Permalink to this image">¶</a></p>
 </div>
 <p><strong>基于决策的攻击</strong>。基于决策的攻击算是上述第三种威胁模型在<span class="math notranslate nohighlight">\(k=1\)</span>时的特例，其中攻击者只能获得Top-1的类别标签。与基于分数的攻击相比，基于决策的攻击更加符合实际应用场景，因为在现实应用中攻击者很少能获得概率或置信度分数，同时目标模型也会使用梯度遮掩、内在随机性、对抗训练等防御策略进行鲁棒性增强。</p>
 <p>在与Ilyas等人同期的工作中，Brendel等人提出了<strong>边界攻击</strong>（boundary
-attack）方法 <span id="id30">(<a class="reference internal" href="../chapter_references/zreferences.html#id86" title="Brendel, W., Rauber, J., &amp; Bethge, M. (2018). Decision-based adversarial attacks: reliable attacks against black-box machine learning models. International Conference on Learning Representations.">Brendel <em>et al.</em>, 2018</a>)</span> 。如图
+attack）方法 <span id="id28">(<a class="reference internal" href="../chapter_references/zreferences.html#id86" title="Brendel, W., Rauber, J., &amp; Bethge, M. (2018). Decision-based adversarial attacks: reliable attacks against black-box machine learning models. International Conference on Learning Representations.">Brendel <em>et al.</em>, 2018</a>)</span> 。如图
 <a class="reference internal" href="#boundary-attack"><span class="std std-ref">边界攻击方法示意图 brendel2017boundary</span></a>
 所示，边界攻击方法使用已经具有对抗性的样本进行初始化：在非目标攻击中，初始样本的每个像素从均匀分布<span class="math notranslate nohighlight">\(\mathcal{U}(0,255)\)</span>中采样，并抛弃无对抗性的初始样本；在有目标攻击中，初始样本为被预测成目标类别的样本。基于初始样本，边界攻击沿着对抗区域和非对抗区域之间的决策边界游走，在每次迭代时都保持更新后的样本仍停留在对抗区域中，并且逐渐接近原始样本。</p>
 <p>具体来说，在第<span class="math notranslate nohighlight">\(t\)</span>次迭代时，Brendel等人从高斯分布中采样得到噪声<span class="math notranslate nohighlight">\(\eta_{t}\sim\mathcal{N}(0,I)\)</span>，然后重新缩放和裁剪样本，使其满足<span class="math notranslate nohighlight">\(x_{\text{adv}}^{t-1}+ \eta_{t}\in[0,255]^d\)</span>（保持有效像素值）和<span class="math notranslate nohighlight">\(\| \eta_{t}\|_2=\delta\cdot\| x- x_{\text{adv}}^{t-1}\|_2\)</span>（约束扰动幅度）。然后，Brendel等人将<span class="math notranslate nohighlight">\(\eta_{n}\)</span>投影到干净样本<span class="math notranslate nohighlight">\(x\)</span>周围的一个球面上得到正交噪声，使其满足<span class="math notranslate nohighlight">\(\| x-( x_{\text{adv}}^{t-1}+ \eta_{t})\|_2=\| x- x_{\text{adv}}^{t-1}\|_2\)</span>。最后再向干净样本的方向移动一下，使其满足<span class="math notranslate nohighlight">\(\| x- x_{\text{adv}}^{t-1}\|_2-\| x-( x_{\text{adv}}^{t-1}+ \eta_{t})\|_2= \epsilon\cdot\| x- x_{\text{adv}}^{t-1}\|_2\)</span>。在攻击过程中，Brendel等人根据边界的局部几何形状来动态地调整<span class="math notranslate nohighlight">\(\delta\)</span>和<span class="math notranslate nohighlight">\(\epsilon\)</span>。边界攻击方法的基本运行原理非常简单，基本上颠覆了以前所有对抗攻击的逻辑。尽管边界攻击方法与基于梯度的白盒攻击方法在最小化噪声的大小方面相当，但它也需要大量的查询来探索高维空间，并且缺乏收敛保证。</p>
-<p>此外，Cheng等人 <span id="id31">(<a class="reference internal" href="../chapter_references/zreferences.html#id87" title="Cheng, M., Le, T., Chen, P.-Y., Zhang, H., Yi, J., &amp; Hsieh, C.-J. (2019). Query-efficient hard-label black-box attack: an optimization-based approach. International Conference on Learning Representation.">Cheng <em>et al.</em>, 2019</a>)</span>
+<p>此外，Cheng等人 <span id="id29">(<a class="reference internal" href="../chapter_references/zreferences.html#id87" title="Cheng, M., Le, T., Chen, P.-Y., Zhang, H., Yi, J., &amp; Hsieh, C.-J. (2019). Query-efficient hard-label black-box attack: an optimization-based approach. International Conference on Learning Representation.">Cheng <em>et al.</em>, 2019</a>)</span>
 将基于决策的攻击重新表述为一个实值优化问题，并提出了<strong>基于优化的攻击</strong>（optimization-based
 attack，Opt-attack）方法。转换得到的实值优化问题通常是连续的，并且可以通过任何一个零阶优化方法求解，从而可以提高查询效率。非目标Opt-attack攻击的对抗目标函数为：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-26">
@@ -402,27 +402,27 @@ gradient-free，RGF）方法来估计梯度：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-28">
 <span class="eqno">(6.2.17)<a class="headerlink" href="#equation-source-chap6-28" title="Permalink to this equation">¶</a></span>\[\hat{ g}=\frac{g( \theta+\beta u)-g( \theta)}{\beta}\cdot u.\]</div>
 <p>然后以步长<span class="math notranslate nohighlight">\(\alpha\)</span>通过<span class="math notranslate nohighlight">\(\theta\leftarrow \theta-\alpha\hat{ g}\)</span>来更新搜索方向。最后通过优化问题
-:ref:<code class="docutils literal notranslate"><span class="pre">equation:opt-attack</span></code>
+<a class="reference internal" href="#equation-equation-opt-attack">(6.2.16)</a>
 的最优解<span class="math notranslate nohighlight">\(\theta^{*}\)</span>得到对抗样本<span class="math notranslate nohighlight">\(x_{\text{adv}}= x+g( \theta^{*})\frac{ \theta^{*}}{\| \theta^{*}\|}\)</span>。当目标函数<span class="math notranslate nohighlight">\(g( \theta)\)</span>是Lipschitz平滑时，Opt-attack方法在查询次数上有收敛的保证。此外，Opt-attack方法还可以攻击除深度神经网络以外的其他离散的、不连续的、不可微的机器学习模型，例如梯度增强决策树等。与边界攻击方法相比，Opt-attack方法将查询次数减少了3-4倍，实现了更小或类似的对抗噪声。</p>
 <p>查询攻击通常可以取得较高的攻击成功率，但是它们也需要大量的查询才能攻击成功。借助一些先验知识可以进一步优化和加速此类攻击，此外，查询攻击还可以以代价更低的迁移攻击作为初始化来降低查询次数。下面将介绍完全不需要查询目标模型就可以发起攻击的迁移对抗攻击。</p>
 </div>
-<div class="section" id="id32">
-<h3><span class="section-number">6.2.2. </span>迁移攻击<a class="headerlink" href="#id32" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="id30">
+<h3><span class="section-number">6.2.2. </span>迁移攻击<a class="headerlink" href="#id30" title="Permalink to this heading">¶</a></h3>
 <p>对抗样本的跨模型迁移性早在2013年Szegedy等人
-<span id="id33">(<a class="reference internal" href="../chapter_references/zreferences.html#id97" title="Szegedy, C., Zaremba, W., Sutskever, I., Bruna, J., Erhan, D., Goodfellow, I., &amp; Fergus, R. (2014). Intriguing properties of neural networks. International Conference on Learning Representations.">Szegedy <em>et al.</em>, 2014</a>)</span>
+<span id="id31">(<a class="reference internal" href="../chapter_references/zreferences.html#id97" title="Szegedy, C., Zaremba, W., Sutskever, I., Bruna, J., Erhan, D., Goodfellow, I., &amp; Fergus, R. (2014). Intriguing properties of neural networks. International Conference on Learning Representations.">Szegedy <em>et al.</em>, 2014</a>)</span>
 的工作中就已被发现。由于不同的模型在相同数据点周围学到了相似的决策边界，使得基于一个模型生成的对抗样本往往也可以欺骗在相同数据集上训练的其他模型，尤其是那些结构相同或类似的模型。</p>
 <p>迁移攻击便利用了对抗样本的迁移性来实现黑盒攻击。攻击者首先使用<strong>替代模型</strong>（surrogate
 model）来替代目标模型，然后基于白盒攻击方法在替代模型上生成对抗样本，生成的对抗样本由于迁移性可以直接用来攻击目标模型。攻击者可以自己训练替代模型，而且并不需要跟目标模型结构一致，但是要求替代模型的训练数据跟目标模型的训练数据来自与同一个分布。</p>
-<p>Papernot等人 <span id="id34">(<a class="reference internal" href="../chapter_references/zreferences.html#id89" title="Papernot, N., McDaniel, P., Goodfellow, I., Jha, S., Celik, Z. B., &amp; Swami, A. (2017). Practical black-box attacks against machine learning. ACM on Asia Conference on Computer and Communications Security (pp. 506–519).">Papernot <em>et al.</em>, 2017</a>)</span>
+<p>Papernot等人 <span id="id32">(<a class="reference internal" href="../chapter_references/zreferences.html#id89" title="Papernot, N., McDaniel, P., Goodfellow, I., Jha, S., Celik, Z. B., &amp; Swami, A. (2017). Practical black-box attacks against machine learning. ACM on Asia Conference on Computer and Communications Security (pp. 506–519).">Papernot <em>et al.</em>, 2017</a>)</span>
 以自适应查询的方式，使用合成数据来训练替代模型，然而这需要大量的查询并且要求目标模型输出全类别概率向量。这些要求在实际应用场景中很难满足，尤其是像ImageNet这样包含上千个类别的大数据集。目前，大部分迁移攻击方法主要使用预训练的模型作为替代模型。此外，直接使用白盒攻击方法在替代模型上生成的对抗样本的迁移性并不是很高，往往需要各种技术进行进一步增强。</p>
-<p>Liu等人 <span id="id35">(<a class="reference internal" href="../chapter_references/zreferences.html#id88" title="Liu, Y., Chen, X., Liu, C., &amp; Song, D. (2016). Delving into transferable adversarial examples and black-box attacks. arXiv preprint arXiv:1611.02770.">Liu <em>et al.</em>, 2016</a>)</span>
+<p>Liu等人 <span id="id33">(<a class="reference internal" href="../chapter_references/zreferences.html#id88" title="Liu, Y., Chen, X., Liu, C., &amp; Song, D. (2016). Delving into transferable adversarial examples and black-box attacks. arXiv preprint arXiv:1611.02770.">Liu <em>et al.</em>, 2016</a>)</span>
 将集成的概念应用于迁移攻击，提出了基于模型集成的新颖攻击方法。简单来说，如果一个对抗样本对于多个模型具有对抗性，那么它极有可能具有很好的迁移性。Liu等人提出的攻击方法便是利用了此思想，基于<em>多个替代模型</em>来生成迁移性更强的对抗样本。具体来说，给定<span class="math notranslate nohighlight">\(k\)</span>个替代模型，基于模型集成的有目标攻击求解以下优化问题：</p>
 <div class="math notranslate nohighlight" id="equation-ensemble">
 <span class="eqno">(6.2.18)<a class="headerlink" href="#equation-ensemble" title="Permalink to this equation">¶</a></span>\[\mathop{\mathrm{arg\,min}}_{ x_{\text{adv}}} -\log(\sum_{i=1}^{k}\alpha_{i}p_{i}(y_{t}| x_{\text{adv}}))+\lambda\| x_{\text{adv}}- x\|_2,\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(\alpha_{i}\)</span>是给每个模型的权重（<span class="math notranslate nohighlight">\(\alpha_{i}\geq0\)</span>且<span class="math notranslate nohighlight">\(\sum_{i=1}^{k}\alpha_{i}=1\)</span>），<span class="math notranslate nohighlight">\(p_{i}(y_{t}|\cdot)\)</span>是第<span class="math notranslate nohighlight">\(i\)</span>个替代模型预测类别<span class="math notranslate nohighlight">\(y_{t}\)</span>的概率。无目标攻击与式
-<span class="xref std std-ref">ensemble</span>
+<a class="reference internal" href="#equation-ensemble">(6.2.18)</a>
 类似，不过是最大化模型对真实类别的分类错误。值得注意的是，Liu等人所提出的攻击方法使用的是多个替代模型的<em>融合预测概率</em>。
-除此之外，Dong等人 <span id="id36">(<a class="reference internal" href="../chapter_references/zreferences.html#id73" title="Dong, Y., Liao, F., Pang, T., Su, H., Zhu, J., Hu, X., &amp; Li, J. (2018). Boosting adversarial attacks with momentum. IEEE Conference on Computer Vision and Pattern Recognition (pp. 9185–9193).">Dong <em>et al.</em>, 2018</a>)</span> 提出的MI-FGSM攻击算法（式
+除此之外，Dong等人 <span id="id34">(<a class="reference internal" href="../chapter_references/zreferences.html#id73" title="Dong, Y., Liao, F., Pang, T., Su, H., Zhu, J., Hu, X., &amp; Li, J. (2018). Boosting adversarial attacks with momentum. IEEE Conference on Computer Vision and Pattern Recognition (pp. 9185–9193).">Dong <em>et al.</em>, 2018</a>)</span> 提出的MI-FGSM攻击算法（式
 <a class="reference internal" href="#equation-eq-mifgsm">(6.1.8)</a>
 ）通过<em>融合损失函数</em>和<em>融合逻辑输出</em>高效集成多个替代模型：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-29">
@@ -431,9 +431,9 @@ model）来替代目标模型，然后基于白盒攻击方法在替代模型上
 <span class="eqno">(6.2.20)<a class="headerlink" href="#equation-eq-combine-logits" title="Permalink to this equation">¶</a></span>\[\sum_{i=1}^{k}\alpha_{i}Z_{i}( x_{\text{adv}}).\]</div>
 <p>上述两种融合方式产生了不同的攻击性能，实验结果表明融合逻辑输出（即式
 <a class="reference internal" href="#equation-eq-combine-logits">(6.2.20)</a> ）要优于融合预测概率和融合损失函数。</p>
-<p>Dong等人 <span id="id37">(<a class="reference internal" href="../chapter_references/zreferences.html#id73" title="Dong, Y., Liao, F., Pang, T., Su, H., Zhu, J., Hu, X., &amp; Li, J. (2018). Boosting adversarial attacks with momentum. IEEE Conference on Computer Vision and Pattern Recognition (pp. 9185–9193).">Dong <em>et al.</em>, 2018</a>)</span>
+<p>Dong等人 <span id="id35">(<a class="reference internal" href="../chapter_references/zreferences.html#id73" title="Dong, Y., Liao, F., Pang, T., Su, H., Zhu, J., Hu, X., &amp; Li, J. (2018). Boosting adversarial attacks with momentum. IEEE Conference on Computer Vision and Pattern Recognition (pp. 9185–9193).">Dong <em>et al.</em>, 2018</a>)</span>
 认为生成一个对抗样本类似于训练一个模型，其迁移性可类比于模型的泛化。基于模型集成的攻击方法和MI-FGSM也在某种程度上证明了这一观点，所以可以借鉴其他提升模型泛化能力的技术来提高迁移攻击的性能。受数据增强的启发，Xie等人
-<span id="id38">(<a class="reference internal" href="../chapter_references/zreferences.html#id90" title="Xie, C., Zhang, Z., Zhou, Y., Bai, S., Wang, J., Ren, Z., &amp; Yuille, A. L. (2019). Improving transferability of adversarial examples with input diversity. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 2730–2739).">Xie <em>et al.</em>, 2019</a>)</span>
+<span id="id36">(<a class="reference internal" href="../chapter_references/zreferences.html#id90" title="Xie, C., Zhang, Z., Zhou, Y., Bai, S., Wang, J., Ren, Z., &amp; Yuille, A. L. (2019). Improving transferability of adversarial examples with input diversity. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 2730–2739).">Xie <em>et al.</em>, 2019</a>)</span>
 通过创建更多样化的输入模式来提高对抗样本的迁移性，并与BIM结合提出了<em>多样化输入快速梯度符号方法</em>（diverse
 inputs iterative
 FGSM，<span class="math notranslate nohighlight">\({\text{DI}}^2\)</span>-FGSM）。<span class="math notranslate nohighlight">\({\text{DI}}^2\)</span>-FGSM的攻击过程类似于BIM攻击算法，但是在每次迭代时以概率<span class="math notranslate nohighlight">\(p\)</span>对输入进行图像变换<span class="math notranslate nohighlight">\(T(\cdot)\)</span>，从而缓解对替代模型的过度拟合：</p>
@@ -449,7 +449,7 @@ M-<span class="math notranslate nohighlight">\({\text{DI}}^2\)</span>-FGSM）。
 <div class="math notranslate nohighlight" id="equation-source-chap6-32">
 <span class="eqno">(6.2.23)<a class="headerlink" href="#equation-source-chap6-32" title="Permalink to this equation">¶</a></span>\[g_{t+1}=\mu\cdot g_{t}+\frac{\nabla_{ x}\mathcal{L}(f(T( x_{\text{adv}}^{\top};p)), y))}{\|\nabla_{ x}\mathcal{L}(f(T( x_{\text{adv}}^{\top};p)),y))\|_{1}}.\]</div>
 <p>尽管MI-FGSM和<span class="math notranslate nohighlight">\({\text{DI}}^2\)</span>-FGSM生成的对抗样本在普通训练的模型上具有较高的迁移性，但它们却很难有效地迁移到鲁棒训练的模型上。Dong等人
-<span id="id39">(<a class="reference internal" href="../chapter_references/zreferences.html#id91" title="Dong, Y., Pang, T., Su, H., &amp; Zhu, J. (2019). Evading defenses to transferable adversarial examples by translation-invariant attacks. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 4312–4321).">Dong <em>et al.</em>, 2019</a>)</span>
+<span id="id37">(<a class="reference internal" href="../chapter_references/zreferences.html#id91" title="Dong, Y., Pang, T., Su, H., &amp; Zhu, J. (2019). Evading defenses to transferable adversarial examples by translation-invariant attacks. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 4312–4321).">Dong <em>et al.</em>, 2019</a>)</span>
 发现鲁棒模型用来识别物体类别的判别区域不同于普通训练的模型，MI-FGSM和<span class="math notranslate nohighlight">\({\text{DI}}^2\)</span>-FGSM生成的对抗样本与替代模型在给定干净样本时的判别区域相关，从而很难迁移到其他具有不同判别区域的目标模型。为了使生成的对抗样本对替代模型的判别区域不太敏感，Dong等人提出了一种<strong>平移不变</strong>（translation
 invariant）技术，可以与已有攻击方法结合，大幅提升迁移性。基于平移不变技术的攻击方法使用原始干净图像和平移后的干净图像所组成的图像集来生成对抗样本：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-33">
@@ -462,7 +462,7 @@ invariant）技术，可以与已有攻击方法结合，大幅提升迁移性�
 <div class="math notranslate nohighlight" id="equation-source-chap6-35">
 <span class="eqno">(6.2.26)<a class="headerlink" href="#equation-source-chap6-35" title="Permalink to this equation">¶</a></span>\[x_{\text{adv}}^{t+1}=\text{Clip}_{ x, \epsilon}\{ x_{\text{adv}}^{\top}+\alpha\cdot sign( W*\nabla_{ x}L(f( x_{\text{adv}}^{\top}),y))\},\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(W\)</span>是大小为<span class="math notranslate nohighlight">\((2k+1)\times(2k+1)\)</span>的核矩阵，<span class="math notranslate nohighlight">\(W_{i,j}=w_{−i−j}\)</span>。设计核矩阵的基本原则是给平移较大的图像赋相对较低的权重，因此，Dong等人采用了高斯核矩阵。</p>
-<p>除了MI-FGSM之外，Lin等人 <span id="id40">(<a class="reference internal" href="../chapter_references/zreferences.html#id92" title="Lin, J., Song, C., He, K., Wang, L., &amp; Hopcroft, J. E. (2019). Nesterov accelerated gradient and scale invariance for adversarial attacks. arXiv preprint arXiv:1908.06281.">Lin <em>et al.</em>, 2019</a>)</span>
+<p>除了MI-FGSM之外，Lin等人 <span id="id38">(<a class="reference internal" href="../chapter_references/zreferences.html#id92" title="Lin, J., Song, C., He, K., Wang, L., &amp; Hopcroft, J. E. (2019). Nesterov accelerated gradient and scale invariance for adversarial attacks. arXiv preprint arXiv:1908.06281.">Lin <em>et al.</em>, 2019</a>)</span>
 还将<em>Nesterov加速梯度</em>（Nesterov accelerated
 gradient，NAG）结合到BIM算法中，提出了Nesterov迭代快速梯度符号方法（Nesterov
 iterative
@@ -475,7 +475,7 @@ attack method，SIM）方法。缩放不变攻击在缩放样本上优化对抗�
 <span class="eqno">(6.2.28)<a class="headerlink" href="#equation-source-chap6-37" title="Permalink to this equation">¶</a></span>\[\mathop{\mathrm{arg\,min}}_{ x_{\text{adv}}}\frac{1}{m}\sum_{i=0}^{m}\mathcal{L}(f(S_{i}( x_{\text{adv}})), y)\; \text{s.t.}\; \| x_{\text{adv}}- x\|_{\infty}\leq \epsilon,\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(S_{i}( x)= x/2^{i}\)</span>表示缩放系数为<span class="math notranslate nohighlight">\(1/2^{i}\)</span>的干净图像<span class="math notranslate nohighlight">\(x\)</span>的缩放副本，<span class="math notranslate nohighlight">\(m\)</span>表示缩放副本的数量。从形式上来看，缩放不变攻击和基于模型集成的攻击比较类似。不同的是，基于模型集成的攻击需要训练一组不同的模型作为替代模型，这会带来更多的计算开销，而缩放不变攻击可以看做是以模型增强（一种通过保留损失变换获得多个模型的简单方法）的方式从原始模型中衍生出多个模型。</p>
 <p>尽管上述基于迁移的攻击方法都很有效，但它们都忽略了深度神经网络的<em>结构特性</em>。Wu等人
-<span id="id41">(<a class="reference internal" href="../chapter_references/zreferences.html#id93" title="Wu, D., Wang, Y., Xia, S.-T., Bailey, J., &amp; Ma, X. (2020). Skip connections matter: on the transferability of adversarial examples generated with resnets. arXiv preprint arXiv:2002.05990.">Wu <em>et al.</em>, 2020</a>)</span> 研究发现，残差神经网络中<em>跳跃连接</em>（skip
+<span id="id39">(<a class="reference internal" href="../chapter_references/zreferences.html#id93" title="Wu, D., Wang, Y., Xia, S.-T., Bailey, J., &amp; Ma, X. (2020). Skip connections matter: on the transferability of adversarial examples generated with resnets. arXiv preprint arXiv:2002.05990.">Wu <em>et al.</em>, 2020</a>)</span> 研究发现，残差神经网络中<em>跳跃连接</em>（skip
 connections）可以提升迁移性，即在反向梯度传播过程中有选择性的跳过某些连接会大大提高生成对抗样本的迁移性。基于此，Wu等人提出了<strong>跳跃梯度方法</strong>（skip
 gradient
 method，SGM）基于残差网络生成高迁移性攻击。在残差网络中，跳跃连接使用<em>恒等映射</em>（identify
@@ -493,26 +493,26 @@ mapping）将卷积模块的输入直接连接到其输出，以此来建立一�
 <span class="eqno">(6.2.32)<a class="headerlink" href="#equation-source-chap6-41" title="Permalink to this equation">¶</a></span>\[x_{\text{adv}}^{t+1}=\text{Clip}_{ x, \epsilon}\{ x_{\text{adv}}^{t}+\alpha\cdot sign(\frac{\partial \mathcal{L}(f( x),y))}{\partial  z_{L}}\prod_{i=0}^{L-1}(\gamma\frac{\partial f_{i+1}(\partial  z_{i})}{ z_{i}} + 1)\frac{\partial  z_{0}}{\partial  x})\}.\]</div>
 <p>卷积模块的梯度是沿着反向传播路径累积衰减的，也就是说，浅层卷积模块的梯度将比深层卷积模块的梯度减小更多倍。由于浅层特征已经被跳跃连接很好地保留了，卷积模块梯度的衰减则会鼓励攻击更多关注浅层特征，而浅层特征在不同的深度神经网络之间更容易迁移。值得一提的是，目前SGM只对有跳跃连接的网络结构适用，其在其他网络结构上的扩展值得进一步探索。</p>
 <p>虽然上述基于迁移的攻击方法都可以提升生成对抗样本的迁移性，但攻击成功率仍然不如查询攻击，因为毕竟缺失了目标模型的反馈。但是查询攻击又依赖模型的输出类型，且往往受查询次数限制，在现实场景中难以实施。二者之间的融合可以促成更高效的攻击。比如，已经有一些工作尝试将基于替代模型生成的对抗噪声作为初始化，然后用查询攻击来进行微调
-<span id="id42">(<a class="reference internal" href="../chapter_references/zreferences.html#id74" title="Cheng, S., Dong, Y., Pang, T., Su, H., &amp; Zhu, J. (2019). Improving black-box adversarial attacks with a transfer-based prior. Advances in Neural Information Processing Systems, 32.">Cheng <em>et al.</em>, 2019</a>)</span>
+<span id="id40">(<a class="reference internal" href="../chapter_references/zreferences.html#id74" title="Cheng, S., Dong, Y., Pang, T., Su, H., &amp; Zhu, J. (2019). Improving black-box adversarial attacks with a transfer-based prior. Advances in Neural Information Processing Systems, 32.">Cheng <em>et al.</em>, 2019</a>)</span>
 。预计结合一定的先验知识和迁移攻击，黑盒攻击有可以变得和白盒攻击一样准确高效。</p>
 </div>
 </div>
-<div class="section" id="id43">
-<h2><span class="section-number">6.3. </span>物理攻击<a class="headerlink" href="#id43" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="id41">
+<h2><span class="section-number">6.3. </span>物理攻击<a class="headerlink" href="#id41" title="Permalink to this heading">¶</a></h2>
 <p>前面介绍的黑盒攻击和白盒攻击算法都假定用于攻击的对抗样本可以在生成以后原封不动的直接输入目标模型。而现实场景中的人工智能系统往往通过摄像头和传感器等设备获取输入，而无法直接接受数字输入。比如，在人脸识别场景中，用户的面部图像是通过摄像头采集的，而不是可以直接上传一张图片。在这些场景下，对输入样本进行细粒度逐维度修改的攻击方式就变的不切实际了，需要特殊的<strong>物理世界攻击</strong>（physical-world
 attack）方法来增强它们在真实环境中的对抗性。本节将对经典的物理对抗攻击方法进行详细的介绍。</p>
-<p><strong>物理世界中的对抗样本。</strong> Kurakin等人 <span id="id44">(<a class="reference internal" href="../chapter_references/zreferences.html#id72" title="Kurakin, A., Goodfellow, I. J., &amp; Bengio, S. (2018). Adversarial examples in the physical world. Artificial Intelligence Safety and Security (pp. 99–112). Chapman and Hall/CRC.">Kurakin <em>et al.</em>, 2018</a>)</span>
+<p><strong>物理世界中的对抗样本。</strong> Kurakin等人 <span id="id42">(<a class="reference internal" href="../chapter_references/zreferences.html#id72" title="Kurakin, A., Goodfellow, I. J., &amp; Bengio, S. (2018). Adversarial examples in the physical world. Artificial Intelligence Safety and Security (pp. 99–112). Chapman and Hall/CRC.">Kurakin <em>et al.</em>, 2018</a>)</span>
 是最早开始研究物理攻击的学者。他们将对抗图像打印出来，然后通过手机拍摄后再次输入分类模型中，发现很大一部分对抗样本在重新拍摄后依然能够使模型犯错，也就是这些样本在物理环境中也依然具有对抗性。如图
 <a class="reference internal" href="#fig-6-1-3-1"><span class="std std-ref">物理世界攻击 Kurakin2017bim</span></a>
 所示，他们先使用传统的攻击算法（可以统称为“数字攻击”）生成一些对抗图片。之后，他们将原始图片和对抗图片打印出来，并重新拍摄成照片（使用谷歌手机Nexus
 5X）。最后，将这些照片中所包含的图像分割出来，输入模型进行分类测试。实验结果表明，一部分对抗样本在经过拍照后依然可以成功攻击。进一步实验发现，改变照片亮度和对比度对对抗样本影响不大，但是模糊、噪点和JPEG编码会在很大程度上破坏对抗样本的有效性。</p>
-<div class="figure align-default" id="id67">
+<div class="figure align-default" id="id65">
 <span id="fig-6-1-3-1"></span><a class="reference internal image-reference" href="../_images/6.4_robust_physical_attack.png"><img alt="../_images/6.4_robust_physical_attack.png" src="../_images/6.4_robust_physical_attack.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图6.3.1 </span><span class="caption-text">物理世界攻击 <span id="id45">(<a class="reference internal" href="../chapter_references/zreferences.html#id72" title="Kurakin, A., Goodfellow, I. J., &amp; Bengio, S. (2018). Adversarial examples in the physical world. Artificial Intelligence Safety and Security (pp. 99–112). Chapman and Hall/CRC.">Kurakin <em>et al.</em>, 2018</a>)</span></span><a class="headerlink" href="#id67" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图6.3.1 </span><span class="caption-text">物理世界攻击 <span id="id43">(<a class="reference internal" href="../chapter_references/zreferences.html#id72" title="Kurakin, A., Goodfellow, I. J., &amp; Bengio, S. (2018). Adversarial examples in the physical world. Artificial Intelligence Safety and Security (pp. 99–112). Chapman and Hall/CRC.">Kurakin <em>et al.</em>, 2018</a>)</span></span><a class="headerlink" href="#id65" title="Permalink to this image">¶</a></p>
 </div>
-<p>**鲁棒的物理扰动（$:raw-latex:<cite>text{RP**_{2}$）。}</cite>
+<p><strong>鲁棒的物理扰动（</strong><span class="math notranslate nohighlight">\(\boldsymbol{RP}_{\boldsymbol{2}}\)</span><strong>）。</strong>
 虽然上述工作证明了对抗样本在物理世界中也能发挥作用，但Kurakin等人设计的物理攻击是将对抗样本打印后正对拍摄，这实际上并不符合真实场景。因此Eykholt等人
-<span id="id46">(<a class="reference internal" href="../chapter_references/zreferences.html#id184" title="Eykholt, K., Evtimov, I., Fernandes, E., Li, B., Rahmati, A., Xiao, C., … Song, D. (2018). Robust physical-world attacks on deep learning visual classification. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1625–1634).">Eykholt <em>et al.</em>, 2018</a>)</span>
+<span id="id44">(<a class="reference internal" href="../chapter_references/zreferences.html#id184" title="Eykholt, K., Evtimov, I., Fernandes, E., Li, B., Rahmati, A., Xiao, C., … Song, D. (2018). Robust physical-world attacks on deep learning visual classification. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1625–1634).">Eykholt <em>et al.</em>, 2018</a>)</span>
 选择道路标志牌作为检测目标域，并指出在物理世界中，对抗样本的有效性存在以下挑战：</p>
 <ul class="simple">
 <li><p><strong>环境条件</strong>：现实世界中拍摄的图片会有不同的距离、角度、光照和天气等因素；</p></li>
@@ -520,11 +520,11 @@ attack）方法来增强它们在真实环境中的对抗性。本节将对经�
 <li><p><strong>不易察觉性的物理限制</strong>：很多攻击生成的对抗扰动过于微小，摄像头往往悟法感知这些扰动，导致攻击无效；</p></li>
 <li><p><strong>制造误差</strong>：通过攻击算法计算出来的对抗噪声可能包含无法在现实世界中打印出来的颜色值。</p></li>
 </ul>
-<div class="figure align-default" id="id68">
+<div class="figure align-default" id="id66">
 <span id="fig-6-1-3-2"></span><a class="reference internal image-reference" href="../_images/6.5_RP2_attack.png"><img alt="../_images/6.5_RP2_attack.png" src="../_images/6.5_RP2_attack.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图6.3.2 </span><span class="caption-text">RP<span class="math notranslate nohighlight">\(_{2}\)</span>攻击流程图 <span id="id47">(<a class="reference internal" href="../chapter_references/zreferences.html#id184" title="Eykholt, K., Evtimov, I., Fernandes, E., Li, B., Rahmati, A., Xiao, C., … Song, D. (2018). Robust physical-world attacks on deep learning visual classification. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1625–1634).">Eykholt <em>et al.</em>, 2018</a>)</span></span><a class="headerlink" href="#id68" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图6.3.2 </span><span class="caption-text">RP<span class="math notranslate nohighlight">\(_{2}\)</span>攻击流程图 <span id="id45">(<a class="reference internal" href="../chapter_references/zreferences.html#id184" title="Eykholt, K., Evtimov, I., Fernandes, E., Li, B., Rahmati, A., Xiao, C., … Song, D. (2018). Robust physical-world attacks on deep learning visual classification. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1625–1634).">Eykholt <em>et al.</em>, 2018</a>)</span></span><a class="headerlink" href="#id66" title="Permalink to this image">¶</a></p>
 </div>
-<p>受以上挑战启发，Eykholt等人 <span id="id48">(<a class="reference internal" href="../chapter_references/zreferences.html#id184" title="Eykholt, K., Evtimov, I., Fernandes, E., Li, B., Rahmati, A., Xiao, C., … Song, D. (2018). Robust physical-world attacks on deep learning visual classification. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1625–1634).">Eykholt <em>et al.</em>, 2018</a>)</span>
+<p>受以上挑战启发，Eykholt等人 <span id="id46">(<a class="reference internal" href="../chapter_references/zreferences.html#id184" title="Eykholt, K., Evtimov, I., Fernandes, E., Li, B., Rahmati, A., Xiao, C., … Song, D. (2018). Robust physical-world attacks on deep learning visual classification. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1625–1634).">Eykholt <em>et al.</em>, 2018</a>)</span>
 提出<strong>鲁棒物理扰动</strong>（robust physical
 perturbations，RP<span class="math notranslate nohighlight">\(_{2}\)</span>）攻击算法，该算法可以产生一个可见但并不显眼的、只作用于目标物体而非环境的扰动，并且这个扰动对不同距离和角度的摄像头具有较高的鲁棒性。图
 <a class="reference internal" href="#fig-6-1-3-2"><span class="std std-ref">RP_{2}攻击流程图 eykholt2018robust</span></a>
@@ -536,7 +536,7 @@ perturbations，RP<span class="math notranslate nohighlight">\(_{2}\)</span>）�
 <p>为了保证扰动只添加在目标物体<span class="math notranslate nohighlight">\(o\)</span>上，Eykholt等人使用一个<em>输入掩码</em>（input
 mask）来将计算出的扰动添加到物理目标区域内。该输入掩码为一个矩阵<span class="math notranslate nohighlight">\(M_{ x}\)</span>，维度与分类器输入大小相同，在没有添加扰动的区域掩码值为0，添加扰动的区域值为1。</p>
 <p>他们又进一步引入了基于<em>不可印刷性分数</em>（non-printability
-score，NPS） <span id="id49">(<a class="reference internal" href="../chapter_references/zreferences.html#id394" title="Sharif, M., Bhagavatula, S., Bauer, L., &amp; Reiter, M. K. (2016). Accessorize to a crime: real and stealthy attacks on state-of-the-art face recognition. ACM SIGSAC Conference on Computer and Communications Security (pp. 1528–1540).">Sharif <em>et al.</em>, 2016</a>)</span>
+score，NPS） <span id="id47">(<a class="reference internal" href="../chapter_references/zreferences.html#id394" title="Sharif, M., Bhagavatula, S., Bauer, L., &amp; Reiter, M. K. (2016). Accessorize to a crime: real and stealthy attacks on state-of-the-art face recognition. ACM SIGSAC Conference on Computer and Communications Security (pp. 1528–1540).">Sharif <em>et al.</em>, 2016</a>)</span>
 的约束条件，用来解决打印机无法打印某些色彩的问题。综合以上技术，Eykholt等人提出的物理攻击方法RP<span class="math notranslate nohighlight">\(_{2}\)</span>定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-43">
 <span class="eqno">(6.3.2)<a class="headerlink" href="#equation-source-chap6-43" title="Permalink to this equation">¶</a></span>\[\underset{ \delta}{\mathop{\mathrm{arg\,min}}} \lambda\left\|M_{ x} \cdot  \delta\right\|_{p}+\text{NPS} +\mathbb{E}_{ x_{i} \sim X^{V}} \mathcal{L}\left(f_{\theta}\left( x_{i}+T_{i}\left(M_{ x} \cdot  \delta\right)\right), y_{t}\right),\]</div>
@@ -544,22 +544,22 @@ score，NPS） <span id="id49">(<a class="reference internal" href="../chapter_r
 <a class="reference internal" href="#fig-6-1-3-3"><span class="std std-ref">RP_{2}生成的三类物理对抗交通指示牌
 eykholt2018robust</span></a>
 所示，可以将扰动伪装成常见的海报、涂鸦和黑白格等贴在道路标志牌上。</p>
-<div class="figure align-default" id="id69">
+<div class="figure align-default" id="id67">
 <span id="fig-6-1-3-3"></span><a class="reference internal image-reference" href="../_images/6.6_RP2_examples.png"><img alt="../_images/6.6_RP2_examples.png" src="../_images/6.6_RP2_examples.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-number">图6.3.3 </span><span class="caption-text">RP<span class="math notranslate nohighlight">\(_{2}\)</span>生成的三类物理对抗交通指示牌
-<span id="id50">(<a class="reference internal" href="../chapter_references/zreferences.html#id184" title="Eykholt, K., Evtimov, I., Fernandes, E., Li, B., Rahmati, A., Xiao, C., … Song, D. (2018). Robust physical-world attacks on deep learning visual classification. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1625–1634).">Eykholt <em>et al.</em>, 2018</a>)</span></span><a class="headerlink" href="#id69" title="Permalink to this image">¶</a></p>
+<span id="id48">(<a class="reference internal" href="../chapter_references/zreferences.html#id184" title="Eykholt, K., Evtimov, I., Fernandes, E., Li, B., Rahmati, A., Xiao, C., … Song, D. (2018). Robust physical-world attacks on deep learning visual classification. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1625–1634).">Eykholt <em>et al.</em>, 2018</a>)</span></span><a class="headerlink" href="#id67" title="Permalink to this image">¶</a></p>
 </div>
 <p>在实景驾驶测试实验中，RP<span class="math notranslate nohighlight">\(_{2}\)</span>物理攻击在对象受限的海报打印攻击（直接打印整个对象）和贴纸攻击（以贴纸的形式产生扰动，将修改区域限制在一块类似涂鸦或艺术效果的区域中）都取得了不错的攻击成功率，证明生成在不同距离和角度下都能保持对抗性的物理对抗样本是可能的。</p>
-<p><strong>对抗补丁（AdvPatch）。</strong> Brown等人 <span id="id51">(<a class="reference internal" href="../chapter_references/zreferences.html#id389" title="Brown, T. B., Mané, D., Roy, A., Abadi, M., &amp; Gilmer, J. (2017). Adversarial patch. arXiv preprint arXiv:1712.09665.">Brown <em>et al.</em>, 2017</a>)</span>
+<p><strong>对抗补丁（AdvPatch）。</strong> Brown等人 <span id="id49">(<a class="reference internal" href="../chapter_references/zreferences.html#id389" title="Brown, T. B., Mané, D., Roy, A., Abadi, M., &amp; Gilmer, J. (2017). Adversarial patch. arXiv preprint arXiv:1712.09665.">Brown <em>et al.</em>, 2017</a>)</span>
 提出了一种<strong>对抗补丁</strong>（adversarial
 patch，AdvPatch）攻击方法，对图片的局部区域进行较大幅度的对抗扰动，生成具有强对抗性的补丁。由于扰动幅度很大，对抗补丁可以被打印出来，在物理场景中攻击深度学习模型，比如使物体检测模型忽略特定的物体并预测错误的类别。</p>
-<div class="figure align-default" id="id70">
+<div class="figure align-default" id="id68">
 <span id="fig-6-1-3-4"></span><a class="reference internal image-reference" href="../_images/6.7_adversarial_patch.png"><img alt="../_images/6.7_adversarial_patch.png" src="../_images/6.7_adversarial_patch.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图6.3.4 </span><span class="caption-text">对抗补丁攻击效果示意图 <span id="id52">(<a class="reference internal" href="../chapter_references/zreferences.html#id389" title="Brown, T. B., Mané, D., Roy, A., Abadi, M., &amp; Gilmer, J. (2017). Adversarial patch. arXiv preprint arXiv:1712.09665.">Brown <em>et al.</em>, 2017</a>)</span></span><a class="headerlink" href="#id70" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图6.3.4 </span><span class="caption-text">对抗补丁攻击效果示意图 <span id="id50">(<a class="reference internal" href="../chapter_references/zreferences.html#id389" title="Brown, T. B., Mané, D., Roy, A., Abadi, M., &amp; Gilmer, J. (2017). Adversarial patch. arXiv preprint arXiv:1712.09665.">Brown <em>et al.</em>, 2017</a>)</span></span><a class="headerlink" href="#id68" title="Permalink to this image">¶</a></p>
 </div>
 <p>不同于传统梯度优化的算法，Brown等人用生成的补丁替换图像中的一部分来实现攻击。给定一张图片<span class="math notranslate nohighlight">\(x \in \mathbb{R}^{w \times h \times c}\)</span>，
 一个补丁<span class="math notranslate nohighlight">\(r\)</span>，补丁位置<span class="math notranslate nohighlight">\(l\)</span>和补丁变换<span class="math notranslate nohighlight">\(t\)</span>（如旋转和缩放等），定义打补丁操作<span class="math notranslate nohighlight">\(A( r, x, l, t)\)</span>，先将变换<span class="math notranslate nohighlight">\(t\)</span>应用于补丁<span class="math notranslate nohighlight">\(r\)</span>，之后将变换后的补丁<span class="math notranslate nohighlight">\(r\)</span>作用于图片<span class="math notranslate nohighlight">\(x\)</span>的位置<span class="math notranslate nohighlight">\(l\)</span>上。Brown等人使用了一种变换形式的<em>变换期望算法</em>（expectation
-over transformation，EOT） <span id="id53">(<a class="reference internal" href="../chapter_references/zreferences.html#id391" title="Athalye, A., Engstrom, L., Ilyas, A., &amp; Kwok, K. (2018). Synthesizing robust adversarial examples. International Conference on Machine Learning (pp. 284–293).">Athalye <em>et al.</em>, 2018</a>)</span>
+over transformation，EOT） <span id="id51">(<a class="reference internal" href="../chapter_references/zreferences.html#id391" title="Athalye, A., Engstrom, L., Ilyas, A., &amp; Kwok, K. (2018). Synthesizing robust adversarial examples. International Conference on Machine Learning (pp. 284–293).">Athalye <em>et al.</em>, 2018</a>)</span>
 来获得训练后的补丁<span class="math notranslate nohighlight">\(\widehat{ r}\)</span>，此算法通过模拟和求期望来拟合现实世界中的各种变换：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-44">
 <span class="eqno">(6.3.3)<a class="headerlink" href="#equation-source-chap6-44" title="Permalink to this equation">¶</a></span>\[\widehat{ r}=\arg \max _{ r} \mathbb{E}_{ x \sim X, t \sim T, l \sim L}[\log p(\widehat{y} \mid A( r,  x, l, t)],\]</div>
@@ -567,13 +567,13 @@ over transformation，EOT） <span id="id53">(<a class="reference internal" href
 <a class="reference internal" href="#fig-6-1-3-4"><span class="std std-ref">对抗补丁攻击效果示意图 brown2017adversarial</span></a> 展示了对抗补丁进行物理攻击的例子。</p>
 <p><strong>对抗伪装（AdvCam）。</strong>
 对抗补丁的出现大大增加了人工智能模型在真实环境中的安全风险，因为这样的补丁可能以任何形式出现在任何地方。Duan等人
-<span id="id54">(<a class="reference internal" href="../chapter_references/zreferences.html#id392" title="Duan, R., Ma, X., Wang, Y., Bailey, J., Qin, A. K., &amp; Yang, Y. (2020). Adversarial camouflage: hiding physical-world attacks with natural styles. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1000–1008).">Duan <em>et al.</em>, 2020</a>)</span>
+<span id="id52">(<a class="reference internal" href="../chapter_references/zreferences.html#id392" title="Duan, R., Ma, X., Wang, Y., Bailey, J., Qin, A. K., &amp; Yang, Y. (2020). Adversarial camouflage: hiding physical-world attacks with natural styles. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1000–1008).">Duan <em>et al.</em>, 2020</a>)</span>
 就提出将大小不受限的对抗扰动伪装成一种自然的风格，使之看起来是合理的，更不容易引起注意，以此来揭示物理环境中普遍存在的对抗因素。基于此思想，Duan等人提出基于风格迁移的<strong>对抗伪装攻击</strong>（adversarial
 camouflage, AdvCam）。图 <a class="reference internal" href="#fig-6-1-3-5"><span class="std std-ref">对抗伪装攻击示意图 duan2020adversarial</span></a>
 展示了对抗伪装的基本思想，其通过选择现实场景中交通指示牌的不同风格，如褪色、积雪覆盖和生锈等，将对抗性隐藏在不同的风格中，使生成的对抗样本特别像真实存在的情况。</p>
-<div class="figure align-default" id="id71">
+<div class="figure align-default" id="id69">
 <span id="fig-6-1-3-5"></span><a class="reference internal image-reference" href="../_images/6.8_adv_cam.png"><img alt="../_images/6.8_adv_cam.png" src="../_images/6.8_adv_cam.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图6.3.5 </span><span class="caption-text">对抗伪装攻击示意图 <span id="id55">(<a class="reference internal" href="../chapter_references/zreferences.html#id392" title="Duan, R., Ma, X., Wang, Y., Bailey, J., Qin, A. K., &amp; Yang, Y. (2020). Adversarial camouflage: hiding physical-world attacks with natural styles. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1000–1008).">Duan <em>et al.</em>, 2020</a>)</span></span><a class="headerlink" href="#id71" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图6.3.5 </span><span class="caption-text">对抗伪装攻击示意图 <span id="id53">(<a class="reference internal" href="../chapter_references/zreferences.html#id392" title="Duan, R., Ma, X., Wang, Y., Bailey, J., Qin, A. K., &amp; Yang, Y. (2020). Adversarial camouflage: hiding physical-world attacks with natural styles. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 1000–1008).">Duan <em>et al.</em>, 2020</a>)</span></span><a class="headerlink" href="#id69" title="Permalink to this image">¶</a></p>
 </div>
 <p>对抗伪装攻击需要同时完成多个任务，使用的损失函数包括：表示对抗强度的对抗损失<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{adv}}\)</span>、表示风格生成的风格损失<span class="math notranslate nohighlight">\(\mathcal{L}_s\)</span>、保护源图像内容的内容损失<span class="math notranslate nohighlight">\(\mathcal{L}_c\)</span>和生成局部平滑区域的平滑损失<span class="math notranslate nohighlight">\(\mathcal{L}_m\)</span>：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-45">
@@ -598,26 +598,26 @@ camouflage, AdvCam）。图 <a class="reference internal" href="#fig-6-1-3-5"><s
 <p>其中，<span class="math notranslate nohighlight">\(x_{bg}\)</span>表示一张从现实世界中采样的随机背景图片，<span class="math notranslate nohighlight">\(T\)</span>代表一系列随机变换，如旋转、尺寸调整和颜色转换等。实验表明这种结合了风格迁移和对抗攻击的算法可以让对抗样本的隐匿方式更加灵活。</p>
 <p><strong>对抗T恤（AdvTShirt）。</strong>
 上述物理攻击都是针对不易形变的刚性物体，如道路标识牌等。在一般情况下这些物体是静止的，贴在其表面的对抗图案不会产生形变，导致这些算法在容易形变的非刚性物体上效果有限。针对此问题，Xu等人
-<span id="id56">(<a class="reference internal" href="../chapter_references/zreferences.html#id393" title="Xu, K., Zhang, G., Liu, S., Fan, Q., Sun, M., Chen, H., … Lin, X. (2020). Adversarial t-shirt! evading person detectors in a physical world. European Conference on Computer Vision (pp. 665–681).">Xu <em>et al.</em>, 2020</a>)</span> 提出<strong>对抗T恤</strong>（adversarial
+<span id="id54">(<a class="reference internal" href="../chapter_references/zreferences.html#id393" title="Xu, K., Zhang, G., Liu, S., Fan, Q., Sun, M., Chen, H., … Lin, X. (2020). Adversarial t-shirt! evading person detectors in a physical world. European Conference on Computer Vision (pp. 665–681).">Xu <em>et al.</em>, 2020</a>)</span> 提出<strong>对抗T恤</strong>（adversarial
 T-shirts，AdvTShirt），使得对抗样本在T恤这类会根据人类姿态和动作而随时发生形变的非刚性物体上也能发挥作用。当攻击者穿上印有对抗图案的T恤后能躲过物体检测模型，使其无法检测到攻击者的存在。图
 <a class="reference internal" href="#fig-6-1-3-10"><span class="std std-ref">数字和物理对抗T恤成功躲避物体检测模型 xu2020adversarial</span></a>
 展示了该算法生成的对抗T恤在数字和物理世界中攻击YOLOv2模型时的有效性。</p>
-<p>为了适应物理环境变化，Xu等人将 <span id="id57">(<a class="reference internal" href="../chapter_references/zreferences.html#id391" title="Athalye, A., Engstrom, L., Ilyas, A., &amp; Kwok, K. (2018). Synthesizing robust adversarial examples. International Conference on Machine Learning (pp. 284–293).">Athalye <em>et al.</em>, 2018</a>)</span>
+<p>为了适应物理环境变化，Xu等人将 <span id="id55">(<a class="reference internal" href="../chapter_references/zreferences.html#id391" title="Athalye, A., Engstrom, L., Ilyas, A., &amp; Kwok, K. (2018). Synthesizing robust adversarial examples. International Conference on Machine Learning (pp. 284–293).">Athalye <em>et al.</em>, 2018</a>)</span>
 中的期望转换算法（即EOT）推广到对抗性T恤的设计。如前文所述，该方法将可能发生在现实世界中的多种变化，如缩放、旋转、模糊、光线、噪声等，通过模拟和求期望来拟合现实，且在对象为刚性物体时有不错的效果。但该方法无法模拟T恤在人体运动时产生的褶皱，而这种褶皱会使对抗样本失去作用。于是Xu等人开发了一种基于<em>薄板样条插值</em>（thin
 plate
 spline，TPS）的变换算法来模拟由人体姿态变化引起的T恤变形，TPS算法已被广泛用于图像对齐和形状匹配中的非刚性变换模型。</p>
-<div class="figure align-default" id="id72">
+<div class="figure align-default" id="id70">
 <span id="fig-6-1-3-10"></span><a class="reference internal image-reference" href="../_images/6.9_adv_tshirt.png"><img alt="../_images/6.9_adv_tshirt.png" src="../_images/6.9_adv_tshirt.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图6.3.6 </span><span class="caption-text">数字和物理对抗T恤成功躲避物体检测模型 <span id="id58">(<a class="reference internal" href="../chapter_references/zreferences.html#id393" title="Xu, K., Zhang, G., Liu, S., Fan, Q., Sun, M., Chen, H., … Lin, X. (2020). Adversarial t-shirt! evading person detectors in a physical world. European Conference on Computer Vision (pp. 665–681).">Xu <em>et al.</em>, 2020</a>)</span></span><a class="headerlink" href="#id72" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图6.3.6 </span><span class="caption-text">数字和物理对抗T恤成功躲避物体检测模型 <span id="id56">(<a class="reference internal" href="../chapter_references/zreferences.html#id393" title="Xu, K., Zhang, G., Liu, S., Fan, Q., Sun, M., Chen, H., … Lin, X. (2020). Adversarial t-shirt! evading person detectors in a physical world. European Conference on Computer Vision (pp. 665–681).">Xu <em>et al.</em>, 2020</a>)</span></span><a class="headerlink" href="#id70" title="Permalink to this image">¶</a></p>
 </div>
 <p>图 <a class="reference internal" href="#fig-6-1-3-9"><span class="std std-ref">对抗T恤生成流程图 xu2020adversarial</span></a> 展示了该算法的总体流程。
 具体的，以视频中的两帧为例，有一个锚点图像<span class="math notranslate nohighlight">\(x_0\)</span>和一个目标图像<span class="math notranslate nohighlight">\(x_i\)</span>，对于<span class="math notranslate nohighlight">\(x_0\)</span>中给定的人物边界框<span class="math notranslate nohighlight">\(M_{p, 0} \in\{0,1\}^{d}\)</span>和T恤边界框<span class="math notranslate nohighlight">\(M_{c, 0} \in\{0,1\}^{d}\)</span>，使用从<span class="math notranslate nohighlight">\(x_0\)</span>到<span class="math notranslate nohighlight">\(x_i\)</span>的透视变换来获得图像<span class="math notranslate nohighlight">\(x_i\)</span>中的人物边界框<span class="math notranslate nohighlight">\(M_{p, i}\)</span>和T恤边界框<span class="math notranslate nohighlight">\(M_{c, i}\)</span>。于是，尚未考虑物理变换的关于<span class="math notranslate nohighlight">\(x_i\)</span>的扰动图像<span class="math notranslate nohighlight">\(x'_{i}\)</span>可表示为：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap6-51">
 <span class="eqno">(6.3.10)<a class="headerlink" href="#equation-source-chap6-51" title="Permalink to this equation">¶</a></span>\[x'_{i}=\underbrace{\left(\mathbf{1}-M_{p, i}\right) \circ  x_{i}}_{\text{A}}+\underbrace{M_{p, i} \circ  x_{i}}_{\text{B}}-\underbrace{M_{c, i} \circ  x_{i}}_{\text{C}}+\underbrace{M_{c, i} \circ  \delta}_{\text{D}},\]</div>
 <p>其中，A表示人物边框外的背景区域，B是人物边界区域，C表示删除T恤边界框内的像素值，D是新引入的加性扰动。该公式可简化为对抗样本的常规表述：<span class="math notranslate nohighlight">\(\left(1-M_{c, i}\right) \circ x_{i}+M_{c, i} \circ \delta\)</span>。</p>
-<div class="figure align-default" id="id73">
-<span id="fig-6-11"></span><span id="fig-6-1-3-9"></span><a class="reference internal image-reference" href="../_images/6.10_adv_tshirt_framework.png"><img alt="../_images/6.10_adv_tshirt_framework.png" src="../_images/6.10_adv_tshirt_framework.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图6.3.7 </span><span class="caption-text">对抗T恤生成流程图 <span id="id59">(<a class="reference internal" href="../chapter_references/zreferences.html#id393" title="Xu, K., Zhang, G., Liu, S., Fan, Q., Sun, M., Chen, H., … Lin, X. (2020). Adversarial t-shirt! evading person detectors in a physical world. European Conference on Computer Vision (pp. 665–681).">Xu <em>et al.</em>, 2020</a>)</span></span><a class="headerlink" href="#id73" title="Permalink to this image">¶</a></p>
+<div class="figure align-default" id="id71">
+<span id="fig-6-1-3-9"></span><a class="reference internal image-reference" href="../_images/6.10_adv_tshirt_framework.png"><img alt="../_images/6.10_adv_tshirt_framework.png" src="../_images/6.10_adv_tshirt_framework.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图6.3.7 </span><span class="caption-text">对抗T恤生成流程图 <span id="id57">(<a class="reference internal" href="../chapter_references/zreferences.html#id393" title="Xu, K., Zhang, G., Liu, S., Fan, Q., Sun, M., Chen, H., … Lin, X. (2020). Adversarial t-shirt! evading person detectors in a physical world. European Conference on Computer Vision (pp. 665–681).">Xu <em>et al.</em>, 2020</a>)</span></span><a class="headerlink" href="#id71" title="Permalink to this image">¶</a></p>
 </div>
 <p>接下来，Xu等人考虑三种主要类型的物理转换：1）对扰动<span class="math notranslate nohighlight">\(\delta\)</span>进行TPS转换<span class="math notranslate nohighlight">\(t_{\text{TPS}} \in \mathcal{T}_{\text{TPS}}\)</span>，以此来模拟布料变形的影响；2）物理颜色转换<span class="math notranslate nohighlight">\(t_{\text{color}}\)</span>，这种转换可将数字颜色转换为在物理世界中可被打印出来的颜色；以及
 3)
@@ -631,25 +631,21 @@ spline，TPS）的变换算法来模拟由人体姿态变化引起的T恤变形�
 <p>其中，<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{adv}}\)</span>是导致错误检测的对抗损失，<span class="math notranslate nohighlight">\(g\)</span>是增强扰动平滑度的<em>变分范数</em>（total
 variation norm），<span class="math notranslate nohighlight">\(\lambda&gt;0\)</span>是正则化参数。
 实现显示，通过上述算法生成的对抗T恤在数字和物理世界中对YOLOv2
-<span id="id60">(<a class="reference internal" href="../chapter_references/zreferences.html#id390" title="Redmon, J., &amp; Farhadi, A. (2017). Yolo9000: better, faster, stronger. IEEE Conference on Computer Vision and Pattern Recognition (pp. 7263–7271).">Redmon and Farhadi, 2017</a>)</span> 物体检测模型的的攻击成功率分别可达到74%和
+<span id="id58">(<a class="reference internal" href="../chapter_references/zreferences.html#id390" title="Redmon, J., &amp; Farhadi, A. (2017). Yolo9000: better, faster, stronger. IEEE Conference on Computer Vision and Pattern Recognition (pp. 7263–7271).">Redmon and Farhadi, 2017</a>)</span> 物体检测模型的的攻击成功率分别可达到74%和
 57%，相比之前方法有巨大提升。</p>
 <p><strong>多传感器融合对抗攻击</strong>（multi-sensor fusion adversarial
 attack，MSF-ADV）。对抗T恤探索了如何将对抗图案放在衣服上的问题，这里<em>多传感器融合对抗攻击</em>则
-<span id="id61">(<a class="reference internal" href="../chapter_references/zreferences.html#id185" title="Cao, Y., Wang, N., Xiao, C., Yang, D., Fang, J., Yang, R., … Li, B. (2021). Invisible for both camera and lidar: security of multi-sensor fusion based perception in autonomous driving under physical-world attacks. IEEE Symposium on Security and Privacy (pp. 176–194).">Cao <em>et al.</em>, 2021</a>)</span>
+<span id="id59">(<a class="reference internal" href="../chapter_references/zreferences.html#id185" title="Cao, Y., Wang, N., Xiao, C., Yang, D., Fang, J., Yang, R., … Li, B. (2021). Invisible for both camera and lidar: security of multi-sensor fusion based perception in autonomous driving under physical-world attacks. IEEE Symposium on Security and Privacy (pp. 176–194).">Cao <em>et al.</em>, 2021</a>)</span>
 探索了如何攻击真实场景下的自动驾驶系统。雷达和摄像头是自动驾驶标配的两种传感器，其捕获的路面信息和路况信息在分别处理后会通过两个不同的网络进行一定的融合和对齐，融合得到的信息用来支撑自动驾驶的决策。图
-<span id="id62">()</span>
-展示了Cao等人提出的MSF-ADV攻击算法，其主要思想是充分利用两类传感器的特点生成具有对抗性的三维物体，通过优化物体的3D角度、位置、表面平滑度等性质，使其更容易在物理世界实现（比如3D打印）并保持对抗性。其中，主要的难点包括对雷达模块信息处理（即3D点云处理）的可微近似、点云信息与图像信息的匹配以及对抗形状的优化等。此研究工作第一次完整的攻破了自动驾驶的雷达和摄像头两个感知系统，在模拟自动驾驶场景中可以误导企业级的自动驾驶汽车装上3D对抗物体。
-<img alt="多传感器融合对抗攻击流程图 :cite:`cao2021invisible` （简化版本）" src="../_images/6.11_msf_adv.png" /></p>
-<blockquote>
-<div><dl class="field-list simple">
-<dt class="field-odd">width</dt>
-<dd class="field-odd"><p>600px</p>
-</dd>
-</dl>
-</div></blockquote>
+<a class="reference internal" href="#fig-6-11"><span class="std std-numref">图6.3.8</span></a>
+展示了Cao等人提出的MSF-ADV攻击算法，其主要思想是充分利用两类传感器的特点生成具有对抗性的三维物体，通过优化物体的3D角度、位置、表面平滑度等性质，使其更容易在物理世界实现（比如3D打印）并保持对抗性。其中，主要的难点包括对雷达模块信息处理（即3D点云处理）的可微近似、点云信息与图像信息的匹配以及对抗形状的优化等。此研究工作第一次完整的攻破了自动驾驶的雷达和摄像头两个感知系统，在模拟自动驾驶场景中可以误导企业级的自动驾驶汽车装上3D对抗物体。</p>
+<div class="figure align-default" id="id72">
+<span id="fig-6-11"></span><a class="reference internal image-reference" href="../_images/6.11_msf_adv.png"><img alt="../_images/6.11_msf_adv.png" src="../_images/6.11_msf_adv.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图6.3.8 </span><span class="caption-text">多传感器融合对抗攻击流程图 <span id="id60">(<a class="reference internal" href="../chapter_references/zreferences.html#id185" title="Cao, Y., Wang, N., Xiao, C., Yang, D., Fang, J., Yang, R., … Li, B. (2021). Invisible for both camera and lidar: security of multi-sensor fusion based perception in autonomous driving under physical-world attacks. IEEE Symposium on Security and Privacy (pp. 176–194).">Cao <em>et al.</em>, 2021</a>)</span> （简化版本）</span><a class="headerlink" href="#id72" title="Permalink to this image">¶</a></p>
 </div>
-<div class="section" id="id63">
-<h2><span class="section-number">6.4. </span>本章小结<a class="headerlink" href="#id63" title="Permalink to this heading">¶</a></h2>
+</div>
+<div class="section" id="id61">
+<h2><span class="section-number">6.4. </span>本章小结<a class="headerlink" href="#id61" title="Permalink to this heading">¶</a></h2>
 <p>对抗攻击可以说是威胁深度神经网络安全性的一种最主要的攻击，其自从2013年被发现已经得到了大量的研究。本章从白盒攻击、黑盒攻击和物理攻击三种攻击类型出发，介绍了近年来被提出的几种经典对抗攻击算法。这些算法从不同的角度，如提高攻击成功率、增加隐蔽性、提高查询效率、适应物理环境变化等，探索如何更合理、更高效的使用对抗梯度来获得想要的攻击效果。通过本章节的介绍希望读者能够对基本的攻击流程、攻击策略、尚存挑战等有所了解，从而灵活面对未来更多样化的应用领域和攻击场景。当然，本着“攻击是为了更好的防御”的原则，对抗攻击还是要服务于测试模型（尤其是多模态大模型）的鲁棒性、揭示模型的安全问题，而不是恶意的攻击正在服务中的模型，否则可能会引起巨额经济损失，需要承担相应的法律责任。</p>
 </div>
 </div>
@@ -666,12 +662,12 @@ attack，MSF-ADV）。对抗T恤探索了如何将对抗图案放在衣服上的
 <li><a class="reference internal" href="#">6. 模型安全：对抗攻击</a><ul>
 <li><a class="reference internal" href="#sec-white-box-attacks">6.1. 白盒攻击</a></li>
 <li><a class="reference internal" href="#sec-black-box-adv">6.2. 黑盒攻击</a><ul>
-<li><a class="reference internal" href="#id24">6.2.1. 查询攻击</a></li>
-<li><a class="reference internal" href="#id32">6.2.2. 迁移攻击</a></li>
+<li><a class="reference internal" href="#id22">6.2.1. 查询攻击</a></li>
+<li><a class="reference internal" href="#id30">6.2.2. 迁移攻击</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id43">6.3. 物理攻击</a></li>
-<li><a class="reference internal" href="#id63">6.4. 本章小结</a></li>
+<li><a class="reference internal" href="#id41">6.3. 物理攻击</a></li>
+<li><a class="reference internal" href="#id61">6.4. 本章小结</a></li>
 </ul>
 </li>
 </ul>

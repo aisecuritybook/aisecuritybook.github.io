@@ -46,15 +46,15 @@ optimization problem）来构造对抗样本：
 Broyden–Fletcher–Goldfarb–Shanno）算法来近似求解：
 
 .. math:: \begin{aligned}\text{minimize}\ c{\| x_{\text{adv}}- x\|}_{2}+\mathcal{L}(f( x_{\text{adv}}), y_{t}) \\\text{s.t.} \;  x_{\text{adv}} \in {[0, 1]}^{d}.\end{aligned}
-   :label: equation_L-BFGS
+   :label: equation_L_BFGS
 
 具体来说，Szegedy等人通过线性搜索得到\ :math:`c > 0`\ 的最小值，在此情况下，优化问题
-:ref:``equation:L-BFGS``
+:eq:`equation_L_BFGS`
 的极小值也会满足\ :math:`f( x_{\text{adv}}) = y_{t}`\ 。
 通过L-BFGS攻击方法生成的对抗样本不但能攻击目标模型，还可以在不同模型和数据集之前迁移，即基于目标模型生成的对抗样本也可以攻击（虽然成功率会下降）使用不同超参数或者在不同子集上训练的模型。
 
 L-BFGS攻击方法生成对抗样本的效率比较低，需要对每个干净样本求解式
-:ref:``equation:L-BFGS``
+:eq:`equation_L_BFGS`
 ，所以难以用于模型的对抗鲁棒性评估。为了构建更高效的攻击方法，Goodfellow等人
 :cite:`goodfellow2014explaining` 提出\ **快速梯度符号方法**\ （fast
 gradient sign method,
@@ -140,7 +140,7 @@ JSMA）。JSMA是一种贪心算法，每次迭代时挑选一个像素进行修
 
 其中，\ :math:`Z(\cdot)`\ 是目标模型的逻辑输出（logits），\ :math:`Z_{\text{max}}=\max\left\{Z{( x^\prime)}_i:i\neq y_{t}\right\}`\ 表示错误类别中逻辑值最大的那个，参数\ :math:`\kappa`\ 为置信度超参，定义了目标类别\ :math:`y_t`\ 与其他类别间的最小逻辑值差异。与L-BFGS攻击方法不同，CW攻击引入了一个新的变量\ :math:`\omega\in\mathbb{R}^{d}`\ 来避免边界约束，其中\ :math:`\omega`\ 满足\ :math:`x_{\text{adv}}=\frac12(\tanh( \omega)+1)`\ 。通过变量替换，将优化\ :math:`x_{\text{adv}}`\ 的边界约束最小化问题变成了优化\ :math:`\omega`\ 的无约束最小化问题。
 
-CW攻击有三个版本\ :math:`L_{0}`\ 范数CW攻击（\ *CW\ :math:`_0`*\ ）、\ :math:`L_{2}`\ 范数CW攻击（\ *CW\ :math:`_2`*\ ）和\ :math:`L_{\infty}`\ 范数CW攻击（*CW\ :math:`_{\infty*`}）。CW\ :math:`_2`\ 攻击求解以下优化问题：
+CW攻击有三个版本\ :math:`L_{0}`\ 范数CW攻击（\ *CW*\ :math:`_\mathit{0}`\ ）、\ :math:`L_{2}`\ 范数CW攻击（\ *CW*\ :math:`_\mathit{2}`\ ）和\ :math:`L_{\infty}`\ 范数CW攻击（\ *CW*\ :math:`_\mathit{\infty}`\ ）。CW\ :math:`_2`\ 攻击求解以下优化问题：
 
 .. math:: \begin{aligned}\text{minimize}\ \|\frac12(\tanh( \omega)+1)- x\|_2+c\cdot g(\frac12(\tanh( \omega)+1)).\end{aligned}
 
@@ -259,7 +259,7 @@ Ilyas等人在当前样本\ :math:`x`\ 周围选择一个随机高斯噪声作�
 
 最后基于NES梯度估计值，使用有动量项的PGD来生成对抗样本。NES估计梯度的查询效率比有限差分方法快2-3个数量级。
 
-第二种威胁模型限制攻击者只能获得\ *前\ :math:`k`\ 个类别的概率*\ 或置信度分数。为了能在信息受限的情况下实现攻击，Ilyas等人还是基于NES梯度估计值，使用有动量项的PGD来生成对抗样本，只不过没有从干净样本开始，而是从属于目标类别的样本开始迭代优化。在每次迭代时，需要交替进行：（1）随着将目标类别的样本投影到干净样本周围的距离逐渐减小，需要将目标类别始终保持在前\ :math:`k`\ 个类别之中：
+第二种威胁模型限制攻击者只能获得\ *前*\ :math:`\mathit{k}`\ *个类别的概率*\ 或置信度分数。为了能在信息受限的情况下实现攻击，Ilyas等人还是基于NES梯度估计值，使用有动量项的PGD来生成对抗样本，只不过没有从干净样本开始，而是从属于目标类别的样本开始迭代优化。在每次迭代时，需要交替进行：（1）随着将目标类别的样本投影到干净样本周围的距离逐渐减小，需要将目标类别始终保持在前\ :math:`k`\ 个类别之中：
 
 .. math:: \epsilon_n=\text{minimize}\  \epsilon^\prime \; \text{s.t.} \; \text{rank}(y_{t}|\text{Proj}_{ \epsilon^\prime}( x_{\text{adv}}^{t-1}))<k;
 
@@ -267,7 +267,8 @@ Ilyas等人在当前样本\ :math:`x`\ 周围选择一个随机高斯噪声作�
 
 .. math:: x_{\text{adv}}^t=\mathop{\mathrm{arg\,min}}_{ x^\prime}p(y_{t}|\text{Proj}_{ \epsilon_{t-1}}(x^\prime)).
 
-第三种威胁模型限制攻击者无法获得类别的概率或置信度分数，只能获得一个按预测概率排序的\ *:math:`k`\ 个类别标签*\ 的列表。为了能在仅获得类别标签的情况下实现攻击，Ilyas等人定义了对抗样本的\ *离散分数*\ :math:`R( x_{\text{adv}}^t)`\ ，仅基于目标类别标签\ :math:`y_{t}`\ 的排名变化，就可以量化每次迭代时输入样本的对抗程度：
+第三种威胁模型限制攻击者无法获得类别的概率或置信度分数，只能获得一个按预测概率排序的
+:math:`\mathit{k}`\ *个类别标签*\ 的列表。为了能在仅获得类别标签的情况下实现攻击，Ilyas等人定义了对抗样本的\ *离散分数*\ :math:`R( x_{\text{adv}}^t)`\ ，仅基于目标类别标签\ :math:`y_{t}`\ 的排名变化，就可以量化每次迭代时输入样本的对抗程度：
 
 .. math:: R( x_{\text{adv}}^t) = k-\text{rank}(y_{t}| x_{\text{adv}}^t).
 
@@ -312,7 +313,7 @@ attack，Opt-attack）方法。转换得到的实值优化问题通常是连续�
 其中，\ :math:`\theta`\ 表示搜索方向，\ :math:`g( \theta)`\ 是干净样本\ :math:`x`\ 沿方向\ :math:`\theta`\ 到最近对抗样本的距离。对于归一化后的\ :math:`\theta`\ ，Opt-attack使用粗粒度搜索和二分搜索来计算目标函数的值\ :math:`g( \theta)`\ 。Opt-attack方法并没有搜索对抗样本，而是搜索方向\ :math:`\theta`\ 来最小化对抗噪声\ :math:`g( \theta)`\ ，那么就有了下面的优化问题：
 
 .. math:: \min\limits_{ \theta}g( \theta).
-   :label: equation_opt-attack
+   :label: equation_opt_attack
 
 为了求解上述优化问题，Cheng等人使用\ *随机无梯度*\ （randomized
 gradient-free，RGF）方法来估计梯度：
@@ -320,7 +321,7 @@ gradient-free，RGF）方法来估计梯度：
 .. math:: \hat{ g}=\frac{g( \theta+\beta u)-g( \theta)}{\beta}\cdot u.
 
 然后以步长\ :math:`\alpha`\ 通过\ :math:`\theta\leftarrow \theta-\alpha\hat{ g}`\ 来更新搜索方向。最后通过优化问题
-:ref:``equation:opt-attack``
+:eq:`equation_opt_attack`
 的最优解\ :math:`\theta^{*}`\ 得到对抗样本\ :math:`x_{\text{adv}}= x+g( \theta^{*})\frac{ \theta^{*}}{\| \theta^{*}\|}`\ 。当目标函数\ :math:`g( \theta)`\ 是Lipschitz平滑时，Opt-attack方法在查询次数上有收敛的保证。此外，Opt-attack方法还可以攻击除深度神经网络以外的其他离散的、不连续的、不可微的机器学习模型，例如梯度增强决策树等。与边界攻击方法相比，Opt-attack方法将查询次数减少了3-4倍，实现了更小或类似的对抗噪声。
 
 查询攻击通常可以取得较高的攻击成功率，但是它们也需要大量的查询才能攻击成功。借助一些先验知识可以进一步优化和加速此类攻击，此外，查询攻击还可以以代价更低的迁移攻击作为初始化来降低查询次数。下面将介绍完全不需要查询目标模型就可以发起攻击的迁移对抗攻击。
@@ -345,7 +346,7 @@ Liu等人 :cite:`liu2016ensemble`
    :label: ensemble
 
 其中，\ :math:`\alpha_{i}`\ 是给每个模型的权重（\ :math:`\alpha_{i}\geq0`\ 且\ :math:`\sum_{i=1}^{k}\alpha_{i}=1`\ ），\ :math:`p_{i}(y_{t}|\cdot)`\ 是第\ :math:`i`\ 个替代模型预测类别\ :math:`y_{t}`\ 的概率。无目标攻击与式
-:ref:`ensemble`
+:eq:`ensemble`
 类似，不过是最大化模型对真实类别的分类错误。值得注意的是，Liu等人所提出的攻击方法使用的是多个替代模型的\ *融合预测概率*\ 。
 除此之外，Dong等人 :cite:`dong2018mi-fgsm` 提出的MI-FGSM攻击算法（式
 :eq:`eq_mifgsm`
@@ -460,7 +461,7 @@ attack）方法来增强它们在真实环境中的对抗性。本节将对经�
 
 
 
-\**鲁棒的物理扰动（$:raw-latex:`\text{RP**_{2}$）。}`
+**鲁棒的物理扰动（**\ :math:`\boldsymbol{RP}_{\boldsymbol{2}}`\ **）。**
 虽然上述工作证明了对抗样本在物理世界中也能发挥作用，但Kurakin等人设计的物理攻击是将对抗样本打印后正对拍摄，这实际上并不符合真实场景。因此Eykholt等人
 :cite:`eykholt2018robust`
 选择道路标志牌作为检测目标域，并指出在物理世界中，对抗样本的有效性存在以下挑战：
@@ -613,8 +614,6 @@ spline，TPS）的变换算法来模拟由人体姿态变化引起的T恤变形�
 
 .. _fig_6.1.3_9:
 
-.. _fig_6.11:
-
 .. figure:: images/6.10_adv_tshirt_framework.png
    :width: 600px
 
@@ -644,16 +643,19 @@ variation norm），\ :math:`\lambda>0`\ 是正则化参数。
 attack，MSF-ADV）。对抗T恤探索了如何将对抗图案放在衣服上的问题，这里\ *多传感器融合对抗攻击*\ 则
 :cite:`cao2021invisible`
 探索了如何攻击真实场景下的自动驾驶系统。雷达和摄像头是自动驾驶标配的两种传感器，其捕获的路面信息和路况信息在分别处理后会通过两个不同的网络进行一定的融合和对齐，融合得到的信息用来支撑自动驾驶的决策。图
-:cite:`fig_6.11`
+:numref:`fig_6_11`
 展示了Cao等人提出的MSF-ADV攻击算法，其主要思想是充分利用两类传感器的特点生成具有对抗性的三维物体，通过优化物体的3D角度、位置、表面平滑度等性质，使其更容易在物理世界实现（比如3D打印）并保持对抗性。其中，主要的难点包括对雷达模块信息处理（即3D点云处理）的可微近似、点云信息与图像信息的匹配以及对抗形状的优化等。此研究工作第一次完整的攻破了自动驾驶的雷达和摄像头两个感知系统，在模拟自动驾驶场景中可以误导企业级的自动驾驶汽车装上3D对抗物体。
-|多传感器融合对抗攻击流程图 :cite:`cao2021invisible` （简化版本）|
 
+.. _fig_6_11:
+
+.. figure:: images/6.11_msf_adv.png
    :width: 600px
+
+   多传感器融合对抗攻击流程图 :cite:`cao2021invisible` （简化版本）
+
 
 
 本章小结
 --------
 
 对抗攻击可以说是威胁深度神经网络安全性的一种最主要的攻击，其自从2013年被发现已经得到了大量的研究。本章从白盒攻击、黑盒攻击和物理攻击三种攻击类型出发，介绍了近年来被提出的几种经典对抗攻击算法。这些算法从不同的角度，如提高攻击成功率、增加隐蔽性、提高查询效率、适应物理环境变化等，探索如何更合理、更高效的使用对抗梯度来获得想要的攻击效果。通过本章节的介绍希望读者能够对基本的攻击流程、攻击策略、尚存挑战等有所了解，从而灵活面对未来更多样化的应用领域和攻击场景。当然，本着“攻击是为了更好的防御”的原则，对抗攻击还是要服务于测试模型（尤其是多模态大模型）的鲁棒性、揭示模型的安全问题，而不是恶意的攻击正在服务中的模型，否则可能会引起巨额经济损失，需要承担相应的法律责任。
-
-.. |多传感器融合对抗攻击流程图 :cite:`cao2021invisible` （简化版本）| image:: images/6.11_msf_adv.png

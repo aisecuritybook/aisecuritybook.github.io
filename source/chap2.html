@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <title>2. 机器学习基础 &#8212; 人工智能数据与模型安全 1.0.0 documentation</title>
+    <title>2. 机器学习基础 &#8212; 人工智能：数据与模型安全 1.0.0 documentation</title>
 
-    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.pink-deep_orange.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fontawesome/all.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
@@ -25,6 +25,7 @@
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/d2l.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/logo_removebg.png?"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. 人工智能安全基础" href="chap3.html" />
@@ -75,12 +76,12 @@ Show Source
                   课程
               </a>
           
-              <a  class="mdl-navigation__link" href="https://github.com/OpenTAI">
+              <a  class="mdl-navigation__link" href="https://github.com/aisecuritybook">
                   <i class="fab fa-github"></i>
                   GitHub
               </a>
           
-              <a  class="mdl-navigation__link" href="https://haole1683.github.io/Book_html/html/chapter_preface/empty.html">
+              <a  class="mdl-navigation__link" href="https://aisecuritybook.github.io/">
                   <i class="fas fa-external-link-alt"></i>
                   English
               </a>
@@ -91,7 +92,7 @@ Show Source
           <!-- Title -->
       <span class="mdl-layout-title">
           <a class="title" href="../index.html">
-              <img class="logo" src="../_static/book_logo.png" alt="人工智能数据与模型安全"/>
+              <img class="logo" src="../_static/logo_with_text.png" alt="人工智能：数据与模型安全"/>
           </a>
       </span>
     
@@ -103,7 +104,6 @@ Show Source
             
             <nav class="mdl-navigation">
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../chapter_about_the_book/index.html">关于此书</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%89%8D%E8%A8%80.html">前言</a></li>
 </ul>
 <ul class="current">
@@ -136,7 +136,7 @@ Show Source
           <!-- Title -->
       <span class="mdl-layout-title">
           <a class="title" href="../index.html">
-              <img class="logo" src="../_static/book_logo.png" alt="人工智能数据与模型安全"/>
+              <img class="logo" src="../_static/logo_with_text.png" alt="人工智能：数据与模型安全"/>
           </a>
       </span>
     
@@ -148,7 +148,6 @@ Show Source
             
             <nav class="mdl-navigation">
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../chapter_about_the_book/index.html">关于此书</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%89%8D%E8%A8%80.html">前言</a></li>
 </ul>
 <ul class="current">
@@ -309,10 +308,11 @@ reduction）是无监督学习中的另一类重要任务，其目的是将高�
 components analysis，PCA） <span id="id16">(<a class="reference internal" href="../chapter_references/zreferences.html#id287" title="Jolliffe, I. T. (2002). Principal component analysis for special types of data. Springer.">Jolliffe, 2002</a>)</span>
 、t-SNE（t-distributed stochastic neighbor embedding）
 <span id="id17">(<a class="reference internal" href="../chapter_references/zreferences.html#id288" title="Van der Maaten, L., &amp; Hinton, G. (2008). Visualizing data using t-sne. Journal of Machine Learning Research, 9(11).">Van der Maaten and Hinton, 2008</a>)</span> 等。
-其中，PCA是一种最常用的方法，它通过最大化投影方差来生成一系列线性不相关变量（即主成分），将高维数据映射到低维空间。原先的<span class="math notranslate nohighlight">\(n\)</span>个特征被更少的<span class="math notranslate nohighlight">\(m \ll n\)</span>个特征取代，新特征是旧特征的线性组合，PCA算法尽量使新的<span class="math notranslate nohighlight">\(m\)</span>个特征互不相关以便存储更多的信息。此外，数据在降维的同时会去除一部分噪声，将有利于发现数据中的潜在模式。
-<strong>自监督对比学习</strong>（self-supervised contrastive
+其中，PCA是一种最常用的方法，它通过最大化投影方差来生成一系列线性不相关变量（即主成分），将高维数据映射到低维空间。原先的<span class="math notranslate nohighlight">\(n\)</span>个特征被更少的<span class="math notranslate nohighlight">\(m \ll n\)</span>个特征取代，新特征是旧特征的线性组合，PCA算法尽量使新的<span class="math notranslate nohighlight">\(m\)</span>个特征互不相关以便存储更多的信息。此外，数据在降维的同时会去除一部分噪声，将有利于发现数据中的潜在模式。</p>
+<p><strong>自监督对比学习</strong>（self-supervised contrastive
 learning）是无监督学习的一种，其通过对比的手段学习样本间的相同和不同特征，从而得到高效的特征抽取模型<span class="math notranslate nohighlight">\(f\)</span>，能够对输入样本提取具有判别性的有用特征。<em>对比学习</em>的核心思想在于让“相似”的样本在特征空间更近，让“不相似”的样本在特征空间更远。例如，我们可以将相同实例的不同视角（如应用不同的数据增强）视为<em>相似样本</em>（也称正样本对），同时将不同的实例视为<em>不相似样本</em>（也称负样本对）。此外，还可以利用聚类方法，将同一个簇内的样本定义为相似样本，而来自不同簇的样本则视为负样本对。目前，如何设计合理的对照和相似性度量是自监督对比学习研究的重点
-<span id="id18">(<a class="reference internal" href="../chapter_references/zreferences.html#id510" title="Tian, Y., Sun, C., Poole, B., Krishnan, D., Schmid, C., &amp; Isola, P. (2020). What makes for good views for contrastive learning? Advances in Neural Information Processing Systems, 33, 6827–6839.">Tian <em>et al.</em>, 2020</a>)</span> 。 <strong>数据重建</strong>（data
+<span id="id18">(<a class="reference internal" href="../chapter_references/zreferences.html#id510" title="Tian, Y., Sun, C., Poole, B., Krishnan, D., Schmid, C., &amp; Isola, P. (2020). What makes for good views for contrastive learning? Advances in Neural Information Processing Systems, 33, 6827–6839.">Tian <em>et al.</em>, 2020</a>)</span> 。</p>
+<p><strong>数据重建</strong>（data
 reconstruction）通过重构原始样本来学习数据的有效表示或者学习生成特定分布的样本。基于自我重建的无监督学习包含了很多经典的算法，如自编码器（autoencoder）
 <span id="id19">(<a class="reference internal" href="../chapter_references/zreferences.html#id7" title="Rumelhart, D. E., Hinton, G. E., &amp; Williams, R. J. (1986). Learning representations by back-propagating errors. Nature, 323(6088), 533–536.">Rumelhart <em>et al.</em>, 1986</a>)</span> 、变分自编码器（variational
 autoencoder，VAE） <span id="id20">(<a class="reference internal" href="../chapter_references/zreferences.html#id249" title="Kingma, D. P., &amp; Welling, M. (2013). Auto-encoding variational bayes. arXiv preprint arXiv:1312.6114.">Kingma and Welling, 2013</a>)</span> 、生成对抗网络（GAN）
@@ -364,19 +364,19 @@ policy）来分别完成<em>利用</em>（exploitation） 和
 <p><strong>迁移学习</strong>（transfer
 learning）是在目标任务数据不足的情况下，充分利用其他学习任务的已有模型，将其强大的特征学习能力迁移到目标任务的学习算法。迁移学习的本质是通过<em>源域</em>（source
 domain）知识来辅助学习<em>目标域</em>（target
-domain）知识。源域（或源任务）数据集被称为<em>源数据集</em><span class="math notranslate nohighlight">\(D^s=\{ x^s_i,y^s_i\}_{i=1}^{n^s}\)</span>，目标域（或目标任务）数据集被称为<em>目标数据集</em><span class="math notranslate nohighlight">\(D^t=\{ x^t_i,y^t_i\}_{i=1}^{n^t}\)</span>。在一个机器学习任务里，数据、特征和模型承载了主要的知识，都有可能成为迁移学习的对象。所以根据迁移对象的不同，迁移学习算法又分为样本迁移、特征迁移、模型迁移等不同类别。
-<em>样本迁移</em>适用于源域和目标域存在一定的类别重叠的情况，目标是通过重用源域样本来提升迁移性能。常用的方法是为源域样本赋予不同的权重，通过提升源域中有利于目标域任务的样本的权重，同时降低不利于目标域任务的样本的权重，以此来增强模型在目标域任务上的性能。但这类方法通常只在领域间分布差异不大时有效，对于计算机视觉、自然语言处理等任务效果并不理想。
-<em>特征迁移</em>的应用更为广泛，它适用于源域和目标域特征空间不一致的场景。常见的解决思路有如下两种：（1）从特征空间出发，利用分布距离度量或使用对抗学习，缩小模型提取的源域特征和目标域特征的分布差异；（2)从输入空间着手，将源域数据变换到目标域进行学习，以完成跨领域泛化。这两类解决思路可形式化定义如下：</p>
+domain）知识。源域（或源任务）数据集被称为<em>源数据集</em><span class="math notranslate nohighlight">\(D^s=\{ x^s_i,y^s_i\}_{i=1}^{n^s}\)</span>，目标域（或目标任务）数据集被称为<em>目标数据集</em><span class="math notranslate nohighlight">\(D^t=\{ x^t_i,y^t_i\}_{i=1}^{n^t}\)</span>。在一个机器学习任务里，数据、特征和模型承载了主要的知识，都有可能成为迁移学习的对象。所以根据迁移对象的不同，迁移学习算法又分为样本迁移、特征迁移、模型迁移等不同类别。</p>
+<p><em>样本迁移</em>适用于源域和目标域存在一定的类别重叠的情况，目标是通过重用源域样本来提升迁移性能。常用的方法是为源域样本赋予不同的权重，通过提升源域中有利于目标域任务的样本的权重，同时降低不利于目标域任务的样本的权重，以此来增强模型在目标域任务上的性能。但这类方法通常只在领域间分布差异不大时有效，对于计算机视觉、自然语言处理等任务效果并不理想。</p>
+<p><em>特征迁移</em>的应用更为广泛，它适用于源域和目标域特征空间不一致的场景。常见的解决思路有如下两种：（1）从特征空间出发，利用分布距离度量或使用对抗学习，缩小模型提取的源域特征和目标域特征的分布差异；（2）从输入空间着手，将源域数据变换到目标域进行学习，以完成跨领域泛化。这两类解决思路可形式化定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap2-10">
 <span class="eqno">(2.2.7)<a class="headerlink" href="#equation-source-chap2-10" title="Permalink to this equation">¶</a></span>\[\begin{split}\left\{\begin{aligned}\text{Type 1: }   \min_{\theta} \Big[\mathbb{E}_{( x,y) \in D^s} \mathcal{L}(f( x),y)  + \mathcal{L}_{\text{dis}}(g(D^s),g(D^t)\Big], \\\text{Type 2: }  \min_{\theta} \mathbb{E}_{( x,y) \in D^s} \mathcal{L}{(f \circ X_{s \rightarrow t}( x),y)}, \\\end{aligned}\right.\end{split}\]</div>
-<p>其中，<span class="math notranslate nohighlight">\(f=h \circ g\)</span>为任务模型，<span class="math notranslate nohighlight">\(h\)</span>为任务头，<span class="math notranslate nohighlight">\(g\)</span>为特征编码器，<span class="math notranslate nohighlight">\(\theta\)</span>为模型参数，<span class="math notranslate nohighlight">\(\mathcal{L}(f( x),y)\)</span>对应任务损失函数，<span class="math notranslate nohighlight">\(g(D)\)</span>为数据集<span class="math notranslate nohighlight">\(D\)</span>的样本特征集合，<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{dis}}(\cdot,\cdot)\)</span>为衡量特征集合分布差异的函数，指导两个域之间的特征对齐。可以看出，第一类方法会增加额外的损失项（<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{dis}}\)</span>）来约束特征编码器，使其学习到不同领域之间的共同模式；而第二类方法需要首先学习将数据从源域转换到目标域的转换映射<span class="math notranslate nohighlight">\(X_{s \rightarrow t}\)</span>，比如通过神经网络进行学习，以此来降低域间差异，提升模型泛化能力。
-除了样本迁移和特征迁移，<em>模型迁移</em>是另一类被广泛研究的迁移方法，它通过找到源域和目标域之间可以共享的模型参数信息，以此最大化利用在源域数据上预训练的模型的知识。在深度学习中，一种常见的模型迁移方法是利用大规模预训练模型对下游任务模型进行初始化，然后以微调（或者添加特定任务模块后再微调）的方式完成预训练模型到下游任务的跨域迁移。模型迁移可形式化表示如下：</p>
+<p>其中，<span class="math notranslate nohighlight">\(f=h \circ g\)</span>为任务模型，<span class="math notranslate nohighlight">\(h\)</span>为任务头，<span class="math notranslate nohighlight">\(g\)</span>为特征编码器，<span class="math notranslate nohighlight">\(\theta\)</span>为模型参数，<span class="math notranslate nohighlight">\(\mathcal{L}(f( x),y)\)</span>对应任务损失函数，<span class="math notranslate nohighlight">\(g(D)\)</span>为数据集<span class="math notranslate nohighlight">\(D\)</span>的样本特征集合，<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{dis}}(\cdot,\cdot)\)</span>为衡量特征集合分布差异的函数，指导两个域之间的特征对齐。可以看出，第一类方法会增加额外的损失项（<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{dis}}\)</span>）来约束特征编码器，使其学习到不同领域之间的共同模式；而第二类方法需要首先学习将数据从源域转换到目标域的转换映射<span class="math notranslate nohighlight">\(X_{s \rightarrow t}\)</span>，比如通过神经网络进行学习，以此来降低域间差异，提升模型泛化能力。</p>
+<p>除了样本迁移和特征迁移，<em>模型迁移</em>是另一类被广泛研究的迁移方法，它通过找到源域和目标域之间可以共享的模型参数信息，以此最大化利用在源域数据上预训练的模型的知识。在深度学习中，一种常见的模型迁移方法是利用大规模预训练模型对下游任务模型进行初始化，然后以微调（或者添加特定任务模块后再微调）的方式完成预训练模型到下游任务的跨域迁移。模型迁移可形式化表示如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap2-11">
 <span class="eqno">(2.2.8)<a class="headerlink" href="#equation-source-chap2-11" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{aligned} \min_{\theta \subset \theta_g \cup \theta_{h^t}} \mathbb{E}_{( x,y) \in D^t} \mathcal{L}^{t}(h^t \circ g( x),y) \\ \theta_{\text{init}} = \mathop{\mathrm{arg\,min}}_{\theta} \mathbb{E}_{( x,y) \in D^s} \mathcal{L}^{s}(h^s \circ g( x),y), \\\end{aligned}\end{split}\]</div>
-<p>其中，<span class="math notranslate nohighlight">\(g\)</span>表示预训练特征抽取器，<span class="math notranslate nohighlight">\(h^s\)</span>和<span class="math notranslate nohighlight">\(h^t\)</span>分别表示源（预训练）任务和目标任务头，<span class="math notranslate nohighlight">\(\mathcal{L}^{s}\)</span>和<span class="math notranslate nohighlight">\(\mathcal{L}^{t}\)</span>分别表示源任务和目标任务的损失函数，<span class="math notranslate nohighlight">\(D^s\)</span>和<span class="math notranslate nohighlight">\(D^t\)</span>分别表示源数据集和目标数据集。实际上，模型迁移的实现方式有很多种，比如可以固定住网络深层结构而更新浅层结构，也可以借助后面要介绍的知识蒸馏技术，让下游任务模型能够学到源域模型中更多的知识。人工智能安全研究非常注重迁移性，例如攻击和防御方法能否迁移到不同的数据集、模型结构、训练方式等；亦或是利用特征迁移技术提升模型的通用防御能力。
-<strong>在线学习</strong>（online
-learning）是与离线学习相对的概念，是指训练数据或者学习任务是在模型的部署使用过程中不断更新或增加的，需要持续优化模型以满足动态增长的需求。前面介绍的很多学习方法都是<em>离线学习</em>方法，即训练数据是预先收集好的。而在线学习要求数据按顺序可用，利用新到来的数据实时的对模型参数进行更新和优化。其中<em>增量学习</em>是一种典型的在线学习范式，它要求模型能够不断地处理现实世界中新产生的数据流。新旧知识之间存在一定的权衡，所以增量学习的难点是如何让模型在吸收新知识的同时能够最大化的保留甚至整合、优化旧知识。
-我们将增量发生之前的数据称为旧数据集，定义为<span class="math notranslate nohighlight">\(D_{\text{old}}=\{ x_i^{\text{old}}, y_i^{\text{old}}\}_{i=1}^{n_{\text{old}}}\)</span>，而新增加的数据集则定义为<span class="math notranslate nohighlight">\(D_{\text{new}}=\{ x_i^{\text{new}}, y_i^{\text{new}}\}_{i=1}^{n_{\text{new}}}\)</span>。增量学习的优化目标
+<p>其中，<span class="math notranslate nohighlight">\(g\)</span>表示预训练特征抽取器，<span class="math notranslate nohighlight">\(h^s\)</span>和<span class="math notranslate nohighlight">\(h^t\)</span>分别表示源（预训练）任务和目标任务头，<span class="math notranslate nohighlight">\(\mathcal{L}^{s}\)</span>和<span class="math notranslate nohighlight">\(\mathcal{L}^{t}\)</span>分别表示源任务和目标任务的损失函数，<span class="math notranslate nohighlight">\(D^s\)</span>和<span class="math notranslate nohighlight">\(D^t\)</span>分别表示源数据集和目标数据集。实际上，模型迁移的实现方式有很多种，比如可以固定住网络深层结构而更新浅层结构，也可以借助后面要介绍的知识蒸馏技术，让下游任务模型能够学到源域模型中更多的知识。人工智能安全研究非常注重迁移性，例如攻击和防御方法能否迁移到不同的数据集、模型结构、训练方式等；亦或是利用特征迁移技术提升模型的通用防御能力。</p>
+<p><strong>在线学习</strong>（online
+learning）是与离线学习相对的概念，是指训练数据或者学习任务是在模型的部署使用过程中不断更新或增加的，需要持续优化模型以满足动态增长的需求。前面介绍的很多学习方法都是<em>离线学习</em>方法，即训练数据是预先收集好的。而在线学习要求数据按顺序可用，利用新到来的数据实时的对模型参数进行更新和优化。其中<em>增量学习</em>是一种典型的在线学习范式，它要求模型能够不断地处理现实世界中新产生的数据流。新旧知识之间存在一定的权衡，所以增量学习的难点是如何让模型在吸收新知识的同时能够最大化的保留甚至整合、优化旧知识。</p>
+<p>我们将增量发生之前的数据称为旧数据集，定义为<span class="math notranslate nohighlight">\(D_{\text{old}}=\{ x_i^{\text{old}}, y_i^{\text{old}}\}_{i=1}^{n_{\text{old}}}\)</span>，而新增加的数据集则定义为<span class="math notranslate nohighlight">\(D_{\text{new}}=\{ x_i^{\text{new}}, y_i^{\text{new}}\}_{i=1}^{n_{\text{new}}}\)</span>。增量学习的优化目标
 可定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap2-12">
 <span class="eqno">(2.2.9)<a class="headerlink" href="#equation-source-chap2-12" title="Permalink to this equation">¶</a></span>\[\min_{\theta} \big[\mathbb{E}_{( x,y) \in D_{\text{old}}} \mathcal{L}(f( x),y) + \mathbb{E}_{( x,y) \in D_{\text{new}}} \mathcal{L}(f( x),y)\big],\]</div>
@@ -384,9 +384,9 @@ learning）是与离线学习相对的概念，是指训练数据或者学习任
 forgetting）。一般可以通过增加参数约束项、预保存旧数据的少量关键特征（并在增量过程中进行回放）、对模型重要参数进行冻结等方式来解决。</p>
 <p><strong>联邦学习</strong>（federated
 learning，FL）是针对<em>数据孤岛</em>现象所提出的一种多方<em>协同学习</em>（collaborative
-learning）技术。在当今信息时代，数据是宝贵的资源，机器学习（尤其是深度学习）往往需要大量数据来训练高性能的模型。然而在实际场景中，不同的机构虽然都拥有一部分的私有数据，但往往由于各种限制无法共享，这就导致个体机构能利用的数据量是非常有限的，难以整合产业优势。这种现象被形象地称为“<em>数据孤岛</em>”，指不同业务系统之间无法协同互通的状态。尽管随着5G通信和物联网技术的快速发展，大量的数据被不断的采集，但是数据孤岛现象却日益严重，所带来的问题包括：如何安全分享信息、如何有效利用异构数据、如何快速传输交付、如何定价数据价值等。在数据孤岛问题之下，联邦学习应运而生，其允许各方在不共享数据的情况下可以联合训练一个强大的全局模型。
-联邦学习存在多个参与方和一个中心参数服务器，每个参与方有自己的数据和模型，可以进行本地模型训练，各参与方在一定次数的本地训练后将本地模型参数上传至中心服务器，中心服务器根据聚合本地参数后更新全局模型，各参与方下载全局模型并继续进行本地训练，以此往复直至全局模型收敛。
-由于只是共享模型参数（或梯度信息）而不需要共享数据，联邦学习也通常被认为是一种“<em>隐私保护</em>”（privacy-preserving）的学习范式。根据各方私有数据的分布类型不同，联邦学习又可以分为<em>横向联邦学习</em>(horizontal
+learning）技术。在当今信息时代，数据是宝贵的资源，机器学习（尤其是深度学习）往往需要大量数据来训练高性能的模型。然而在实际场景中，不同的机构虽然都拥有一部分的私有数据，但往往由于各种限制无法共享，这就导致个体机构能利用的数据量是非常有限的，难以整合产业优势。这种现象被形象地称为“<em>数据孤岛</em>”，指不同业务系统之间无法协同互通的状态。尽管随着5G通信和物联网技术的快速发展，大量的数据被不断的采集，但是数据孤岛现象却日益严重，所带来的问题包括：如何安全分享信息、如何有效利用异构数据、如何快速传输交付、如何定价数据价值等。在数据孤岛问题之下，联邦学习应运而生，其允许各方在不共享数据的情况下可以联合训练一个强大的全局模型。</p>
+<p>联邦学习存在多个参与方和一个中心参数服务器，每个参与方有自己的数据和模型，可以进行本地模型训练，各参与方在一定次数的本地训练后将本地模型参数上传至中心服务器，中心服务器根据聚合本地参数后更新全局模型，各参与方下载全局模型并继续进行本地训练，以此往复直至全局模型收敛。</p>
+<p>由于只是共享模型参数（或梯度信息）而不需要共享数据，联邦学习也通常被认为是一种“<em>隐私保护</em>”（privacy-preserving）的学习范式。根据各方私有数据的分布类型不同，联邦学习又可以分为<em>横向联邦学习</em>（horizontal
 federated learning，HFL）和<em>纵向联邦学习</em>（vertical federated
 learning，VFL）。如果以一个包含若干行和列的数据表为例，横向联邦中各参与方拥有不同的“<em>数据行</em>”，而纵向联邦各参与方拥有不同的“<em>数据列</em>”。它们共同需要面对的挑战包括：非独立同分布（non-IID）的数据、有限通信带宽、不可靠或有限的设备等。关于联邦学习及其安全问题将会在章节
 <a class="reference internal" href="chap5.html#sec-federated-learning"><span class="std std-numref">5.3节</span></a> 和章节 <a class="reference internal" href="chap8.html#sec-fl-backdoor"><span class="std std-numref">8.5节</span></a>
@@ -397,20 +397,20 @@ from
 scratch）具有更好的性能。令学生模型为<span class="math notranslate nohighlight">\(S\)</span>，教师模型为<span class="math notranslate nohighlight">\(T\)</span>，<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{sim}}\)</span>表示两个模型输出的一致性约束，给定数据集<span class="math notranslate nohighlight">\(D=\{ x_i,y_i\}_{i=1}^{n}\)</span>，知识蒸馏的优化目标可定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap2-13">
 <span class="eqno">(2.2.10)<a class="headerlink" href="#equation-source-chap2-13" title="Permalink to this equation">¶</a></span>\[\min_{\theta_s} \mathbb{E}_{( x,y) \in D} \mathcal{L}_{\text{sim}}(S_{\theta_s}( x), T_{\theta_t}( x)).\]</div>
-<p>知识蒸馏技术在数据与模型安全中的很多地方都有涉及。比如，蒸馏技术可以用来从一个已训练的模型中逆向工程原始训练数据，以达到数据窃取的目的。再比如，在模型防御方面，可以通过鲁棒性蒸馏技术将鲁棒性从教师模型迁移到结构更为简单的学生模型，以弥补小模型在鲁棒训练方面的不足。
-<strong>多任务学习</strong>（multi-task learning,
+<p>知识蒸馏技术在数据与模型安全中的很多地方都有涉及。比如，蒸馏技术可以用来从一个已训练的模型中逆向工程原始训练数据，以达到数据窃取的目的。再比如，在模型防御方面，可以通过鲁棒性蒸馏技术将鲁棒性从教师模型迁移到结构更为简单的学生模型，以弥补小模型在鲁棒训练方面的不足。</p>
+<p><strong>多任务学习</strong>（multi-task learning,
 MTL）是指通过单个模型完成多个任务的学习范式。有别于单任务学习，多任务学习把多个紧密相关的任务放在一起进行学习，建立任务间的共享表征，从而提高模型在多个任务上的同时泛化能力。单任务学习必须对每个任务训练一个模型，在多任务推理时还需要进行二次组合或相互调用，而多任务学习得到的模型可以同时完成多个任务的推理，有效减少训练和推理时间。章节~
 <a class="reference internal" href="#sec-suplearn"><span class="std std-numref">2.2.1节</span></a>
 中所介绍的有监督学习就是一种单任务学习，我们在其基础上进行多任务的扩展。定义数据集<span class="math notranslate nohighlight">\(D=\{ x,y\}_{i=1}^{n}\)</span>，其包含<span class="math notranslate nohighlight">\(m\)</span>个子任务<span class="math notranslate nohighlight">\(\{T_i\}_{i=1}^{m}\)</span>，多任务学习的目标是在同一个输入上完成多个不同的子任务，如对一张图片同时进行目标检测和图像分割。一种常见的多任务建模方式是使用一个<em>共享表征模型</em><span class="math notranslate nohighlight">\(g\)</span>对输入进行特征编码，进而针对<span class="math notranslate nohighlight">\(m\)</span>个不同的任务设计不同的任务头<span class="math notranslate nohighlight">\(\{h_i\}_{i=1}^m\)</span>。多任务有监督学习往往要求模型对多个子任务同时进行优化，每个任务对应一个损失函数<span class="math notranslate nohighlight">\(\mathcal{L}_i\)</span>，可以根据学习的难易程度赋予不同的任务以不同的权重。多任务学习的目标可形式化表示如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap2-14">
 <span class="eqno">(2.2.11)<a class="headerlink" href="#equation-source-chap2-14" title="Permalink to this equation">¶</a></span>\[\min_{\theta} \mathbb{E}_{( x,y) \in D} \sum_{i=1}^{m} w_i \cdot \mathcal{L}_i(h_i\circ g( x),y).\]</div>
-<p>多任务学习的安全性问题是一个尚未充分探索的开放研究领域。在攻击方面，可以探索如何设计能够同时攻破多个任务的通用攻击方法、如果根据一个任务来破坏其他任务等；在防御方面，可以探索能防御多任务攻击的高效防御方法、如何高效利用多任务互补信息来建立更完备的防御框架等。
-<strong>小样本学习</strong>（few-shot
+<p>多任务学习的安全性问题是一个尚未充分探索的开放研究领域。在攻击方面，可以探索如何设计能够同时攻破多个任务的通用攻击方法、如果根据一个任务来破坏其他任务等；在防御方面，可以探索能防御多任务攻击的高效防御方法、如何高效利用多任务互补信息来建立更完备的防御框架等。</p>
+<p><strong>小样本学习</strong>（few-shot
 learning，FSL）是一种以有监督学习为主，仅依赖少量样本就可以高效学习和泛化的学习方法。人类可以根据已有经验，仅凭少量样本就可以辨识新的事物，而小样本学习的出现，就是为了让机器也可以拥有类似的能力。
 小样本学习一般定义为一个<span class="math notranslate nohighlight">\(C\)</span>-way-<span class="math notranslate nohighlight">\(K\)</span>-shot的任务，<span class="math notranslate nohighlight">\(C\)</span>-way指<span class="math notranslate nohighlight">\(C\)</span>个类别，<span class="math notranslate nohighlight">\(K\)</span>-shot指每个类别包含<span class="math notranslate nohighlight">\(K\)</span>个样本。学习设计三种数据集：<em>训练集</em>、<em>支撑集</em>（support
 set）和<em>查询集</em>（query
-set）。任务要求在训练集上训练的模型能够以<span class="math notranslate nohighlight">\(C*K\)</span>个已知标签的样本作为<em>支撑集</em>，快速准确地学习<em>新的类别概念</em>，并在<em>查询集</em>（测试时未知标签的数据构成的集和）上达到很好的表现。这种通过少量样本快速学习的能力往往需要模型从更多的数据中获取先验知识，因此，小样本任务往往会提供与测试语义相关但不相同的训练数据<span class="math notranslate nohighlight">\(D=\{ x_i,y_i\}_{i=1}^{n}\)</span>，保证标签空间不相交。
-解决小样本学习问题最简单的方法是让模型先在训练集上进行充分训练，然后在测试支撑集上进行二次训练，最后在测试查询集上进行性能评测。另一类常见的方法则是引入<em>元学习</em>（meta
+set）。任务要求在训练集上训练的模型能够以<span class="math notranslate nohighlight">\(C*K\)</span>个已知标签的样本作为<em>支撑集</em>，快速准确地学习<em>新的类别概念</em>，并在<em>查询集</em>（测试时未知标签的数据构成的集和）上达到很好的表现。这种通过少量样本快速学习的能力往往需要模型从更多的数据中获取先验知识，因此，小样本任务往往会提供与测试语义相关但不相同的训练数据<span class="math notranslate nohighlight">\(D=\{ x_i,y_i\}_{i=1}^{n}\)</span>，保证标签空间不相交。</p>
+<p>解决小样本学习问题最简单的方法是让模型先在训练集上进行充分训练，然后在测试支撑集上进行二次训练，最后在测试查询集上进行性能评测。另一类常见的方法则是引入<em>元学习</em>（meta
 learning）的思想：让模型学会如何学习（learning to
 learn）。具体来说，这类方法视训练集上的每一次训练迭代为一次小样本学习过程，仿照测试阶段<span class="math notranslate nohighlight">\(C\)</span>-way-<span class="math notranslate nohighlight">\(K\)</span>-shot的方式将每个小批量训练数据划分为支撑集<span class="math notranslate nohighlight">\(D_i^{\text{sup}}=\{( x^{\text{sup}}_i,y^{\text{sup}}_i)\}\)</span>和查询集<span class="math notranslate nohighlight">\(D_i^{\text{query}}=\{( x^{\text{query}}_i, y^{\text{query}}_i)\}\)</span>，并确保支撑集<span class="math notranslate nohighlight">\(D_i^{\text{sup}}\)</span>包含<span class="math notranslate nohighlight">\(C*K\)</span>个样本。我们将每种划分定义为任务<span class="math notranslate nohighlight">\(T_i\)</span>，其对应数据集<span class="math notranslate nohighlight">\(D_i=D^{\text{sup}}_i \cup D^{\text{query}}_i\)</span>，于是总的训练任务为<span class="math notranslate nohighlight">\(T_{\text{train}}=\{T_1, \ldots, T_n\}\)</span>，总的训练集为<span class="math notranslate nohighlight">\(D_{\text{train}}=\{D_1, \ldots, D_n | D_i \subset D\}\)</span>，并通过如下公式训练模型：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap2-15">
@@ -437,7 +437,7 @@ learn）。具体来说，这类方法视训练集上的每一次训练迭代为
 此时定义的交叉熵损失也被称为<strong>二元交叉熵损失</strong>（binary
 Cross-entropy, BCE），定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap2-16">
-<span class="eqno">(2.3.2)<a class="headerlink" href="#equation-source-chap2-16" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text{BCE}}(f( x), y) = y \cdot \log(p) + (1-y) \cdot \log(p).\]</div>
+<span class="eqno">(2.3.2)<a class="headerlink" href="#equation-source-chap2-16" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text{BCE}}(f( x), y) = -y \cdot \log(p) - (1-y) \cdot \log(1-p).\]</div>
 <p>分类任务除单标签场景外还存在<em>多标签分类</em>场景，即每一个样本可能对应一个或多个标签。单标签可用独热编码<span class="math notranslate nohighlight">\(y\)</span>来表示类别标签<span class="math notranslate nohighlight">\(y\)</span>，即<span class="math notranslate nohighlight">\(y_{k=y}=1\)</span>且<span class="math notranslate nohighlight">\(y_{k\neq y}=0\)</span>。而在多标签场景下，独特编码就变成了<em>多热编码</em>（multi-hot
 encoding），每个标签对应的位置都是1。多标签分类问题可以被转换为多二分类问题，此时交叉熵损失可以定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap2-17">
@@ -481,7 +481,7 @@ error，MAE）是另一种用于回归任务的损失函数，它计算了模型
 <p><strong>平滑平均绝对误差</strong>（Huber loss）是在MAE基础上的一种平滑改进。
 一般认为，MSE比MAE对异常值更加敏感，因为当出现异常值时，MSE中的平方操作会将其误差加倍放大，会使模型朝异常值拟合的方向优化，影响模型的整体性能。而MAE的问题在于梯度始终一致，即使损失值很小，梯度也会比较大，因而往往需要使用动态学习率的方式帮助MAE更好的收敛。Huber损失结合了MSE和MAE的特点重新设计了损失函数，给定样本<span class="math notranslate nohighlight">\(x\)</span>、真实类别<span class="math notranslate nohighlight">\(y\)</span>、模型<span class="math notranslate nohighlight">\(f\)</span>，Huber损失的定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap2-21">
-<span class="eqno">(2.3.9)<a class="headerlink" href="#equation-source-chap2-21" title="Permalink to this equation">¶</a></span>\[\begin{split}\mathcal{L}_{\text{huber}}(f( x),y)=\left\{\begin{aligned} \frac{1}{2}(f( x)-y)^2   |f( x)-y|&lt;\delta \\ \delta|f( x)-y| - \frac{1}{2} \delta^2  \text{otherwise},\end{aligned}\right.\end{split}\]</div>
+<span class="eqno">(2.3.9)<a class="headerlink" href="#equation-source-chap2-21" title="Permalink to this equation">¶</a></span>\[\begin{split}\mathcal{L}_{\text{huber}}(f( x),y)=\left\{\begin{aligned} \frac{1}{2}(f( x)-y)^2  \qquad |f( x)-y|&lt;\delta \\ \delta|f( x)-y| - \frac{1}{2} \delta^2   \qquad \text{otherwise},\end{aligned}\right.\end{split}\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(\delta\)</span>是超参数，用于调节MAE的平滑程度。可以发现在真实值的近端，Huber损失使用MSE的形式使梯度随优化的进行逐步减小，利于模型最后阶段的参数收尾调优；而在优化目标的远端，Huber损失使用MAE的形式，降低损失函数对于异常点的敏感程度。当<span class="math notranslate nohighlight">\(\delta\)</span>趋于无穷时，该损失函数将退化为MSE；若<span class="math notranslate nohighlight">\(\delta\)</span>趋于0，该损失函数将退化为MAE。</p>
 </div>
 <div class="section" id="sec-bbox-regression-loss">
@@ -492,28 +492,27 @@ box
 regression，BBR）问题，即对边界框四个顶点位置的坐标进行回归。既然是回归问题，那么边框回归就可以使用章节
 <a class="reference internal" href="#sec-regression-loss"><span class="std std-numref">2.3.2节</span></a>
 中介绍的回归损失函数如MSE、MAE等来解决。但是边框检测的质量是由预测边框和真实边框之间的<em>交并比</em>（intersection
-over union，IoU）来衡量的，所以使用基于IoU定义的损失函数一般会更加有效
-<span id="id31">(<a class="reference internal" href="../chapter_references/zreferences.html#id527" title="Rahman, M. A., &amp; Wang, Y. (2016). Optimizing intersection-over-union in deep neural networks for image segmentation. International Symposium on Visual Computing (pp. 234–244).">Rahman and Wang, 2016</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id528" title="Yu, J., Jiang, Y., Wang, Z., Cao, Z., &amp; Huang, T. (2016). Unitbox: an advanced object detection network. ACM International Conference on Multimedia.">Yu <em>et al.</em>, 2016</a>)</span> 。</p>
+over union，IoU）来衡量的，所以使用基于IoU定义的损失函数一般会更加有效。</p>
 <p><strong>IoU</strong>是一种经典的边界框重合度量化方法，它使用预测边框<span class="math notranslate nohighlight">\(B\)</span>和真实框<span class="math notranslate nohighlight">\(A\)</span>之间的重叠面积与两框并集面积之间的比值<span class="math notranslate nohighlight">\(IoU=\frac{|A \cap B|}{|A \cup B|}\)</span>来反映边框预测的准确程度。IoU损失定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-eq-iou-loss">
 <span class="eqno">(2.3.10)<a class="headerlink" href="#equation-eq-iou-loss" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{IoU} = 1 - IoU.\]</div>
 <p>IoU损失在两个边框完全不重叠时（训练初期或模型发生很大预测错误时）恒为1，且梯度消失。<strong>GIoU（generalized
 IoU）损失</strong>通过引入<em>最小包含面积</em><span class="math notranslate nohighlight">\(A_{c}\)</span>来解决此问题
-<span id="id32">(<a class="reference internal" href="../chapter_references/zreferences.html#id526" title="Rezatofighi, H., Tsoi, N., Gwak, J., Sadeghian, A., Reid, I., &amp; Savarese, S. (2019). Generalized intersection over union: a metric and a loss for bounding box regression. IEEE/CVF Conference on Computer Vision and Pattern Recognition.">Rezatofighi <em>et al.</em>, 2019</a>)</span>
+<span id="id31">(<a class="reference internal" href="../chapter_references/zreferences.html#id526" title="Rezatofighi, H., Tsoi, N., Gwak, J., Sadeghian, A., Reid, I., &amp; Savarese, S. (2019). Generalized intersection over union: a metric and a loss for bounding box regression. IEEE/CVF Conference on Computer Vision and Pattern Recognition.">Rezatofighi <em>et al.</em>, 2019</a>)</span>
 。最小包含面积是可以将预测和真实框都包含在内的最小封闭矩形。GIoU损失的定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-eq-giou-loss">
 <span class="eqno">(2.3.11)<a class="headerlink" href="#equation-eq-giou-loss" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{GIoU} = 1 - IoU + \frac{\left|A_{c}-U\right|}{\left|A_{c}\right|},\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(U=A \cup B\)</span>为两个边框的并集面积。</p>
 <p>当预测边框和真实框为包含关系时，GIoU退化为IoU，此时无论边框处于什么位置，GIoU和IoU都无法反映出预测框的好坏。针对此问题，DIoU（distance
 IoU）通过在IoU的基础上添加两个边框中心点距离来解决
-<span id="id33">(<a class="reference internal" href="../chapter_references/zreferences.html#id529" title="Zheng, Z., Wang, P., Liu, W., Li, J., Ye, R., &amp; Ren, D. (2020). Distance-iou loss: faster and better learning for bounding box regression. AAAI Conference on Artificial Intelligence (pp. 12993–13000).">Zheng <em>et al.</em>, 2020</a>)</span> 。DIoU损失的定义如下：</p>
+<span id="id32">(<a class="reference internal" href="../chapter_references/zreferences.html#id529" title="Zheng, Z., Wang, P., Liu, W., Li, J., Ye, R., &amp; Ren, D. (2020). Distance-iou loss: faster and better learning for bounding box regression. AAAI Conference on Artificial Intelligence (pp. 12993–13000).">Zheng <em>et al.</em>, 2020</a>)</span> 。DIoU损失的定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-eq-diou-loss">
-<span class="eqno">(2.3.12)<a class="headerlink" href="#equation-eq-diou-loss" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{DIoU} = 1 - IoU + \frac{\gamma^{2}(b, b^{gt})}{c^{2}},\]</div>
-<p>其中，<span class="math notranslate nohighlight">\(b\)</span>和<span class="math notranslate nohighlight">\(b^{gt}\)</span>分别表示预测边框和真实框的中心点位置，<span class="math notranslate nohighlight">\(\gamma^{2}(b, b^{gt})\)</span>表示两个中心点之间的欧氏距离，<span class="math notranslate nohighlight">\(c\)</span>表示<em>最小包含</em>矩形的对角线距离。</p>
-<p><strong>CIoU（complete
-IoU）损失</strong>在DIoU损失的基础上，进一步考虑边框宽高比的尺度信息，设边框的高宽分别为<span class="math notranslate nohighlight">\(h\)</span>和<span class="math notranslate nohighlight">\(w\)</span>，真实框的高宽分别为<span class="math notranslate nohighlight">\(h_{gt}\)</span>和<span class="math notranslate nohighlight">\(w_{gt}\)</span>，CIoU通过引入长宽的比例信息来精细化的反映预测边框和真实框之间的形状差异。CIoU损失定义如下：</p>
+<span class="eqno">(2.3.12)<a class="headerlink" href="#equation-eq-diou-loss" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{DIoU} = 1 - IoU + \frac{\rho^{2}(b, b^{gt})}{c^{2}},\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(b\)</span>和<span class="math notranslate nohighlight">\(b^{gt}\)</span>分别表示预测边框和真实框的中心点位置，<span class="math notranslate nohighlight">\(\rho^{2}(b, b^{gt})\)</span>表示两个中心点之间的欧氏距离，<span class="math notranslate nohighlight">\(c\)</span>表示<em>最小包含</em>矩形的对角线距离。</p>
+<p><strong>CIoU（complete IoU）损失</strong> <span id="id33">(<a class="reference internal" href="../chapter_references/zreferences.html#id529" title="Zheng, Z., Wang, P., Liu, W., Li, J., Ye, R., &amp; Ren, D. (2020). Distance-iou loss: faster and better learning for bounding box regression. AAAI Conference on Artificial Intelligence (pp. 12993–13000).">Zheng <em>et al.</em>, 2020</a>)</span>
+在DIoU损失的基础上，进一步考虑边框宽高比的尺度信息，设边框的高宽分别为<span class="math notranslate nohighlight">\(h\)</span>和<span class="math notranslate nohighlight">\(w\)</span>，真实框的高宽分别为<span class="math notranslate nohighlight">\(h_{gt}\)</span>和<span class="math notranslate nohighlight">\(w_{gt}\)</span>，CIoU通过引入长宽的比例信息来精细化的反映预测边框和真实框之间的形状差异。CIoU损失定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-eq-ciou-loss">
-<span class="eqno">(2.3.13)<a class="headerlink" href="#equation-eq-ciou-loss" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{CIoU} = 1 - IoU + \frac{\gamma^{2}(b, b^{gt})}{c^{2}} + \beta\cdot  \frac{4}{\pi^{2}}\left(\arctan \frac{w^{g t}}{h^{g t}}-\arctan \frac{w}{h}\right)^{2},\]</div>
+<span class="eqno">(2.3.13)<a class="headerlink" href="#equation-eq-ciou-loss" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{CIoU} = 1 - IoU + \frac{\rho^{2}(b, b^{gt})}{c^{2}} + \beta\cdot  \frac{4}{\pi^{2}}\left(\arctan \frac{w^{g t}}{h^{g t}}-\arctan \frac{w}{h}\right)^{2},\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(\beta\)</span>为权重系数。</p>
 <div class="figure align-default" id="id62">
 <span id="fig-iou"></span><a class="reference internal image-reference" href="../_images/2.2_ioutype.png"><img alt="../_images/2.2_ioutype.png" src="../_images/2.2_ioutype.png" style="width: 600px;" /></a>
@@ -524,7 +523,7 @@ IoU）损失</strong>在DIoU损失的基础上，进一步考虑边框宽高比�
 transform）的形式来进一步提高这些损失函数的性能和对噪声边框的鲁棒性。幂变换得到的损失称为<span class="math notranslate nohighlight">\(\alpha\)</span>-IoU
 <span id="id34">(<a class="reference internal" href="../chapter_references/zreferences.html#id530" title="He, J., Erfani, S., Ma, X., Bailey, J., Chi, Y., &amp; Hua, X.-S. (2021). Alpha-iou: a family of power intersection over union losses for bounding box regression. Advances in Neural Information Processing Systems, 34, 20230–20242.">He <em>et al.</em>, 2021</a>)</span> ，上述几种IoU损失的幂形式统一定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap2-22">
-<span class="eqno">(2.3.14)<a class="headerlink" href="#equation-source-chap2-22" title="Permalink to this equation">¶</a></span>\[\begin{split}\left\{\begin{aligned} \mathcal{L}_{\alpha-IoU} = 1 - {IoU}^{\alpha} \\ \mathcal{L}_{\alpha-GIoU}=1-{IoU}^{\alpha}+{(\frac{\left|A_{c}-U\right|}{\left|A_{c}\right|})}^{\alpha} \\ \mathcal{L}_{\alpha-DIoU}=1-{IoU}^{\alpha}+\frac{\gamma^{2\alpha}\left(b, b^{gt}\right)}{c^{2\alpha}} \\ \mathcal{L}_{\alpha-CIoU}=1-{IoU}^{\alpha}+\frac{\gamma^{2\alpha}\left(b, b^{gt}\right)}{c^{2\alpha}}+{(\beta v)}^{\alpha},\end{aligned}\right.\end{split}\]</div>
+<span class="eqno">(2.3.14)<a class="headerlink" href="#equation-source-chap2-22" title="Permalink to this equation">¶</a></span>\[\begin{split}\left\{\begin{aligned} \mathcal{L}_{\alpha-IoU} = 1 - {IoU}^{\alpha} \\ \mathcal{L}_{\alpha-GIoU}=1-{IoU}^{\alpha}+{(\frac{\left|A_{c}-U\right|}{\left|A_{c}\right|})}^{\alpha} \\ \mathcal{L}_{\alpha-DIoU}=1-{IoU}^{\alpha}+\frac{\rho^{2\alpha}\left(b, b^{gt}\right)}{c^{2\alpha}} \\ \mathcal{L}_{\alpha-CIoU}=1-{IoU}^{\alpha}+\frac{\rho^{2\alpha}\left(b, b^{gt}\right)}{c^{2\alpha}}+{(\beta v)}^{\alpha},\end{aligned}\right.\end{split}\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(\alpha\)</span>为幂变换系数，当<span class="math notranslate nohighlight">\(\alpha=1\)</span>时<span class="math notranslate nohighlight">\(\alpha\)</span>-IoU系列损失退化为原损失。<span class="math notranslate nohighlight">\(\alpha\)</span>-IoU损失可以显著地超过原有损失，对小数据集和噪声的鲁棒性更强，即使在高质量的干净数据上，<span class="math notranslate nohighlight">\(\alpha\)</span>-IoU损失也能够带来一定的性能提升。</p>
 </div>
 <div class="section" id="id35">
@@ -560,7 +559,7 @@ identification），其判断人脸照片属于哪一个人。人脸识别一般
 <div class="math notranslate nohighlight" id="equation-eq-l-softmax">
 <span class="eqno">(2.3.19)<a class="headerlink" href="#equation-eq-l-softmax" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text{L-Softmax}}(f( x),y) = - \log \frac{e^{\| W_y\|\| z\|\phi(\theta_{y,i})}}{e^{\| W_y\|\| z\|\phi(\theta_{y,i})} + \sum_{j\neq y} e^{\| W_j\|\| z\| \cos(\theta_{j,i})}}\]</div>
 <div class="math notranslate nohighlight" id="equation-eq-multiplicative-margin">
-<span class="eqno">(2.3.20)<a class="headerlink" href="#equation-eq-multiplicative-margin" title="Permalink to this equation">¶</a></span>\[\begin{split}\phi(\theta)=\left\{\begin{aligned} \cos(m\theta)   0\leq \theta \leq \pi/m \\ \mathcal{D}(\theta)  \pi/m &lt; \theta \leq \pi,\end{aligned}\right.\end{split}\]</div>
+<span class="eqno">(2.3.20)<a class="headerlink" href="#equation-eq-multiplicative-margin" title="Permalink to this equation">¶</a></span>\[\begin{split}\phi(\theta)=\left\{\begin{aligned} \cos(m\theta)  \qquad  0\leq \theta \leq \pi/m \\ \mathcal{D}(\theta) \qquad \pi/m &lt; \theta \leq \pi,\end{aligned}\right.\end{split}\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(\mathcal{D}(\theta)\)</span>设计为单调递减函数，<span class="math notranslate nohighlight">\(\theta_{j,i}\)</span>表示权重向量<span class="math notranslate nohighlight">\(W_j\)</span>和特征<span class="math notranslate nohighlight">\(z\)</span>之间的夹角，函数<span class="math notranslate nohighlight">\(\phi\)</span>在<span class="math notranslate nohighlight">\(\pi/m\)</span>处应连续。显然，增大<span class="math notranslate nohighlight">\(m\)</span>值会增加训练难度，对于特征的区分度提出更高要求，该超参的合理设置会使得类内更为紧凑以及类间更为可分。</p>
 <p><strong>角度Softmax损失</strong>（angular softmax loss，A-Softmax）
 <span id="id40">(<a class="reference internal" href="../chapter_references/zreferences.html#id535" title="Liu, W., Wen, Y., Yu, Z., Li, M., Raj, B., &amp; Song, L. (2017). Sphereface: deep hypersphere embedding for face recognition. IEEE Conference on Computer Vision and Pattern Recognition (pp. 212–220).">Liu <em>et al.</em>, 2017</a>)</span>

@@ -192,9 +192,12 @@ components analysis，PCA） :cite:`jolliffe2002principal`
 、t-SNE（t-distributed stochastic neighbor embedding）
 :cite:`van2008visualizing` 等。
 其中，PCA是一种最常用的方法，它通过最大化投影方差来生成一系列线性不相关变量（即主成分），将高维数据映射到低维空间。原先的\ :math:`n`\ 个特征被更少的\ :math:`m \ll n`\ 个特征取代，新特征是旧特征的线性组合，PCA算法尽量使新的\ :math:`m`\ 个特征互不相关以便存储更多的信息。此外，数据在降维的同时会去除一部分噪声，将有利于发现数据中的潜在模式。
+
 **自监督对比学习**\ （self-supervised contrastive
 learning）是无监督学习的一种，其通过对比的手段学习样本间的相同和不同特征，从而得到高效的特征抽取模型\ :math:`f`\ ，能够对输入样本提取具有判别性的有用特征。\ *对比学习*\ 的核心思想在于让“相似”的样本在特征空间更近，让“不相似”的样本在特征空间更远。例如，我们可以将相同实例的不同视角（如应用不同的数据增强）视为\ *相似样本*\ （也称正样本对），同时将不同的实例视为\ *不相似样本*\ （也称负样本对）。此外，还可以利用聚类方法，将同一个簇内的样本定义为相似样本，而来自不同簇的样本则视为负样本对。目前，如何设计合理的对照和相似性度量是自监督对比学习研究的重点
-:cite:`tian2020makes` 。 **数据重建**\ （data
+:cite:`tian2020makes` 。
+
+**数据重建**\ （data
 reconstruction）通过重构原始样本来学习数据的有效表示或者学习生成特定分布的样本。基于自我重建的无监督学习包含了很多经典的算法，如自编码器（autoencoder）
 :cite:`rumelhart1986learning` 、变分自编码器（variational
 autoencoder，VAE） :cite:`kingma2013auto` 、生成对抗网络（GAN）
@@ -254,19 +257,24 @@ policy）来分别完成\ *利用*\ （exploitation） 和
 learning）是在目标任务数据不足的情况下，充分利用其他学习任务的已有模型，将其强大的特征学习能力迁移到目标任务的学习算法。迁移学习的本质是通过\ *源域*\ （source
 domain）知识来辅助学习\ *目标域*\ （target
 domain）知识。源域（或源任务）数据集被称为\ *源数据集*\ :math:`D^s=\{ x^s_i,y^s_i\}_{i=1}^{n^s}`\ ，目标域（或目标任务）数据集被称为\ *目标数据集*\ :math:`D^t=\{ x^t_i,y^t_i\}_{i=1}^{n^t}`\ 。在一个机器学习任务里，数据、特征和模型承载了主要的知识，都有可能成为迁移学习的对象。所以根据迁移对象的不同，迁移学习算法又分为样本迁移、特征迁移、模型迁移等不同类别。
+
 *样本迁移*\ 适用于源域和目标域存在一定的类别重叠的情况，目标是通过重用源域样本来提升迁移性能。常用的方法是为源域样本赋予不同的权重，通过提升源域中有利于目标域任务的样本的权重，同时降低不利于目标域任务的样本的权重，以此来增强模型在目标域任务上的性能。但这类方法通常只在领域间分布差异不大时有效，对于计算机视觉、自然语言处理等任务效果并不理想。
-*特征迁移*\ 的应用更为广泛，它适用于源域和目标域特征空间不一致的场景。常见的解决思路有如下两种：（1）从特征空间出发，利用分布距离度量或使用对抗学习，缩小模型提取的源域特征和目标域特征的分布差异；（2)从输入空间着手，将源域数据变换到目标域进行学习，以完成跨领域泛化。这两类解决思路可形式化定义如下：
+
+*特征迁移*\ 的应用更为广泛，它适用于源域和目标域特征空间不一致的场景。常见的解决思路有如下两种：（1）从特征空间出发，利用分布距离度量或使用对抗学习，缩小模型提取的源域特征和目标域特征的分布差异；（2）从输入空间着手，将源域数据变换到目标域进行学习，以完成跨领域泛化。这两类解决思路可形式化定义如下：
 
 .. math:: \left\{\begin{aligned}\text{Type 1: }   \min_{\theta} \Big[\mathbb{E}_{( x,y) \in D^s} \mathcal{L}(f( x),y)  + \mathcal{L}_{\text{dis}}(g(D^s),g(D^t)\Big], \\\text{Type 2: }  \min_{\theta} \mathbb{E}_{( x,y) \in D^s} \mathcal{L}{(f \circ X_{s \rightarrow t}( x),y)}, \\\end{aligned}\right.
 
 其中，\ :math:`f=h \circ g`\ 为任务模型，\ :math:`h`\ 为任务头，\ :math:`g`\ 为特征编码器，\ :math:`\theta`\ 为模型参数，\ :math:`\mathcal{L}(f( x),y)`\ 对应任务损失函数，\ :math:`g(D)`\ 为数据集\ :math:`D`\ 的样本特征集合，\ :math:`\mathcal{L}_{\text{dis}}(\cdot,\cdot)`\ 为衡量特征集合分布差异的函数，指导两个域之间的特征对齐。可以看出，第一类方法会增加额外的损失项（\ :math:`\mathcal{L}_{\text{dis}}`\ ）来约束特征编码器，使其学习到不同领域之间的共同模式；而第二类方法需要首先学习将数据从源域转换到目标域的转换映射\ :math:`X_{s \rightarrow t}`\ ，比如通过神经网络进行学习，以此来降低域间差异，提升模型泛化能力。
+
 除了样本迁移和特征迁移，\ *模型迁移*\ 是另一类被广泛研究的迁移方法，它通过找到源域和目标域之间可以共享的模型参数信息，以此最大化利用在源域数据上预训练的模型的知识。在深度学习中，一种常见的模型迁移方法是利用大规模预训练模型对下游任务模型进行初始化，然后以微调（或者添加特定任务模块后再微调）的方式完成预训练模型到下游任务的跨域迁移。模型迁移可形式化表示如下：
 
 .. math:: \begin{aligned} \min_{\theta \subset \theta_g \cup \theta_{h^t}} \mathbb{E}_{( x,y) \in D^t} \mathcal{L}^{t}(h^t \circ g( x),y) \\ \theta_{\text{init}} = \mathop{\mathrm{arg\,min}}_{\theta} \mathbb{E}_{( x,y) \in D^s} \mathcal{L}^{s}(h^s \circ g( x),y), \\\end{aligned}
 
 其中，\ :math:`g`\ 表示预训练特征抽取器，\ :math:`h^s`\ 和\ :math:`h^t`\ 分别表示源（预训练）任务和目标任务头，\ :math:`\mathcal{L}^{s}`\ 和\ :math:`\mathcal{L}^{t}`\ 分别表示源任务和目标任务的损失函数，\ :math:`D^s`\ 和\ :math:`D^t`\ 分别表示源数据集和目标数据集。实际上，模型迁移的实现方式有很多种，比如可以固定住网络深层结构而更新浅层结构，也可以借助后面要介绍的知识蒸馏技术，让下游任务模型能够学到源域模型中更多的知识。人工智能安全研究非常注重迁移性，例如攻击和防御方法能否迁移到不同的数据集、模型结构、训练方式等；亦或是利用特征迁移技术提升模型的通用防御能力。
+
 **在线学习**\ （online
 learning）是与离线学习相对的概念，是指训练数据或者学习任务是在模型的部署使用过程中不断更新或增加的，需要持续优化模型以满足动态增长的需求。前面介绍的很多学习方法都是\ *离线学习*\ 方法，即训练数据是预先收集好的。而在线学习要求数据按顺序可用，利用新到来的数据实时的对模型参数进行更新和优化。其中\ *增量学习*\ 是一种典型的在线学习范式，它要求模型能够不断地处理现实世界中新产生的数据流。新旧知识之间存在一定的权衡，所以增量学习的难点是如何让模型在吸收新知识的同时能够最大化的保留甚至整合、优化旧知识。
+
 我们将增量发生之前的数据称为旧数据集，定义为\ :math:`D_{\text{old}}=\{ x_i^{\text{old}}, y_i^{\text{old}}\}_{i=1}^{n_{\text{old}}}`\ ，而新增加的数据集则定义为\ :math:`D_{\text{new}}=\{ x_i^{\text{new}}, y_i^{\text{new}}\}_{i=1}^{n_{\text{new}}}`\ 。增量学习的优化目标
 可定义如下：
 
@@ -278,8 +286,10 @@ forgetting）。一般可以通过增加参数约束项、预保存旧数据的�
 **联邦学习**\ （federated
 learning，FL）是针对\ *数据孤岛*\ 现象所提出的一种多方\ *协同学习*\ （collaborative
 learning）技术。在当今信息时代，数据是宝贵的资源，机器学习（尤其是深度学习）往往需要大量数据来训练高性能的模型。然而在实际场景中，不同的机构虽然都拥有一部分的私有数据，但往往由于各种限制无法共享，这就导致个体机构能利用的数据量是非常有限的，难以整合产业优势。这种现象被形象地称为“*数据孤岛*”，指不同业务系统之间无法协同互通的状态。尽管随着5G通信和物联网技术的快速发展，大量的数据被不断的采集，但是数据孤岛现象却日益严重，所带来的问题包括：如何安全分享信息、如何有效利用异构数据、如何快速传输交付、如何定价数据价值等。在数据孤岛问题之下，联邦学习应运而生，其允许各方在不共享数据的情况下可以联合训练一个强大的全局模型。
+
 联邦学习存在多个参与方和一个中心参数服务器，每个参与方有自己的数据和模型，可以进行本地模型训练，各参与方在一定次数的本地训练后将本地模型参数上传至中心服务器，中心服务器根据聚合本地参数后更新全局模型，各参与方下载全局模型并继续进行本地训练，以此往复直至全局模型收敛。
-由于只是共享模型参数（或梯度信息）而不需要共享数据，联邦学习也通常被认为是一种“*隐私保护*”（privacy-preserving）的学习范式。根据各方私有数据的分布类型不同，联邦学习又可以分为\ *横向联邦学习*\ (horizontal
+
+由于只是共享模型参数（或梯度信息）而不需要共享数据，联邦学习也通常被认为是一种“*隐私保护*”（privacy-preserving）的学习范式。根据各方私有数据的分布类型不同，联邦学习又可以分为\ *横向联邦学习*\ （horizontal
 federated learning，HFL）和\ *纵向联邦学习*\ （vertical federated
 learning，VFL）。如果以一个包含若干行和列的数据表为例，横向联邦中各参与方拥有不同的“*数据行*”，而纵向联邦各参与方拥有不同的“*数据列*”。它们共同需要面对的挑战包括：非独立同分布（non-IID）的数据、有限通信带宽、不可靠或有限的设备等。关于联邦学习及其安全问题将会在章节
 :numref:`sec_federated_learning` 和章节 :numref:`sec_fl_backdoor`
@@ -293,6 +303,7 @@ scratch）具有更好的性能。令学生模型为\ :math:`S`\ ，教师模型
 .. math:: \min_{\theta_s} \mathbb{E}_{( x,y) \in D} \mathcal{L}_{\text{sim}}(S_{\theta_s}( x), T_{\theta_t}( x)).
 
 知识蒸馏技术在数据与模型安全中的很多地方都有涉及。比如，蒸馏技术可以用来从一个已训练的模型中逆向工程原始训练数据，以达到数据窃取的目的。再比如，在模型防御方面，可以通过鲁棒性蒸馏技术将鲁棒性从教师模型迁移到结构更为简单的学生模型，以弥补小模型在鲁棒训练方面的不足。
+
 **多任务学习**\ （multi-task learning,
 MTL）是指通过单个模型完成多个任务的学习范式。有别于单任务学习，多任务学习把多个紧密相关的任务放在一起进行学习，建立任务间的共享表征，从而提高模型在多个任务上的同时泛化能力。单任务学习必须对每个任务训练一个模型，在多任务推理时还需要进行二次组合或相互调用，而多任务学习得到的模型可以同时完成多个任务的推理，有效减少训练和推理时间。章节~
 :numref:`sec_suplearn`
@@ -301,11 +312,13 @@ MTL）是指通过单个模型完成多个任务的学习范式。有别于单�
 .. math:: \min_{\theta} \mathbb{E}_{( x,y) \in D} \sum_{i=1}^{m} w_i \cdot \mathcal{L}_i(h_i\circ g( x),y).
 
 多任务学习的安全性问题是一个尚未充分探索的开放研究领域。在攻击方面，可以探索如何设计能够同时攻破多个任务的通用攻击方法、如果根据一个任务来破坏其他任务等；在防御方面，可以探索能防御多任务攻击的高效防御方法、如何高效利用多任务互补信息来建立更完备的防御框架等。
+
 **小样本学习**\ （few-shot
 learning，FSL）是一种以有监督学习为主，仅依赖少量样本就可以高效学习和泛化的学习方法。人类可以根据已有经验，仅凭少量样本就可以辨识新的事物，而小样本学习的出现，就是为了让机器也可以拥有类似的能力。
 小样本学习一般定义为一个\ :math:`C`-way-:math:`K`-shot的任务，\ :math:`C`-way指\ :math:`C`\ 个类别，\ :math:`K`-shot指每个类别包含\ :math:`K`\ 个样本。学习设计三种数据集：\ *训练集*\ 、\ *支撑集*\ （support
 set）和\ *查询集*\ （query
 set）。任务要求在训练集上训练的模型能够以\ :math:`C*K`\ 个已知标签的样本作为\ *支撑集*\ ，快速准确地学习\ *新的类别概念*\ ，并在\ *查询集*\ （测试时未知标签的数据构成的集和）上达到很好的表现。这种通过少量样本快速学习的能力往往需要模型从更多的数据中获取先验知识，因此，小样本任务往往会提供与测试语义相关但不相同的训练数据\ :math:`D=\{ x_i,y_i\}_{i=1}^{n}`\ ，保证标签空间不相交。
+
 解决小样本学习问题最简单的方法是让模型先在训练集上进行充分训练，然后在测试支撑集上进行二次训练，最后在测试查询集上进行性能评测。另一类常见的方法则是引入\ *元学习*\ （meta
 learning）的思想：让模型学会如何学习（learning to
 learn）。具体来说，这类方法视训练集上的每一次训练迭代为一次小样本学习过程，仿照测试阶段\ :math:`C`-way-:math:`K`-shot的方式将每个小批量训练数据划分为支撑集\ :math:`D_i^{\text{sup}}=\{( x^{\text{sup}}_i,y^{\text{sup}}_i)\}`\ 和查询集\ :math:`D_i^{\text{query}}=\{( x^{\text{query}}_i, y^{\text{query}}_i)\}`\ ，并确保支撑集\ :math:`D_i^{\text{sup}}`\ 包含\ :math:`C*K`\ 个样本。我们将每种划分定义为任务\ :math:`T_i`\ ，其对应数据集\ :math:`D_i=D^{\text{sup}}_i \cup D^{\text{query}}_i`\ ，于是总的训练任务为\ :math:`T_{\text{train}}=\{T_1, \ldots, T_n\}`\ ，总的训练集为\ :math:`D_{\text{train}}=\{D_1, \ldots, D_n | D_i \subset D\}`\ ，并通过如下公式训练模型：
@@ -345,7 +358,7 @@ learn）。具体来说，这类方法视训练集上的每一次训练迭代为
 此时定义的交叉熵损失也被称为\ **二元交叉熵损失**\ （binary
 Cross-entropy, BCE），定义如下：
 
-.. math:: \mathcal{L}_{\text{BCE}}(f( x), y) = y \cdot \log(p) + (1-y) \cdot \log(p).
+.. math:: \mathcal{L}_{\text{BCE}}(f( x), y) = -y \cdot \log(p) - (1-y) \cdot \log(1-p).
 
 分类任务除单标签场景外还存在\ *多标签分类*\ 场景，即每一个样本可能对应一个或多个标签。单标签可用独热编码\ :math:`y`\ 来表示类别标签\ :math:`y`\ ，即\ :math:`y_{k=y}=1`\ 且\ :math:`y_{k\neq y}=0`\ 。而在多标签场景下，独特编码就变成了\ *多热编码*\ （multi-hot
 encoding），每个标签对应的位置都是1。多标签分类问题可以被转换为多二分类问题，此时交叉熵损失可以定义如下：
@@ -407,7 +420,7 @@ error，MAE）是另一种用于回归任务的损失函数，它计算了模型
 **平滑平均绝对误差**\ （Huber loss）是在MAE基础上的一种平滑改进。
 一般认为，MSE比MAE对异常值更加敏感，因为当出现异常值时，MSE中的平方操作会将其误差加倍放大，会使模型朝异常值拟合的方向优化，影响模型的整体性能。而MAE的问题在于梯度始终一致，即使损失值很小，梯度也会比较大，因而往往需要使用动态学习率的方式帮助MAE更好的收敛。Huber损失结合了MSE和MAE的特点重新设计了损失函数，给定样本\ :math:`x`\ 、真实类别\ :math:`y`\ 、模型\ :math:`f`\ ，Huber损失的定义如下：
 
-.. math:: \mathcal{L}_{\text{huber}}(f( x),y)=\left\{\begin{aligned} \frac{1}{2}(f( x)-y)^2   |f( x)-y|<\delta \\ \delta|f( x)-y| - \frac{1}{2} \delta^2  \text{otherwise},\end{aligned}\right.
+.. math:: \mathcal{L}_{\text{huber}}(f( x),y)=\left\{\begin{aligned} \frac{1}{2}(f( x)-y)^2  \qquad |f( x)-y|<\delta \\ \delta|f( x)-y| - \frac{1}{2} \delta^2   \qquad \text{otherwise},\end{aligned}\right.
 
 其中，\ :math:`\delta`\ 是超参数，用于调节MAE的平滑程度。可以发现在真实值的近端，Huber损失使用MSE的形式使梯度随优化的进行逐步减小，利于模型最后阶段的参数收尾调优；而在优化目标的远端，Huber损失使用MAE的形式，降低损失函数对于异常点的敏感程度。当\ :math:`\delta`\ 趋于无穷时，该损失函数将退化为MSE；若\ :math:`\delta`\ 趋于0，该损失函数将退化为MAE。
 
@@ -423,8 +436,7 @@ box
 regression，BBR）问题，即对边界框四个顶点位置的坐标进行回归。既然是回归问题，那么边框回归就可以使用章节
 :numref:`sec_regression_loss`
 中介绍的回归损失函数如MSE、MAE等来解决。但是边框检测的质量是由预测边框和真实边框之间的\ *交并比*\ （intersection
-over union，IoU）来衡量的，所以使用基于IoU定义的损失函数一般会更加有效
-:cite:`rahman2016optimizing,yu2016unitbox` 。
+over union，IoU）来衡量的，所以使用基于IoU定义的损失函数一般会更加有效。
 
 **IoU**\ 是一种经典的边界框重合度量化方法，它使用预测边框\ :math:`B`\ 和真实框\ :math:`A`\ 之间的重叠面积与两框并集面积之间的比值\ :math:`IoU=\frac{|A \cap B|}{|A \cup B|}`\ 来反映边框预测的准确程度。IoU损失定义如下：
 
@@ -445,15 +457,15 @@ IoU）损失**\ 通过引入\ *最小包含面积*\ :math:`A_{c}`\ 来解决此�
 IoU）通过在IoU的基础上添加两个边框中心点距离来解决
 :cite:`zheng2020distance` 。DIoU损失的定义如下：
 
-.. math:: \mathcal{L}_{DIoU} = 1 - IoU + \frac{\gamma^{2}(b, b^{gt})}{c^{2}},
+.. math:: \mathcal{L}_{DIoU} = 1 - IoU + \frac{\rho^{2}(b, b^{gt})}{c^{2}},
    :label: eq_diou_loss
 
-其中，\ :math:`b`\ 和\ :math:`b^{gt}`\ 分别表示预测边框和真实框的中心点位置，\ :math:`\gamma^{2}(b, b^{gt})`\ 表示两个中心点之间的欧氏距离，\ :math:`c`\ 表示\ *最小包含*\ 矩形的对角线距离。
+其中，\ :math:`b`\ 和\ :math:`b^{gt}`\ 分别表示预测边框和真实框的中心点位置，\ :math:`\rho^{2}(b, b^{gt})`\ 表示两个中心点之间的欧氏距离，\ :math:`c`\ 表示\ *最小包含*\ 矩形的对角线距离。
 
-**CIoU（complete
-IoU）损失**\ 在DIoU损失的基础上，进一步考虑边框宽高比的尺度信息，设边框的高宽分别为\ :math:`h`\ 和\ :math:`w`\ ，真实框的高宽分别为\ :math:`h_{gt}`\ 和\ :math:`w_{gt}`\ ，CIoU通过引入长宽的比例信息来精细化的反映预测边框和真实框之间的形状差异。CIoU损失定义如下：
+**CIoU（complete IoU）损失** :cite:`zheng2020distance`
+在DIoU损失的基础上，进一步考虑边框宽高比的尺度信息，设边框的高宽分别为\ :math:`h`\ 和\ :math:`w`\ ，真实框的高宽分别为\ :math:`h_{gt}`\ 和\ :math:`w_{gt}`\ ，CIoU通过引入长宽的比例信息来精细化的反映预测边框和真实框之间的形状差异。CIoU损失定义如下：
 
-.. math:: \mathcal{L}_{CIoU} = 1 - IoU + \frac{\gamma^{2}(b, b^{gt})}{c^{2}} + \beta\cdot  \frac{4}{\pi^{2}}\left(\arctan \frac{w^{g t}}{h^{g t}}-\arctan \frac{w}{h}\right)^{2},
+.. math:: \mathcal{L}_{CIoU} = 1 - IoU + \frac{\rho^{2}(b, b^{gt})}{c^{2}} + \beta\cdot  \frac{4}{\pi^{2}}\left(\arctan \frac{w^{g t}}{h^{g t}}-\arctan \frac{w}{h}\right)^{2},
    :label: eq_ciou_loss
 
 其中，\ :math:`\beta`\ 为权重系数。
@@ -472,7 +484,7 @@ IoU）损失**\ 在DIoU损失的基础上，进一步考虑边框宽高比的尺
 transform）的形式来进一步提高这些损失函数的性能和对噪声边框的鲁棒性。幂变换得到的损失称为\ :math:`\alpha`-IoU
 :cite:`he2021alpha` ，上述几种IoU损失的幂形式统一定义如下：
 
-.. math:: \left\{\begin{aligned} \mathcal{L}_{\alpha-IoU} = 1 - {IoU}^{\alpha} \\ \mathcal{L}_{\alpha-GIoU}=1-{IoU}^{\alpha}+{(\frac{\left|A_{c}-U\right|}{\left|A_{c}\right|})}^{\alpha} \\ \mathcal{L}_{\alpha-DIoU}=1-{IoU}^{\alpha}+\frac{\gamma^{2\alpha}\left(b, b^{gt}\right)}{c^{2\alpha}} \\ \mathcal{L}_{\alpha-CIoU}=1-{IoU}^{\alpha}+\frac{\gamma^{2\alpha}\left(b, b^{gt}\right)}{c^{2\alpha}}+{(\beta v)}^{\alpha},\end{aligned}\right.
+.. math:: \left\{\begin{aligned} \mathcal{L}_{\alpha-IoU} = 1 - {IoU}^{\alpha} \\ \mathcal{L}_{\alpha-GIoU}=1-{IoU}^{\alpha}+{(\frac{\left|A_{c}-U\right|}{\left|A_{c}\right|})}^{\alpha} \\ \mathcal{L}_{\alpha-DIoU}=1-{IoU}^{\alpha}+\frac{\rho^{2\alpha}\left(b, b^{gt}\right)}{c^{2\alpha}} \\ \mathcal{L}_{\alpha-CIoU}=1-{IoU}^{\alpha}+\frac{\rho^{2\alpha}\left(b, b^{gt}\right)}{c^{2\alpha}}+{(\beta v)}^{\alpha},\end{aligned}\right.
 
 其中，\ :math:`\alpha`\ 为幂变换系数，当\ :math:`\alpha=1`\ 时\ :math:`\alpha`-IoU系列损失退化为原损失。\ :math:`\alpha`-IoU损失可以显著地超过原有损失，对小数据集和噪声的鲁棒性更强，即使在高质量的干净数据上，\ :math:`\alpha`-IoU损失也能够带来一定的性能提升。
 
@@ -520,7 +532,7 @@ identification），其判断人脸照片属于哪一个人。人脸识别一般
 .. math:: \mathcal{L}_{\text{L-Softmax}}(f( x),y) = - \log \frac{e^{\| W_y\|\| z\|\phi(\theta_{y,i})}}{e^{\| W_y\|\| z\|\phi(\theta_{y,i})} + \sum_{j\neq y} e^{\| W_j\|\| z\| \cos(\theta_{j,i})}}
    :label: eq_l-softmax
 
-.. math:: \phi(\theta)=\left\{\begin{aligned} \cos(m\theta)   0\leq \theta \leq \pi/m \\ \mathcal{D}(\theta)  \pi/m < \theta \leq \pi,\end{aligned}\right.
+.. math:: \phi(\theta)=\left\{\begin{aligned} \cos(m\theta)  \qquad  0\leq \theta \leq \pi/m \\ \mathcal{D}(\theta) \qquad \pi/m < \theta \leq \pi,\end{aligned}\right.
    :label: eq_multiplicative-margin
 
 其中，\ :math:`\mathcal{D}(\theta)`\ 设计为单调递减函数，\ :math:`\theta_{j,i}`\ 表示权重向量\ :math:`W_j`\ 和特征\ :math:`z`\ 之间的夹角，函数\ :math:`\phi`\ 在\ :math:`\pi/m`\ 处应连续。显然，增大\ :math:`m`\ 值会增加训练难度，对于特征的区分度提出更高要求，该超参的合理设置会使得类内更为紧凑以及类间更为可分。

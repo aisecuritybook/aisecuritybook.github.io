@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <title>4. 数据安全：攻击 &#8212; 人工智能数据与模型安全 1.0.0 documentation</title>
+    <title>4. 数据安全：攻击 &#8212; 人工智能：数据与模型安全 1.0.0 documentation</title>
 
-    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.pink-deep_orange.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fontawesome/all.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
@@ -25,6 +25,7 @@
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/d2l.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/logo_removebg.png?"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. 数据安全：防御" href="chap5.html" />
@@ -75,12 +76,12 @@ Show Source
                   课程
               </a>
           
-              <a  class="mdl-navigation__link" href="https://github.com/OpenTAI">
+              <a  class="mdl-navigation__link" href="https://github.com/aisecuritybook">
                   <i class="fab fa-github"></i>
                   GitHub
               </a>
           
-              <a  class="mdl-navigation__link" href="https://haole1683.github.io/Book_html/html/chapter_preface/empty.html">
+              <a  class="mdl-navigation__link" href="https://aisecuritybook.github.io/">
                   <i class="fas fa-external-link-alt"></i>
                   English
               </a>
@@ -91,7 +92,7 @@ Show Source
           <!-- Title -->
       <span class="mdl-layout-title">
           <a class="title" href="../index.html">
-              <img class="logo" src="../_static/book_logo.png" alt="人工智能数据与模型安全"/>
+              <img class="logo" src="../_static/logo_with_text.png" alt="人工智能：数据与模型安全"/>
           </a>
       </span>
     
@@ -103,7 +104,6 @@ Show Source
             
             <nav class="mdl-navigation">
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../chapter_about_the_book/index.html">关于此书</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%89%8D%E8%A8%80.html">前言</a></li>
 </ul>
 <ul class="current">
@@ -136,7 +136,7 @@ Show Source
           <!-- Title -->
       <span class="mdl-layout-title">
           <a class="title" href="../index.html">
-              <img class="logo" src="../_static/book_logo.png" alt="人工智能数据与模型安全"/>
+              <img class="logo" src="../_static/logo_with_text.png" alt="人工智能：数据与模型安全"/>
           </a>
       </span>
     
@@ -148,7 +148,6 @@ Show Source
             
             <nav class="mdl-navigation">
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../chapter_about_the_book/index.html">关于此书</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%89%8D%E8%A8%80.html">前言</a></li>
 </ul>
 <ul class="current">
@@ -283,8 +282,8 @@ rule）计算如下：</p>
 <p>上面提到的例子多是针对传统机器学习（或者简单神经网络）的数据投毒攻击，他们隐性地假设基于梯度的内层优化可以被完美解决。然而，对于深度神经网络来说，其梯度有可能爆炸或消失，因此，针对深度学习的双层优化攻击需要特殊的梯度计算方式。
 Mu{~n}oz-Gonz{‘a}lez等人 <span id="id21">(<a class="reference internal" href="../chapter_references/zreferences.html#id443" title="Muñoz-González, L., Biggio, B., Demontis, A., Paudice, A., Wongrassamee, V., Lupu, E. C., &amp; Roli, F. (2017). Towards poisoning of deep learning algorithms with back-gradient optimization. ACM Workshop on Artificial Intelligence and Security (pp. 27–38).">Muñoz-González <em>et al.</em>, 2017</a>)</span>
 利用“<em>反向梯度法</em>”来更高效稳定地计算内部优化的梯度。作者使用逐步梯度下降法近似求解内层优化问题，而每步梯度下降都会反向传播至外层优化及目标函数进行求解，经过数次迭代最终得到满足双层优化目标的毒化数据。然而基于随机梯度下降法的微分对内存来说是一个非常大的负担，所以该毒化数据制造方法是单个进行而不是分批次进行的，且只能作用于单层神经网络。</p>
-<p>2018年，Jagielski等人 <span id="id22">(<a class="reference internal" href="../chapter_references/zreferences.html#id470" title="Jagielski, M., Oprea, A., Biggio, B., Liu, C., Nita-Rotaru, C., &amp; Li, B. (2018). Manipulating machine learning: poisoning attacks and countermeasures for regression learning. IEEE Symposium on Security and Privacy (pp. 19–35).">Jagielski <em>et al.</em>, 2018</a>)</span>
-将Mu{~n}oz-Gonz{‘a}lez等人 <span id="id23">(<a class="reference internal" href="../chapter_references/zreferences.html#id443" title="Muñoz-González, L., Biggio, B., Demontis, A., Paudice, A., Wongrassamee, V., Lupu, E. C., &amp; Roli, F. (2017). Towards poisoning of deep learning algorithms with back-gradient optimization. ACM Workshop on Artificial Intelligence and Security (pp. 27–38).">Muñoz-González <em>et al.</em>, 2017</a>)</span>
+<p>2018年，Jagielski等人 <span id="id22">(<a class="reference internal" href="../chapter_references/zreferences.html#id470" title="Jagielski, M., Oprea, A., Biggio, B., Liu, C., Nita-Rotaru, C., &amp; Li, B. (2018). Manipulating machine learning: poisoning attacks and countermeasures for regression learning. IEEE Symposium on Security and Privacy (pp. 19–35).">Jagielski <em>et al.</em>, 2018</a>)</span> 将Muñoz-González等人
+<span id="id23">(<a class="reference internal" href="../chapter_references/zreferences.html#id443" title="Muñoz-González, L., Biggio, B., Demontis, A., Paudice, A., Wongrassamee, V., Lupu, E. C., &amp; Roli, F. (2017). Towards poisoning of deep learning algorithms with back-gradient optimization. ACM Workshop on Artificial Intelligence and Security (pp. 27–38).">Muñoz-González <em>et al.</em>, 2017</a>)</span>
 的工作进行了扩展，提出了一个专用于回归模型的数据投毒及防御的理论优化框架。Huang等人
 <span id="id24">(<a class="reference internal" href="../chapter_references/zreferences.html#id120" title="Huang, W. R., Geiping, J., Fowl, L., Taylor, G., &amp; Goldstein, T. (2020). Metapoison: practical general-purpose clean-label data poisoning. Advances in Neural Information Processing Systems, 33, 12080–12091.">Huang <em>et al.</em>, 2020</a>)</span>
 提出的MetaPoison采用集成的方式，利用<span class="math notranslate nohighlight">\(m\)</span>个模型和<span class="math notranslate nohighlight">\(K\)</span>-step内部最小化来求解公式
@@ -310,7 +309,7 @@ attack）则可避免基于优化攻击的高昂计算代价，大大提高毒�
 <p>其中，<span class="math notranslate nohighlight">\(\theta\)</span>表示目标模型<span class="math notranslate nohighlight">\(f\)</span>的原始参数，<span class="math notranslate nohighlight">\(\theta'\)</span>表示目标模型被数据投毒攻击后的参数。生成式攻击的最终目标是使生成模型<span class="math notranslate nohighlight">\(G\)</span>能够无限生成能降低目标模型<span class="math notranslate nohighlight">\(f\)</span>性能的毒化数据。在此基础上，Feng等人
 <span id="id28">(<a class="reference internal" href="../chapter_references/zreferences.html#id125" title="Feng, J., Cai, Q.-Z., &amp; Zhou, Z.-H. (2019). Learning to confuse: generating training time adversarial data with auto-encoder. Advances in Neural Information Processing Systems, 32.">Feng <em>et al.</em>, 2019</a>)</span>
 提出了一个类似的生成模型训练方式，引入<em>伪更新</em>（pseudo-update）步骤来更新生成模型<span class="math notranslate nohighlight">\(G\)</span>。这种新的更新方式克服了交替更新（<span class="math notranslate nohighlight">\(f\)</span>和<span class="math notranslate nohighlight">\(G\)</span>）所导致的生成模型训练不稳定的问题。</p>
-<p>除了自动编码器（autoencoder），生成对抗网络（GAN）也可以用来生成毒化数据。例如Mu{~n}oz-Gonz{‘a}lez等人
+<p>除了自动编码器（autoencoder），生成对抗网络（GAN）也可以用来生成毒化数据。例如Muñoz-González等人
 <span id="id29">(<a class="reference internal" href="../chapter_references/zreferences.html#id124" title="Muñoz-González, L., Pfitzner, B., Russo, M., Carnerero-Cano, J., &amp; Lupu, E. C. (2019). Poisoning attacks with generative adversarial nets. arXiv preprint arXiv:1906.07773.">Muñoz-González <em>et al.</em>, 2019</a>)</span>
 提出的pGAN攻击，其由生成器<span class="math notranslate nohighlight">\(G\)</span>，鉴别器<span class="math notranslate nohighlight">\(D\)</span>及分类器（即目标模型<span class="math notranslate nohighlight">\(f\)</span>）三个子模型组成。鉴别器<span class="math notranslate nohighlight">\(D\)</span>用于区分毒化样本与干净样本，而生成器<span class="math notranslate nohighlight">\(G\)</span>旨在生成高效的毒化样本以最大化目标模型<span class="math notranslate nohighlight">\(f\)</span>的分类误差，同时让鉴别器<span class="math notranslate nohighlight">\(D\)</span>无法区别毒化样本与干净样本。这种对抗博弈使得生成式攻击可以在攻击强度和隐蔽性之间做出权衡，更灵活地应对不同风险级别的人工智能模型。</p>
 </div>
@@ -374,7 +373,7 @@ attack，MIA）的主要思想是利用目标模型在训练数据和测试数�
 <p>影子模型攻击（shadow model-based attack）是2017年由Shokri等人
 <span id="id46">(<a class="reference internal" href="../chapter_references/zreferences.html#id153" title="Shokri, R., Stronati, M., Song, C., &amp; Shmatikov, V. (2017). Membership inference attacks against machine learning models. IEEE Symposium on Security and Privacy (pp. 3–18).">Shokri <em>et al.</em>, 2017</a>)</span>
 提出的成员推理攻击方法，也是首个针对深度学习模型的成员推理攻击方法，其打开了深度学习领域成员推理研究的序幕。
-影子模型攻击的思想是将成员推理看做一个二分类（<code class="docutils literal notranslate"><span class="pre">成员'或</span></code>非成员’）问题。假设攻击者对训练数据的来源分布是有一些先验知识的，即可以从同一个数据分布总池中采样（但与原训练数据不相交）并构建<em>仿数据集</em>的能力。
+影子模型攻击的思想是将成员推理看做一个二分类（‘成员’或‘非成员’）问题。假设攻击者对训练数据的来源分布是有一些先验知识的，即可以从同一个数据分布总池中采样（但与原训练数据不相交）并构建<em>仿数据集</em>的能力。
 影子模型攻击大致分为以下三步：</p>
 <ul class="simple">
 <li><p>攻击者采样多个<em>影子训练集</em>，并在影子训练集上训练多个可以模仿目标模型表现的<em>影子模型</em>；</p></li>
@@ -614,7 +613,7 @@ inversion）。迭代梯度逆向攻击通过迭代来步步缩小生成梯度�
 <a class="reference internal" href="#fig-chap4iterativegradientinversionattack"><span class="std std-numref">图4.3.4</span></a>
 所示，迭代梯度逆向攻击主要包括三个部分：伪数据初始化、梯度求导和梯度匹配。攻击者首先初始化一个随机样本<span class="math notranslate nohighlight">\(x'\)</span>和随机标签<span class="math notranslate nohighlight">\(y'\)</span>，然后通过对伪数据<span class="math notranslate nohighlight">\(x'\)</span>进行优化来还原初始训练数据。具体的，将<span class="math notranslate nohighlight">\(x'\)</span>输入模型，经过正向及反向传播得到模型每一层参数的<em>伪梯度</em><span class="math notranslate nohighlight">\(\{\nabla \theta'_i=(\nabla W'_i, \nabla b'_i)\}_{i=1}^{L}\)</span>（<span class="math notranslate nohighlight">\(L\)</span>为神经网络层数）。然后，迭代最小化伪梯度<span class="math notranslate nohighlight">\(\nabla \theta'_i\)</span>与真实梯度<span class="math notranslate nohighlight">\(\nabla \theta_i=(\nabla W_i, \nabla b_i)\)</span>之间的距离，使生成数据趋近目标模型的训练数据。将上述步骤迭代数次并收敛后即可得到无限近似原始训练数据的合成数据，优化过程定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-equ-chap4dlg">
-<span class="eqno">(4.3.2)<a class="headerlink" href="#equation-equ-chap4dlg" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{aligned} x^{*},y^{*} = \min_{ x',y'} \| \nabla \theta' - \nabla \theta \|_2\\ = \mathop{\mathrm{arg\,min}}_{ x',y'} \|\frac{\partial \mathcal{L\|( \mathcal{F}(  x',\theta ), y')}{\partial \theta} - \nabla \theta }_2,\end{aligned}\end{split}\]</div>
+<span class="eqno">(4.3.2)<a class="headerlink" href="#equation-equ-chap4dlg" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{aligned} x^{*},y^{*} = \min_{ x',y'} \| \nabla \theta' - \nabla \theta \|_2\\ = \mathop{\mathrm{arg\,min}}\limits_{ x',y'} \| \frac{\partial \mathcal{L(\mathcal{F}(  x',\theta ), y')}}{\partial\theta} - \nabla \theta \|_2,\end{aligned}\end{split}\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(\| \cdot\|_2\)</span>表示<span class="math notranslate nohighlight">\(L_2\)</span>范数，<span class="math notranslate nohighlight">\(x^{*}\)</span>、<span class="math notranslate nohighlight">\(y^{*}\)</span>分别表示优化得到的窃取样本和标签。
 大部分伪数据的初始化选用高斯噪声 <span id="id91">(<a class="reference internal" href="../chapter_references/zreferences.html#id415" title="Yin, H., Mallya, A., Vahdat, A., Alvarez, J. M., Kautz, J., &amp; Molchanov, P. (2021). See through gradients: image batch recovery via gradinversion. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 16337–16346).">Yin <em>et al.</em>, 2021</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id412" title="Zhu, L., Liu, Z., &amp; Han, S. (2019). Deep leakage from gradients. Advances in Neural Information Processing Systems, 32.">Zhu <em>et al.</em>, 2019</a>)</span>
 ，也有部分工作 <span id="id92">(<a class="reference internal" href="../chapter_references/zreferences.html#id416" title="Jin, X., Chen, P.-Y., Hsu, C.-Y., Yu, C.-M., &amp; Chen, T. (2021). Cafe: catastrophic data leakage in vertical federated learning. Advances in Neural Information Processing Systems, 34, 994–1006.">Jin <em>et al.</em>, 2021</a>, <a class="reference internal" href="../chapter_references/zreferences.html#id414" title="Zhao, B., Mopuri, K. R., &amp; Bilen, H. (2020). Idlg: improved deep leakage from gradients. arXiv preprint arXiv:2001.02610.">Zhao <em>et al.</em>, 2020</a>)</span>
@@ -718,8 +717,8 @@ short-term
 memory，LSTM）设计了一种智能化学习口腔形状和声音之间关联性的方法，该方法仅通过音频即可生成对应的口部特征。研究者利用美国前总统奥巴马在互联网上的音视频片段，生成了非常逼真的假视频。此技术一经问世便引起了广泛关注，基于其原理实现的换脸项目也大量出现，极大的刺激了视觉深度伪造技术的发展。</p>
 <p>视觉（主要是人脸）深度伪造技术的实现大体可分为<em>数据收集</em>、<em>模型训练</em>和<em>伪造内容生成</em>三个步骤。假设我们的目标是将Alice的脸换至Bob的身体上，可以通过以下的几个步骤进行实现。</p>
 <p><strong>（1）数据收集：</strong>
-数据收集顾名思义就是通过各种渠道对Alice和Bob的已有图像进行大量收集，以便为模型训练提供数据支撑。对于公众人物来说，数据收集可以说是不费吹灰之力，因为他们有大量的演讲、报告、报道等数据公布在互联网上。注意这里收集的是人脸图像，所以很多时候需要使用人脸检测工具将人脸区域检测并截取出来。
-<strong>（2）模型训练：</strong>
+数据收集顾名思义就是通过各种渠道对Alice和Bob的已有图像进行大量收集，以便为模型训练提供数据支撑。对于公众人物来说，数据收集可以说是不费吹灰之力，因为他们有大量的演讲、报告、报道等数据公布在互联网上。注意这里收集的是人脸图像，所以很多时候需要使用人脸检测工具将人脸区域检测并截取出来。</p>
+<p><strong>（2）模型训练：</strong>
 目前，针对人脸伪造的深度伪造模型主要基于自动编解码器，一般由编码器（encoder）和解码器（decoder）两部分构组成。
 编码器用于提取人脸图像的潜在特征，解码器则用于重构人脸图像。为了实现换脸操作，模型需要两对编码器/解码器组（编码器A/解码器A、编码器B/解码器B），分别基于已收集的Alice和Bob的图像集进行训练，其中编码器A和编码器B具有相同的编码网络（即参数共享）。通过统一的编码器可以把Alice和Bob两个人的人脸特征编码到同一个隐式空间，只有在同一个隐式空间，二者的脸部特征才能发生互换。两套编解码器的训练过程如图
 <a class="reference internal" href="#fig-chap4faceswap"><span class="std std-numref">图4.4.3</span></a> (a)所示。</p>
@@ -744,9 +743,9 @@ reenactment）。人脸互换的目标是用目标人物的脸替换原图像中
 <p>身份对应损失函数<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{id}}\)</span>定义了<strong>源身份向量</strong><span class="math notranslate nohighlight">\(v_{s}\)</span>及<strong>目标身份向量</strong><span class="math notranslate nohighlight">\(v_{t}\)</span>之间的余弦相似度。
 弱特征损失函数<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{wFM}}\)</span>的定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap4-2">
-<span class="eqno">(4.4.2)<a class="headerlink" href="#equation-source-chap4-2" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text{wFM}}=\sum_{i=m}^{M} \frac{1}{N_{i}}\left\|D^{(i)}\left( x_{s}\right)-D^{(i)}\left(\v x_{t}\right)\right\|_{1},\]</div>
+<span class="eqno">(4.4.2)<a class="headerlink" href="#equation-source-chap4-2" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text{wFM}}=\sum_{i=m}^{M} \frac{1}{N_{i}}\left\|D^{(i)}\left( x_{s}\right)-D^{(i)}\left(x_{t}\right)\right\|_{1},\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(D^{(i)}\)</span>为判别器<span class="math notranslate nohighlight">\(D\)</span>第<span class="math notranslate nohighlight">\(i\)</span>层的特征提取器，<span class="math notranslate nohighlight">\(N_{i}\)</span>为第<span class="math notranslate nohighlight">\(i\)</span>层的元素个数。
-弱特征匹配函数<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{wFM}}\)</span>从第<span class="math notranslate nohighlight">\(m\)</span>层起计算目标图像<span class="math notranslate nohighlight">\(\v x_{t}\)</span>与源图像<span class="math notranslate nohighlight">\(x_{s}\)</span>之间的弱特征损失。由于使用了多个判别器<span class="math notranslate nohighlight">\(D\)</span>，总的弱特征损失函数为:</p>
+弱特征匹配函数<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{wFM}}\)</span>从第<span class="math notranslate nohighlight">\(m\)</span>层起计算目标图像<span class="math notranslate nohighlight">\(x_{t}\)</span>与源图像<span class="math notranslate nohighlight">\(x_{s}\)</span>之间的弱特征损失。由于使用了多个判别器<span class="math notranslate nohighlight">\(D\)</span>，总的弱特征损失函数为:</p>
 <div class="math notranslate nohighlight" id="equation-source-chap4-3">
 <span class="eqno">(4.4.3)<a class="headerlink" href="#equation-source-chap4-3" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text{wFM}_{-}\text{sum}}=\sum_{i=1}^{2} \mathcal{L}_{\text{wFM}}\left(D_{i}\right).\]</div>
 <p><strong>FaceShifter人脸互换方法。</strong> 而为了生成更加高质量的人脸图像，Li等人
@@ -775,7 +774,7 @@ denormalization），将身份和属性信息进行融合并生成伪造的人�
 <span class="eqno">(4.4.6)<a class="headerlink" href="#equation-source-chap4-6" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text{att}}=\frac{1}{2} \sum_{k=1}^{n}\left\| z_{\text{att}}^{k}\left(\hat{Y}_{s, t}\right)- z_{\text{att}}^{k}\left( x_{t}\right)\right\|_{2}^{2}.\]</div>
 <p>当训练样本中的目标图片<span class="math notranslate nohighlight">\(x_{t}\)</span>和源图像<span class="math notranslate nohighlight">\(x_{s}\)</span>相同时，采用重建损失函数<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{rec}}\)</span>来在像素层面计算目标图像<span class="math notranslate nohighlight">\(x_{t}\)</span>和生成的面部<span class="math notranslate nohighlight">\(\hat{Y}_{s,t}\)</span>的<span class="math notranslate nohighlight">\(L_2\)</span>距离，其定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap4-7">
-<span class="eqno">(4.4.7)<a class="headerlink" href="#equation-source-chap4-7" title="Permalink to this equation">¶</a></span>\[\begin{split}\mathcal{L}_{\text {rec}}=\left\{\begin{array}{ll}\frac{1}{2}\left\|\hat{Y}_{s, t}- x_{t}\right\|_{2}^{2}  \text { if }  x_{t}= x_{s} \\0  \text { otherwise }.\end{array} \right.\end{split}\]</div>
+<span class="eqno">(4.4.7)<a class="headerlink" href="#equation-source-chap4-7" title="Permalink to this equation">¶</a></span>\[\begin{split}\mathcal{L}_{\text {rec}}=\left\{\begin{array}{ll}\frac{1}{2}\left\|\hat{Y}_{s, t}- x_{t}\right\|_{2}^{2} \qquad  \text { if }  x_{t}= x_{s} \\0  \qquad \text { otherwise }.\end{array} \right.\end{split}\]</div>
 <p>AEI-Net的总的损失函数<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{AEI-Net}}\)</span>可由上述损失函数加权定义如下：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap4-8">
 <span class="eqno">(4.4.8)<a class="headerlink" href="#equation-source-chap4-8" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text {AEI-Net }}=\mathcal{L}_{\text{adv}}+\lambda_{\text{att}} \mathcal{L}_{\text{att}}+\lambda_{\text{id}} \mathcal{L}_{\text{id}}+\lambda_{\text {rec}} \mathcal{L}_{\text {rec}},\]</div>
@@ -792,7 +791,7 @@ denormalization），将身份和属性信息进行融合并生成伪造的人�
 <span class="eqno">(4.4.11)<a class="headerlink" href="#equation-source-chap4-11" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text{chg}}^{\prime}=\left|\hat{Y}_{s, t}-Y_{s, t}\right|.\]</div>
 <p>重建损失函数<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{rec}}^{\prime}\)</span>用来限制第二阶段在源图像和目标图像相同时仍然能完成重建：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap4-12">
-<span class="eqno">(4.4.12)<a class="headerlink" href="#equation-source-chap4-12" title="Permalink to this equation">¶</a></span>\[\begin{split}\mathcal{L}_{\text{rec}}^{\prime}=\left\{\begin{array}{ll}\frac{1}{2}\left\|Y_{s, t}- x_{t}\right\|_{2}^{2}  \text { if }  x_{t}= x_{s} \\0  \text { otherwise }.\end{array}\right.\end{split}\]</div>
+<span class="eqno">(4.4.12)<a class="headerlink" href="#equation-source-chap4-12" title="Permalink to this equation">¶</a></span>\[\begin{split}\mathcal{L}_{\text{rec}}^{\prime}=\left\{\begin{array}{ll}\frac{1}{2}\left\|Y_{s, t}- x_{t}\right\|_{2}^{2}  \qquad \text { if }  x_{t}= x_{s} \\0  \qquad \text { otherwise }.\end{array}\right.\end{split}\]</div>
 <p>最终HEAR-Net总的损失函数为上述损失函数之和：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap4-13">
 <span class="eqno">(4.4.13)<a class="headerlink" href="#equation-source-chap4-13" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text{HEAR-Net}}=\mathcal{L}_{\text{rec}}^{\prime }+\mathcal{L}_{\text{id}}^{\prime }+\mathcal{L}_{\text{chg}}^{\prime }\]</div>
@@ -841,7 +840,7 @@ face）的全局运动。定义<span class="math notranslate nohighlight">\(G(·
 field）<span class="math notranslate nohighlight">\(\mathcal{M}^{e}=\left\{\mathcal{M}_{\mathbf{p}}^{e}\right\}_{\mathbf{p} \in G(\mathbf{P})}\)</span>，对于每个<span class="math notranslate nohighlight">\(P\)</span>中的像素，运动场可以将其驱动到一个新的地址。</p>
 <p>最后一步<strong>无监督纹理合成器</strong>则使用没有标注的自然图像来训练一个自动编码器，通过将自动编码器网络与特征变形层相结合，逐步将运动转换为纹理。通过上述的模块，所提出的PURA框架能够将静态的虚幻人脸转化为动态的人脸，克服幻想面部所带来的显著差异。</p>
 <p>表情重演仅是人脸重演的一个部分，还有许多工作希望能够同时进行人脸生成领域的两项工作，即<strong>面部身份变换</strong>和<strong>表情迁移</strong>。例如FSGAN
-<span id="id129">(<a class="reference internal" href="../chapter_references/zreferences.html#id476">Nirkin <em>et al.</em>, 2022</a>)</span>
+<span id="id129">(<a class="reference internal" href="../chapter_references/zreferences.html#id476" title="Nirkin, Y., Keller, Y., &amp; Hassner, T. (2022). Fsganv2: improved subject agnostic face swapping and reenactment. IEEE Transactions on Pattern Analysis and Machine Intelligence.">Nirkin <em>et al.</em>, 2022</a>)</span>
 进行的人脸交换工作。FSGAN的具体流程是：（1）<strong>互换生成器</strong><span class="math notranslate nohighlight">\(G_r\)</span>估算被交换的脸与其分割掩码基于热图编码的脸部地标，<span class="math notranslate nohighlight">\(G_s\)</span>估值源图像的分割掩码；（2）<strong>画中画生成器</strong><span class="math notranslate nohighlight">\(G_c\)</span>对缺失部分进行修复并得出完整的交换脸；（3）使用<strong>分割掩码及混合发生器</strong><span class="math notranslate nohighlight">\(G_b\)</span>混合上述结果，生成最终的输出。通过以上步骤，FSGAN能够降低对数据的依赖和提高模型在不同人物间的泛化性。</p>
 <p><strong>基于Transformer的人脸伪造。</strong>
 基于Transformer的伪造人脸生成工作也有很多，如Xu
@@ -882,21 +881,25 @@ perceptron，MLP)模块。</p>
 pyramid）提取输入真实图像的三级特征图。由于<span class="math notranslate nohighlight">\(z^{+}\)</span>空间具有分层结构，因此使用不同的特征来生成每个<span class="math notranslate nohighlight">\(z_{i}^{+}\)</span>。潜在编码<span class="math notranslate nohighlight">\(\boldsymbol{p}^{+}\)</span>仅映射自编码器中的最高级别特征，并作为生成器的初始特征输入注入。上述反转策略能够将真实图像映射到所训练的双潜在空间，可以应用线性潜在操作来执行双空间编辑。通过以上的方法，TransEditor能够实现采用双空间GAN来分离所编辑人脸的样式及具体内容。</p>
 <p>基于人脸伪造技术，研究者们同时还构建了一系列的人脸篡改与伪造数据集，包括UADFV
 <span id="id133">(<a class="reference internal" href="../chapter_references/zreferences.html#id481" title="Li, Y., Chang, M.-C., &amp; Lyu, S. (2018). In ictu oculi: exposing ai created fake videos by detecting eye blinking. IEEE International Workshop on Information Forensics and Security (pp. 1–7).">Li <em>et al.</em>, 2018</a>)</span> 、DFDC <span id="id134">(<a class="reference internal" href="../chapter_references/zreferences.html#id489" title="Dolhansky, B., Howes, R., Pflaum, B., Baram, N., &amp; Ferrer, C. C. (2019). The deepfake detection challenge (dfdc) preview dataset. arXiv preprint arXiv:1910.08854.">Dolhansky <em>et al.</em>, 2019</a>)</span>
-等等。这些数据集的基本信息如表 <span class="xref std std-ref">datasetTable</span> 所列。</p>
+等等。这些数据集的基本信息如 <a class="reference internal" href="#table-4-1"><span class="std std-numref">图4.4.7</span></a> 所列。</p>
+<div class="figure align-default" id="id160">
+<span id="table-4-1"></span><a class="reference internal image-reference" href="../_images/table_4_1.png"><img alt="../_images/table_4_1.png" src="../_images/table_4_1.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图4.4.7 </span><span class="caption-text">常用深度伪造数据集</span><a class="headerlink" href="#id160" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 <div class="section" id="id135">
 <h4><span class="section-number">4.4.2.2. </span>视频伪造<a class="headerlink" href="#id135" title="Permalink to this heading">¶</a></h4>
 <p>视频伪造是深度伪造的一个重要分支，与对图像篡改不同，视频伪造需要考虑更多的维度，如时序信息、不同主客体在画面上的相对位置变化、甚至更进一步的音频伪造等。</p>
-<p>例如，在生成一个虚拟人物在运动的视频时，需要解决的一个问题就是如何生成合理的动作姿态，与目标人物的运动轨迹、力线、惯性等相符合。在这个问题上一个比较好的模型是<strong>一阶移动模型</strong>(first-order-motion）
+<p>例如，在生成一个虚拟人物在运动的视频时，需要解决的一个问题就是如何生成合理的动作姿态，与目标人物的运动轨迹、力线、惯性等相符合。在这个问题上一个比较好的模型是<strong>一阶移动模型</strong>（first-order-motion）
 <span id="id136">(<a class="reference internal" href="../chapter_references/zreferences.html#id17" title="Siarohin, A., Lathuilière, S., Tulyakov, S., Ricci, E., &amp; Sebe, N. (2019). First order motion model for image animation. Advances in Neural Information Processing Systems, 32.">Siarohin <em>et al.</em>, 2019</a>)</span>
 ，它将视频的内容分为主体和动作，其中主体表示视频中出现的人物，而动作表示人物的行为。一阶移动模型包括两个主要模块：（1）<strong>运动估计模块</strong>，使用一组学习得到的关键点以及它们的局部仿生变换来预测密集的运动场；和（2）<strong>图像生成模块</strong>，结合从源图像中提取的外观和从驱动视频中得到的运动来模拟目标运动中出现的遮挡。通过上面的框架，一阶移动模型能够将一个随机向量序列映射成为连续的视频帧，最后合成视频。每个向量中的一部分表示主体，另一部分表示动作，在视频的生成过程中，表示主体的部分固定不变。一阶移动模型通过对外观和运动信息进行解耦，实现了通过运动模型推导出目标任务的合理姿势与动作。</p>
 <p>如何生成高分辨率的伪造视频也是一个具有挑战性的问题。Tian
 <span id="id137">(<a class="reference internal" href="../chapter_references/zreferences.html#id479" title="Tian, Y., Ren, J., Chai, M., Olszewski, K., Peng, X., Metaxas, D. N., &amp; Tulyakov, S. (2021). A good image generator is what you need for high-resolution video synthesis. International Conference on Learning Representations.">Tian <em>et al.</em>, 2021</a>)</span>
 等人基于GAN提出了一个框架<strong>MoCoGAN-HD</strong>，利用已有的图像生成器来渲染合成高分辨率视频。MoCoGAN-HD将视频合成问题看作是在预训练的图像生成器的潜在输出空间中寻找运动轨迹的问题。MoCoGAN-HD的主要部分是：（1）<strong>动作生成器</strong>，能够探查到期待的主体的运动轨迹，使其中的主体和动作解耦；和（2）<strong>跨域视频合成</strong>训练，在不同域的不相交数据集上训练图像生成器和运动生成器，从而可以生成训练集中不存在的新视频内容。通过上面的框架，MoCoGAN-HD解决了生成高清伪造视频性能较低、精度不够的问题。MoCoGAN-HD的结构如图
 <a class="reference internal" href="#mocogan-hd"><span class="std std-ref">MoCoGAN-HD的网络架构 Tian2021MocoGAN-HD</span></a> 所示。</p>
-<div class="figure align-default" id="id160">
+<div class="figure align-default" id="id161">
 <span id="mocogan-hd"></span><a class="reference internal image-reference" href="../_images/4.17_MocoGAN-HD.png"><img alt="../_images/4.17_MocoGAN-HD.png" src="../_images/4.17_MocoGAN-HD.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图4.4.7 </span><span class="caption-text">MoCoGAN-HD的网络架构 <span id="id138">(<a class="reference internal" href="../chapter_references/zreferences.html#id479" title="Tian, Y., Ren, J., Chai, M., Olszewski, K., Peng, X., Metaxas, D. N., &amp; Tulyakov, S. (2021). A good image generator is what you need for high-resolution video synthesis. International Conference on Learning Representations.">Tian <em>et al.</em>, 2021</a>)</span></span><a class="headerlink" href="#id160" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图4.4.8 </span><span class="caption-text">MoCoGAN-HD的网络架构 <span id="id138">(<a class="reference internal" href="../chapter_references/zreferences.html#id479" title="Tian, Y., Ren, J., Chai, M., Olszewski, K., Peng, X., Metaxas, D. N., &amp; Tulyakov, S. (2021). A good image generator is what you need for high-resolution video synthesis. International Conference on Learning Representations.">Tian <em>et al.</em>, 2021</a>)</span></span><a class="headerlink" href="#id161" title="Permalink to this image">¶</a></p>
 </div>
 <p>具体来说，MoCoGAN-HD采用了预训练的图像生成器（StyleGAN2
 <span id="id139">(<a class="reference internal" href="../chapter_references/zreferences.html#id593" title="Karras, T., Laine, S., Aittala, M., Hellsten, J., Lehtinen, J., &amp; Aila, T. (2020). Analyzing and improving the image quality of stylegan. IEEE/CVF Conference on Computer Vision and Pattern Recognition (pp. 8110–8119).">Karras <em>et al.</em>, 2020</a>)</span>
@@ -921,18 +924,18 @@ residual）来估计运动轨迹，将运动残差建模为潜在空间中一组
 <div class="math notranslate nohighlight" id="equation-source-chap4-26">
 <span class="eqno">(4.4.26)<a class="headerlink" href="#equation-source-chap4-26" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{D_{\text{V}}}=\mathbb{E}_{ v \sim p_{v}}\left[\log D_{\text{V}}( v)\right]+\mathbb{E}_{ z_{1} \sim p_{z}}\left[\log \left(1-D_{\text{V}}\left(G_{\text{I}}\left(G_{\text{M}}\left( z_{1}\right)\right)\right)\right)\right].\]</div>
 <p>通过以上训练的动作生成器，MoCoGAN-HD将运动建模为传递给图像生成器及生成单个帧的连续潜在编码的残差，可以更高效地生成潜在的运动轨迹，从而能够生成在时间上保持一致的高质量帧，进而生成高清的运动伪造视频。</p>
-<div class="figure align-default" id="id161">
+<div class="figure align-default" id="id162">
 <span id="fig-di-gan"></span><a class="reference internal image-reference" href="../_images/4.18_DI-GAN.png"><img alt="../_images/4.18_DI-GAN.png" src="../_images/4.18_DI-GAN.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图4.4.8 </span><span class="caption-text">DI-GAN的生成器与鉴别器 <span id="id140">(<a class="reference internal" href="../chapter_references/zreferences.html#id480" title="Yu, S., Tack, J., Mo, S., Kim, H., Kim, J., Ha, J.-W., &amp; Shin, J. (2022). Generating videos with dynamics-aware implicit generative adversarial networks. arXiv preprint arXiv:2202.10571.">Yu <em>et al.</em>, 2022</a>)</span></span><a class="headerlink" href="#id161" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图4.4.9 </span><span class="caption-text">DI-GAN的生成器与鉴别器 <span id="id140">(<a class="reference internal" href="../chapter_references/zreferences.html#id480" title="Yu, S., Tack, J., Mo, S., Kim, H., Kim, J., Ha, J.-W., &amp; Shin, J. (2022). Generating videos with dynamics-aware implicit generative adversarial networks. arXiv preprint arXiv:2202.10571.">Yu <em>et al.</em>, 2022</a>)</span></span><a class="headerlink" href="#id162" title="Permalink to this image">¶</a></p>
 </div>
 <p>除了生成高清视频之外，如何生成高质量的长视频也是一个挑战的问题。Yu等人
 <span id="id141">(<a class="reference internal" href="../chapter_references/zreferences.html#id480" title="Yu, S., Tack, J., Mo, S., Kim, H., Kim, J., Ha, J.-W., &amp; Shin, J. (2022). Generating videos with dynamics-aware implicit generative adversarial networks. arXiv preprint arXiv:2202.10571.">Yu <em>et al.</em>, 2022</a>)</span>
 基于GAN提出了<strong>DI-GAN</strong>，它通过将<strong>隐式神经表示</strong>（implicit
 neural
 representation，INR）编码到参数化神经网络中，实现了利用视频的隐式神经表示来动态感知。具体的，DI-GAN基于INR的视频生成器
-<a class="reference internal" href="#fig-di-gan"><span class="std std-numref">图4.4.8</span></a>
+<a class="reference internal" href="#fig-di-gan"><span class="std std-numref">图4.4.9</span></a>
 (a)，通过不同的方式来操作空间和时间坐标来改善生成动作的质量
-<a class="reference internal" href="#fig-di-gan"><span class="std std-numref">图4.4.8</span></a>
+<a class="reference internal" href="#fig-di-gan"><span class="std std-numref">图4.4.9</span></a>
 (b)。通过上述方法，DI-GAN能在不观察整个长序列视频帧的情况下高效识别非自然运动，从而节约了生成高质量长视频所需的资源消耗。</p>
 </div>
 </div>
