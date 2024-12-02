@@ -2,19 +2,21 @@
 
 第一版：[ai-data-model-safety.github.io](https://ai-data-model-safety.github.io/)
 
+人工智能真的安全吗？数据是否干净？模型是否可信？
+
+关于人工智能安全，你想要了解的都在这里。
+
+<br>
+
 <p align="center">
   <img width="300"  src="./_static/myfrontpage/_images/front.png">
 </p>
 
-<h5 align="center" style="max-width: 600px; word-wrap: break-word; margin: 0 auto;">
+<h5 align="center">
 <i>变色龙是丛林伪装大师，可以通过改变肤色来伪装和保护自己，代表着“变化”“适应”与“保护”，寓意安全防护的动态特性，需要适应复杂多变的外部环境。</i>
 </h5>
 
----
-
-人工智能真的安全吗？数据是否干净？模型是否可信？
-
-关于人工智能安全，你想要了解的都在这里。
+<br>
 
 本书聚焦学术前沿，围绕人工智能的两大核心要素，即**数据**和**模型**，系统深入地介绍相关安全问题和攻防算法。
 
