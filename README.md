@@ -5,7 +5,7 @@
 人工智能真的安全吗？数据是否干净？模型是否可信？
 
 <p align="center">
-  <img width="350"  src="./_static/myfrontpage/_images/front.png">
+  <img width="300"  src="./_static/myfrontpage/_images/front.png">
 </p>
 
 <h5 align="center"><i>变色龙是丛林伪装大师，可以通过改变肤色来伪装和保护自己，代表着“变化”“适应”与“保护”，寓意安全防护的动态特性，需要适应复杂多变的外部环境。</i></h5>
