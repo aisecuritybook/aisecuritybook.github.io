@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <title>9. 模型安全：后门防御 &#8212; 人工智能数据与模型安全 1.0.0 documentation</title>
+    <title>9. 模型安全：后门防御 &#8212; 人工智能：数据与模型安全 1.0.0 documentation</title>
 
-    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.purple-deep_orange.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fontawesome/all.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
@@ -25,6 +25,7 @@
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/d2l.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/logo_removebg.png?"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="10. 模型安全：窃取攻防" href="chap10.html" />
@@ -70,17 +71,17 @@ Show Source
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation">
           
-              <a  class="mdl-navigation__link" href="https://trust-ml.github.io/">
+              <a  class="mdl-navigation__link" href="https://ai-data-model-safety.github.io/">
                   <i class="fas fa-user-graduate"></i>
                   课程
               </a>
           
-              <a  class="mdl-navigation__link" href="https://github.com/OpenTAI">
+              <a  class="mdl-navigation__link" href="https://github.com/ai-data-model-safety">
                   <i class="fab fa-github"></i>
                   GitHub
               </a>
           
-              <a  class="mdl-navigation__link" href="https://haole1683.github.io/Book_html/html/chapter_preface/empty.html">
+              <a  class="mdl-navigation__link" href="https://ai-data-model-safety.github.io/">
                   <i class="fas fa-external-link-alt"></i>
                   English
               </a>
@@ -91,7 +92,7 @@ Show Source
           <!-- Title -->
       <span class="mdl-layout-title">
           <a class="title" href="../index.html">
-              <img class="logo" src="../_static/book_logo.png" alt="人工智能数据与模型安全"/>
+              <img class="logo" src="../_static/logo_with_text.png" alt="人工智能：数据与模型安全"/>
           </a>
       </span>
     
@@ -103,7 +104,6 @@ Show Source
             
             <nav class="mdl-navigation">
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../chapter_about_the_book/index.html">关于此书</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%89%8D%E8%A8%80.html">前言</a></li>
 </ul>
 <ul class="current">
@@ -136,7 +136,7 @@ Show Source
           <!-- Title -->
       <span class="mdl-layout-title">
           <a class="title" href="../index.html">
-              <img class="logo" src="../_static/book_logo.png" alt="人工智能数据与模型安全"/>
+              <img class="logo" src="../_static/logo_with_text.png" alt="人工智能：数据与模型安全"/>
           </a>
       </span>
     
@@ -148,7 +148,6 @@ Show Source
             
             <nav class="mdl-navigation">
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../chapter_about_the_book/index.html">关于此书</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%89%8D%E8%A8%80.html">前言</a></li>
 </ul>
 <ul class="current">
@@ -179,7 +178,8 @@ Show Source
         
   <div class="section" id="chap-backdoor-defense">
 <span id="id1"></span><h1><span class="section-number">9. </span>模型安全：后门防御<a class="headerlink" href="#chap-backdoor-defense" title="Permalink to this heading">¶</a></h1>
-<p>高效的防御多种后门攻击是一个极具挑战性的任务。一方面，不同后门攻击方法的工作机理可能并不相同，想要深入了解它们的共性具有一定的难度；另一方面设计后门防御策略需要同时考虑多种攻击，通用性比较难实现。目前针对后门攻击的防御策略主要有三种：（1）<em>后门模型检测</em>、（2）<em>后门样本检测</em>和（3）<em>后门移除</em>。目前，这三类防御方法间相对独立，各自完成后门防御的子任务。本节将对这三类方法展开介绍。</p>
+<p>高效地防御多种后门攻击是一个极具挑战性的任务。一方面，不同后门攻击方法的工作机理可能并不相同，想要深入了解它们的共性具有一定的难度；另一方面设计后门防御策略需要同时考虑多种攻击，通用性比较难实现。目前针对后门攻击的防御策略主要有三种：（1）<em>后门模型检测</em>、（2）<em>后门样本检测</em>
+和（3）<em>后门移除</em>。目前，这三类防御方法紧密相关又相对独立，各自完成一个后门防御的子任务。本节将对这三类方法展开介绍。</p>
 <div class="section" id="sec-backdoor-model-detection">
 <span id="id2"></span><h2><span class="section-number">9.1. </span>后门模型检测<a class="headerlink" href="#sec-backdoor-model-detection" title="Permalink to this heading">¶</a></h2>
 <p>后门模型检测的目标是判断给定模型是否包含后门触发器，可以根据模型在某种情况下展现出来的<em>后门表现</em>来判断。本节将详细介绍主流后门模型检测方法。</p>
@@ -211,7 +211,7 @@ absolute deviation，MAD）指标 <span id="id5">(<a class="reference internal" 
 <p>将其异常指标放大到与正态分布样本相同的尺度上，作为标准正态分布的<em>一致估计量</em>（consistent
 estimator），其中<span class="math notranslate nohighlight">\(\Phi\)</span>表示标准正态分布的累积分布函数(CDF)。因此，当<span class="math notranslate nohighlight">\(I_i &gt; 1.96\sigma\)</span>时有大于95%的概率此类别为离群点，由于为标准正态分布，所以<span class="math notranslate nohighlight">\(I_i &gt; 1.96\)</span>。实际上，NC方法直接使用<span class="math notranslate nohighlight">\(I_i &gt; 2\)</span>作为阈值条件来检测后门类别。</p>
 <p>在以上检测过程中，由于需要对每一个类别进行后门触发器的重建，在类别数量很大时会需要较大的计算量。为了进一步降低计算负担，可降低公式
-<span class="xref std std-ref">detect_object</span>
+<a class="reference internal" href="#equation-detect-object">(9.1.2)</a>
 的优化迭代次数，先得到一个较为粗糙的重建后门触发器，然后对所有类别进行初筛来降低怀疑为投毒类别的数目。</p>
 <p><strong>深度检查。</strong> Chen等人 <span id="id6">(<a class="reference internal" href="../chapter_references/zreferences.html#id409" title="Chen, H., Fu, C., Zhao, J., &amp; Koushanfar, F. (2019). Deepinspect: a black-box trojan detection and mitigation framework for deep neural networks. International Joint Conference on Artificial Intelligence (pp. 4658–4664).">Chen <em>et al.</em>, 2019</a>)</span>
 提出了针对Trojan攻击的防御方法—<strong>深度检查</strong>（DeepInspect），建立了一种针对模型先验知识较少情况下的后门防御机制。相较于神经净化方法，深度检查方法仅需要模型的类别概率输出，无需训练数据集，因此实用性更高。为了解决没有输入数据的问题，该方法使用<strong>模型逆向</strong>（model
@@ -229,16 +229,16 @@ generator），以便快速生成不同类别的后门触发器。最后，该�
 因此，我们使用<em>负对数似然损失</em>（negative loss likelihood,
 NLL）来衡量生成后门触发器的质量：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap9-2">
-<span class="eqno">(9.1.8)<a class="headerlink" href="#equation-source-chap9-2" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\Delta} = \mathbb{E}_{ x}[\mathcal{L}_{\text{NLL}}(\mathcal{D}(x+\g\mathcal{G}( z,y_t)), t)]\]</div>
+<span class="eqno">(9.1.8)<a class="headerlink" href="#equation-source-chap9-2" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\Delta} = \mathbb{E}_{ x}[\mathcal{L}_{\text{NLL}}(\mathcal{D}(x+\mathbb{g}\mathcal{G}( z,y_t)), t)]\]</div>
 <p>此外，还应使得后门样本<span class="math notranslate nohighlight">\(x+\mathcal{G}( z,y_t)\)</span>与原始输入<span class="math notranslate nohighlight">\(x\)</span>无法区分，即增加对抗损失：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap9-3">
 <span class="eqno">(9.1.9)<a class="headerlink" href="#equation-source-chap9-3" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text{GAN}} = \mathbb{E}_{ x}[\mathcal{L}_\text{MSE}(\mathcal{D}_{prob}( x+\mathcal{G}( z,y_t)), 1)],\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(\mathcal{L}_\text{MSE}\)</span>表示<em>均方误差</em>（mean square
 error，MSE），<span class="math notranslate nohighlight">\(1\)</span>代表原始输入<span class="math notranslate nohighlight">\(x\)</span>在理想情况下的概率输出。</p>
-<p>除以上损失外，还应该对后门触发器的大小进行限制，因为这里同样假设大部分触发器的尺寸很小。深度检查使用<span class="math notranslate nohighlight">\(\norm{}_1\)</span>对生成的后门触发器大小进行限制，即：</p>
+<p>除以上损失外，还应该对后门触发器的大小进行限制，因为这里同样假设大部分触发器的尺寸很小。深度检查使用<span class="math notranslate nohighlight">\(\|\|_1\)</span>对生成的后门触发器大小进行限制，即：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap9-4">
 <span class="eqno">(9.1.10)<a class="headerlink" href="#equation-source-chap9-4" title="Permalink to this equation">¶</a></span>\[\mathcal{L}_{\text{pert}} = \mathbb{E}_{ x}\left[\max(0, ||\mathcal{G}( z,y_t)||_1 - \gamma)\right],\]</div>
-<p>其中，<span class="math notranslate nohighlight">\(\gamma\)</span>控制重建后门触发器<span class="math notranslate nohighlight">\(L_1\)</span>范数约束强度，当<span class="math notranslate nohighlight">\(\|\mathcal{G\|( z,y_t)}_1\)</span>大于<span class="math notranslate nohighlight">\(\gamma\)</span>时，<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{pert}}=\mathcal{G}( z,y_t)||_1 - \gamma\)</span>，否则<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{pert}}=0\)</span>。</p>
+<p>其中，<span class="math notranslate nohighlight">\(\gamma\)</span>控制重建后门触发器<span class="math notranslate nohighlight">\(L_1\)</span>范数约束强度，当<span class="math notranslate nohighlight">\(\|\mathcal{G\|( z,y_t)}_1\)</span>大于<span class="math notranslate nohighlight">\(\gamma\)</span>时，<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{pert}}=||\mathcal{G}( z,y_t)||_1 - \gamma\)</span>，否则<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{pert}}=0\)</span>。</p>
 <p>综合以上三个损失，我们得到最终用于训练生成器<span class="math notranslate nohighlight">\(\mathcal{G}\)</span>的损失函数：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap9-5">
 <span class="eqno">(9.1.11)<a class="headerlink" href="#equation-source-chap9-5" title="Permalink to this equation">¶</a></span>\[\mathcal{L} = \mathcal{L}_{\Delta} + \lambda_1 \mathcal{L}_{\text{GAN}} + \lambda_2 \mathcal{L}_{\text{pert}},\]</div>
@@ -249,14 +249,14 @@ deviation，DMAD）来作为检测标准。MAD方法适用于围绕中位数的�
 <div class="math notranslate nohighlight" id="equation-source-chap9-6">
 <span class="eqno">(9.1.12)<a class="headerlink" href="#equation-source-chap9-6" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{split}S^{l} = \{S_i | S_i \in S \And S_i\leq \tilde{S}\} \\S^{r} = \{S_i | S_i \in S \And S_i\geq \tilde{S}\}.\end{split}\end{split}\]</div>
 <p>由于假设所测试的后门触发器普遍较小，因此深度检查方法只使用<span class="math notranslate nohighlight">\(S^{l}\)</span>来进行检测，根据式
-<span class="xref std std-ref">MAD_one</span> 、 <span class="xref std std-ref">MAD_two</span> 、 <span class="xref std std-ref">MAD_three</span>
+<a class="reference internal" href="#equation-mad-one">(9.1.3)</a> 、 <a class="reference internal" href="#equation-mad-two">(9.1.4)</a> 、 <a class="reference internal" href="#equation-mad-three">(9.1.5)</a>
 对<span class="math notranslate nohighlight">\(S^{l}\)</span>进行计算，并与<span class="math notranslate nohighlight">\(1.96\sigma\)</span>进行比较来得到离群点，确定为后门类别。</p>
 <p>通过以上三个步骤，深度检查方法实现了比神经净化更有效的后门触发器重建，且不需要借助额外数据。相较于神经净化方法，深度检查方法在更加苛刻的环境下实现了后门攻击的有效检测，更易于在实际应用场景中的使用。此外，通过重建后门触发器，深度检查方法同样可以在替代数据集以及叠加了重建后门触发器后的“修补”数据集上，对模型进行微调，使得模型具有抵御后门攻击的能力。值得注意的是，尽管深度检查方法声称是一种黑盒防御方法。但事实上，在模型逆向以及生成器的训练过程中，都需要通过模型反传梯度来进行优化，这在严格的黑盒条件下是不允许的。因此，这里并没有把深度检查方法归类为黑盒防御方法。</p>
 <p><strong>基于非凸优化和正则的后门检查。</strong> Guo等人 <span id="id8">(<a class="reference internal" href="../chapter_references/zreferences.html#id408" title="Guo, W., Wang, L., Xing, X., Du, M., &amp; Song, D. (2019). Tabor: a highly accurate approach to inspecting and restoring trojan backdoors in ai systems. arXiv preprint arXiv:1908.01763.">Guo <em>et al.</em>, 2019</a>)</span>
 发现当使用不同尺寸、形状和位置的后门触发器来进行后门攻击时，神经净化方法可能会失效。作者认为其主要原因在于后门子空间中存在多个后门样本，而基于触发器逆向的神经净化方法可能会搜索到与后门触发器无关的后门样本。为此，作者提出了<strong>基于非凸优化和正则的后门检查</strong>（Trojan
 backdoor inspection based on non-convex optimization and
 regularization，TABOR）方法，通过多个训练正则项来改善原始神经净化的优化目标。下面将对增加的正则化项进行详细介绍。</p>
-<p>在利用优化器（式 <span class="xref std std-ref">nc_optimize</span>
+<p>在利用优化器（式 <a class="reference internal" href="#equation-nc-optimize">(9.1.1)</a>
 ）重建后门触发器的过程中，会出现<strong>稀疏触发器</strong>（scattered
 trigger）和<strong>过大触发器</strong>（overly large
 trigger）的问题。稀疏触发器在整个图像区域中比较分散，无法聚拢到某一个特定的位置；而过大触发器在图像区域中所占的面积过大，远大于正常后门触发器的尺寸。因此，需要对重建后门触发器的面积大小以及聚拢程度进行限制。</p>
@@ -264,7 +264,7 @@ trigger）的问题。稀疏触发器在整个图像区域中比较分散，无�
 <div class="math notranslate nohighlight" id="equation-tabor-reg-1">
 <span class="eqno">(9.1.13)<a class="headerlink" href="#equation-tabor-reg-1" title="Permalink to this equation">¶</a></span>\[R_1( m, \Delta) = \lambda_1 \cdot R_{\text{elastic}}(vec( m)) + \lambda_2 \cdot R_{\text{elastic}}(vec((1- m) \odot \Delta)),\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(vec(\cdot)\)</span>表示将矩阵转换为向量；<span class="math notranslate nohighlight">\(R_{\text{elastic}}(\cdot)\)</span>表示向量的<span class="math notranslate nohighlight">\(L_1\)</span>和<span class="math notranslate nohighlight">\(L_2\)</span>范数之和；<span class="math notranslate nohighlight">\(\lambda_1\)</span>和<span class="math notranslate nohighlight">\(\lambda_2\)</span>为超参数。这里的<span class="math notranslate nohighlight">\(m\)</span>表示后门触发器的掩码，<span class="math notranslate nohighlight">\(\Delta\)</span>表示重建的后门触发器。公式
-<span class="xref std std-ref">TABOR_reg_1</span>
+<a class="reference internal" href="#equation-tabor-reg-1">(9.1.13)</a>
 在对掩码<span class="math notranslate nohighlight">\(m\)</span>中非零项进行惩罚的同时，也对掩码0值区域的重建后门触发器的非零项进行惩罚，从而解决过大的问题，缩小后门子空间中后门样本的数量。</p>
 <p>针对稀疏触发器，TABOR定义如下正则化项来惩罚稀疏性：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap9-7">
@@ -280,13 +280,13 @@ trigger）的情况，重建触发器与真实触发器具有一定程度的叠�
 <div class="math notranslate nohighlight" id="equation-source-chap9-9">
 <span class="eqno">(9.1.16)<a class="headerlink" href="#equation-source-chap9-9" title="Permalink to this equation">¶</a></span>\[R_4 = \lambda_6 \cdot \mathcal{L}(f( m \odot \Delta), y_t),\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(y_t\)</span>为攻击目标类别；<span class="math notranslate nohighlight">\(\lambda_6\)</span>为超参数。基于此，TABOR可在较为重要的区域里重建后门触发器。</p>
-<p>将以上四个正则化项加入到NC方法的目标函数（公式 <span class="xref std std-ref">nc_optimize</span>
+<p>将以上四个正则化项加入到NC方法的目标函数（公式 <a class="reference internal" href="#equation-nc-optimize">(9.1.1)</a>
 ）后即可生成更加准确的后门触发器。当然，最后还需要通过异常检测来找到后门类别和后门触发器。相较于神经净化的<span class="math notranslate nohighlight">\(L_1\)</span>距离筛选法，TABOR给出了更加精确、具体的度量定义：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap9-10">
-<span class="eqno">(9.1.17)<a class="headerlink" href="#equation-source-chap9-10" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{aligned}A( m_t, \Delta_t) = \log(\frac{\|vec(f^{(t)\|)}_1}{d^2}) + \log (\frac{s(f^{(t)})}{d\cdot(d-1)}) \\- \log(acc_{\text{att}}) - \log(acc_{\text{crop}}) - \log(acc_{\text{exp}})，\end{aligned}\end{split}\]</div>
-<p>其中，<span class="math notranslate nohighlight">\(m_t\)</span>和<span class="math notranslate nohighlight">\(\Delta_t\)</span>可构成类别<span class="math notranslate nohighlight">\(y_t\)</span>的后门触发器，即<span class="math notranslate nohighlight">\(m_t \odot \Delta_t\)</span>；<span class="math notranslate nohighlight">\(acc_{\text{att}}\)</span>表示将重建后门触发器注入到干净样本中后导致的错误分类率；<span class="math notranslate nohighlight">\(acc_{\text{crop}}\)</span>为在从污染图像中裁剪出相应的后门触发器后得到的预测准确率；<span class="math notranslate nohighlight">\(acc_{\text{exp}}\)</span>表示仅将污染图像中的基于可解释性得到的重要特征输入模型后得到的预测准确率。对于前两项，定义<span class="math notranslate nohighlight">\(f_{i,j}^{(t)}=\mathbb{1}( m_t \odot \Delta_t)_{i,j}&gt;0\)</span>，通过<span class="math notranslate nohighlight">\(\|vec(f^{(t)\|)}_1\)</span>以及<span class="math notranslate nohighlight">\(s(f^{(t)})\)</span>来实现稀疏度量和平滑性度量；<span class="math notranslate nohighlight">\(d\)</span>表示图像的维度，用来归一化。
-在得到每个类别重建触发器的度量指标后，可利用MAD（公式 <span class="xref std std-ref">MAD_one</span>
-、 <span class="xref std std-ref">MAD_two</span> 和 <span class="xref std std-ref">MAD_three</span> ）进行异常检测。</p>
+<span class="eqno">(9.1.17)<a class="headerlink" href="#equation-source-chap9-10" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{aligned}A( m_t, \Delta_t) = \log(\frac{\|vec(f^{(t)})\|_1}{d^2}) + \log (\frac{s(f^{(t)})}{d\cdot(d-1)}) \\- \log(acc_{\text{att}}) - \log(acc_{\text{crop}}) - \log(acc_{\text{exp}})，\end{aligned}\end{split}\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(m_t\)</span>和<span class="math notranslate nohighlight">\(\Delta_t\)</span>可构成类别<span class="math notranslate nohighlight">\(y_t\)</span>的后门触发器，即<span class="math notranslate nohighlight">\(m_t \odot \Delta_t\)</span>；<span class="math notranslate nohighlight">\(acc_{\text{att}}\)</span>表示将重建后门触发器注入到干净样本中后导致的错误分类率；<span class="math notranslate nohighlight">\(acc_{\text{crop}}\)</span>为在从污染图像中裁剪出相应的后门触发器后得到的预测准确率；<span class="math notranslate nohighlight">\(acc_{\text{exp}}\)</span>表示仅将污染图像中的基于可解释性得到的重要特征输入模型后得到的预测准确率。对于前两项，定义<span class="math notranslate nohighlight">\(f_{i,j}^{(t)}=\mathbb{1}( m_t \odot \Delta_t)_{i,j}&gt;0\)</span>，通过<span class="math notranslate nohighlight">\(\|vec(f^{(t)}\|_1\)</span>以及<span class="math notranslate nohighlight">\(s(f^{(t)})\)</span>来实现稀疏度量和平滑性度量；<span class="math notranslate nohighlight">\(d\)</span>表示图像的维度，用来归一化。
+在得到每个类别重建触发器的度量指标后，可利用MAD（公式 <a class="reference internal" href="#equation-mad-one">(9.1.3)</a>
+、 <a class="reference internal" href="#equation-mad-two">(9.1.4)</a> 和 <a class="reference internal" href="#equation-mad-three">(9.1.5)</a> ）进行异常检测。</p>
 <p>针对过多的超参数（<span class="math notranslate nohighlight">\(\{\lambda_1, \lambda_2, \lambda_3, \lambda_4, \lambda_5, \lambda_6\}\)</span>），TABOR设计了一种<strong>超参增强</strong>机制，缓解超参对触发器重建性能的影响。在优化的初始阶段，将超参数初始化为较小的值，也就是说在此阶段中正则化项对于目标函数的贡献接近0；之后会将当前重建的后门触发器注入到干净样本中以获得污染样本，并将污染样本输入到模型中获取错误分类率，<em>只有当错误分类率达到一个确定的阈值时</em>，才会将超参数乘上固定的扩大因子<span class="math notranslate nohighlight">\(\gamma\)</span>；否则，将会除以<span class="math notranslate nohighlight">\(\gamma\)</span>。以上操作会重复进行，直到正则化项的值趋于稳定，即<span class="math notranslate nohighlight">\(|R_t^{k-1} - R_t^{k}| &lt; \epsilon\)</span>，其中<span class="math notranslate nohighlight">\(R_t^k\)</span>表示在第<span class="math notranslate nohighlight">\(k\)</span>次迭代中第<span class="math notranslate nohighlight">\(t\)</span>个正则项的值；<span class="math notranslate nohighlight">\(\epsilon\)</span>为一个较小的常数。</p>
 <p>TABOR在神经净化框架下，增加了多种正则化项来解决其在后门触发器重建过程中存在的问题。此外，还从多个角度设计了更加全面的度量标准，以获得更好的异常检测性能。结果显示，TABOR方法相较于神经净化方法在后门触发器重建及检测上取得了更好的效果。</p>
 <p><strong>数据受限下的检测。</strong> Wang等人 <span id="id9">(<a class="reference internal" href="../chapter_references/zreferences.html#id410" title="Wang, R., Zhang, G., Liu, S., Chen, P.-Y., Xiong, J., &amp; Wang, M. (2020). Practical detection of trojan neural networks: data-limited and data-free cases. European Conference on Computer Vision (pp. 222–238).">Wang <em>et al.</em>, 2020</a>)</span>
@@ -295,7 +295,7 @@ detector）和<strong>DF-TND</strong>。其中，DL-TND在每个类别仅有一�
 universal adversarial noise）和单一图像的有目标对抗噪声（targeted
 adversarial
 noise），并比较两种噪声之间的差异，从而识别后门类别。DF-TND不使用原始图像，而利用随机图像作为检测数据，它通过最大化中间层神经元激活来获取扰动图像，然后根据随机图像与扰动图像在输出概率上的差异来检测后门类别。下面将分别对DL-TND和DF-TND进行详细介绍。</p>
-<p>类似于公式 <span class="xref std std-ref">nc_optimize</span> ，DL-TND定义添加了后门触发器的图片为：</p>
+<p>类似于公式 <a class="reference internal" href="#equation-nc-optimize">(9.1.1)</a> ，DL-TND定义添加了后门触发器的图片为：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap9-11">
 <span class="eqno">(9.1.18)<a class="headerlink" href="#equation-source-chap9-11" title="Permalink to this equation">¶</a></span>\[\hat{ x}( m, \Delta) = (1- m) \cdot  x +  m \cdot \delta,\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(0 \leq \Delta \leq 255\)</span>为触发器噪声，<span class="math notranslate nohighlight">\(m \in\{0,1\}\)</span>为定义了添加位置的二值掩码。
@@ -307,7 +307,7 @@ noise），并比较两种噪声之间的差异，从而识别后门类别。DF-
 <div class="math notranslate nohighlight" id="equation-cw-format">
 <span class="eqno">(9.1.20)<a class="headerlink" href="#equation-cw-format" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{aligned}\mathcal{L}_{\text{atk}}(\hat{ x}( m, \Delta); D_{k-}) = \sum_{ x_i \in D_{k-}} \max\{f_{y_i}(\hat{ x}_i( m, \Delta)) - \max_{t \neq y_i}f_t(\hat{ x}_i( m, \Delta)), -\tau\} \\\hat{\mathcal{L}}_{\text{atk}}(\hat{ x}( m, \Delta); D_{k}) = \sum_{ x_i \in D_{k}} \max\{\max_{t \neq y_i}f_t(\hat{ x}_i( m, \Delta)) - f_{y_i}(\hat{ x}_i( m, \Delta)), -\tau\},\end{aligned}\end{split}\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(y_i\)</span>为<span class="math notranslate nohighlight">\(x_i\)</span>的真实类别，<span class="math notranslate nohighlight">\(f_t(\cdot)\)</span>表示类别<span class="math notranslate nohighlight">\(t\)</span>的预测值，<span class="math notranslate nohighlight">\(\tau \geq 0\)</span>为超参，用来界定攻击的最低置信程度。</p>
-<p>公式 <span class="xref std std-ref">cw_format</span> 参考了CW攻击 <span id="id10">(<a class="reference internal" href="../chapter_references/zreferences.html#id77" title="Carlini, N., &amp; Wagner, D. (2017). Towards evaluating the robustness of neural networks. IEEE Symposium on Security and Privacy (pp. 39–57).">Carlini and Wagner, 2017</a>)</span>
+<p>公式 <a class="reference internal" href="#equation-cw-format">(9.1.20)</a> 参考了CW攻击 <span id="id10">(<a class="reference internal" href="../chapter_references/zreferences.html#id77" title="Carlini, N., &amp; Wagner, D. (2017). Towards evaluating the robustness of neural networks. IEEE Symposium on Security and Privacy (pp. 39–57).">Carlini and Wagner, 2017</a>)</span>
 的非目标攻击形式，使得<span class="math notranslate nohighlight">\(D_{K-}\)</span>发生非目标错误分类而不影响<span class="math notranslate nohighlight">\(D_k\)</span>的正确分类。
 此时，DL-TND会对每个图像<span class="math notranslate nohighlight">\(x_i \in D_{k-}\)</span>分别计算<strong>目标对抗噪声</strong>，使得<span class="math notranslate nohighlight">\(\hat{ x}_i( m, \Delta)\)</span>会被模型错分类为<span class="math notranslate nohighlight">\(k\)</span>。DL-TND认为目标攻击与非目标通用攻击一样，偏向使用<em>后门捷径</em>（backdoor
 shortcut）来生成对抗噪声。目标攻击定义如下：</p>
@@ -335,23 +335,55 @@ shortcut）来生成对抗噪声。目标攻击定义如下：</p>
 <span id="id12">(<a class="reference internal" href="../chapter_references/zreferences.html#id364" title="Tran, B., Li, J., &amp; Madry, A. (2018). Spectral signatures in backdoor attacks. Advances in Neural Information Processing Systems, 31.">Tran <em>et al.</em>, 2018</a>)</span> 在2018年提出了<strong>频谱指纹</strong>（spectral
 signature,
 SS）方法。该方法观察到后门样本和干净样本在深度特征的协方差矩阵上存在差异，故可以通过检测这种差异来过滤后门样本。</p>
-<p>算法 :ref:<code class="docutils literal notranslate"><span class="pre">algorithm:SS</span></code>
+<p>算法 <a class="reference internal" href="#algorithm-9-1"><span class="std std-numref">图9.2.1</span></a>
 中给出了SS方法的检测流程。具体来说，给定训练样本<span class="math notranslate nohighlight">\(D\)</span>，首先训练得到神经网络<span class="math notranslate nohighlight">\(f\)</span>。然后，按照类别遍历，并提取每个样本的特征向量并计算每类样本的特征均值。接下来，对深度特征的<em>协方差矩阵</em>进行奇异值分解，并使用该分解计算每个样本的异常值分数。根据异常检测规则移除数据集中异常值高于<span class="math notranslate nohighlight">\(1.5 \epsilon\)</span>的样本（后门样本），最终返回一个干净的训练数据集<span class="math notranslate nohighlight">\(D_{\text{clean}}\)</span>。</p>
+<div class="figure align-default" id="id28">
+<span id="algorithm-9-1"></span><a class="reference internal image-reference" href="../_images/algorithm_9_1.png"><img alt="../_images/algorithm_9_1.png" src="../_images/algorithm_9_1.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图9.2.1 </span><span class="caption-text">频谱指纹（SS）检测算法</span><a class="headerlink" href="#id28" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-default" id="id29">
+<span id="algorithm-9-2"></span><a class="reference internal image-reference" href="../_images/algorithm_9_2.png"><img alt="../_images/algorithm_9_2.png" src="../_images/algorithm_9_2.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图9.2.2 </span><span class="caption-text">激活聚类（AC）检测算法</span><a class="headerlink" href="#id29" title="Permalink to this image">¶</a></p>
+</div>
 <p><strong>激活聚类。</strong> Chen等人 <span id="id13">(<a class="reference internal" href="../chapter_references/zreferences.html#id363" title="Chen, B., Carvalho, W., Baracaldo, N., Ludwig, H., Edwards, B., Lee, T., … Srivastava, B. (2018). Detecting backdoor attacks on deep neural networks by activation clustering. arXiv preprint arXiv:1811.03728.">Chen <em>et al.</em>, 2018</a>)</span>
 提出了一种基于<strong>激活聚类</strong>（activation
 clustering，AC）的方法来过滤训练数据中的潜在后门样本。该方法的主要思想是：<em>后门特征和干净特征之间存在差异，且这种差异在深度特征空间中会更加显著</em>。因此，可以基于聚类方法来自动分离后门特征，进而帮助检测后门样本。</p>
-<p>算法 :ref:<code class="docutils literal notranslate"><span class="pre">algorithm:SS</span></code>
+<p>算法 <a class="reference internal" href="#algorithm-9-1"><span class="std std-numref">图9.2.1</span></a>
 中给出了AC方法的检测流程。该方法首先在后门训练数据集<span class="math notranslate nohighlight">\(D\)</span>上训练模型<span class="math notranslate nohighlight">\(f\)</span>，然后对所有训练样本<span class="math notranslate nohighlight">\(x_{i} \in D\)</span>提取其特征激活（默认选取模型最后一个隐藏层的输出），得到一个包含所有特征激活的集合<span class="math notranslate nohighlight">\(A\)</span>。然后，对得到的特征激活进行降维，并利用聚类方法对训练数据集进行聚类分析。实验表明，通过分析最后一层隐藏层的激活分布就能够有效检测后门数据。</p>
 <p>值得注意的是，AC方法假定训练数据中一定存在后门样本，所以在激活聚类时默认将整个数据集划分为两个数据簇。作者提出了三个后门数据簇的判别依据：（1）<strong>重新训练分类</strong>；（2）<strong>聚类簇的相对大小</strong>；（3）<strong>轮廓的分数</strong>。实验表明，比较聚类簇数据规模的相对大小可以作为一个简单有效的评判依据。</p>
+<p><strong>认知蒸馏。</strong>
+后门样本会误导模型去识别任务无关的后门触发器样式，这使得模型的认识逻辑发生错误，模型在后门样本上的注意力区域发生偏移。但事实并非如此，我们发现模型在后门样本上依然会关注一部分有意义的区域。这就需要一种技术可以精准地剖离模型的核心认知逻辑，去除不重要的甚至是噪声的注意力，从而可以暴露模型真正关注的地方。基于此种想法，Huang等人
+<span id="id14">(<a class="reference internal" href="../chapter_references/zreferences.html#id594" title="Huang, H., Ma, X., Erfani, S. M., &amp; Bailey, J. (2023). Distilling cognitive backdoor patterns within an image. The Eleventh International Conference on Learning Representations. URL: https://openreview.net/forum?id=S3D9NLzjnQ5">Huang <em>et al.</em>, 2023</a>)</span> 提出 <strong>认知蒸馏</strong> （cognitive
+distillation，CD）的概念，给定一个输入样本（训练样本或测试样本皆可），此方法提取模型得到同样输出所需要的最少输入信息。决定模型输出的最小输入模式又称为
+<strong>认知模式</strong> （cognitive
+pattern），它揭示了模型推理结果背后所隐藏的决定性因素。</p>
+<p>具体来说，认知蒸馏方法通过解决一个最小化问题来从一个输入样本<span class="math notranslate nohighlight">\(x\)</span>中蒸馏出其认知模式。优化问题具体定义如下：</p>
+<div class="math notranslate nohighlight" id="equation-eq-cd">
+<span class="eqno">(9.2.1)<a class="headerlink" href="#equation-eq-cd" title="Permalink to this equation">¶</a></span>\[\mathrm{arg\,min}_{m}||f_{\theta}(x) - f_{\theta}(x_{cp})||_1 + \alpha ||m||_1 + \beta \cdot TV(m)\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-cp">
+<span class="eqno">(9.2.2)<a class="headerlink" href="#equation-eq-cp" title="Permalink to this equation">¶</a></span>\[x_{cp}=x\odot{m} + (1-m)\odot\delta,\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(m\)</span>是输入掩码，<span class="math notranslate nohighlight">\(f_{\theta}\)</span>是模型的逻辑或者概率输出，<span class="math notranslate nohighlight">\(x_{cp}\)</span>是认知模式，<span class="math notranslate nohighlight">\(\delta \in [0,1]^c\)</span>是一个<span class="math notranslate nohighlight">\(c\)</span>-维的随机向量，<span class="math notranslate nohighlight">\(\odot\)</span>是元素对应乘积操作，<span class="math notranslate nohighlight">\(TV(\cdot)\)</span>是总变差（TV）损失，控制优化所得掩码的平滑程度（我们希望得到局部平滑的关键区域），<span class="math notranslate nohighlight">\(\beta\)</span>为平衡TV损失的超参数。</p>
+<div class="figure align-default" id="id30">
+<span id="fig-cd"></span><a class="reference internal image-reference" href="../_images/9.1_cd.png"><img alt="../_images/9.1_cd.png" src="../_images/9.1_cd.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">图9.2.3 </span><span class="caption-text">在干净或者后门图片上通过认知蒸馏方法提取出来的认知模式</span><a class="headerlink" href="#id30" title="Permalink to this image">¶</a></p>
+</div>
+<p>图 <a class="reference internal" href="#fig-cd"><span class="std std-numref">图9.2.3</span></a>
+展示了认知蒸馏算法在干净图片以及被11种后门攻击算法攻击过的图片上抽取到的掩码和模式。可以看到，模型在被添加了后门触发器的图片上的认知机理大都由后门触发器决定，触发器对应的位置对模型的输入起到了决定性的作用。此外还发现，有些全图的触发器，比如Blend、CL、FC、DFST等攻击所使用的触发器，只是部分在起作用，而并不需要全图大小的触发器。基于此发现，Huang等人对已有攻击的触发器进行了进一步简化，发现简化后的触发器跟原触发器攻击效果相似，有的甚至还变更强了。</p>
+<p>基于式 <a class="reference internal" href="#equation-eq-cd">(9.2.1)</a>
+优化得到的掩码<span class="math notranslate nohighlight">\(m\)</span>，Huang等人构建了一个后门样本检测器，将检测掩码过小的样本检测为后门样本。检测原理是基于图
+<a class="reference internal" href="#fig-cd"><span class="std std-numref">图9.2.3</span></a>
+中的发现：后门样本的认知模式往往更简单，即模型通过过于简单的模式对样本进行了结果预测。在3个数据集、6个模型以及12种后门攻击上的检测结果表明，认知蒸馏方法可以将训练集中后门样本的平均检测AUC从此前最优的84.62%提升到96.45%，将测试集中后门样本的平均检测AUC从此前最优的82.51%提升到了94.90%。</p>
+<p>后门数据只是问题数据的一种，其他的问题数据包括投毒样本、损坏样本、对抗样本等等，都会误导模型产生错误的推理逻辑。如果能够准确且唯一地确定模型的主要推理依据，那么就可以判断模型的决策是否存在问题。如果能进一步对有问题的推理逻辑进行共性建模，那么就可以构建服务于模型推理阶段的问题数据过滤和纠正器。
+未来大模型会被广泛使用，它们的训练代价很高，难以通过重训练或者微调的方式来保证全面的鲁棒性，所以迫切地需要检测防御方法来保障其安全稳定的运行。比如OpenAI、谷歌等一些公司在发布生成式大模型（如ChatGPT）时都会启动一系列检测模型，以此来防止模型因受到攻击或者引诱而生成有害的内容。</p>
 </div>
 <div class="section" id="sec-backdoor-removal">
-<span id="id14"></span><h2><span class="section-number">9.3. </span>后门移除<a class="headerlink" href="#sec-backdoor-removal" title="Permalink to this heading">¶</a></h2>
+<span id="id15"></span><h2><span class="section-number">9.3. </span>后门移除<a class="headerlink" href="#sec-backdoor-removal" title="Permalink to this heading">¶</a></h2>
 <p>后门检测之后需要<strong>后门移除</strong>方法将检测出来的后门从模型中清除掉，以完成<strong>模型净化</strong>。如此，后门移除的目标主要有两个：（1）<em>从后门模型中移除后门</em>；（2）<em>保持模型的正常性能不下降</em>。后门移除对后门防御至关重要，在实际应用场景中可以起到重要的作用，所以后门防御的大部分工作都是围绕后门移除进行的。现有的后门移除方法大致可以分为两类：（a）<strong>训练中移除</strong>，在模型的训练过程中检测出潜在的后门样本，并阻止模型对这些样本的学习；（b）<strong>训练后移除</strong>，从后门模型中移除掉已经被植入的后门触发器，以还原模型的纯净功能。</p>
-<div class="section" id="id15">
-<h3><span class="section-number">9.3.1. </span>训练中移除<a class="headerlink" href="#id15" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="id16">
+<h3><span class="section-number">9.3.1. </span>训练中移除<a class="headerlink" href="#id16" title="Permalink to this heading">¶</a></h3>
 <p><strong>反后门学习。</strong>
 如何从被污染的数据中学习一个干净的模型是一个挑战的问题。Li等人
-<span id="id16">(<a class="reference internal" href="../chapter_references/zreferences.html#id396" title="Li, Y., Lyu, X., Koren, N., Lyu, L., Li, B., &amp; Ma, X. (2021). Anti-backdoor learning: training clean models on poisoned data. Advances in Neural Information Processing Systems, 34, 14900–14912.">Li <em>et al.</em>, 2021</a>)</span> 首次提出了<strong>反后门学习</strong>（anti-backdoor
+<span id="id17">(<a class="reference internal" href="../chapter_references/zreferences.html#id396" title="Li, Y., Lyu, X., Koren, N., Lyu, L., Li, B., &amp; Ma, X. (2021). Anti-backdoor learning: training clean models on poisoned data. Advances in Neural Information Processing Systems, 34, 14900–14912.">Li <em>et al.</em>, 2021</a>)</span> 首次提出了<strong>反后门学习</strong>（anti-backdoor
 learning，ABL）的概念，通过设计鲁棒的训练方法让模型可以在被后门毒化的数据集上正常训练，自动避开对后门样本的学习，最终得到一个干净无后门的模型。</p>
 <p>具体而言，ABL方法首先揭示了两个后门攻击固有的弱点：（1）<em>后门样本比干净样本被模型学的更快</em>，而且后门攻击越强，模型在后门样本上的收敛速度就越快；（2）<em>后门触发器与后门标签之间存在强关联</em>。显然，被部分毒化的数据集既包含干净数据子集（<span class="math notranslate nohighlight">\(D_c\)</span>）也包含后门数据子集（<span class="math notranslate nohighlight">\(D_b\)</span>）。那么，我们可以将基于毒化数据集的模型训练看做是两个学习任务平行进行，即定义在<span class="math notranslate nohighlight">\(D_c\)</span>上的<strong>干净任务</strong>（clean
 task）和定义在<span class="math notranslate nohighlight">\(D_b\)</span>上的<strong>后门任务</strong>（backdoor
@@ -359,26 +391,25 @@ task）。对于图像分类任务来说，在毒化数据集上的模型训练�
 <div class="math notranslate nohighlight" id="equation-fun-anti">
 <span class="eqno">(9.3.1)<a class="headerlink" href="#equation-fun-anti" title="Permalink to this equation">¶</a></span>\[\begin{aligned}\mathcal{L} =\mathbb{E}_{( x,y)\sim D_c}[\mathcal{L}_{\text{CE}}(f( x,y))]+\mathbb{E}_{( x,y)\sim D_b}[\mathcal{L}_{\text{CE}}(f( x,y))],\end{aligned}\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{CE}}(\cdot)\)</span>表示交叉熵损失函数。然而，由于在训练过程中我们无法得到毒化部分数据<span class="math notranslate nohighlight">\(D_b\)</span>，所以无法直接求解公式
-:ref:<code class="docutils literal notranslate"><span class="pre">fun:anti</span></code>
+<a class="reference internal" href="#equation-fun-anti">(9.3.1)</a>
 ，也就无法阻挡模型对后门数据的学习。为此，ABL将整个训练过程划分为<strong>后门隔离</strong>（backdoor
 isolation）和<strong>后门反学习</strong>（backdoor unlearning）两个阶段，如式
-:ref:<code class="docutils literal notranslate"><span class="pre">fun:</span> <span class="pre">ABL</span></code> 所示：</p>
+<a class="reference internal" href="#equation-fun-abl">(9.3.2)</a> 所示：</p>
 <div class="math notranslate nohighlight" id="equation-fun-abl">
-<span class="eqno">(9.3.2)<a class="headerlink" href="#equation-fun-abl" title="Permalink to this equation">¶</a></span>\[\begin{split}\mathcal{L}_{\text{ABL}}^t=\begin{cases}\mathcal{L}_{\text{LGA}}=\mathbb{E}_{( x,y)\sim D}[ sign(\mathcal{L}_{\text{CE}}(f( x),y)-\gamma) \cdot \mathcal{L}_{\text{CE}}(f( x),y)]  0 \leq t \leq T_{te} \\\mathcal{L}_{\text{GGA}}=\mathbb{E}_{( x,y)\sim \widehat{D_c}}[\mathcal{L}_{\text{CE}}(f( x),y)]-\mathbb{E}_{( x,y)\sim \widehat{D_b}}[\mathcal{L}_{\text{CE}}(f( x),y)]  T_{te} \leq t \leq T\end{cases}\end{split}\]</div>
-<p>其中，<span class="math notranslate nohighlight">\(t\in [0,T-1]\)</span>为当前的迭代次数，$
-sign(<a href="#id17"><span class="problematic" id="id18">:raw-latex:`\cdot`</span></a>)<span class="math notranslate nohighlight">\(表示符号函数，\)</span><a href="#id19"><span class="problematic" id="id20">:raw-latex:`\mathcal{L}`</span></a><em>{:raw-latex:`text{LGA}`}:math:`表示第一阶段损失函数，`:raw-latex:`mathcal{L}`</em>{<a href="#id21"><span class="problematic" id="id22">:raw-latex:`\text{GGA}`</span></a>}$为第二阶段损失函数。上式包含两个关键的技术：<strong>局部梯度上升</strong>（local
+<span class="eqno">(9.3.2)<a class="headerlink" href="#equation-fun-abl" title="Permalink to this equation">¶</a></span>\[\begin{split}\mathcal{L}_{\text{ABL}}^t=\begin{cases}\mathcal{L}_{\text{LGA}}=\mathbb{E}_{( x,y)\sim D}[ \text{sign}(\mathcal{L}_{\text{CE}}(f( x),y)-\gamma) \cdot \mathcal{L}_{\text{CE}}(f( x),y)]  0 \leq t \leq T_{te} \\\mathcal{L}_{\text{GGA}}=\mathbb{E}_{( x,y)\sim \widehat{D_c}}[\mathcal{L}_{\text{CE}}(f( x),y)]-\mathbb{E}_{( x,y)\sim \widehat{D_b}}[\mathcal{L}_{\text{CE}}(f( x),y)]  T_{te} \leq t \leq T\end{cases}\end{split}\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(t\in [0,T-1]\)</span>为当前的迭代次数，<span class="math notranslate nohighlight">\(\text{sign}(\cdot)\)</span>表示符号函数，<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{LGA}}\)</span>表示第一阶段损失函数，<span class="math notranslate nohighlight">\(\mathcal{L}_{\text{GGA}}\)</span>为第二阶段损失函数。上式包含两个关键的技术：<strong>局部梯度上升</strong>（local
 gradient ascent，LGA）和<strong>全局梯度上升</strong>（global gradient
 ascent，GGA)。</p>
 <p><strong>局部梯度上升</strong>可以巧妙的应对后门攻击的第一个弱点，即后门数据学的更快（训练损失下降的极快）。LGA通过将训练样本的损失控制在一个阈值<span class="math notranslate nohighlight">\(\gamma\)</span>附近，从而让后门样本穿过这个阈值而普通样本无法穿过。具体的，当样本的损失低于<span class="math notranslate nohighlight">\(\gamma\)</span>时，LGA会增加其损失到<span class="math notranslate nohighlight">\(\gamma\)</span>；否则，其损失值保持不变。同时，在该阶段会根据样本的损失值将训练集划分为两部分，损失值较低的被分到（潜在）后门数据集<span class="math notranslate nohighlight">\(\widehat{D_b}\)</span>，其余的被分到干净数据集<span class="math notranslate nohighlight">\(\widehat{D_c}\)</span>，划分（检测）比率<span class="math notranslate nohighlight">\(p=|\widehat{D_b}| / |D|\)</span>可以被设定于低于数据真正的中毒率（比如训练数据的1%）。</p>
 <p><strong>全局梯度上升</strong>针对后门攻击的第二个弱点，即后门攻击触发器与后门类别存在强关联。实际上，当后门触发器被检测出来的时候，它已经被植入到模型当中了，所以需要额外的步骤将其从模型中移除。全局梯度上升可以做到这一点，它的目标是借助第一阶段隔离得到的少量潜在后门样本<span class="math notranslate nohighlight">\(\widehat{D_b}\)</span>，对后门模型进行反学习（unlearning），通过最大化模型在数据<span class="math notranslate nohighlight">\(\widehat{D_b}\)</span>上的损失，让模型主动遗忘这些样本。</p>
 <p>ABL方法为工业界提供了在不可信或者第三方数据上训练良性模型的新思路，可帮助公司、研究机构或政府机构等训练干净、无后门的人工智能模型。此外，ABL鲁棒训练方法有助于构建更加安全可信的训练平台，为深度模型的安全应用提供有力保障。</p>
 </div>
-<div class="section" id="id23">
-<h3><span class="section-number">9.3.2. </span>训练后移除<a class="headerlink" href="#id23" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="id18">
+<h3><span class="section-number">9.3.2. </span>训练后移除<a class="headerlink" href="#id18" title="Permalink to this heading">¶</a></h3>
 <p>一般来说，后门模型的修复可以基于重建的后门触发器进行，因为只有掌握了后门触发器的信息才能知道需要从模型中移除什么功能。但是触发器重建通常比较耗时，所以现有的<strong>训练后移除</strong>方法大都不基于触发器重建进行，而是假设防御者有少量的干净数据用以模型净化。这些少量的干净数据可以用来对模型进行微调、蒸馏等操作，以达到修复模型的目的。</p>
-<p><strong>精细剪枝方法。</strong> Liu等人 <span id="id24">(<a class="reference internal" href="../chapter_references/zreferences.html#id407" title="Liu, K., Dolan-Gavitt, B., &amp; Garg, S. (2018). Fine-pruning: defending against backdooring attacks on deep neural networks. International Symposium on Research in Attacks, Intrusions, and Defenses (pp. 273–294).">Liu <em>et al.</em>, 2018</a>)</span>
+<p><strong>精细剪枝方法。</strong> Liu等人 <span id="id19">(<a class="reference internal" href="../chapter_references/zreferences.html#id407" title="Liu, K., Dolan-Gavitt, B., &amp; Garg, S. (2018). Fine-pruning: defending against backdooring attacks on deep neural networks. International Symposium on Research in Attacks, Intrusions, and Defenses (pp. 273–294).">Liu <em>et al.</em>, 2018</a>)</span>
 提出了<strong>精细剪枝</strong>（fine-pruning）方法，整合了剪枝和微调两个技术，可有效消除模型中的后门。剪枝是一种模型压缩技术，可以用来从后门模型中裁剪掉与触发器关联的后门神经元，从而达到模型净化的效果。因为后门神经元只能被后门数据激活，所以在干净数据上休眠的神经元就极有可能是后门神经元，需要进行剪枝。剪枝后的模型会发生一定程度的性能下降，所以需要在少量干净数据（也称为<strong>防御数据</strong>）上进行微调，恢复其在干净样本上的性能。精细剪枝方法虽然很简单，确实很简单直观，所以经常被用来作为基线方法比较。当然，精细剪枝方法的防御性能并没有很好，尤其是在面对一些复杂的攻击时，往往只能将攻击成功率从接近100%降低到80%左右。</p>
-<p><strong>基于GAN的触发器重建。</strong> Qiao等人 <span id="id25">(<a class="reference internal" href="../chapter_references/zreferences.html#id505" title="Qiao, X., Yang, Y., &amp; Li, H. (2019). Defending neural backdoors via generative distribution modeling. Advances in Neural Information Processing Systems, 32.">Qiao <em>et al.</em>, 2019</a>)</span>
+<p><strong>基于GAN的触发器重建。</strong> Qiao等人 <span id="id20">(<a class="reference internal" href="../chapter_references/zreferences.html#id505" title="Qiao, X., Yang, Y., &amp; Li, H. (2019). Defending neural backdoors via generative distribution modeling. Advances in Neural Information Processing Systems, 32.">Qiao <em>et al.</em>, 2019</a>)</span>
 对触发器重建进行了研究，发现重建后的后门触发器往往来自于连续的像素空间，且重建的后门触发器比初始触发器的攻击强度甚至还要高，这表明重建触发器分的布可能包含了原始触发器，但单一触发器无法有效表达整个触发器空间。因此，Qiao等人提出了基于<strong>最大熵阶梯逼近</strong>（max-entropy
 staircase
 approximator，MESA）的生成对抗网络（GAN），以生成有效后门触发器的分布<span class="math notranslate nohighlight">\(p_{ r}\)</span>，该分布甚至对于攻击者而言都是未知的。为了处理该问题，MESA使用替代模型<span class="math notranslate nohighlight">\(f'\)</span>来近似有效后门触发器分布，这里<span class="math notranslate nohighlight">\(f'\)</span>返回给定后门触发器的攻击成功率。且使用<span class="math notranslate nohighlight">\(N\)</span>个子生成模型来分别学习分布<span class="math notranslate nohighlight">\(p_{ r}\)</span>的不同部分<span class="math notranslate nohighlight">\(\mathcal{X}_i=\{ x:f'( r)&gt;\beta_i\}\)</span>，其中<span class="math notranslate nohighlight">\(r\)</span>表示触发器，<span class="math notranslate nohighlight">\(\beta_i\)</span>表示第<span class="math notranslate nohighlight">\(i\)</span>个子生成模型的阈值，且满足<span class="math notranslate nohighlight">\(\beta_{i+1}&gt;\beta_i\)</span>，<span class="math notranslate nohighlight">\(\mathcal{X}_{i+1} \subset \mathcal{X}_i\)</span>（因为<span class="math notranslate nohighlight">\(\mathcal{X}_i\)</span>的定义是<span class="math notranslate nohighlight">\(f'( r)&gt;\beta_i\)</span>）。
@@ -386,18 +417,18 @@ approximator，MESA）的生成对抗网络（GAN），以生成有效后门触�
 <div class="math notranslate nohighlight" id="equation-source-chap9-17">
 <span class="eqno">(9.3.3)<a class="headerlink" href="#equation-source-chap9-17" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{aligned}\mathop{\mathrm{arg\,max}}_{G:\mathbb{R}^{n} \rightarrow \mathcal{X} } h(G(Z)) \\\text{s.t.}\  G_i(Z) \in \mathcal{X}_i,\end{aligned}\end{split}\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(Z\)</span>表示随机噪声向量，<span class="math notranslate nohighlight">\(h(\cdot)\)</span>表示输出熵。可由<strong>互信息神经估计</strong>（mutual
-information neural estimator，MINE） <span id="id26">(<a class="reference internal" href="../chapter_references/zreferences.html#id402" title="Belghazi, M. I., Baratin, A., Rajeswar, S., Ozair, S., Bengio, Y., Courville, A., &amp; Hjelm, R. D. (2018). Mine: mutual information neural estimation. arXiv preprint arXiv:1801.04062.">Belghazi <em>et al.</em>, 2018</a>)</span>
+information neural estimator，MINE） <span id="id21">(<a class="reference internal" href="../chapter_references/zreferences.html#id402" title="Belghazi, M. I., Baratin, A., Rajeswar, S., Ozair, S., Bengio, Y., Courville, A., &amp; Hjelm, R. D. (2018). Mine: mutual information neural estimation. arXiv preprint arXiv:1801.04062.">Belghazi <em>et al.</em>, 2018</a>)</span>
 得到的互信息来代替。当生成模型确定时，有：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap9-18">
 <span class="eqno">(9.3.4)<a class="headerlink" href="#equation-source-chap9-18" title="Permalink to this equation">¶</a></span>\[h(G(Z)) = I(X;Z),\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(I(\cdot;\cdot)\)</span>表示互信息。 根据支持向量机
-<span id="id27">(<a class="reference internal" href="../chapter_references/zreferences.html#id403" title="Cortes, C., &amp; Vapnik, V. N. (2004). Support-vector networks. Machine Learning, 20, 273-297.">Cortes and Vapnik, 2004</a>)</span>
+<span id="id22">(<a class="reference internal" href="../chapter_references/zreferences.html#id403" title="Cortes, C., &amp; Vapnik, V. N. (2004). Support-vector networks. Machine Learning, 20, 273-297.">Cortes and Vapnik, 2004</a>)</span>
 中的松弛技术，基于MESA建模有效后门触发器分布的优化目标为：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap9-19">
 <span class="eqno">(9.3.5)<a class="headerlink" href="#equation-source-chap9-19" title="Permalink to this equation">¶</a></span>\[\mathcal{L}=\max(0, \beta_i - f' \circ G_{\theta_i}( z)-\alpha I_{T_i}(G_{\theta_i}( z);  z^{'})),\]</div>
 <p>其中，<span class="math notranslate nohighlight">\(z, z^{'}\)</span>为独立的用于互信息估计的随机变量，<span class="math notranslate nohighlight">\(I_{T_i}\)</span>为由统计网络<span class="math notranslate nohighlight">\(T_i\)</span>作为参数的互信息估计器；<span class="math notranslate nohighlight">\(\alpha\)</span>为超参数，用来平衡熵最大化的软约束。
 当集成多个子生成模型后，可实现对后门触发器空间的有效建模。为修复该后门漏洞，MESA方法在后门触发器空间中生成多个后门触发器，并以此缓解模型后门。</p>
-<p><strong>模式连通修复。</strong> Zhao等人 <span id="id28">(<a class="reference internal" href="../chapter_references/zreferences.html#id404">Zhao <em>et al.</em>, 2020</a>)</span>
+<p><strong>模式连通修复。</strong> Zhao等人 <span id="id23">(<a class="reference internal" href="../chapter_references/zreferences.html#id404" title="Zhao, P., Chen, P.-Y., Das, P., Ramamurthy, K. N., &amp; Lin, X. (2020). Bridging mode connectivity in loss landscapes and adversarial robustness. International Conference on Learning Representations.">Zhao <em>et al.</em>, 2020</a>)</span>
 利用损失景观中的<strong>模式连通性</strong>(mode
 connectivity)对深度神经网络的鲁棒性进行研究，并提出了一种新颖的后门模型的修复方法—<strong>模式连通修复</strong>（mode
 connectivity
@@ -415,15 +446,15 @@ curve）两种模式，其中连通函数定义为<span class="math notranslate 
 <p>需要注意的是，对于后门模型修复，上述路径优化仅需要将端点模型替换为后门模型即可。实验表明，通过少量干净样本优化此连通路径，并选择最小损失路径对应的参数作为模型的鲁棒参数，可以有效从模型中移除后门，同时保证较少的准确率损失。</p>
 <p><strong>神经注意力蒸馏。</strong>
 既然有少量干净数据，那么除了剪枝微调以外，模型蒸馏方法也可以用于后门防御，而且蒸馏往往比微调更高效。基于此想法，Li等人
-<span id="id29">(<a class="reference internal" href="../chapter_references/zreferences.html#id344" title="Li, Y., Yang, Z., Wang, Y., &amp; Xu, C. (2021). Neural architecture dilation for adversarial robustness. Advances in Neural Information Processing Systems, 34, 29578–29589.">Li <em>et al.</em>, 2021</a>)</span> 提出了<strong>神经注意力蒸馏</strong>（neural attention
+<span id="id24">(<a class="reference internal" href="../chapter_references/zreferences.html#id344" title="Li, Y., Yang, Z., Wang, Y., &amp; Xu, C. (2021). Neural architecture dilation for adversarial robustness. Advances in Neural Information Processing Systems, 34, 29578–29589.">Li <em>et al.</em>, 2021</a>)</span> 提出了<strong>神经注意力蒸馏</strong>（neural attention
 distillation,
 NAD）方法，通过使用<strong>知识蒸馏</strong>并借助少量干净数据进行后门触发器的移除。因为知识蒸馏涉及两个模型（即教师模型和学生模型），那么基于知识蒸馏的后门防御就需要选择恰当的教师和学生。</p>
 <p>NAD方法利用在防御数据上微调过后的模型作为教师模型，因为防御数据是干净的，所以此步微调已经移除了教师模型中的部分（不是全部）后门。然后，NAD利用教师模型引导学生模型（未经过任何微调的原始后门模型）在防御数据上再次进行蒸馏式微调，使学生模型的中间层注意力与教师模型的中间层注意力一致，从而在学生后门模型中移除后门触发器。NAD的整体流程如图
 <a class="reference internal" href="#fig-nad"><span class="std std-numref">图9.3.1</span></a>
 所示，该方法的核心在于寻找合适的注意力表征来保证蒸馏防御的有效性。</p>
-<div class="figure align-default" id="id33">
+<div class="figure align-default" id="id31">
 <span id="fig-nad"></span><a class="reference internal image-reference" href="../_images/9.1_nad.png"><img alt="../_images/9.1_nad.png" src="../_images/9.1_nad.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">图9.3.1 </span><span class="caption-text">基于微调的后门移除与NAD后门移除 <span id="id30">(<a class="reference internal" href="../chapter_references/zreferences.html#id344" title="Li, Y., Yang, Z., Wang, Y., &amp; Xu, C. (2021). Neural architecture dilation for adversarial robustness. Advances in Neural Information Processing Systems, 34, 29578–29589.">Li <em>et al.</em>, 2021</a>)</span></span><a class="headerlink" href="#id33" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">图9.3.1 </span><span class="caption-text">基于微调的后门移除与NAD后门移除 <span id="id25">(<a class="reference internal" href="../chapter_references/zreferences.html#id344" title="Li, Y., Yang, Z., Wang, Y., &amp; Xu, C. (2021). Neural architecture dilation for adversarial robustness. Advances in Neural Information Processing Systems, 34, 29578–29589.">Li <em>et al.</em>, 2021</a>)</span></span><a class="headerlink" href="#id31" title="Permalink to this image">¶</a></p>
 </div>
 <p>对于注意力表征，假定模型第<span class="math notranslate nohighlight">\(l\)</span>层的输出特征表示为<span class="math notranslate nohighlight">\(f^{l} \in \mathbb{R}^{C\times H \times W}\)</span>，注意力表征函数<span class="math notranslate nohighlight">\(A: \mathbb{R}^{C\times H \times W} \rightarrow \mathbb{R}^{H \times W}\)</span>的目标是将模型输出的三维特征<span class="math notranslate nohighlight">\(f^{l}\)</span>沿通道维度进行融合。具体来说，算子<span class="math notranslate nohighlight">\(A\)</span>有三种选择：</p>
 <div class="math notranslate nohighlight" id="equation-source-chap9-22">
@@ -440,7 +471,7 @@ NAD）方法，通过使用<strong>知识蒸馏</strong>并借助少量干净数
 <p>NAD后门防御开启了基于知识蒸馏技术的双模型相互纠正防御思路，是目前业界比较简单有效的方法之一，能够抵御大多数已知的后门攻击。但是该方法面对更新更强的攻击时还存在不小的局限性，毕竟以在防御数据上微调过一次的后门模型作为教师模型并未完全发挥知识蒸馏的潜力。相信选择更优的教师模型会大大提高此类方法的有效性。</p>
 <p><strong>对抗神经元剪枝。</strong>
 从后门模型中准确检测并隔离出后门神经元是后门防御领域的一个挑战性问题。Wu等人
-<span id="id31">(<a class="reference internal" href="../chapter_references/zreferences.html#id405" title="Wu, D., &amp; Wang, Y. (2021). Adversarial neuron pruning purifies backdoored deep models. Advances in Neural Information Processing Systems, 34, 16913–16925.">Wu and Wang, 2021</a>)</span>
+<span id="id26">(<a class="reference internal" href="../chapter_references/zreferences.html#id405" title="Wu, D., &amp; Wang, Y. (2021). Adversarial neuron pruning purifies backdoored deep models. Advances in Neural Information Processing Systems, 34, 16913–16925.">Wu and Wang, 2021</a>)</span>
 提出了一种基于对抗神经元扰动的<strong>对抗神经元剪枝</strong>（adversarial neural
 perturbation, ANP
 ）方法，帮助缓解后门触发器对模型的负面影响。此工作研究发现，后门神经元（即后门模型中与后门功能相关的神经元）在参数空间的对抗扰动下更容易崩溃，从而导致后门模型在干净样本上预测后门标签。基于此发现，作者提出一种新颖的对抗模型剪枝方法，该方法通过剪枝一些对对抗噪声敏感的神经元来净化后门模型。实验表明，即使只借助1%的干净样本，ANP也能有效地去除模型后门，且不会显著影响模型的原始性能。</p>
@@ -456,8 +487,8 @@ perturbation, ANP
 实验表明，ANP在多种后门攻击上都取得了最佳的防御效果。但是，ANP对于特征空间的后门攻击方法仍然存在一定的局限性。神经元裁剪是一种极其高效的后门防御方法，有必要持续探索更先进的裁剪方法，对关键的后门神经元进行精准定位和移除。</p>
 </div>
 </div>
-<div class="section" id="id32">
-<h2><span class="section-number">9.4. </span>本章小结<a class="headerlink" href="#id32" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="id27">
+<h2><span class="section-number">9.4. </span>本章小结<a class="headerlink" href="#id27" title="Permalink to this heading">¶</a></h2>
 <p>本章介绍了针对后门攻击的防御方法。其中，章节
 <a class="reference internal" href="#sec-backdoor-model-detection"><span class="std std-numref">9.1节</span></a>
 介绍了检测一个模型是否是后门模型的方法，后门模型往往在后门类别上表现出非常规的性能，比如决策边界靠近其他类别、可以被逆向出后门触发器等。章节
@@ -481,11 +512,11 @@ perturbation, ANP
 <li><a class="reference internal" href="#sec-backdoor-model-detection">9.1. 后门模型检测</a></li>
 <li><a class="reference internal" href="#sec-backdoor-sample-detection">9.2. 后门样本检测</a></li>
 <li><a class="reference internal" href="#sec-backdoor-removal">9.3. 后门移除</a><ul>
-<li><a class="reference internal" href="#id15">9.3.1. 训练中移除</a></li>
-<li><a class="reference internal" href="#id23">9.3.2. 训练后移除</a></li>
+<li><a class="reference internal" href="#id16">9.3.1. 训练中移除</a></li>
+<li><a class="reference internal" href="#id18">9.3.2. 训练后移除</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#id32">9.4. 本章小结</a></li>
+<li><a class="reference internal" href="#id27">9.4. 本章小结</a></li>
 </ul>
 </li>
 </ul>

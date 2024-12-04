@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <title>3. 人工智能安全基础 &#8212; 人工智能数据与模型安全 1.0.0 documentation</title>
+    <title>3. 人工智能安全基础 &#8212; 人工智能：数据与模型安全 1.0.0 documentation</title>
 
-    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/material-design-lite-1.3.0/material.purple-deep_orange.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/sphinx_materialdesign_theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fontawesome/all.css" type="text/css" />
     <link rel="stylesheet" href="../_static/fonts.css" type="text/css" />
@@ -24,6 +24,7 @@
     <script src="../_static/doctools.js"></script>
     <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/d2l.js"></script>
+    <link rel="shortcut icon" href="../_static/logo_removebg.png?"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4. 数据安全：攻击" href="chap4.html" />
@@ -69,17 +70,17 @@ Show Source
       <div class="mdl-layout-spacer"></div>
       <nav class="mdl-navigation">
           
-              <a  class="mdl-navigation__link" href="https://trust-ml.github.io/">
+              <a  class="mdl-navigation__link" href="https://ai-data-model-safety.github.io/">
                   <i class="fas fa-user-graduate"></i>
                   课程
               </a>
           
-              <a  class="mdl-navigation__link" href="https://github.com/OpenTAI">
+              <a  class="mdl-navigation__link" href="https://github.com/ai-data-model-safety">
                   <i class="fab fa-github"></i>
                   GitHub
               </a>
           
-              <a  class="mdl-navigation__link" href="https://haole1683.github.io/Book_html/html/chapter_preface/empty.html">
+              <a  class="mdl-navigation__link" href="https://ai-data-model-safety.github.io/">
                   <i class="fas fa-external-link-alt"></i>
                   English
               </a>
@@ -90,7 +91,7 @@ Show Source
           <!-- Title -->
       <span class="mdl-layout-title">
           <a class="title" href="../index.html">
-              <img class="logo" src="../_static/book_logo.png" alt="人工智能数据与模型安全"/>
+              <img class="logo" src="../_static/logo_with_text.png" alt="人工智能：数据与模型安全"/>
           </a>
       </span>
     
@@ -102,7 +103,6 @@ Show Source
             
             <nav class="mdl-navigation">
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../chapter_about_the_book/index.html">关于此书</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%89%8D%E8%A8%80.html">前言</a></li>
 </ul>
 <ul class="current">
@@ -135,7 +135,7 @@ Show Source
           <!-- Title -->
       <span class="mdl-layout-title">
           <a class="title" href="../index.html">
-              <img class="logo" src="../_static/book_logo.png" alt="人工智能数据与模型安全"/>
+              <img class="logo" src="../_static/logo_with_text.png" alt="人工智能：数据与模型安全"/>
           </a>
       </span>
     
@@ -147,7 +147,6 @@ Show Source
             
             <nav class="mdl-navigation">
                 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../chapter_about_the_book/index.html">关于此书</a></li>
 <li class="toctree-l1"><a class="reference internal" href="%E5%89%8D%E8%A8%80.html">前言</a></li>
 </ul>
 <ul class="current">
@@ -183,48 +182,48 @@ Show Source
 <div class="section" id="sec-3-1">
 <span id="id2"></span><h2><span class="section-number">3.1. </span>基本概念<a class="headerlink" href="#sec-3-1" title="Permalink to this heading">¶</a></h2>
 <p>当一个安全问题发生时，我们首先要弄清楚是“谁攻击了谁”。这就涉及到人工智能安全问题中三类主要的利益相关者：攻击者、受害者和防御者。我们下面在对这三类参与者进行一个直观的定义。</p>
-<p><em>定义</em> <strong>攻击者。</strong>
+<p><strong>定义</strong> <strong>攻击者。</strong>
 攻击者是指对数据、模型及其相关过程，包括数据收集、模型训练和模型部署等，发起恶意监听、窃取、干扰、甚至破坏行为的个人或组织。</p>
 <p>攻击者（attacker）又称为“对抗者”（adversary）。一方面，攻击者可以在不破坏现有数据和模型的情况下，通过监听和窃取获得关键信息，并从中获利。例如在联邦学习中，攻击者可以通过监听其他用户上传的模型（或梯度）信息而窃取对方的隐私数据。另一方面，攻击者也可以干扰和破坏模型的正常训练或部署使用，导致其发生性能下降和大规模决策错误。这些攻击严重时甚至可能会给大量用户带来生命和财产损失。值得注意的是，实际完成攻击的可能是一段程序（如一个攻击算法），但是真正的攻击者是程序背后的个人或组织，所以攻击者不等于攻击方法，二者是不同的概念。</p>
-<p><em>定义</em> <strong>攻击方法。</strong>
+<p><strong>定义</strong> <strong>攻击方法。</strong>
 攻击方法是指攻击者用来对数据、模型及其相关过程，包括数据收集、模型训练和模型部署等，发起攻击的具体手段。</p>
 <p>从上面的定义可以看出，攻击方法（attack
 method）是攻击者所使用的具体攻击手段，可能是一个软件、一段程序、一个算法。攻击方法往往受到现实条件的约束，在实际场景中，攻击者所掌握的信息往往是有限的，所以攻击者需要设计“精明”的攻击方法，最大化利用已有条件来完成高效的攻击。高效攻击方法的设计毋庸置疑是攻击研究中最核心的部分，此外，还需要确保攻击的隐秘性，避免暴漏给防御者。</p>
-<p><em>定义</em> <strong>受害者。</strong>
+<p><strong>定义</strong> <strong>受害者。</strong>
 受害者是指由于受到数据或模型攻击而利益受到损害的数据或模型所有者、使用者或其他利益相关者。</p>
 <p>受害者（victim）也往往是“被攻击者”。在实际场景中，受害者可能是数据或模型所有者，如个人、企业、政府机构等，也可能是数据或模型的实际使用者，如普通用户。在定义受害者的时候，有必要跳出数据或模型所有者的局限，充分考虑其他利益相关者。这是因为人工智能系统往往服务于大量的普通用户，当安全问题发生时，最先受到利益损害的往往是普通用户而非数据或模型所有者。比如当人脸识别模型发生数据泄漏时，泄露的是百万用户的人脸数据和隐私。再比如，当自动驾驶系统受到攻击而发生交通事故时，首先受到威胁的是乘客以及行人的生命安全。在人工智能广泛使用的今天，其安全问题已不再是一个人或者一个公司的问题，其影响往往是极其广泛的、全社会性的，很多时候可能很难去认定谁才是真正的受害者，这也给人工智能相关法律法规的制定带来巨大挑战。</p>
 <p>与受害者密切相关的两个概念是：<em>受害数据</em>（victim
 data）和<em>受害模型</em>（victim
 model）。受害数据和受害模型是具体受到攻击的对象，如人脸数据、医疗数据、自动驾驶系统等，可简单定义如下：</p>
-<p><em>定义</em> <strong>受害数据。</strong> 受害数据是指受到恶意攻击的训练或测试数据。</p>
-<p><em>定义</em> <strong>受害模型。</strong> 受害模型是指受到恶意攻击的人工智能模型。</p>
+<p><strong>定义</strong> <strong>受害数据。</strong> 受害数据是指受到恶意攻击的训练或测试数据。</p>
+<p><strong>定义</strong> <strong>受害模型。</strong> 受害模型是指受到恶意攻击的人工智能模型。</p>
 <p>介绍完攻击者和受害者，下面我们介绍防御者。防御者可以是受害者本身，也可以是独立于攻击者和受害者之外的第三方。一般来说，如果受害者主动采取了一定的防御措施，那么受害者也就变成了防御者，而如果受害者没有采取任何防御措施，那么受害者就不能算是防御者。</p>
-<p><em>定义</em> <strong>防御者。</strong>
+<p><strong>定义</strong> <strong>防御者。</strong>
 防御者是指通过一定的防御措施保护数据或者模型免受潜在恶意攻击的个人或组织。</p>
 <p>防御者（defender）和攻击者之间的关系是不对等的，因为攻击者只需要<em>单点攻破</em>一个系统，而防御者需要<em>全面防御</em>所有的潜在攻击。这也就是说相比攻击而言，防御任务更具有挑战性，防御者必须利用一些可以利用的资源构建防御策略。目前领域内大部分的研究工作都面临这种<em>单防御者困境</em>，即一个防御者需要防御所有的攻击方法，包括已有的甚至是未知的攻击方法。在未来的研究中，我们迫切的需要突破单防御者困境，解决攻防之间的不均衡性。类比攻击方法，我们可以定义防御方法如下：</p>
-<p><em>定义</em> <strong>防御方法。</strong>
+<p><strong>定义</strong> <strong>防御方法。</strong>
 防御方法是指防御者用来对数据、模型及其相关过程，包括数据收集、模型训练和模型部署等进行保护，使其免受潜在攻击的具体手段。</p>
 <p>防御方法（defense
 method）可以是一个软件、一段程序、一个算法或某种特殊设置（如一种安全协作协议）。当前防御方法的研究普遍受攻击方法的约束，也就是会直接采用想要防御的攻击的设置。在防御和攻击极其不对等的情况下，防御需要突破这样的限制，需要充分挖掘利用攻击者无法获取的信息，占据一定的先验优势。</p>
 <p>定义了攻击者和防御者，下面定义攻防发生的“战场”，即威胁模型。</p>
-<p><em>定义</em> <strong>威胁模型。</strong>
+<p><strong>定义</strong> <strong>威胁模型。</strong>
 威胁模型定义了系统的运行环境、安全需求、所面临的安全风险、潜在攻击者、攻击目标和攻击方法、可能的防御策略、防御者可利用的资源等攻防相关的关键设置信息。</p>
 <p>简而言之，威胁模型(threat
 model)是对真实场景的一种模拟，旨在清晰准确的划定攻击者与防御者之间边界，以便公平的开展攻防研究。数据与模型安全研究中常采用的威胁模型类型：<em>白盒威胁模型</em>、<em>灰盒威胁模型</em>和<em>黑盒威胁模型</em>。这些威胁模型在章节
 <a class="reference internal" href="#sec-3-2"><span class="std std-numref">3.2节</span></a>
 中有详细的介绍。不同类型的威胁模型揭示的是人工智能系统不同层面的安全风险，具有不同的实际意义。然而，现实场景中的攻防往往是没有边界的，是一个“自由竞技场”，攻击者和防御者都最大化他们所掌握的信息和资源，并不会对他们所采取的方法设限。如何在这种开放式威胁模型下开展攻防研究仍然是一个巨大的挑战。</p>
 <p>下面介绍与威胁模型相关的几个概念：目标数据、目标模型、替代数据和替代模型。</p>
-<p><em>定义</em> <strong>目标数据。</strong> 目标数据是指攻击者在进行攻击时的数据对象。</p>
+<p><strong>定义</strong> <strong>目标数据。</strong> 目标数据是指攻击者在进行攻击时的数据对象。</p>
 <p>目标数据（target
 data）一般是针对数据攻击来说的，比如投毒攻击、数据窃取攻击等，在此类攻击下，要投毒或者窃取的数据集就是目标数据。对于数据攻击来说，攻击者是无法接触整个目标数据集的，否则攻击就变得极其容易（比如“删库跑路”），攻击的性质也发生了变化，即从外部攻击变成了内部攻击。这类攻击可以通过严格控制数据访问权限来避免，通过多方数据备份来补救。在绝大多数情况下，攻击者最多也只能访问极小一部分目标数据，比如1%或0.1%的训练数据，甚至不能访问任何目标数据。</p>
-<p><em>定义</em> <strong>目标模型。</strong> 目标模型是指攻击者在进行攻击时的模型对象。</p>
+<p><strong>定义</strong> <strong>目标模型。</strong> 目标模型是指攻击者在进行攻击时的模型对象。</p>
 <p>目标模型(target
 model)一般是针对模型攻击来说的，是指实际遭受攻击的模型。实际上，判断攻击的目标是数据还是模型本身就是一件有难度的事情。有些模型攻击方法，比如后门攻击，也可以通过数据投毒进行，但是它们攻击的终极目标是操纵模型的预测结果，所以最终的攻击目标应该是模型，而数据只是一种手段。再比如，对抗攻击通过扰动测试数据来让模型犯错，也是对数据进行了攻击，但最终的目标还是模型。相反，数据窃取攻击通过跟模型交互来达到数据窃取的目的，所以攻击目标是数据而不是模型。在实际的研究过程中，我们先要弄清楚攻击的真正目标是什么，才能制定对应的防御策略。</p>
-<p><em>定义</em> <strong>替代数据。</strong>
+<p><strong>定义</strong> <strong>替代数据。</strong>
 替代数据是指攻击者自己收集的、可以用来替代目标数据的傀儡数据。</p>
 <p>替代数据（surrogate data）或傀儡数据（puppet
 data）是在某些威胁模型（如黑盒威胁模型）下，即攻击者无法访问目标数据的情况下，攻击者收集的用来替代目标数据、近似目标数据分布的辅助攻击数据。攻击者可以在替代数据上训练一个替代模型来设计和改良攻击方法，提高攻击效果。除了自我收集，替代数据也可以用大量存在的公开数据集，或者生成数据。比如，数据窃取攻击可以利用随机生成的替代数据来对目标模型发起查询，并根据模型的返回结果不断更新替代数据，并最终复原目标模型的原始训练数据。替代数据的规模可以很小，但是往往能够大幅提升攻击效果。替代数据的收集需要对要攻击的目标领域有一定的先验知识，比如是哪一类的任务，而这样的先验知识是很容易获得的。</p>
-<p><em>定义</em> <strong>替代模型。</strong>
+<p><strong>定义</strong> <strong>替代模型。</strong>
 替代模型是指攻击者自己拥有的、可以用来替代目标模型的攻傀儡模型。</p>
 <p>跟替代数据类似，替代模型（surrogate
 model）是攻击者在无法获得目标模型时的一种替代，用来辅助设计和改进攻击算法。替代模型可以在替代数据上训练得到，也可以直接下载开源模型，还可以借助一定先验知识，在少量专有数据上做进一步微调，使其尽可能的接近目标模型。替代模型与目标模型越接近，所设计出来的攻击算法迁移性就越好。</p>
@@ -233,7 +232,7 @@ data）和“辅助模型”（auxiliary model）。</p>
 </div>
 <div class="section" id="sec-3-2">
 <span id="id3"></span><h2><span class="section-number">3.2. </span>威胁模型<a class="headerlink" href="#sec-3-2" title="Permalink to this heading">¶</a></h2>
-<p>如定义 <code class="xref std std-numref docutils literal notranslate"><span class="pre">eq_threat_model</span></code>
+<p>如定义 <strong>威胁模型</strong>
 所述，威胁模型是对真实攻防场景的一种模拟，旨在清晰的定义攻击者、防御者以及双方的攻防规则。但是与真实开放的对抗环境相比，威胁模型在很多方面还是采用了一定的假设和约束，以便公平的进行攻防对抗。下面介绍几类经典的威胁模型。</p>
 <div class="section" id="id4">
 <h3><span class="section-number">3.2.1. </span>白盒威胁模型<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>

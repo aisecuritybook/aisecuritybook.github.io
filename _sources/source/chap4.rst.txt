@@ -150,8 +150,8 @@ rule）计算如下：
 Mu{~n}oz-Gonz{'a}lez等人 :cite:`munoz2017towards`
 利用“*反向梯度法*”来更高效稳定地计算内部优化的梯度。作者使用逐步梯度下降法近似求解内层优化问题，而每步梯度下降都会反向传播至外层优化及目标函数进行求解，经过数次迭代最终得到满足双层优化目标的毒化数据。然而基于随机梯度下降法的微分对内存来说是一个非常大的负担，所以该毒化数据制造方法是单个进行而不是分批次进行的，且只能作用于单层神经网络。
 
-2018年，Jagielski等人 :cite:`2018Manipulating`
-将Mu{~n}oz-Gonz{'a}lez等人 :cite:`munoz2017towards`
+2018年，Jagielski等人 :cite:`2018Manipulating` 将Muñoz-González等人
+:cite:`munoz2017towards`
 的工作进行了扩展，提出了一个专用于回归模型的数据投毒及防御的理论优化框架。Huang等人
 :cite:`huang2020metapoison`
 提出的MetaPoison采用集成的方式，利用\ :math:`m`\ 个模型和\ :math:`K`-step内部最小化来求解公式
@@ -184,7 +184,7 @@ Yang等人 :cite:`yang2017generative`
 :cite:`feng2019learning`
 提出了一个类似的生成模型训练方式，引入\ *伪更新*\ （pseudo-update）步骤来更新生成模型\ :math:`G`\ 。这种新的更新方式克服了交替更新（\ :math:`f`\ 和\ :math:`G`\ ）所导致的生成模型训练不稳定的问题。
 
-除了自动编码器（autoencoder），生成对抗网络（GAN）也可以用来生成毒化数据。例如Mu{~n}oz-Gonz{'a}lez等人
+除了自动编码器（autoencoder），生成对抗网络（GAN）也可以用来生成毒化数据。例如Muñoz-González等人
 :cite:`munoz2019poisoning`
 提出的pGAN攻击，其由生成器\ :math:`G`\ ，鉴别器\ :math:`D`\ 及分类器（即目标模型\ :math:`f`\ ）三个子模型组成。鉴别器\ :math:`D`\ 用于区分毒化样本与干净样本，而生成器\ :math:`G`\ 旨在生成高效的毒化样本以最大化目标模型\ :math:`f`\ 的分类误差，同时让鉴别器\ :math:`D`\ 无法区别毒化样本与干净样本。这种对抗博弈使得生成式攻击可以在攻击强度和隐蔽性之间做出权衡，更灵活地应对不同风险级别的人工智能模型。
 
@@ -277,7 +277,7 @@ attack，MIA）的主要思想是利用目标模型在训练数据和测试数�
 影子模型攻击（shadow model-based attack）是2017年由Shokri等人
 :cite:`shokri2017membership`
 提出的成员推理攻击方法，也是首个针对深度学习模型的成员推理攻击方法，其打开了深度学习领域成员推理研究的序幕。
-影子模型攻击的思想是将成员推理看做一个二分类（\ ``成员'或``\ 非成员’）问题。假设攻击者对训练数据的来源分布是有一些先验知识的，即可以从同一个数据分布总池中采样（但与原训练数据不相交）并构建\ *仿数据集*\ 的能力。
+影子模型攻击的思想是将成员推理看做一个二分类（‘成员’或‘非成员’）问题。假设攻击者对训练数据的来源分布是有一些先验知识的，即可以从同一个数据分布总池中采样（但与原训练数据不相交）并构建\ *仿数据集*\ 的能力。
 影子模型攻击大致分为以下三步：
 
 -  攻击者采样多个\ *影子训练集*\ ，并在影子训练集上训练多个可以模仿目标模型表现的\ *影子模型*\ ；
@@ -605,7 +605,7 @@ inversion）。迭代梯度逆向攻击通过迭代来步步缩小生成梯度�
 :numref:`fig_chap4iterativeGradientInversionAttack`
 所示，迭代梯度逆向攻击主要包括三个部分：伪数据初始化、梯度求导和梯度匹配。攻击者首先初始化一个随机样本\ :math:`x'`\ 和随机标签\ :math:`y'`\ ，然后通过对伪数据\ :math:`x'`\ 进行优化来还原初始训练数据。具体的，将\ :math:`x'`\ 输入模型，经过正向及反向传播得到模型每一层参数的\ *伪梯度*\ :math:`\{\nabla \theta'_i=(\nabla W'_i, \nabla b'_i)\}_{i=1}^{L}`\ （\ :math:`L`\ 为神经网络层数）。然后，迭代最小化伪梯度\ :math:`\nabla \theta'_i`\ 与真实梯度\ :math:`\nabla \theta_i=(\nabla W_i, \nabla b_i)`\ 之间的距离，使生成数据趋近目标模型的训练数据。将上述步骤迭代数次并收敛后即可得到无限近似原始训练数据的合成数据，优化过程定义如下：
 
-.. math:: \begin{aligned} x^{*},y^{*} = \min_{ x',y'} \| \nabla \theta' - \nabla \theta \|_2\\ = \mathop{\mathrm{arg\,min}}_{ x',y'} \|\frac{\partial \mathcal{L\|( \mathcal{F}(  x',\theta ), y')}{\partial \theta} - \nabla \theta }_2,\end{aligned}
+.. math:: \begin{aligned} x^{*},y^{*} = \min_{ x',y'} \| \nabla \theta' - \nabla \theta \|_2\\ = \mathop{\mathrm{arg\,min}}\limits_{ x',y'} \| \frac{\partial \mathcal{L(\mathcal{F}(  x',\theta ), y')}}{\partial\theta} - \nabla \theta \|_2,\end{aligned}
    :label: equ_chap4dlg
 
 其中，\ :math:`\| \cdot\|_2`\ 表示\ :math:`L_2`\ 范数，\ :math:`x^{*}`\ 、\ :math:`y^{*}`\ 分别表示优化得到的窃取样本和标签。
@@ -747,6 +747,7 @@ memory，LSTM）设计了一种智能化学习口腔形状和声音之间关联�
 
 **（1）数据收集：**
 数据收集顾名思义就是通过各种渠道对Alice和Bob的已有图像进行大量收集，以便为模型训练提供数据支撑。对于公众人物来说，数据收集可以说是不费吹灰之力，因为他们有大量的演讲、报告、报道等数据公布在互联网上。注意这里收集的是人脸图像，所以很多时候需要使用人脸检测工具将人脸区域检测并截取出来。
+
 **（2）模型训练：**
 目前，针对人脸伪造的深度伪造模型主要基于自动编解码器，一般由编码器（encoder）和解码器（decoder）两部分构组成。
 编码器用于提取人脸图像的潜在特征，解码器则用于重构人脸图像。为了实现换脸操作，模型需要两对编码器/解码器组（编码器A/解码器A、编码器B/解码器B），分别基于已收集的Alice和Bob的图像集进行训练，其中编码器A和编码器B具有相同的编码网络（即参数共享）。通过统一的编码器可以把Alice和Bob两个人的人脸特征编码到同一个隐式空间，只有在同一个隐式空间，二者的脸部特征才能发生互换。两套编解码器的训练过程如图
@@ -783,10 +784,10 @@ reenactment）。人脸互换的目标是用目标人物的脸替换原图像中
 身份对应损失函数\ :math:`\mathcal{L}_{\text{id}}`\ 定义了\ **源身份向量**\ :math:`v_{s}`\ 及\ **目标身份向量**\ :math:`v_{t}`\ 之间的余弦相似度。
 弱特征损失函数\ :math:`\mathcal{L}_{\text{wFM}}`\ 的定义如下：
 
-.. math:: \mathcal{L}_{\text{wFM}}=\sum_{i=m}^{M} \frac{1}{N_{i}}\left\|D^{(i)}\left( x_{s}\right)-D^{(i)}\left(\v x_{t}\right)\right\|_{1},
+.. math:: \mathcal{L}_{\text{wFM}}=\sum_{i=m}^{M} \frac{1}{N_{i}}\left\|D^{(i)}\left( x_{s}\right)-D^{(i)}\left(x_{t}\right)\right\|_{1},
 
 其中，\ :math:`D^{(i)}`\ 为判别器\ :math:`D`\ 第\ :math:`i`\ 层的特征提取器，\ :math:`N_{i}`\ 为第\ :math:`i`\ 层的元素个数。
-弱特征匹配函数\ :math:`\mathcal{L}_{\text{wFM}}`\ 从第\ :math:`m`\ 层起计算目标图像\ :math:`\v x_{t}`\ 与源图像\ :math:`x_{s}`\ 之间的弱特征损失。由于使用了多个判别器\ :math:`D`\ ，总的弱特征损失函数为:
+弱特征匹配函数\ :math:`\mathcal{L}_{\text{wFM}}`\ 从第\ :math:`m`\ 层起计算目标图像\ :math:`x_{t}`\ 与源图像\ :math:`x_{s}`\ 之间的弱特征损失。由于使用了多个判别器\ :math:`D`\ ，总的弱特征损失函数为:
 
 .. math:: \mathcal{L}_{\text{wFM}_{-}\text{sum}}=\sum_{i=1}^{2} \mathcal{L}_{\text{wFM}}\left(D_{i}\right).
 
@@ -826,7 +827,7 @@ AEI-Net中定义了多个损失函数。\ :math:`\mathcal{L}_{\text{adv}}`\ 是�
 
 当训练样本中的目标图片\ :math:`x_{t}`\ 和源图像\ :math:`x_{s}`\ 相同时，采用重建损失函数\ :math:`\mathcal{L}_{\text{rec}}`\ 来在像素层面计算目标图像\ :math:`x_{t}`\ 和生成的面部\ :math:`\hat{Y}_{s,t}`\ 的\ :math:`L_2`\ 距离，其定义如下：
 
-.. math:: \mathcal{L}_{\text {rec}}=\left\{\begin{array}{ll}\frac{1}{2}\left\|\hat{Y}_{s, t}- x_{t}\right\|_{2}^{2}  \text { if }  x_{t}= x_{s} \\0  \text { otherwise }.\end{array} \right.
+.. math:: \mathcal{L}_{\text {rec}}=\left\{\begin{array}{ll}\frac{1}{2}\left\|\hat{Y}_{s, t}- x_{t}\right\|_{2}^{2} \qquad  \text { if }  x_{t}= x_{s} \\0  \qquad \text { otherwise }.\end{array} \right.
 
 AEI-Net的总的损失函数\ :math:`\mathcal{L}_{\text{AEI-Net}}`\ 可由上述损失函数加权定义如下：
 
@@ -850,7 +851,7 @@ AEI-Net的总的损失函数\ :math:`\mathcal{L}_{\text{AEI-Net}}`\ 可由上述
 
 重建损失函数\ :math:`\mathcal{L}_{\text{rec}}^{\prime}`\ 用来限制第二阶段在源图像和目标图像相同时仍然能完成重建：
 
-.. math:: \mathcal{L}_{\text{rec}}^{\prime}=\left\{\begin{array}{ll}\frac{1}{2}\left\|Y_{s, t}- x_{t}\right\|_{2}^{2}  \text { if }  x_{t}= x_{s} \\0  \text { otherwise }.\end{array}\right.
+.. math:: \mathcal{L}_{\text{rec}}^{\prime}=\left\{\begin{array}{ll}\frac{1}{2}\left\|Y_{s, t}- x_{t}\right\|_{2}^{2}  \qquad \text { if }  x_{t}= x_{s} \\0  \qquad \text { otherwise }.\end{array}\right.
 
 最终HEAR-Net总的损失函数为上述损失函数之和：
 
@@ -978,45 +979,32 @@ pyramid）提取输入真实图像的三级特征图。由于\ :math:`z^{+}`\ �
 
 基于人脸伪造技术，研究者们同时还构建了一系列的人脸篡改与伪造数据集，包括UADFV
 :cite:`Li2018EyeBlink` 、DFDC :cite:`2019DFDCDataset`
-等等。这些数据集的基本信息如表 :ref:`datasetTable` 所列。
+等等。这些数据集的基本信息如 :numref:`table_4_1` 所列。
 
-.. raw:: latex
+.. _table_4_1:
 
-   \begin{table}[]
-   \centering
-   \resizebox{\textwidth}{!}{%
-   \begin{tabular}{|c|cc|cc|}
-   \toprule
-   \multirow{2}{*}{**数据集**}                                                                \multicolumn{2}{c|}{**真实**}                                    \multicolumn{2}{c|}{**伪造**}                \\ \cline{2-5} 
-   \multicolumn{1}{c|}{视频数}          帧数            \multicolumn{1}{c|}{视频数}  帧数 \\ \midrule
-   DF-TIMIT :cite:`DeepfakeTIMIT`                                                                                 \multicolumn{1}{c|}{320}                   34.0K                  \multicolumn{1}{c|}{320}          34.0K     \\ \hline
-   UADFV :cite:`Li2018EyeBlink`                                                                               \multicolumn{1}{c|}{49}                    17.3K                   \multicolumn{1}{c|}{49}            17.3K       \\ \hline
-   FF++ :cite:`FF++`                                                                                \multicolumn{1}{c|}{1000}                  509.9K                  \multicolumn{1}{c|}{1000}          509.9K      \\ \hline
-   DFDC :cite:`2019DFDCDataset`                                                                                \multicolumn{1}{c|}{1131}                  488.4K                  \multicolumn{1}{c|}{4113}          1783.3K     \\ \hline
-   Celeb-DF :cite:`Celeb-DF`                                                                            \multicolumn{1}{c|}{590}                   225.4K                  \multicolumn{1}{c|}{5639}          2116.8K     \\ \hline
-   WildDeepFake :cite:`wildDeepFake`                                                                         \multicolumn{1}{c|}{3805}                                          \multicolumn{1}{c|}{3509}                      \\ \bottomrule
+.. figure:: extra_img/table_4_1.png
+   :width: 600px
 
-   \end{tabular}
-   }
-   \caption{常用的深度伪造数据集}
-   \label{datasetTable}
-   \end{table}
+   常用深度伪造数据集
+
+
 
 视频伪造
 ^^^^^^^^
 
 视频伪造是深度伪造的一个重要分支，与对图像篡改不同，视频伪造需要考虑更多的维度，如时序信息、不同主客体在画面上的相对位置变化、甚至更进一步的音频伪造等。
 
-例如，在生成一个虚拟人物在运动的视频时，需要解决的一个问题就是如何生成合理的动作姿态，与目标人物的运动轨迹、力线、惯性等相符合。在这个问题上一个比较好的模型是\ **一阶移动模型**\ (first-order-motion）
+例如，在生成一个虚拟人物在运动的视频时，需要解决的一个问题就是如何生成合理的动作姿态，与目标人物的运动轨迹、力线、惯性等相符合。在这个问题上一个比较好的模型是\ **一阶移动模型**\ （first-order-motion）
 :cite:`siarohin2019first`
 ，它将视频的内容分为主体和动作，其中主体表示视频中出现的人物，而动作表示人物的行为。一阶移动模型包括两个主要模块：（1）\ **运动估计模块**\ ，使用一组学习得到的关键点以及它们的局部仿生变换来预测密集的运动场；和（2）\ **图像生成模块**\ ，结合从源图像中提取的外观和从驱动视频中得到的运动来模拟目标运动中出现的遮挡。通过上面的框架，一阶移动模型能够将一个随机向量序列映射成为连续的视频帧，最后合成视频。每个向量中的一部分表示主体，另一部分表示动作，在视频的生成过程中，表示主体的部分固定不变。一阶移动模型通过对外观和运动信息进行解耦，实现了通过运动模型推导出目标任务的合理姿势与动作。
 
 如何生成高分辨率的伪造视频也是一个具有挑战性的问题。Tian
 :cite:`Tian2021MocoGAN-HD`
 等人基于GAN提出了一个框架\ **MoCoGAN-HD**\ ，利用已有的图像生成器来渲染合成高分辨率视频。MoCoGAN-HD将视频合成问题看作是在预训练的图像生成器的潜在输出空间中寻找运动轨迹的问题。MoCoGAN-HD的主要部分是：（1）\ **动作生成器**\ ，能够探查到期待的主体的运动轨迹，使其中的主体和动作解耦；和（2）\ **跨域视频合成**\ 训练，在不同域的不相交数据集上训练图像生成器和运动生成器，从而可以生成训练集中不存在的新视频内容。通过上面的框架，MoCoGAN-HD解决了生成高清伪造视频性能较低、精度不够的问题。MoCoGAN-HD的结构如图
-:ref:`MoCoGAN-HD` 所示。
+:ref:`MoCoGAN_HD` 所示。
 
-.. _MoCoGAN-HD:
+.. _MoCoGAN_HD:
 
 .. figure:: images/4.17_MocoGAN-HD.png
    :width: 600px

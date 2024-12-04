@@ -1,229 +1,725 @@
 <!DOCTYPE html>
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    
-    <title>《人工智能数据与模型安全》 &#8212; 人工智能数据与模型安全 1.0.0 documentation</title>
 
-    <link rel="stylesheet" href="_static/material-design-lite-1.3.0/material.blue-deep_orange.min.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx_materialdesign_theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/fontawesome/all.css" type="text/css" />
-    <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
-    <link rel="stylesheet" type="text/css" href="_static/d2l.css" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/d2l.js"></script>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="关于此书" href="chapter_about_the_book/index.html" /> 
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>《人工智能：数据与模型安全》 &#8212; 人工智能：数据与模型安全 1.0.0 documentation</title>
+
+  <link rel="stylesheet" href="_static/material-design-lite-1.3.0/material.purple-deep_orange.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/sphinx_materialdesign_theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fontawesome/all.css" type="text/css" />
+  <link rel="stylesheet" href="_static/fonts.css" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="_static/d2l.css" />
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/sphinx_highlight.js"></script>
+  <script src="_static/d2l.js"></script>
+  <link rel="shortcut icon" href="_static/logo_removebg.png?" />
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="前言" href="source/%E5%89%8D%E8%A8%80.html" />
+</head>
+
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer"><header class="mdl-layout__header mdl-layout__header--waterfall ">
-    <div class="mdl-layout__header-row">
-        
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer">
+    <header class="mdl-layout__header mdl-layout__header--waterfall ">
+      <div class="mdl-layout__header-row">
+
         <nav class="mdl-navigation breadcrumb">
-            <a class="mdl-navigation__link is-active">《人工智能数据与模型安全》</a>
+          <a class="mdl-navigation__link is-active">《人工智能：数据与模型安全》</a>
         </nav>
         <div class="mdl-layout-spacer"></div>
         <nav class="mdl-navigation">
-        
-<form class="form-inline pull-sm-right" action="search.html" method="get">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-        <label id="quick-search-icon" class="mdl-button mdl-js-button mdl-button--icon"  for="waterfall-exp">
-          <i class="material-icons">search</i>
-        </label>
-        <div class="mdl-textfield__expandable-holder">
-          <input class="mdl-textfield__input" type="text" name="q"  id="waterfall-exp" placeholder="Search" />
-          <input type="hidden" name="check_keywords" value="yes" />
-          <input type="hidden" name="area" value="default" />
-        </div>
-      </div>
-      <div class="mdl-tooltip" data-mdl-for="quick-search-icon">
-      Quick search
-      </div>
-</form>
-        
-<a id="button-show-source"
-    class="mdl-button mdl-js-button mdl-button--icon"
-    href="_sources/index.rst.txt" rel="nofollow">
-  <i class="material-icons">code</i>
-</a>
-<div class="mdl-tooltip" data-mdl-for="button-show-source">
-Show Source
-</div>
+
+          <form class="form-inline pull-sm-right" action="search.html" method="get">
+            <div
+              class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+              <label id="quick-search-icon" class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+                <i class="material-icons">search</i>
+              </label>
+              <div class="mdl-textfield__expandable-holder">
+                <input class="mdl-textfield__input" type="text" name="q" id="waterfall-exp" placeholder="Search" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </div>
+            </div>
+            <div class="mdl-tooltip" data-mdl-for="quick-search-icon">
+              Quick search
+            </div>
+          </form>
+
+          <a id="button-show-source" class="mdl-button mdl-js-button mdl-button--icon" href="_sources/index.rst.txt"
+            rel="nofollow">
+            <i class="material-icons">code</i>
+          </a>
+          <div class="mdl-tooltip" data-mdl-for="button-show-source">
+            Show Source
+          </div>
         </nav>
-    </div>
-    <div class="mdl-layout__header-row header-links">
-      <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation">
-          
-              <a  class="mdl-navigation__link" href="https://trust-ml.github.io/">
-                  <i class="fas fa-user-graduate"></i>
-                  课程
-              </a>
-          
-              <a  class="mdl-navigation__link" href="https://github.com/OpenTAI">
-                  <i class="fab fa-github"></i>
-                  GitHub
-              </a>
-          
-              <a  class="mdl-navigation__link" href="https://haole1683.github.io/Book_html/html/chapter_preface/empty.html">
-                  <i class="fas fa-external-link-alt"></i>
-                  English
-              </a>
-      </nav>
-    </div>
-</header><header class="mdl-layout__drawer">
-    
-          <!-- Title -->
-      <span class="mdl-layout-title">
-          <a class="title" href="#">
-              <img class="logo" src="_static/book_logo.png" alt="人工智能数据与模型安全"/>
+      </div>
+      <div class="mdl-layout__header-row header-links">
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation">
+
+          <a class="mdl-navigation__link" href="https://ai-data-model-safety.github.io/">
+            <i class="fas fa-user-graduate"></i>
+            课程
           </a>
-      </span>
-    
-    
-      <div class="globaltoc">
-        <span class="mdl-layout-title toc">Table Of Contents</span>
-        
-        
-            
-            <nav class="mdl-navigation">
-                <ul>
-<li class="toctree-l1"><a class="reference internal" href="chapter_about_the_book/index.html">关于此书</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/%E5%89%8D%E8%A8%80.html">前言</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="source/chap1.html">1. 人工智能与安全概述</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap2.html">2. 机器学习基础</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap3.html">3. 人工智能安全基础</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap4.html">4. 数据安全：攻击</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap5.html">5. 数据安全：防御</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap6.html">6. 模型安全：对抗攻击</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap7.html">7. 模型安全：对抗防御</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap8.html">8. 模型安全：后门攻击</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap9.html">9. 模型安全：后门防御</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap10.html">10. 模型安全：窃取攻防</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap11.html">11. 未来展望</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="chapter_references/zreferences.html">参考文献</a></li>
-</ul>
 
-            </nav>
-        
-        </div>
-    
-</header>
-        <main class="mdl-layout__content" tabIndex="0">
+          <a class="mdl-navigation__link" href="https://github.com/ai-data-model-safety">
+            <i class="fab fa-github"></i>
+            GitHub
+          </a>
 
-	<script type="text/javascript" src="_static/sphinx_materialdesign_theme.js "></script>
+          <a class="mdl-navigation__link" href="https://ai-data-model-safety.github.io/">
+            <i class="fas fa-external-link-alt"></i>
+            English
+          </a>
+        </nav>
+      </div>
+    </header>
     <header class="mdl-layout__drawer">
-    
-          <!-- Title -->
+
+      <!-- Title -->
       <span class="mdl-layout-title">
-          <a class="title" href="#">
-              <img class="logo" src="_static/book_logo.png" alt="人工智能数据与模型安全"/>
-          </a>
+        <a class="title" href="#">
+          <img class="logo" src="_static/logo_with_text.png" alt="人工智能：数据与模型安全" />
+        </a>
       </span>
-    
-    
+
+
       <div class="globaltoc">
         <span class="mdl-layout-title toc">Table Of Contents</span>
-        
-        
-            
-            <nav class="mdl-navigation">
-                <ul>
-<li class="toctree-l1"><a class="reference internal" href="chapter_about_the_book/index.html">关于此书</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/%E5%89%8D%E8%A8%80.html">前言</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="source/chap1.html">1. 人工智能与安全概述</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap2.html">2. 机器学习基础</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap3.html">3. 人工智能安全基础</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap4.html">4. 数据安全：攻击</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap5.html">5. 数据安全：防御</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap6.html">6. 模型安全：对抗攻击</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap7.html">7. 模型安全：对抗防御</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap8.html">8. 模型安全：后门攻击</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap9.html">9. 模型安全：后门防御</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap10.html">10. 模型安全：窃取攻防</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap11.html">11. 未来展望</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="chapter_references/zreferences.html">参考文献</a></li>
-</ul>
 
-            </nav>
-        
+
+
+        <nav class="mdl-navigation">
+          <ul>
+            <li class="toctree-l1"><a class="reference internal" href="source/%E5%89%8D%E8%A8%80.html">前言</a></li>
+          </ul>
+          <ul>
+            <li class="toctree-l1"><a class="reference internal" href="source/chap1.html">1. 人工智能与安全概述</a></li>
+            <li class="toctree-l1"><a class="reference internal" href="source/chap2.html">2. 机器学习基础</a></li>
+            <li class="toctree-l1"><a class="reference internal" href="source/chap3.html">3. 人工智能安全基础</a></li>
+            <li class="toctree-l1"><a class="reference internal" href="source/chap4.html">4. 数据安全：攻击</a></li>
+            <li class="toctree-l1"><a class="reference internal" href="source/chap5.html">5. 数据安全：防御</a></li>
+            <li class="toctree-l1"><a class="reference internal" href="source/chap6.html">6. 模型安全：对抗攻击</a></li>
+            <li class="toctree-l1"><a class="reference internal" href="source/chap7.html">7. 模型安全：对抗防御</a></li>
+            <li class="toctree-l1"><a class="reference internal" href="source/chap8.html">8. 模型安全：后门攻击</a></li>
+            <li class="toctree-l1"><a class="reference internal" href="source/chap9.html">9. 模型安全：后门防御</a></li>
+            <li class="toctree-l1"><a class="reference internal" href="source/chap10.html">10. 模型安全：窃取攻防</a></li>
+            <li class="toctree-l1"><a class="reference internal" href="source/chap11.html">11. 未来展望</a></li>
+          </ul>
+          <ul>
+            <li class="toctree-l1"><a class="reference internal" href="chapter_references/zreferences.html">参考文献</a>
+            </li>
+          </ul>
+
+        </nav>
+
+      </div>
+
+    </header>
+    <main class="mdl-layout__content" tabIndex="0">
+
+      <script type="text/javascript" src="_static/sphinx_materialdesign_theme.js "></script>
+      <header class="mdl-layout__drawer">
+
+        <!-- Title -->
+        <span class="mdl-layout-title">
+          <a class="title" href="#">
+            <img class="logo" src="_static/logo_with_text.png" alt="人工智能：数据与模型安全" />
+          </a>
+        </span>
+
+
+        <div class="globaltoc">
+          <span class="mdl-layout-title toc">Table Of Contents</span>
+
+
+
+          <nav class="mdl-navigation">
+            <ul>
+              <li class="toctree-l1"><a class="reference internal" href="source/%E5%89%8D%E8%A8%80.html">前言</a></li>
+            </ul>
+            <ul>
+              <li class="toctree-l1"><a class="reference internal" href="source/chap1.html">1. 人工智能与安全概述</a></li>
+              <li class="toctree-l1"><a class="reference internal" href="source/chap2.html">2. 机器学习基础</a></li>
+              <li class="toctree-l1"><a class="reference internal" href="source/chap3.html">3. 人工智能安全基础</a></li>
+              <li class="toctree-l1"><a class="reference internal" href="source/chap4.html">4. 数据安全：攻击</a></li>
+              <li class="toctree-l1"><a class="reference internal" href="source/chap5.html">5. 数据安全：防御</a></li>
+              <li class="toctree-l1"><a class="reference internal" href="source/chap6.html">6. 模型安全：对抗攻击</a></li>
+              <li class="toctree-l1"><a class="reference internal" href="source/chap7.html">7. 模型安全：对抗防御</a></li>
+              <li class="toctree-l1"><a class="reference internal" href="source/chap8.html">8. 模型安全：后门攻击</a></li>
+              <li class="toctree-l1"><a class="reference internal" href="source/chap9.html">9. 模型安全：后门防御</a></li>
+              <li class="toctree-l1"><a class="reference internal" href="source/chap10.html">10. 模型安全：窃取攻防</a></li>
+              <li class="toctree-l1"><a class="reference internal" href="source/chap11.html">11. 未来展望</a></li>
+            </ul>
+            <ul>
+              <li class="toctree-l1"><a class="reference internal" href="chapter_references/zreferences.html">参考文献</a>
+              </li>
+            </ul>
+
+          </nav>
+
         </div>
-    
-</header>
 
-    <div class="document">
+      </header>
+
+      <div class="document">
         <div class="page-content" role="main">
-        
-  <div class="section" id="id1">
-<h1>《人工智能数据与模型安全》<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="chapter_about_the_book/index.html">关于此书</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/%E5%89%8D%E8%A8%80.html">前言</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="source/chap1.html">1. 人工智能与安全概述</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap2.html">2. 机器学习基础</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap3.html">3. 人工智能安全基础</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap4.html">4. 数据安全：攻击</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap5.html">5. 数据安全：防御</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap6.html">6. 模型安全：对抗攻击</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap7.html">7. 模型安全：对抗防御</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap8.html">8. 模型安全：后门攻击</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap9.html">9. 模型安全：后门防御</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap10.html">10. 模型安全：窃取攻防</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/chap11.html">11. 未来展望</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="chapter_references/zreferences.html">参考文献</a></li>
-</ul>
-</div>
-</div>
+
+          <div class="section" id="id1">
+            <!-- <h1>《人工智能：数据与模型安全》<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1> -->
+            <style>
+              h1,
+              .side-doc-outline {
+                display: none;
+              }
+
+              .document .page-content {
+                width: 100%;
+              }
+
+              h2,
+              h3,
+              h4 {
+                letter-spacing: 2px;
+              }
+
+              .mdl-grid {
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 150px 0 0 0;
+              }
+
+              h2.toc {
+                padding: 150px 0 0 0;
+              }
+
+              .header h2 {
+                font-size: 2rem;
+                padding-bottom: 35px;
+              }
+
+              .header p {
+                font-size: 1.25rem;
+                letter-spacing: 0px;
+                line-height: 1.5rempx;
+                padding-bottom: 10px;
+              }
+
+              .header .mdl-button {
+                margin: 0px 10px;
+                letter-spacing: 2px;
+                font-size: 16px;
+                margin: 1rem 1.5rem;
+                height: 40px;
+                width: 120px;
+              }
+
+              .author-item {
+                max-width: 300px;
+              }
+
+              .author-item h3 {
+                padding-top: 25px;
+                padding-bottom: 10px;
+              }
+
+              .author-item img {
+                border-radius: 50%;
+                width: 120px;
+              }
+
+              .authors h4 {
+                width: 100%;
+              }
+
+              .authors h2 {
+                padding-bottom: 18px;
+              }
+
+              .running-item {
+                max-width: 300px;
+              }
+
+              .running-item img {
+                height: 40px;
+              }
+
+              .running-item p {
+                padding: 20px;
+              }
+
+              .running.mdl-grid {
+                padding: 20px 0 0 0;
+              }
+
+              .logos img {
+                display: inline;
+                max-height: 70px;
+                max-width: 100px;
+                margin-left: auto;
+                margin-right: auto;
+              }
+
+              .logos {
+                padding-top: 1em;
+                padding-bottom: 2em;
+              }
+
+              .logos .mdl-grid {
+                padding: 0;
+              }
+
+              .features .logos .mdl-cell {
+                padding: 10px 0;
+              }
 
 
+              .features .mdl-cell {
+                padding: 0 36px;
+              }
+
+              .features h2,
+              .features-2 h2 {
+                padding-bottom: 24px;
+              }
+
+              .features-2 p {
+                padding: 0 200px;
+              }
+
+              .institute.mdl-grid {
+                padding: 24px;
+              }
+
+              .institute .mdl-cell {
+                text-align: left;
+                padding: 0;
+              }
+
+              #logoimg {
+                padding-top: 0em;
+                padding-bottom: 2em;
+                width: 100%;
+              }
+
+              #map {
+                height: 400px;
+                width: 100%;
+              }
+
+              #mapimg {
+                width: 100%;
+              }
+
+              a {
+                font-size: normal;
+              }
+
+              @media (max-width: 1000px) {
+
+                .mdl-grid,
+                h2.toc {
+                  padding: 50px 0 0 0;
+                }
+
+                .header img,
+                .features-2 img {
+                  max-width: 300px;
+                }
+
+                .header .mdl-cell--1-col {
+                  display: none;
+                }
+
+                .features img {
+                  max-width: 350px;
+                }
+
+                .features-2 p {
+                  padding: 0 24px;
+                }
+
+                .features .mdl-cell {
+                  padding: 0 8px;
+                }
+              }
+
+              .collapsible {
+                background-color: #EEE;
+                color: black;
+                cursor: pointer;
+                padding: 6px;
+                width: 100%;
+                border: none;
+                text-align: left;
+                outline: none;
+                font-size: 16px;
+              }
+
+              .collapsible-active,
+              .collapsible:hover {
+                background-color: #DDD;
+              }
+
+              .expansion {
+                padding: 3px 6px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.2s ease-out;
+              }
+
+              .cover h2 {
+                font-size: 34px;
+                margin-bottom: 0px;
+                padding-bottom: 20px;
+              }
+
+              .cover p.version {
+                font-size: 18px;
+                padding: 0 0 9px 0;
+
+              }
+
+              .cover p {
+                margin: 0;
+                padding: 20px 0 0px 0;
+                font-size: 20px;
+              }
+
+              
+            </style>
+
+            <div class="mdl-grid header">
+              <div class="mdl-cell mdl-cell--3-col">
+                <img src="_static/myfrontpage/_images/front.png" class="img-fluid" alt="">
+              </div>
+              <div class="mdl-cell mdl-cell--1-col">
+              </div>
+              <div class="mdl-cell mdl-cell--6-col mdl-cell--middle cover">
+                <h2 class="mdl-color-text--primary">《人工智能：数据与模型安全》</h2>
+                <p class="version">第一版</p>
+                <p>围绕人工智能的两大核心要素——数据和模型</p>
+                <p>对人工智能安全问题和攻防算法进行全面深入的介绍和探讨</p>
+                <p>第一版纸质书已在
+                  <a href="https://item.jd.com/14024243.html">京东</a>
+                  上架
+                </p>
+                <p><a class="github-button" href="https://github.com/ai-data-model-safety/ai-data-model-safety.github.io"
+                    data-icon="octicon-star" data-size="large" data-show-count="true"
+                    aria-label="Star ai-data-model-safety on GitHub">Star</a></p>
+              </div>
+            </div>
+
+            <div class="authors mdl-grid" id="author">
+              <div class="author-group-title mdl-cell mdl-cell--12-col mdl-cell--top">
+                <h2>作者</h2>
+              </div>
+              <div class="mdl-cell mdl-cell--3-col mdl-cell--top">
+                <div class="author-item">
+                  <img src="_static/myfrontpage/_images/yugangjiang.jpg" />
+                  <h3><a href="https://cs.fudan.edu.cn/3f/c5/c25893a278469/page.htm">姜育刚</a></h3>
+                  <p>复旦大学</p>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--3-col mdl-cell--top">
+                <div class="author-item">
+                  <img src="_static/myfrontpage/_images/xingjunma.jpg" />
+                  <h3><a href="http://xingjunma.com/">马兴军</a></h3>
+                  <p>复旦大学</p>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--3-col mdl-cell--top">
+                <div class="author-item">
+                  <img src="_static/myfrontpage/_images/zuxuanwu.png" />
+                  <h3><a href="https://zxwu.azurewebsites.net/">吴祖煊</a></h3>
+                  <p>复旦大学</p>
+                </div>
+              </div>
+
+
+              <div class="mdl-grid">
+                <div class="author-group-title mdl-cell mdl-cell--10-col mdl-cell--top">
+                  <h2>致谢</h2>
+                  <h4>特别感谢邬江兴院士给本书作序，特别感谢张钹院士和周志华教授对本书的推荐。</h4>
+                  <br><p>感谢实验室同学对本书做出的贡献：陈绍祥、宋雪、王铮、傅宇倩、魏志鹏、陈凯、赵世豪、吕熠强、訾柏嘉、钱天文、张星、常明昊、翁泽佳、王君可、翟坤、王欣、阮子禅、张超、林朝坤等。</p>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- <div class="features mdl-grid">
+              <div id="textbook" class="mdl-cell mdl-cell--12-col">
+                <h2>本书被以下单位用作课程教材或参考数目</h2>
+                <div id="logos" class="logos">
+                  <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--2-col"> <img src="_static/myfrontpage/_images/logos/fudan.png" />
+                    </div>
+                  </div>
+                </div>
+
+                <style>
+                  a {
+                    font-weight: 400;
+                  }
+                </style>
+              </div>
+            </div> -->
+
+            <div class="mdl-grid">
+              <div id="course" class="mdl-cell mdl-cell--12-col">
+                <h2>配套课件</h2>
+                <p>如需配套课件，请直接联系<a class="reference external" href="mailto:xingjunma@fudan.edu.cn">我们</a></p>
+                <table class="docutils align-default" style="margin: 0 auto; text-align: center;">
+                  <colgroup>
+                    <col style="width: 9%" />
+                    <col style="width: 45%" />
+                    <col style="width: 45%" />
+                  </colgroup>
+                  <thead>
+                    <tr class="row-odd">
+                      <th class="head" style="margin: 0 auto; text-align: center;">
+                        <p>序号</p>
+                      </th>
+                      <th class="head" style="margin: 0 auto; text-align: center;">
+                        <p>主题</p>
+                      </th>
+                      <th class="head" style="margin: 0 auto; text-align: center;">
+                        <p>课件</p>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="row-even">
+                      <td>
+                        <p>1</p>
+                      </td>
+                      <td>
+                        <p>课程介绍&机器学习基础</p>
+                      </td>
+                      <td>
+                        <p>第1周：课程介绍&机器学习基础.pptx</p>
+                      </td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td>
+                        <p>2</p>
+                      </td>
+                      <td>
+                        <p>可解释性和普通鲁棒性</p>
+                      </td>
+                      <td>
+                        <p>第2周：可解释性和普通鲁棒性.pptx</p>
+                      </td>
+                    </tr>
+                    <tr class="row-even">
+                      <td>
+                        <p>3</p>
+                      </td>
+                      <td>
+                        <p>对抗样本</p>
+                      </td>
+                      <td>
+                        <p>第3周：对抗样本.pptx</p>
+                      </td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td>
+                        <p>4</p>
+                      </td>
+                      <td>
+                        <p>对抗样本检测</p>
+                      </td>
+                      <td>
+                        <p>第4周：对抗样本检测.pptx</p>
+                      </td>
+                    </tr>
+                    <tr class="row-even">
+                      <td>
+                        <p>5</p>
+                      </td>
+                      <td>
+                        <p>对抗防御</p>
+                      </td>
+                      <td>
+                        <p>第5周：对抗防御.pptx</p>
+                      </td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td>
+                        <p>6</p>
+                      </td>
+                      <td>
+                        <p>数据投毒和防御</p>
+                      </td>
+                      <td>
+                        <p>第6周：数据投毒和防御.pptx</p>
+                      </td>
+                    </tr>
+                    <tr class="row-even">
+                      <td>
+                        <p>7</p>
+                      </td>
+                      <td>
+                        <p>后门攻击和防御</p>
+                      </td>
+                      <td>
+                        <p>第7周：后门攻击和防御.pptx</p>
+                      </td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td>
+                        <p>8</p>
+                      </td>
+                      <td>
+                        <p>数据抽取和模型窃取</p>
+                      </td>
+                      <td>
+                        <p>第8周：数据抽取和模型窃取.pptx</p>
+                      </td>
+                    </tr>
+                    <tr class="row-even">
+                      <td>
+                        <p>9</p>
+                      </td>
+                      <td>
+                        <p>隐私攻击和防御</p>
+                      </td>
+                      <td>
+                        <p>第9周：隐私攻击和防御.pptx</p>
+                      </td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td>
+                        <p>10</p>
+                      </td>
+                      <td>
+                        <p>深度伪造与检测</p>
+                      </td>
+                      <td>
+                        <p>第10周：深度伪造与检测.pptx</p>
+                      </td>
+                    </tr>
+                    <tr class="row-even">
+                      <td>
+                        <p>11</p>
+                      </td>
+                      <td>
+                        <p>联邦学习</p>
+                      </td>
+                      <td>
+                        <p>第11周：联邦学习.pptx</p>
+                      </td>
+                    </tr>
+                    <tr class="row-odd">
+                      <td>
+                        <p>12</p>
+                      </td>
+                      <td>
+                        <p>AI模型版权保护</p>
+                      </td>
+                      <td>
+                        <p>第12周：AI模型版权保护.pptx</p>
+                      </td>
+                    </tr>
+                    <tr class="row-even">
+                      <td>
+                        <p>13</p>
+                      </td>
+                      <td>
+                        <p>AI公平性与伦理</p>
+                      </td>
+                      <td>
+                        <p>第13周：AI公平性与伦理.pptx</p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- <h2 class="toc">目录</h2>
+
+            <script>
+              var coll = document.getElementsByClassName("collapsible");
+              var i;
+              for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function () {
+                  this.classList.toggle("collapsible-active");
+                  var content = this.nextElementSibling;
+                  if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                  } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                  }
+                });
+              }
+            </script> -->
+
+            <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+            <!-- <div class="toctree-wrapper compound">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="source/%E5%89%8D%E8%A8%80.html">前言</a></li>
+              </ul>
+            </div>
+            <div class="toctree-wrapper compound">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="source/chap1.html">1. 人工智能与安全概述</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="source/chap2.html">2. 机器学习基础</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="source/chap3.html">3. 人工智能安全基础</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="source/chap4.html">4. 数据安全：攻击</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="source/chap5.html">5. 数据安全：防御</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="source/chap6.html">6. 模型安全：对抗攻击</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="source/chap7.html">7. 模型安全：对抗防御</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="source/chap8.html">8. 模型安全：后门攻击</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="source/chap9.html">9. 模型安全：后门防御</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="source/chap10.html">10. 模型安全：窃取攻防</a></li>
+                <li class="toctree-l1"><a class="reference internal" href="source/chap11.html">11. 未来展望</a></li>
+              </ul>
+            </div>
+            <div class="toctree-wrapper compound">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="chapter_references/zreferences.html">参考文献</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div class="side-doc-outline">
-            <div class="side-doc-outline--content"> 
-            </div>
-        </div>
+          <div class="side-doc-outline--content"></div>
+        </div> -->
 
-      <div class="clearer"></div>
-    </div><div class="pagenation">
-     <a id="button-next" href="chapter_about_the_book/index.html" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
-         <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
-        <div class="pagenation-text">
+        <div class="clearer"></div>
+      </div>
+      <div class="pagenation">
+        <a id="button-next" href="source/%E5%89%8D%E8%A8%80.html"
+          class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored" role="botton" accesskey="N">
+          <i class="pagenation-arrow-R fas fa-arrow-right fa-lg"></i>
+          <div class="pagenation-text">
             <span class="pagenation-direction">Next</span>
-            <div>关于此书</div>
-        </div>
-     </a>
+            <div>前言</div>
+          </div>
+        </a>
+      </div>
+
+    </main>
   </div>
-        
-        </main>
-    </div>
-  </body>
+</body>
+
 </html>
